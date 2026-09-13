@@ -1,0 +1,36 @@
+{
+  "name": "@timmbr/storybook",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Storybook 10 environment for Timmbr Design System",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build -o storybook-static",
+    "clean": "rimraf storybook-static"
+  },
+  "dependencies": {
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/addon-links": "^10.6.0",
+    "@storybook/addon-themes": "^10.6.0",
+    "@storybook/nextjs-vite": "^10.6.0",
+    "@storybook/react": "^10.6.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@timmbr/icons": "workspace:*",
+    "@timmbr/theme": "workspace:*",
+    "@timmbr/ui": "workspace:*",
+    "@timmbr/utils": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "storybook": "^10.6.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@timmbr/tsconfig": "workspace:*",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
+  }
+}

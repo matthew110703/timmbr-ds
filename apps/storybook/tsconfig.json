@@ -1,0 +1,11 @@
+{
+  "extends": "@timmbr/tsconfig/react-library.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "src",
+    ".storybook",
+    "../../packages/*/src"
+  ]
+}
