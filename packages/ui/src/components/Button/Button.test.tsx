@@ -10,7 +10,7 @@ describe('Button component', () => {
     render(<Button>Click me</Button>);
     const button = screen.getByRole('button', { name: /click me/i });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass('bg-brand-500');
+    expect(button).toHaveClass('bg-primary-500');
   });
 
   it('renders with custom variant and size classes', () => {
@@ -43,7 +43,7 @@ describe('Button component', () => {
     const link = screen.getByRole('link', { name: /link button/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', '#test');
-    expect(link).toHaveClass('bg-brand-500');
+    expect(link).toHaveClass('bg-primary-500');
   });
 
   it('honors global config defaults when not overridden', () => {
@@ -79,6 +79,6 @@ describe('Button component', () => {
       </TimmbrConfigProvider>
     );
     const button = screen.getByRole('button', { name: /overridden/i });
-    expect(button).toHaveClass('hover:bg-slate-100');
+    expect(button).toHaveClass('hover:bg-grey-100');
   });
 });

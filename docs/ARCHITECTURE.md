@@ -65,3 +65,21 @@ Instead of compiling CSS inside `@timmbr/ui` (which causes duplicate CSS and spe
 2. Consuming applications import `@timmbr/theme/theme.css` in their root stylesheet.
 3. Consuming applications define `@source` directives targeting `@timmbr/ui` and `@timmbr/icons`.
 4. Tailwind scans classes JIT directly from the component distributions!
+
+---
+
+## 5. Figma Design Tokens & Theming
+
+Timmbr is directly synchronized with Figma tokens:
+
+- **Typography**:
+  - Headings (H1–H6): `DM Serif Display` (400, line-height 1.3)
+  - Subtitles, Body, and Captions: `Manrope` (300, 400, 500, 600, line-height 1.3)
+  - Page & Component Titles: `Outfit` (700, line-height 1.3)
+- **Primary Color Scale**:
+  - 1000..50 warm terra-cotta timber scale.
+  - Base/Main is 500 (`#C0643A`), aliased to `--color-primary` and `--color-primary-500`.
+- **Backgrounds**:
+  - `bg-subtle` (`#DDD5CA`), `bg-1` (`#F5EDE0`), `bg-2` (`#F7F1E6`).
+- **Grey Scale**:
+  - Neutral scale from `1000` (`#0B0B0B`) to `50` (`#FFFFFF`).

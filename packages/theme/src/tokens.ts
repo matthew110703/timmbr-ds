@@ -1,39 +1,168 @@
 /**
- * Design tokens for the Timmbr Design System.
+ * Design tokens for the Timmbr Design System, extracted directly from Figma specifications.
  */
 export const tokens = {
   colors: {
-    brand: {
-      50: '#f0fdf4',
-      100: '#dcfce7',
-      200: '#bbf7d0',
-      300: '#86efac',
-      400: '#4ade80',
-      500: '#22c55e',
-      600: '#16a34a',
-      700: '#15803d',
-      800: '#166534',
-      900: '#14532d',
-      950: '#052e16',
+    primary: {
+      50: '#E0B29D',
+      100: '#D9A289',
+      200: '#D39375',
+      300: '#CD8361',
+      400: '#C6744E',
+      500: '#C0643A',
+      DEFAULT: '#C0643A',
+      600: '#AD5A34',
+      700: '#9A502E',
+      800: '#864629',
+      900: '#733C23',
+      1000: '#60321D',
     },
-    slate: {
-      50: '#f8fafc',
-      100: '#f1f5f9',
-      200: '#e2e8f0',
-      300: '#cbd5e1',
-      400: '#94a3b8',
-      500: '#64748b',
-      600: '#475569',
-      700: '#334155',
-      800: '#1e293b',
-      900: '#0f172a',
-      950: '#020617',
+    // Alias brand to primary for backward compatibility
+    brand: {
+      50: '#E0B29D',
+      100: '#D9A289',
+      200: '#D39375',
+      300: '#CD8361',
+      400: '#C6744E',
+      500: '#C0643A',
+      DEFAULT: '#C0643A',
+      600: '#AD5A34',
+      700: '#9A502E',
+      800: '#864629',
+      900: '#733C23',
+      950: '#60321D',
+      1000: '#60321D',
+    },
+    backgrounds: {
+      subtle: '#DDD5CA', // BG -1
+      surface1: '#F5EDE0', // BG 1
+      surface2: '#F7F1E6', // BG 2
+    },
+    greys: {
+      50: '#FFFFFF',
+      100: '#E7E7E7',
+      200: '#CECECE',
+      300: '#B6B6B6',
+      400: '#9D9D9D',
+      500: '#858585',
+      DEFAULT: '#858585',
+      600: '#6D6D6D',
+      700: '#545454',
+      800: '#3C3C3C',
+      900: '#232323',
+      1000: '#0B0B0B',
     },
     semantic: {
       success: '#22c55e',
       warning: '#f59e0b',
       error: '#ef4444',
       info: '#3b82f6',
+    },
+  },
+  typography: {
+    fonts: {
+      display: '"DM Serif Display", serif',
+      sans: '"Manrope", sans-serif',
+      title: '"Outfit", sans-serif',
+    },
+    styles: {
+      h1: {
+        fontFamily: '"DM Serif Display", serif',
+        fontSize: '64px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+      },
+      h2: {
+        fontFamily: '"DM Serif Display", serif',
+        fontSize: '48px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+      },
+      h3: {
+        fontFamily: '"DM Serif Display", serif',
+        fontSize: '32px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+      },
+      h4: {
+        fontFamily: '"DM Serif Display", serif',
+        fontSize: '24px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+        letterSpacing: '-0.02em',
+      },
+      h5: {
+        fontFamily: '"DM Serif Display", serif',
+        fontSize: '20px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+      },
+      h6: {
+        fontFamily: '"DM Serif Display", serif',
+        fontSize: '20px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+      },
+      subtitle1: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '18px',
+        fontWeight: 600,
+        lineHeight: 1.3,
+      },
+      subtitle2: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '18px',
+        fontWeight: 600,
+        lineHeight: 1.3,
+      },
+      body1: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+      },
+      body2: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '14px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+      },
+      body2Medium: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '14px',
+        fontWeight: 500,
+        lineHeight: 1.3,
+      },
+      body2Semibold: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '14px',
+        fontWeight: 600,
+        lineHeight: 1.3,
+      },
+      body2Light: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '14px',
+        fontWeight: 300,
+        lineHeight: 1.3,
+      },
+      body3: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '12px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+      },
+      body3Light: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '12px',
+        fontWeight: 300,
+        lineHeight: 1.3,
+      },
+      pageTitle: {
+        fontFamily: '"Outfit", sans-serif',
+        fontSize: '48px',
+        fontWeight: 700,
+        lineHeight: 1.3,
+      },
     },
   },
   radius: {

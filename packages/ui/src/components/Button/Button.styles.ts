@@ -5,9 +5,9 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-brand-500 text-white hover:bg-brand-600 shadow-sm active:scale-[0.98]',
-        outline: 'border border-slate-200 dark:border-slate-800 bg-background hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-foreground',
-        ghost: 'hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-foreground',
+        default: 'bg-primary-500 text-white hover:bg-primary-600 shadow-sm active:scale-[0.98]',
+        outline: 'border border-grey-200 dark:border-grey-800 bg-background hover:bg-grey-100 dark:hover:bg-grey-900 hover:text-foreground',
+        ghost: 'hover:bg-grey-100 dark:hover:bg-grey-900 hover:text-foreground',
       },
       size: {
         default: 'h-10 px-4 py-2',
