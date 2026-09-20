@@ -26,3 +26,6 @@ This file establishes the operational rules for Google Gemini / Antigravity AI a
    - **Console Hygiene & Screenshots**: Verify console logs (`list_console_messages`) for zero runtime errors and capture a screenshot (`take_screenshot`) before reporting completion.
 6. **Git Operations Policy**:
    Do NOT stage (`git add`) or commit (`git commit`) files automatically. All file staging and committing must be left entirely to the user unless explicitly requested.
+7. **Package Publishing Policy**:
+   **NEVER** automatically execute `pnpm run publish`, `pnpm run publish:all`, or run `node scripts/publish.mjs`. Publishing packages to NPM, pushing releases, or live deployment MUST be triggered exclusively by the user. Dry-run commands (`--dry-run`) may only be run when explicitly asked to validate packaging.
+

@@ -64,6 +64,8 @@ pnpm storybook
 - `pnpm run lint`: Runs ESLint across all workspaces.
 - `pnpm run clean`: Cleans build artifacts (`dist`, `storybook-static`, `.turbo`).
 - `pnpm run pack:dry-run`: Simulates tarball packaging for all publishable packages without publishing.
+- `pnpm run publish:all`: Publishes all packages with new versions/changesets to npm.
+- `pnpm run publish <pkgs...>`: Publishes specific packages (e.g. `pnpm run publish ui theme`).
 - `pnpm changeset`: Generates a semantic version bump changeset.
 
 ---
