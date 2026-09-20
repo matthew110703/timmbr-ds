@@ -63,7 +63,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
+## Available Components
+
+| Category | Components | Description |
+| :--- | :--- | :--- |
+| **Actions** | `Button` | Accessible button with adornment icons, loading spinner, CVA variants, and `asChild` composition. |
+| **Typography** | `Text`, `Heading` | Typography primitives restricted to semantic elements (`<p>`, `<span>`, `<h1>`–`<h6>`) with design token scaling. |
+| **Surfaces** | `Card`, `Avatar`, `Badge`, `Chip`, `Divider` | Display primitives including user avatars, status pills, elevated cards, interactive chips, and separators. |
+| **Layout** | `Container`, `Stack`, `Inline`, `Grid`, `Center` | Responsive breakpoint containers, flex distribution, responsive CSS grid, and centered wrappers. |
+| **Form Controls** | `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `RangeSlider`, `FormField`, `Label` | Comprehensive form primitives with labels, helper text, validation error states, and dual-thumb sliders. |
+| **Navigation** | `Tabs`, `Pagination` | Radix-driven accessible tabs with spring-physics glider indicator and multi-page pagination. |
+| **Feedback** | `Alert`, `Progress`, `Skeleton`, `Spinner`, `Toast` | Status banners, determinate/indeterminate progress, shimmer loaders, and card-deck multi-toasts with hover-spread. |
+| **Overlays** | `Dialog`, `Drawer`, `Dropdown`, `Popover`, `Tooltip` | Centered dialogs, off-canvas sliding drawers, contextual dropdowns, interactive popovers, and accessible tooltips. |
+| **Data Display** | `Table`, `DataList`, `Stat`, `EmptyState` | Structured data tables with pagination, key-value data lists, KPI metrics, and empty state placeholders. |
+| **Visual Media** | `Icon` | Unified icon wrapper supporting Lucide icons, external image URLs, raw SVGs, and clickable modes. |
+
+
 ## Component Usage
+
 
 ### Button
 

@@ -22,28 +22,28 @@ interface SwatchProps {
 const ColorSwatch: React.FC<SwatchProps> = ({ name, hex, className, isBase }) => (
   <div className="flex flex-col items-center">
     <div
-      className={`w-24 h-24 rounded-lg shadow-sm border border-grey-200/40 relative flex items-center justify-center ${className}`}
+      className={`w-24 h-24 rounded-lg shadow-sm border border-grey-200/40 dark:border-grey-700/60 relative flex items-center justify-center ${className}`}
       style={{ backgroundColor: hex }}
     >
       {isBase && (
-        <span className="absolute top-2 right-2 bg-white/90 text-grey-900 text-[10px] font-bold px-1.5 py-0.5 rounded shadow">
+        <span className="absolute top-2 right-2 bg-white/90 dark:bg-grey-900/90 text-grey-900 dark:text-grey-100 text-[10px] font-bold px-1.5 py-0.5 rounded shadow">
           BASE
         </span>
       )}
     </div>
-    <span className="mt-2 text-xs font-semibold text-grey-900">{name}</span>
-    <span className="text-[11px] font-mono text-grey-500 uppercase">{hex}</span>
+    <span className="mt-2 text-xs font-semibold text-grey-900 dark:text-grey-100">{name}</span>
+    <span className="text-[11px] font-mono text-grey-500 dark:text-grey-400 uppercase">{hex}</span>
   </div>
 );
 
-export const FigmaColorPalettes: Story = {
+export const Palettes: Story = {
   render: () => (
-    <div className="max-w-5xl space-y-12 p-8 bg-white rounded-xl border border-grey-100 shadow-sm font-sans">
+    <div className="max-w-5xl space-y-12 p-8 bg-white dark:bg-grey-900 rounded-xl border border-grey-200 dark:border-grey-800 shadow-sm font-sans">
       {/* Primary Scale */}
       <div>
-        <div className="border-b border-grey-100 pb-3 mb-6">
-          <h3 className="text-h4 text-grey-1000 font-display">Primary Colour Scale</h3>
-          <p className="text-body-2 text-grey-600">
+        <div className="border-b border-grey-200 dark:border-grey-800 pb-3 mb-6">
+          <h3 className="text-h4 text-grey-1000 dark:text-grey-50 font-display">Primary Colour Scale</h3>
+          <p className="text-body-2 text-grey-600 dark:text-grey-300">
             Node #6:121 — Warm terra-cotta timber palette. Default base is <strong>500</strong> (accessible via <code>bg-primary</code> or <code>bg-primary-500</code>).
           </p>
         </div>
@@ -64,9 +64,9 @@ export const FigmaColorPalettes: Story = {
 
       {/* Backgrounds */}
       <div>
-        <div className="border-b border-grey-100 pb-3 mb-6">
-          <h3 className="text-h4 text-grey-1000 font-display">Backgrounds</h3>
-          <p className="text-body-2 text-grey-600">
+        <div className="border-b border-grey-200 dark:border-grey-800 pb-3 mb-6">
+          <h3 className="text-h4 text-grey-1000 dark:text-grey-50 font-display">Backgrounds</h3>
+          <p className="text-body-2 text-grey-600 dark:text-grey-300">
             Node #6:134 — Warm organic surface backgrounds.
           </p>
         </div>
@@ -79,9 +79,9 @@ export const FigmaColorPalettes: Story = {
 
       {/* Greys Scale */}
       <div>
-        <div className="border-b border-grey-100 pb-3 mb-6">
-          <h3 className="text-h4 text-grey-1000 font-display">Grey’s Scale (Neutral)</h3>
-          <p className="text-body-2 text-grey-600">
+        <div className="border-b border-grey-200 dark:border-grey-800 pb-3 mb-6">
+          <h3 className="text-h4 text-grey-1000 dark:text-grey-50 font-display">Grey’s Scale (Neutral)</h3>
+          <p className="text-body-2 text-grey-600 dark:text-grey-300">
             Node #6:140 — Neutral scale from pure black/deep charcoal (1000) to pure white (50).
           </p>
         </div>

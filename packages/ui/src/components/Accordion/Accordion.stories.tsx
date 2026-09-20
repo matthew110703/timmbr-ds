@@ -8,8 +8,15 @@ import {
 } from './Accordion';
 
 const meta = {
-  title: 'Components/Accordion',
+  title: 'Components & Data/Accordion',
   component: Accordion,
+  decorators: [
+    (Story: any) => (
+      <div className="w-full max-w-md">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     layout: 'centered',
   },

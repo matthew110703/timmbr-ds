@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* Typography Fonts */
@@ -52,7 +52,18 @@
   --color-grey-700: #545454;
   --color-grey-800: #3C3C3C;
   --color-grey-900: #232323;
+  --color-grey-950: #141414;
   --color-grey-1000: #0B0B0B;
+
+  /* Semantic Colors */
+  --color-destructive: #DC2626;
+  --color-destructive-foreground: #FFFFFF;
+  --color-success: #059669;
+  --color-success-foreground: #FFFFFF;
+  --color-warning: #D97706;
+  --color-warning-foreground: #FFFFFF;
+  --color-info: #2563EB;
+  --color-info-foreground: #FFFFFF;
 
   /* Radiuses */
   --radius-sm: 0.25rem;
@@ -64,6 +75,22 @@
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-fade-in: fade-in 0.15s ease-out;
+  --animate-fade-out: fade-out 0.15s ease-in;
+  --animate-scale-in: scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-scale-out: scale-out 0.15s ease-in;
+  --animate-dialog-scale-in: dialog-scale-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-dialog-scale-out: dialog-scale-out 0.15s ease-in forwards;
+  --animate-tab-slide: tab-slide 0.2s ease-out;
+  --animate-indeterminate-bar: indeterminate-bar 1.8s infinite ease-in-out;
+  --animate-slide-in-from-right: slide-in-from-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-out-to-right: slide-out-to-right 0.2s ease-in;
+  --animate-slide-in-from-left: slide-in-from-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-out-to-left: slide-out-to-left 0.2s ease-in;
+  --animate-slide-in-from-top: slide-in-from-top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-out-to-top: slide-out-to-top 0.2s ease-in;
+  --animate-slide-in-from-bottom: slide-in-from-bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-out-to-bottom: slide-out-to-bottom 0.2s ease-in;
+  --animate-shimmer: shimmer 1.5s infinite linear;
 
   @keyframes accordion-down {
     from {
@@ -90,11 +117,169 @@
   @keyframes fade-in {
     from {
       opacity: 0;
-      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
     }
     to {
       opacity: 1;
       transform: scale(1);
+    }
+  }
+
+  @keyframes scale-out {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes slide-in-from-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-to-right {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes slide-in-from-left {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-to-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slide-in-from-top {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-out-to-top {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-out-to-bottom {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes dialog-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes dialog-scale-out {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes tab-slide {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes indeterminate-bar {
+    0% {
+      left: -35%;
+      right: 100%;
+    }
+    60% {
+      left: 100%;
+      right: -90%;
+    }
+    100% {
+      left: 100%;
+      right: -90%;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
     }
   }
 }
@@ -269,7 +454,7 @@
   line-height: 1.3;
 }
 
-[data-animations-disabled="true"] * {
+:root[data-animations-disabled="true"] * {
   animation-duration: 0.001ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.001ms !important;

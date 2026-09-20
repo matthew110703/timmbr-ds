@@ -9,6 +9,7 @@ An enterprise-grade, highly scalable, Next.js App Router-compatible UI design sy
 | Package / App | Description | Directory |
 | :--- | :--- | :--- |
 | **`@timmbr/ui`** | Next.js App Router/RSC-compatible React component library | [`packages/ui`](file:///./packages/ui) |
+| **`@timmbr/motion`** | High-performance motion primitives, physics spring transitions & shared layout | [`packages/motion`](file:///./packages/motion) |
 | **`@timmbr/icons`** | Unified wrapper for Lucide icons and custom SVGs | [`packages/icons`](file:///./packages/icons) |
 | **`@timmbr/theme`** | Tailwind CSS v4 `@theme` styles, tokens, and animations | [`packages/theme`](file:///./packages/theme) |
 | **`@timmbr/hooks`** | Pure React hooks for viewport, state, and hydration | [`packages/hooks`](file:///./packages/hooks) |
@@ -72,5 +73,6 @@ pnpm storybook
 - [Hierarchical Configuration Guide](file:///./docs/DESIGN_SYSTEM_CONFIG.md)
 - [AI Agent & Code Generation Patterns](file:///./docs/AI_AGENT_PATTERNS.md)
 - [Component Authoring Skill](file:///./.agents/skills/timmbr-component-authoring/SKILL.md)
+- [Motion Authoring Skill](file:///./.agents/skills/timmbr-motion-authoring/SKILL.md)
 - [Theme Tokens Skill](file:///./.agents/skills/timmbr-theme-tokens/SKILL.md)
 - [Icon Management Skill](file:///./.agents/skills/timmbr-icon-management/SKILL.md)

@@ -8,7 +8,8 @@ Welcome to the **Timmbr Design System** repository. When performing any developm
 
 The repository is configured as a PNPM Workspace managed by Turborepo:
 
-- **`packages/ui` (`@timmbr/ui`)**: React component library. Consumes `@timmbr/theme`, `@timmbr/icons`, `@timmbr/hooks`, `@timmbr/utils`. Never bundle consumer dependencies.
+- **`packages/ui` (`@timmbr/ui`)**: React component library. Consumes `@timmbr/theme`, `@timmbr/icons`, `@timmbr/motion`, `@timmbr/hooks`, `@timmbr/utils`. Never bundle consumer dependencies.
+- **`packages/motion` (`@timmbr/motion`)**: Shared animation infrastructure, physics transitions, layout engine, and motion primitives powered by `motion/react`.
 - **`packages/theme` (`@timmbr/theme`)**: Design tokens, CSS variables, and Tailwind CSS v4 `@theme` definitions.
 - **`packages/icons` (`@timmbr/icons`)**: Unified icon wrapper for Lucide icons and custom SVGs.
 - **`packages/hooks` (`@timmbr/hooks`)**: Pure React hooks.
@@ -56,4 +57,18 @@ When adding or modifying any component in `@timmbr/ui`:
 Before reporting completion of any task:
 1. Run `pnpm run build` to ensure topological builds succeed without error.
 2. Run `pnpm run test` to verify unit test coverage.
-3. Run `pnpm --filter storybook build` if Storybook stories or configurations were updated.
+3. Run `pnpm --filter @timmbr/storybook build` if Storybook stories or configurations were updated.
+4. **Autonomous Browser MCP Verification**:
+   - **When to Run**: Run strictly upon completing UI component additions, functional modifications, or styling updates (milestone completion). Do **NOT** run MCP unnecessarily for intermediate micro-edits, type refactors, or documentation changes.
+   - **Ultra-Fast Direct Canvas Protocol**: Always navigate directly to the isolated story canvas to bypass the heavy Storybook Manager UI:
+     `http://localhost:6006/iframe.html?id=<story-id>&viewMode=story`
+   - **Deep Prop & DOM Telemetry**: Use `evaluate_script` with `() => window.__TIMMBR_INSPECT__()` to inspect active props (`variant`, `size`, `state`), computed styles, dimensions, and ARIA attributes in a single fast call.
+   - **Console Hygiene**: Inspect console messages (`list_console_messages`) to guarantee zero runtime errors or unhandled warnings.
+   - **Visual Confirmation**: Capture a screenshot (`take_screenshot`) to verify visual accuracy against Figma specifications before reporting completion.
+
+---
+
+## 5. Git Operations Policy
+
+- **NEVER** run `git add`, `git commit`, or stage files automatically.
+- All file staging, reviewing, and committing must be left strictly to the user/developer.

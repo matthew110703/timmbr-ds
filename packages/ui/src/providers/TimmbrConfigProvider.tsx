@@ -91,12 +91,24 @@ export const TimmbrConfigProvider: React.FC<TimmbrConfigProviderProps> = ({
 
   const animationsDisabled = mergedConfig.animations?.enabled === false;
 
+  React.useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute(
+        'data-animations-disabled',
+        animationsDisabled ? 'true' : 'false'
+      );
+    }
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.documentElement.removeAttribute('data-animations-disabled');
+      }
+    };
+  }, [animationsDisabled]);
+
   return (
-    <div data-animations-disabled={animationsDisabled ? 'true' : 'false'}>
-      <TimmbrConfigContext.Provider value={mergedConfig}>
-        {children}
-      </TimmbrConfigContext.Provider>
-    </div>
+    <TimmbrConfigContext.Provider value={mergedConfig}>
+      {children}
+    </TimmbrConfigContext.Provider>
   );
 };
 

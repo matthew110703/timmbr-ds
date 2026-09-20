@@ -21,12 +21,24 @@ export const AnimationProvider: React.FC<AnimationProviderProps> = ({
   children,
   disableAnimations = false,
 }) => {
+  React.useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute(
+        'data-animations-disabled',
+        disableAnimations ? 'true' : 'false'
+      );
+    }
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.documentElement.removeAttribute('data-animations-disabled');
+      }
+    };
+  }, [disableAnimations]);
+
   return (
-    <div data-animations-disabled={disableAnimations ? 'true' : 'false'}>
-      <AnimationContext.Provider value={{ globalMotion: !disableAnimations }}>
-        {children}
-      </AnimationContext.Provider>
-    </div>
+    <AnimationContext.Provider value={{ globalMotion: !disableAnimations }}>
+      {children}
+    </AnimationContext.Provider>
   );
 };
 

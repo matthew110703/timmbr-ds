@@ -1,5 +1,6 @@
 import type * as React from 'react';
 import type { ButtonVariants } from './Button.styles';
+import type { MotionProp } from '../../types/motion';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -9,7 +10,23 @@ export interface ButtonProps
    */
   asChild?: boolean;
   /**
-   * Local toggle to enable/disable button motion transitions.
+   * Local toggle to enable/disable button motion transitions, or configure motion primitives.
    */
-  motion?: boolean;
+  motion?: MotionProp;
+  /**
+   * Leading icon element rendered before button children.
+   */
+  leftIcon?: React.ReactNode;
+  /**
+   * Trailing icon element rendered after button children.
+   */
+  rightIcon?: React.ReactNode;
+  /**
+   * Displays an animated loading spinner and disables interactive states.
+   */
+  loading?: boolean;
+  /**
+   * Optional loading text displayed alongside spinner.
+   */
+  loadingText?: string;
 }

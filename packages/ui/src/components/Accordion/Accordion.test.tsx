@@ -43,7 +43,6 @@ describe('Accordion component', () => {
       </AnimationProvider>
     );
 
-    const providerWrapper = container.querySelector('[data-animations-disabled="true"]');
-    expect(providerWrapper).toBeInTheDocument();
+    expect(document.documentElement).toHaveAttribute('data-animations-disabled', 'true');
   });
 });
