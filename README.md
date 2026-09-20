@@ -74,13 +74,14 @@ pnpm storybook
 
 The living Storybook documentation is configured for zero-configuration continuous deployment on **Vercel** with automatic pull request preview environments:
 
-- **Configuration File**: [`vercel.json`](file:///./vercel.json) at monorepo root.
-- **Build Command**: `node scripts/build-storybook-ci.mjs` (builds all dependencies topologically via Turborepo and mirrors static assets).
+- **Configuration File**: [`vercel.json`](file:///./vercel.json) and [`apps/storybook/vercel.json`](file:///./apps/storybook/vercel.json).
+- **Build Command**: `pnpm turbo run build --filter=@timmbr/storybook...` (builds monorepo dependencies topologically via Turborepo).
 - **Output Directory**: `storybook-static`.
 - **Deploying to Vercel**:
   1. Import the GitHub repository into Vercel.
-  2. Leave the Root Directory as `./` and Framework Preset as **Storybook** (or Other).
-  3. Deploy! Every branch and PR will receive its own isolated Storybook preview URL.
+  2. Root Directory: `apps/storybook` (or `./`).
+  3. Framework Preset: **Storybook**.
+  4. Deploy! Every branch and PR will receive its own isolated Storybook preview URL.
 
 ---
 

@@ -12,7 +12,7 @@
     "clean": "turbo run clean",
     "storybook": "pnpm --filter @timmbr/storybook dev",
     "build-storybook": "pnpm --filter @timmbr/storybook build",
-    "build:storybook:ci": "node scripts/build-storybook-ci.mjs",
+    "build:storybook:ci": "turbo run build --filter=@timmbr/storybook...",
     "pack:dry-run": "pnpm --filter \"./packages/*\" --filter \"!@timmbr/tsconfig\" --filter \"!@timmbr/eslint-config\" pack --dry-run",
     "release": "node scripts/publish.mjs",
     "release:all": "node scripts/publish.mjs --all",
