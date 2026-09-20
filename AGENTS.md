@@ -77,7 +77,7 @@ Before reporting completion of any task:
 
 ## 6. Package Publishing Policy
 
-- **NEVER** automatically execute `pnpm run publish`, `pnpm run publish:all`, or run `node scripts/publish.mjs`.
+- **NEVER** automatically execute `pnpm release`, `pnpm release:all`, or run `node scripts/publish.mjs`.
 - Publishing packages to NPM, tagging releases, or running live package deployment commands MUST be left entirely to the user/developer.
 - AI agents may only run dry-run simulations (`--dry-run`) when specifically requested to test packaging.
 

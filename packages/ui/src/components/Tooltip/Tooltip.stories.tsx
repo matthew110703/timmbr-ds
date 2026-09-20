@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
 import { Tooltip } from './Tooltip';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
