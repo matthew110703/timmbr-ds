@@ -1,6 +1,6 @@
 {
   "name": "timmbr-ds",
-  "version": "0.0.0",
+  "version": "1.0.0-beta",
   "private": true,
   "description": "Timmbr Enterprise Design System",
   "packageManager": "pnpm@11.18.0",
@@ -12,6 +12,7 @@
     "clean": "turbo run clean",
     "storybook": "pnpm --filter @timmbr/storybook dev",
     "build-storybook": "pnpm --filter @timmbr/storybook build",
+    "pack:dry-run": "pnpm --filter \"./packages/*\" --filter \"!@timmbr/tsconfig\" --filter \"!@timmbr/eslint-config\" pack --dry-run",
     "changeset": "changeset"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@timmbr/motion",
-  "version": "0.1.0",
+  "version": "1.0.0-beta",
   "description": "High-performance motion primitives, physics-based transitions, variants, presence, and layout choreography for Timmbr",
   "type": "module",
   "main": "./dist/index.js",

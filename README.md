@@ -63,6 +63,7 @@ pnpm storybook
 - `pnpm run test`: Runs Vitest test suites.
 - `pnpm run lint`: Runs ESLint across all workspaces.
 - `pnpm run clean`: Cleans build artifacts (`dist`, `storybook-static`, `.turbo`).
+- `pnpm run pack:dry-run`: Simulates tarball packaging for all publishable packages without publishing.
 - `pnpm changeset`: Generates a semantic version bump changeset.
 
 ---
