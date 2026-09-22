@@ -10,6 +10,7 @@ export {
   ChevronLeft,
   Check,
   CheckCircle,
+  Copy,
   X,
   AlertCircle,
   AlertTriangle,

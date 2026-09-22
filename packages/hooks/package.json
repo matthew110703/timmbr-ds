@@ -22,6 +22,7 @@
   "scripts": {
     "build": "vite build && tsc --emitDeclarationOnly",
     "dev": "vite build --watch",
+    "typecheck": "tsc --noEmit",
     "clean": "rimraf dist"
   },
   "peerDependencies": {

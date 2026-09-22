@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 6006",
+    "typecheck": "tsc --noEmit",
     "build": "storybook build -o storybook-static && node -e \"import('node:fs').then(fs => fs.cpSync('storybook-static', '../../storybook-static', { recursive: true }))\"",
     "clean": "rimraf storybook-static ../../storybook-static"
   },

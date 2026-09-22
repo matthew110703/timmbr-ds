@@ -77,7 +77,7 @@ export const Default: Story = {
         <DataListItem>
           <DataListLabel minWidth={140}>Subscription Tier</DataListLabel>
           <DataListValue>
-            <Chip size="sm" variant="outline">Enterprise Cloud</Chip>
+            <Chip size="sm" variant="outlined">Enterprise Cloud</Chip>
           </DataListValue>
         </DataListItem>
       </DataList>
@@ -104,7 +104,7 @@ export const Divided: Story = {
         <DataListItem>
           <DataListLabel minWidth={130}>Deployment State</DataListLabel>
           <DataListValue>
-            <Badge variant="info">Synced</Badge>
+            <Badge variant="subtle">Synced</Badge>
           </DataListValue>
         </DataListItem>
       </DataList>

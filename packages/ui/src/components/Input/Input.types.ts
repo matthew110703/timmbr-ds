@@ -54,7 +54,7 @@ export interface InputProps
     | 'url'
     | 'date'
     | 'time'
-    | (string & {});
+    | (string & Record<never, never>);
   /**
    * Whether to display an interactive show/hide password toggle button when type="password".
    * Defaults to true.

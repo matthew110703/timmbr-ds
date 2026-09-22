@@ -22,7 +22,7 @@ describe('@timmbr/motion Primitives', () => {
   it('resolves named transitions via getTransition helper', () => {
     expect(getTransition('fast')).toBe(transitions.fast);
     expect(getTransition('spring')).toBe(transitions.spring);
-    // @ts-ignore
+    // @ts-expect-error testing fallback for invalid transition key
     expect(getTransition('unknown')).toBe(transitions.normal);
   });
 

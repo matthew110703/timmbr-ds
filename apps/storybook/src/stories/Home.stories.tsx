@@ -4,6 +4,14 @@ import { Badge } from '@timmbr/ui';
 import { Chip } from '@timmbr/ui';
 import { Divider } from '@timmbr/ui';
 
+import rootPkg from '../../../../package.json';
+import uiPkg from '../../../../packages/ui/package.json';
+import themePkg from '../../../../packages/theme/package.json';
+import motionPkg from '../../../../packages/motion/package.json';
+import iconsPkg from '../../../../packages/icons/package.json';
+import hooksPkg from '../../../../packages/hooks/package.json';
+import utilsPkg from '../../../../packages/utils/package.json';
+
 const meta: Meta = {
   title: 'Overview/Home',
   parameters: {
@@ -21,54 +29,95 @@ type Story = StoryObj;
 
 const packages = [
   {
-    name: '@timmbr/ui',
-    version: '0.1.0',
+    name: uiPkg.name,
+    version: uiPkg.version,
     type: 'React Library',
     status: 'Stable',
     description: 'Production-ready component library featuring Radix UI primitives and Tailwind v4.',
     role: 'Primary UI Consumer',
   },
   {
-    name: '@timmbr/theme',
-    version: '0.1.0',
+    name: themePkg.name,
+    version: themePkg.version,
     type: 'Design Tokens',
     status: 'Active',
     description: 'Centralized design tokens, CSS variables, and Tailwind CSS v4 @theme directives.',
     role: 'Foundation Token Layer',
   },
   {
-    name: '@timmbr/motion',
-    version: '0.1.0',
+    name: motionPkg.name,
+    version: motionPkg.version,
     type: 'Animation Core',
     status: 'Active',
     description: 'Shared motion infrastructure, springs, physics transitions, and silent CSS fallbacks.',
     role: 'Animation Engine',
   },
   {
-    name: '@timmbr/icons',
-    version: '0.1.0',
+    name: iconsPkg.name,
+    version: iconsPkg.version,
     type: 'Icon System',
     status: 'Stable',
     description: 'Curated Lucide icon integrations and custom industrial woodcraft SVG glyphs.',
     role: 'Visual Assets',
   },
   {
-    name: '@timmbr/hooks',
-    version: '0.1.0',
+    name: hooksPkg.name,
+    version: hooksPkg.version,
     type: 'Utilities',
     status: 'Stable',
     description: 'Pure headless React hooks for layout observation, focus trapping, and motion telemetry.',
     role: 'Behavioral Utilities',
   },
   {
-    name: '@timmbr/utils',
-    version: '0.1.0',
+    name: utilsPkg.name,
+    version: utilsPkg.version,
     type: 'Utilities',
     status: 'Stable',
     description: 'Zero-dependency TypeScript utilities: className merger (cn), gap parsers, formatters.',
     role: 'Shared Helpers',
   },
 ];
+
+import { Check, Copy } from '@timmbr/icons';
+
+function CopyButton({
+  text,
+  title = 'Copy',
+  light = false,
+}: {
+  text: string;
+  title?: string;
+  light?: boolean;
+}) {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      title={copied ? 'Copied!' : title}
+      aria-label={title}
+      className={`inline-flex items-center justify-center p-0.5 rounded transition-all active:scale-95 ${
+        light
+          ? 'text-white/80 hover:text-white hover:bg-white/20'
+          : 'text-grey-400 hover:text-grey-700 dark:hover:text-grey-200 hover:bg-grey-200 dark:hover:bg-grey-700'
+      }`}
+    >
+      {copied ? (
+        <Check className={`w-3 h-3 ${light ? 'text-emerald-300' : 'text-emerald-500'}`} />
+      ) : (
+        <Copy className="w-3 h-3" />
+      )}
+    </button>
+  );
+}
 
 export const Overview: Story = {
   render: () => {
@@ -77,9 +126,10 @@ export const Overview: Story = {
         {/* Hero Section */}
         <div className="space-y-4">
           <div className="flex items-center gap-2.5">
-            <span className="px-2.5 py-1 text-xs font-mono font-semibold rounded bg-primary text-white tracking-wide">
-              v0.1.0
-            </span>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono font-semibold rounded bg-primary text-white tracking-wide">
+              <span>v{rootPkg.version}</span>
+              <CopyButton text={rootPkg.version} title="Copy version" light />
+            </div>
             <Badge variant="default">Turborepo + PNPM Workspace</Badge>
             <Badge variant="outline">Tailwind CSS v4</Badge>
           </div>
@@ -112,9 +162,10 @@ export const Overview: Story = {
                     <span className="font-mono text-sm font-semibold text-primary dark:text-primary-400">
                       {pkg.name}
                     </span>
-                    <span className="font-mono text-xs px-2 py-0.5 rounded bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 font-medium">
-                      v{pkg.version}
-                    </span>
+                    <div className="inline-flex items-center gap-1 font-mono text-xs px-2 py-0.5 rounded bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 font-medium">
+                      <span>v{pkg.version}</span>
+                      <CopyButton text={pkg.version} title={`Copy ${pkg.name} version`} />
+                    </div>
                   </div>
                   <p className="text-xs text-grey-600 dark:text-grey-400 leading-normal">
                     {pkg.description}
@@ -122,7 +173,7 @@ export const Overview: Story = {
                 </div>
                 <div className="mt-4 pt-3 border-t border-grey-100 dark:border-grey-800 flex items-center justify-between text-xs text-grey-500">
                   <span>{pkg.role}</span>
-                  <Chip size="sm" variant="outline">
+                  <Chip size="sm" variant="outlined">
                     {pkg.status}
                   </Chip>
                 </div>

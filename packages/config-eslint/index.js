@@ -30,7 +30,21 @@ module.exports = {
         varsIgnorePattern: "^_",
       },
     ],
+    "react/display-name": "off",
+    "react/no-unescaped-entities": "off",
   },
+  overrides: [
+    {
+      files: ["*.stories.tsx", "*.stories.ts", "*.test.tsx", "*.test.ts"],
+      rules: {
+        "react-hooks/rules-of-hooks": "off",
+        "react/no-children-prop": "off",
+        "react/no-unescaped-entities": "off",
+        "react/display-name": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+      },
+    },
+  ],
   settings: {
     react: {
       version: "detect",
