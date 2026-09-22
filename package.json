@@ -15,6 +15,7 @@
     "build-storybook": "pnpm --filter @timmbr/storybook build",
     "build:storybook:ci": "turbo run build --filter=@timmbr/storybook...",
     "pack:dry-run": "pnpm --filter \"./packages/*\" --filter \"!@timmbr/tsconfig\" --filter \"!@timmbr/eslint-config\" pack --dry-run",
+    "yalc:push": "node scripts/yalc-push.mjs",
     "release": "node scripts/publish.mjs",
     "release:all": "node scripts/publish.mjs --all",
     "changeset": "changeset",
