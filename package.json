@@ -1,11 +1,11 @@
 {
   "name": "timmbr-ds",
-  "version": "1.0.0-beta",
+  "version": "1.1.0",
   "private": true,
   "description": "Timmbr Enterprise Design System",
   "packageManager": "pnpm@11.18.0",
   "scripts": {
-    "build": "turbo run build",
+    "build": "node scripts/build.mjs",
     "dev": "turbo run dev",
     "lint": "eslint \"packages/*/src/**/*.{ts,tsx}\" \"apps/*/src/**/*.{ts,tsx}\"",
     "typecheck": "turbo run typecheck",

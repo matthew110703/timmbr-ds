@@ -162,16 +162,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             <p
               id={`${id}-desc`}
               className={cn(
-                'text-xs mt-0.5 flex items-center gap-1.5 flex-1',
+                'text-xs mt-0.5 flex items-start gap-1.5 flex-1',
                 isError ? 'text-destructive font-medium' : 'text-muted'
               )}
             >
               {isError ? (
-                <AlertCircle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" aria-hidden="true" />
               ) : (
-                <Info className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <Info className="w-3.5 h-3.5 shrink-0 mt-0.5" aria-hidden="true" />
               )}
-              <span>{errorMessage || helperText}</span>
+              <span className="leading-tight">{errorMessage || helperText}</span>
             </p>
           ) : (
             <span />

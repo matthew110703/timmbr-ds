@@ -30,9 +30,11 @@ export * from './components/Popover';
 export * from './components/Toast';
 export * from './components/Tooltip';
 export * from './components/Tabs';
+export * from './components/SideBarNavigation';
 
 // Display & Data Components
 export * from './components/Button';
+export * from './components/LinkButton';
 export * from './components/Accordion';
 export * from './components/Avatar';
 export * from './components/Badge';

@@ -40,6 +40,14 @@ When adding or modifying any component in `@timmbr/ui`:
    - Connect components to `useTimmbrConfig()` and `useGlobalAnimation()`.
    - Ensure local props override global configuration defaults gracefully.
    - Components MUST function seamlessly with zero configuration when `TimmbrConfigProvider` is not present in the tree.
+5. **Complex Component Decomposition & Subcomponents**:
+   - For complex, multi-element components (e.g. `SideBarNavigation`, data tables, complex dialogs), decompose internal elements into modular subcomponents under a `subcomponents/` directory.
+   - Extract pure logic, calculations, path evaluation, and persistence utilities into a co-located `ComponentName.helpers.ts` or static content file.
+   - Re-export the main component and subcomponents cleanly in `index.ts`.
+6. **Motion-First Animation Architecture**:
+   - **Centralization in `@timmbr/motion`**: All motion animations, spring physics, transition tokens, and animation variants MUST reside strictly within `@timmbr/motion`. All other packages (`@timmbr/ui`, apps) MUST ONLY consume from `@timmbr/motion`. Never write ad-hoc motion physics or variants inside components.
+   - **First Priority (Motion Animations)**: Every interactive component MUST animate primarily using `@timmbr/motion` (`motion/react`, `AnimatePresence`, spring physics, layout animations). Extend `MotionProps` (`motion?: MotionProp`), connect with `useGlobalAnimation()`, and resolve via `resolveMotion()`.
+   - **Fallback (Vanilla CSS)**: When motion is disabled (`motion={false}`, `disableAnimations={true}`, reduced-motion preferences, or non-motion contexts), components MUST cleanly fall back to vanilla CSS transitions and standard keyframes with zero layout breaking or visual glitches.
 
 ---
 

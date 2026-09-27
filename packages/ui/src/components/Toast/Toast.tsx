@@ -4,22 +4,32 @@ import * as React from 'react';
 import * as ToastPrimitive from '@radix-ui/react-toast';
 import { cn } from '@timmbr/utils';
 import { X } from '@timmbr/icons';
-import { useGlobalAnimation } from '../../providers';
+import { useGlobalAnimation } from '../../providers/AnimationProvider';
 import { resolveMotion } from '../../types/motion';
 import { toastVariants } from './Toast.styles';
-import type { ToastProps, ToastViewportProps } from './Toast.types';
+import type { ToastPosition, ToastProps, ToastViewportProps } from './Toast.types';
 
 export const ToastProvider = ToastPrimitive.Provider;
+
+const positionClasses: Record<ToastPosition, string> = {
+  'top-left': 'top-4 left-4 flex-col',
+  'top-center': 'top-4 left-1/2 -translate-x-1/2 flex-col',
+  'top-right': 'top-4 right-4 flex-col',
+  'bottom-left': 'bottom-4 left-4 flex-col-reverse',
+  'bottom-center': 'bottom-4 left-1/2 -translate-x-1/2 flex-col-reverse',
+  'bottom-right': 'bottom-4 right-4 flex-col-reverse',
+};
 
 export const ToastViewport = React.forwardRef<
   React.ComponentRef<typeof ToastPrimitive.Viewport>,
   ToastViewportProps
->(({ className, stacked, ...props }, ref) => (
+>(({ className, stacked, position = 'bottom-right', ...props }, ref) => (
   <ToastPrimitive.Viewport
     ref={ref}
     data-slot="toast-viewport"
     className={cn(
-      'fixed bottom-4 right-4 z-[100] group/toast-viewport flex flex-col-reverse gap-2 p-0 w-full sm:w-[420px] max-w-[420px]',
+      'fixed z-[100] group/toast-viewport flex gap-2 p-0 w-full sm:w-[420px] max-w-[420px]',
+      positionClasses[position] || positionClasses['bottom-right'],
       stacked && 'relative h-[80px]',
       className
     )}

@@ -10,7 +10,7 @@ export default defineConfig({
       fileName: () => 'index.js',
     },
     rollupOptions: {
-      external: ['clsx', 'tailwind-merge'],
+      external: ['clsx', 'tailwind-merge', 'jwt-decode'],
       output: {
         preserveModules: false,
       },

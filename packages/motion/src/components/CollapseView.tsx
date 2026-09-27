@@ -1,28 +1,48 @@
 'use client';
 
 import * as React from 'react';
+import { motion, AnimatePresence, type HTMLMotionProps } from 'motion/react';
 import { cn } from '@timmbr/utils';
+import { collapseVariants } from '../variants/collapse';
+import { getTransition } from '../transitions';
 
-export interface CollapseViewProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CollapseViewProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
   open: boolean;
+  duration?: 'fast' | 'normal' | 'slow';
   children?: React.ReactNode;
 }
 
 export const CollapseView = React.forwardRef<HTMLDivElement, CollapseViewProps>(
-  ({ className, open, children, ...props }, ref) => {
+  (
+    {
+      className,
+      open,
+      duration = 'normal',
+      children,
+      transition: customTransition,
+      ...props
+    },
+    ref
+  ) => {
+    const resolvedTransition = customTransition ?? getTransition(duration);
+
     return (
-      <div
-        ref={ref}
-        aria-hidden={!open}
-        className={cn(
-          'transition-[max-height,opacity] duration-200 overflow-hidden ease-in-out',
-          open ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none',
-          className
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            ref={ref}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={collapseVariants}
+            transition={resolvedTransition}
+            className={cn('overflow-hidden', className)}
+            {...props}
+          >
+            {children}
+          </motion.div>
         )}
-        {...props}
-      >
-        {children}
-      </div>
+      </AnimatePresence>
     );
   }
 );

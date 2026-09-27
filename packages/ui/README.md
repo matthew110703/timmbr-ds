@@ -67,12 +67,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 | Category | Components | Description |
 | :--- | :--- | :--- |
-| **Actions** | `Button` | Accessible button with adornment icons, loading spinner, CVA variants, and `asChild` composition. |
+| **Actions** | `Button`, `LinkButton` | Accessible buttons and anchor links with `next/link` default SPA routing, adornment icons, loading spinners, and cross-zone delegation. |
 | **Typography** | `Text`, `Heading` | Typography primitives restricted to semantic elements (`<p>`, `<span>`, `<h1>`–`<h6>`) with design token scaling. |
 | **Surfaces** | `Card`, `Avatar`, `Badge`, `Chip`, `Divider` | Display primitives including user avatars, status pills, elevated cards, interactive chips, and separators. |
 | **Layout** | `Container`, `Stack`, `Inline`, `Grid`, `Center` | Responsive breakpoint containers, flex distribution, responsive CSS grid, and centered wrappers. |
 | **Form Controls** | `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `RangeSlider`, `FormField`, `Label` | Comprehensive form primitives with labels, helper text, validation error states, and dual-thumb sliders. |
-| **Navigation** | `Tabs`, `Pagination` | Radix-driven accessible tabs with spring-physics glider indicator and multi-page pagination. |
+| **Navigation** | `Tabs`, `Pagination`, `SideBarNavigation` | Accessible tabs, multi-page pagination, and responsive collapsable sidebar navigation. |
 | **Feedback** | `Alert`, `Progress`, `Skeleton`, `Spinner`, `Toast` | Status banners, determinate/indeterminate progress, shimmer loaders, and card-deck multi-toasts with hover-spread. |
 | **Overlays** | `Dialog`, `Drawer`, `Dropdown`, `Popover`, `Tooltip` | Centered dialogs, off-canvas sliding drawers, contextual dropdowns, interactive popovers, and accessible tooltips. |
 | **Data Display** | `Table`, `DataList`, `Stat`, `EmptyState` | Structured data tables with pagination, key-value data lists, KPI metrics, and empty state placeholders. |
@@ -82,24 +82,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ## Component Usage
 
 
-### Button
+### Button & LinkButton
 
 ```tsx
-import { Button } from '@timmbr/ui';
-import Link from 'next/link';
+import { Button, LinkButton } from '@timmbr/ui';
 
-export function Example() {
+export function NavigationExample() {
   return (
-    <div className="flex gap-4">
-      {/* Standard variants */}
-      <Button variant="default">Primary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
+    <div className="flex gap-4 items-center">
+      {/* 1. Internal same-zone navigation: uses next/link by default, styled as a link */}
+      <LinkButton href="/dashboard">
+        Go to Dashboard
+      </LinkButton>
 
-      {/* Composition with Next.js Link via asChild */}
-      <Button asChild>
-        <Link href="/dashboard">Go to Dashboard</Link>
-      </Button>
+      {/* 2. Button visual appearance if desired */}
+      <LinkButton href="/signup" variant="primary">
+        Sign Up
+      </LinkButton>
+
+      {/* 3. Cross-zone boundary: NEVER use next/link across zones. Always use crossZone */}
+      <LinkButton href="/docs" crossZone>
+        Documentation (Cross-Zone)
+      </LinkButton>
     </div>
   );
 }

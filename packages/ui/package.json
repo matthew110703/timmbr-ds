@@ -1,6 +1,6 @@
 {
   "name": "@timmbr/ui",
-  "version": "1.0.0-beta",
+  "version": "1.1.0",
   "description": "High-performance, Next.js App Router-compatible UI design system components for Timmbr",
   "type": "module",
   "main": "./dist/index.js",
@@ -23,7 +23,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build && tsc --emitDeclarationOnly",
+    "build": "vite build && tsc --project tsconfig.build.json",
     "dev": "vite build --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -55,8 +55,14 @@
     "class-variance-authority": "^0.7.1"
   },
   "peerDependencies": {
+    "next": ">=13.0.0 || >=14.0.0 || >=15.0.0 || >=16.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"
@@ -71,6 +77,7 @@
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
     "jsdom": "^26.0.0",
+    "next": "^16.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rimraf": "^6.0.1",

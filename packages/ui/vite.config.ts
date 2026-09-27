@@ -18,6 +18,7 @@ export default defineConfig({
         'react-dom',
         'tailwindcss',
         /^@radix-ui\/.*/,
+        /^next(\/.*)?$/,
         '@timmbr/utils',
         '@timmbr/theme',
         '@timmbr/icons',

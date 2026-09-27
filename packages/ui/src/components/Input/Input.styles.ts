@@ -37,7 +37,7 @@ export const inputWrapperVariants = cva(
 );
 
 export const inputFieldVariants = cva(
-  'w-full h-full bg-transparent font-sans border-0 p-0 text-foreground placeholder:text-muted focus:outline-none focus:ring-0 focus-visible:outline-none disabled:cursor-not-allowed'
+  'w-full h-full bg-transparent font-sans border-0 p-0 text-foreground placeholder:text-muted focus:outline-none focus:ring-0 focus-visible:outline-none disabled:cursor-not-allowed [box-shadow:none] [&:-webkit-autofill]:[-webkit-background-clip:text] [&:-webkit-autofill]:[background-clip:text] [&:-webkit-autofill]:[-webkit-text-fill-color:currentColor] [&:-webkit-autofill]:[caret-color:currentColor] [&:-webkit-autofill]:[transition:background-color_5000000s_ease-in-out_0s] [&:-webkit-autofill]:[box-shadow:none] [&:autofill]:[-webkit-background-clip:text] [&:autofill]:[background-clip:text] [&:autofill]:[-webkit-text-fill-color:currentColor] [&:autofill]:[caret-color:currentColor] [&:autofill]:[transition:background-color_5000000s_ease-in-out_0s] [&:autofill]:[box-shadow:none]'
 );
 
 export type InputVariants = VariantProps<typeof inputWrapperVariants>;

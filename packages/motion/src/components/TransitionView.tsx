@@ -1,9 +1,12 @@
 'use client';
 
 import * as React from 'react';
-import { motion, type HTMLMotionProps } from 'motion/react';
+import { motion, type HTMLMotionProps, type Variants } from 'motion/react';
 import { cn } from '@timmbr/utils';
-import { transitions } from '../transitions';
+import { getTransition } from '../transitions';
+import { fadeVariants } from '../variants/fade';
+import { slideUpVariants, slideDownVariants } from '../variants/slide';
+import { scaleVariants, popVariants } from '../variants/scale';
 
 export interface TransitionViewProps extends HTMLMotionProps<'div'> {
   preset?: 'fade' | 'slide-up' | 'slide-down' | 'scale' | 'pop';
@@ -12,32 +15,12 @@ export interface TransitionViewProps extends HTMLMotionProps<'div'> {
   children?: React.ReactNode;
 }
 
-const PRESET_ANIMATIONS = {
-  fade: {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-  },
-  'slide-up': {
-    initial: { opacity: 0, y: 24 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: 24 },
-  },
-  'slide-down': {
-    initial: { opacity: 0, y: -24 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -24 },
-  },
-  scale: {
-    initial: { opacity: 0, scale: 0.94 },
-    animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.94 },
-  },
-  pop: {
-    initial: { opacity: 0, scale: 0.8 },
-    animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.8 },
-  },
+const PRESET_VARIANTS: Record<NonNullable<TransitionViewProps['preset']>, Variants> = {
+  fade: fadeVariants,
+  'slide-up': slideUpVariants,
+  'slide-down': slideDownVariants,
+  scale: scaleVariants,
+  pop: popVariants,
 };
 
 export const TransitionView = React.forwardRef<HTMLDivElement, TransitionViewProps>(
@@ -52,21 +35,17 @@ export const TransitionView = React.forwardRef<HTMLDivElement, TransitionViewPro
     },
     ref
   ) => {
-    const anim = PRESET_ANIMATIONS[preset] || PRESET_ANIMATIONS.fade;
+    const variants = PRESET_VARIANTS[preset] ?? PRESET_VARIANTS.fade;
     const resolvedTransition =
-      customTransition ??
-      (duration === 'fast'
-        ? transitions.fast
-        : duration === 'slow'
-        ? transitions.slow
-        : transitions.spring);
+      customTransition ?? (duration === 'normal' ? getTransition('spring') : getTransition(duration));
 
     return (
       <motion.div
         ref={ref}
-        initial={anim.initial}
-        animate={anim.animate}
-        exit={anim.exit}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        variants={variants}
         transition={resolvedTransition}
         className={cn(className)}
         {...props}

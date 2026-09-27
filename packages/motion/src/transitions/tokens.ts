@@ -1,3 +1,5 @@
+import type { Transition } from 'motion/react';
+
 export interface SpringConfig {
   stiffness: number;
   damping: number;
@@ -7,13 +9,7 @@ export interface SpringConfig {
   restSpeed?: number;
 }
 
-export interface TransitionConfig {
-  duration?: number;
-  ease?: string | number[] | readonly number[];
-  delay?: number;
-  type?: 'tween' | 'spring' | 'inertia' | 'keyframes';
-  spring?: SpringConfig;
-}
+export type TransitionConfig = Transition;
 
 export const springPresets = {
   bouncy: {
@@ -39,6 +35,12 @@ export const springPresets = {
     stiffness: 300,
     damping: 35,
     mass: 1.2,
+  },
+  sidebar: {
+    type: 'spring',
+    stiffness: 350,
+    damping: 32,
+    mass: 0.8,
   },
 } as const;
 
@@ -87,6 +89,10 @@ export const transitions = {
    * Firm, weighted spring transition.
    */
   firm: springPresets.firm,
+  /**
+   * Dedicated responsive spring transition for sidebar layout collapse and expansion.
+   */
+  sidebar: springPresets.sidebar,
 } as const;
 
 export type TransitionName = keyof typeof transitions;

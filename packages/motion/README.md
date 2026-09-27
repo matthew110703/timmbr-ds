@@ -171,3 +171,16 @@ export function SegmentedControl({ activeTab, tabs, onSelect }) {
   );
 }
 ```
+
+---
+
+## Architectural Rules: Centralized Motion & Zero Redundancy
+
+1. **Single Source of Truth**:
+   All motion physics models, spring presets, transition tokens, and animation variants (`sidebarContainerMotionVariants`, `collapseVariants`, `fadeVariants`, etc.) MUST stay strictly inside `@timmbr/motion`.
+2. **Strict Consumer Rule**:
+   All other packages (such as `@timmbr/ui` or application code) MUST ONLY consume these animations from `@timmbr/motion`. Never define ad-hoc motion variants, hardcoded spring physics, or duplicate animation maps in components.
+3. **Motion-First with Vanilla CSS Fallback**:
+   Every interactive component must prioritize motion animations when enabled, and seamlessly fall back to vanilla CSS transitions and keyframes when motion is disabled (`motion={false}`, `disableAnimations={true}`, reduced-motion preferences, or SSR).
+4. **Token Reuse**:
+   Components inside `@timmbr/motion` and `@timmbr/ui` must reuse `getTransition(duration)` and shared variants (`fadeVariants`, `slideVariants`, `scaleVariants`, `collapseVariants`, `popVariants`) instead of writing repetitive inline transition objects or duplicate ternary chains.

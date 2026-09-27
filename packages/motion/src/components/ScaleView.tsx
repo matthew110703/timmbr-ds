@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'motion/react';
 import { cn } from '@timmbr/utils';
-import { transitions } from '../transitions';
+import { getTransition } from '../transitions';
+import { scaleVariants } from '../variants/scale';
 
 export interface ScaleViewProps extends HTMLMotionProps<'div'> {
   duration?: 'fast' | 'normal' | 'slow';
@@ -11,21 +12,18 @@ export interface ScaleViewProps extends HTMLMotionProps<'div'> {
 }
 
 export const ScaleView = React.forwardRef<HTMLDivElement, ScaleViewProps>(
-  ({ className, duration = 'normal', children, ...props }, ref) => {
-    const transition =
-      duration === 'fast'
-        ? transitions.fast
-        : duration === 'slow'
-        ? transitions.slow
-        : transitions.spring;
+  ({ className, duration = 'normal', children, transition: customTransition, ...props }, ref) => {
+    const resolvedTransition =
+      customTransition ?? (duration === 'normal' ? getTransition('spring') : getTransition(duration));
 
     return (
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, scale: 0.94 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.94 }}
-        transition={transition}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        variants={scaleVariants}
+        transition={resolvedTransition}
         className={cn(className)}
         {...props}
       >

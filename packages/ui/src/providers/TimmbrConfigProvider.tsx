@@ -1,6 +1,9 @@
 'use client';
 
 import * as React from 'react';
+import type { ToastGlobalConfig } from '../components/Toast/Toast.types';
+import { ToastProvider } from '../components/Toast/Toast';
+import { ToastContainer } from '../components/Toast/ToastContainer';
 
 export interface ComponentConfig {
   button?: {
@@ -15,6 +18,18 @@ export interface ComponentConfig {
   };
 }
 
+export interface ZoneConfig {
+  /**
+   * Current active Next.js zone identifier (e.g. 'main', 'app', 'docs', 'store').
+   */
+  currentZone?: string;
+  /**
+   * Map of zone identifiers to base URLs or path prefixes.
+   * Example: { docs: 'https://docs.timmbr.com', app: '/app', store: 'https://store.timmbr.com' }
+   */
+  zones?: Record<string, string>;
+}
+
 export interface TimmbrConfig {
   animations?: {
     enabled?: boolean;
@@ -22,7 +37,25 @@ export interface TimmbrConfig {
   theme?: {
     mode?: 'light' | 'dark' | 'system';
   };
+  zones?: ZoneConfig;
   components?: ComponentConfig;
+  toast?: ToastGlobalConfig;
+}
+
+/**
+ * Resolves target href with optional zone key and zone dictionary.
+ */
+export function resolveZoneHref(
+  href: string,
+  zone?: string,
+  zones?: Record<string, string>
+): string {
+  if (!zone || !zones || !zones[zone]) {
+    return href;
+  }
+  const base = zones[zone].replace(/\/+$/, '');
+  const path = href.startsWith('/') ? href : `/${href}`;
+  return `${base}${path}`;
 }
 
 export const defaultTimmbrConfig: Required<TimmbrConfig> = {
@@ -31,6 +64,10 @@ export const defaultTimmbrConfig: Required<TimmbrConfig> = {
   },
   theme: {
     mode: 'light',
+  },
+  zones: {
+    currentZone: undefined as unknown as string,
+    zones: {},
   },
   components: {
     button: {
@@ -44,6 +81,13 @@ export const defaultTimmbrConfig: Required<TimmbrConfig> = {
       defaultSize: 24,
     },
   },
+  toast: {
+    position: 'bottom-right',
+    duration: 4000,
+    maxVisible: 5,
+    swipeDirection: 'right',
+    stacked: false,
+  },
 };
 
 const TimmbrConfigContext = React.createContext<TimmbrConfig>(defaultTimmbrConfig);
@@ -55,8 +99,8 @@ export interface TimmbrConfigProviderProps {
 
 /**
  * Global configuration provider for the Timmbr Design System.
- * Supports customizing animation behavior, default component variants/sizes, and themes.
- * Wrapping the app with this provider is optional; components fall back to default values automatically.
+ * Supports customizing animation behavior, default component variants/sizes, themes, and global toast defaults.
+ * Automatically initializes and renders the centralized Toast system.
  */
 export const TimmbrConfigProvider: React.FC<TimmbrConfigProviderProps> = ({
   children,
@@ -72,6 +116,13 @@ export const TimmbrConfigProvider: React.FC<TimmbrConfigProviderProps> = ({
         ...defaultTimmbrConfig.theme,
         ...config?.theme,
       },
+      zones: {
+        currentZone: config?.zones?.currentZone ?? defaultTimmbrConfig.zones?.currentZone,
+        zones: {
+          ...defaultTimmbrConfig.zones?.zones,
+          ...config?.zones?.zones,
+        },
+      },
       components: {
         button: {
           ...defaultTimmbrConfig.components.button,
@@ -85,6 +136,10 @@ export const TimmbrConfigProvider: React.FC<TimmbrConfigProviderProps> = ({
           ...defaultTimmbrConfig.components.icon,
           ...config?.components?.icon,
         },
+      },
+      toast: {
+        ...defaultTimmbrConfig.toast,
+        ...config?.toast,
       },
     };
   }, [config]);
@@ -107,7 +162,10 @@ export const TimmbrConfigProvider: React.FC<TimmbrConfigProviderProps> = ({
 
   return (
     <TimmbrConfigContext.Provider value={mergedConfig}>
-      {children}
+      <ToastProvider swipeDirection={mergedConfig.toast?.swipeDirection ?? 'right'}>
+        {children}
+        <ToastContainer config={mergedConfig.toast} />
+      </ToastProvider>
     </TimmbrConfigContext.Provider>
   );
 };
