@@ -8,14 +8,12 @@ export interface StatProps
   motion?: MotionProp;
 }
 
-export interface StatLabelProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export type StatLabelProps = React.HTMLAttributes<HTMLDivElement>;
 
-export interface StatValueProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export type StatValueProps = React.HTMLAttributes<HTMLDivElement>;
 
-export interface StatHelpTextProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export type StatHelpTextProps = React.HTMLAttributes<HTMLDivElement>;
+
 
 export interface StatIndicatorProps
   extends React.HTMLAttributes<HTMLSpanElement> {

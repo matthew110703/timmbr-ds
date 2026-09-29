@@ -2,7 +2,7 @@ import type * as React from 'react';
 import type * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import type { MotionProp } from '../../types/motion';
 
-export interface DropdownMenuProps extends DropdownMenuPrimitive.DropdownMenuProps {}
+export type DropdownMenuProps = DropdownMenuPrimitive.DropdownMenuProps;
 
 export interface DropdownMenuContentProps
   extends React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> {

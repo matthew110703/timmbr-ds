@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { cn } from '@timmbr/utils';
-import { motion, LayoutGroup } from '@timmbr/motion';
+import { motion } from '@timmbr/motion';
 import { useGlobalAnimation } from '../../providers';
 import { resolveMotion } from '../../types/motion';
 import {

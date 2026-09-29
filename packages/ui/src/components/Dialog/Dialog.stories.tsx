@@ -7,11 +7,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogBody,
   DialogFooter,
   DialogClose,
 } from './Dialog';
 import { Button } from '../Button';
 import { Input } from '../Input';
+import { Textarea } from '../Textarea';
 
 interface DialogStoryProps {
   title: string;
@@ -61,16 +63,58 @@ export const Default: Story = {
           <DialogDescription>{args.description}</DialogDescription>
         </DialogHeader>
 
-        <div className="flex flex-col gap-4 py-2">
+        <DialogBody className="flex flex-col gap-4">
           <Input label="Moisture Target (%)" defaultValue="8.5%" />
           <Input label="Batch Code" defaultValue="OAK-2026-NEXUS" />
-        </div>
+        </DialogBody>
 
         <DialogFooter>
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button variant="primary">Save Configuration</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  ),
+};
+
+export const ScrollableWithFixedHeaderFooter: Story = {
+  args: {
+    title: 'New Material Specification',
+    description: 'Complete all mandatory engineering specs and sustainability metrics.',
+  },
+  render: (args) => (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="secondary">Open Long Form Dialog</Button>
+      </DialogTrigger>
+      <DialogContent motion={args.motion} className="max-w-xl">
+        <DialogHeader>
+          <DialogTitle>{args.title}</DialogTitle>
+          <DialogDescription>{args.description}</DialogDescription>
+        </DialogHeader>
+
+        <DialogBody className="flex flex-col gap-4">
+          <Input label="Spec ID" defaultValue="SPEC-2026-09" />
+          <Input label="Lumber Species" defaultValue="Kiln-Dried White Oak" />
+          <Input label="Grade" defaultValue="FAS Select" />
+          <Input label="Thickness (Inches)" defaultValue="1.50" />
+          <Input label="Width Range (Inches)" defaultValue="6.00 - 10.00" />
+          <Input label="Harvest Origin" defaultValue="Pacific Northwest FSC Certified" />
+          <Textarea
+            label="Conditioning Notes"
+            defaultValue="Acclimatize in humidity controlled storage at 45% RH for minimum 14 days prior to CNC machining."
+            rows={3}
+          />
+          <Input label="Responsible Engineer" defaultValue="Nexus Architect" />
+        </DialogBody>
+
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Discard</Button>
+          </DialogClose>
+          <Button variant="primary">Submit Specification</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

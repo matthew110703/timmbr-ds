@@ -27,6 +27,6 @@ export interface AlertProps
   motion?: MotionProp;
 }
 
-export interface AlertTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
+export type AlertTitleProps = React.HTMLAttributes<HTMLHeadingElement>;
 
-export interface AlertDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
+export type AlertDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>;

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { RadioGroup, RadioItem } from './Radio';
+import { RadioGroup } from './Radio';
 
 const deliveryOptions = [
   {

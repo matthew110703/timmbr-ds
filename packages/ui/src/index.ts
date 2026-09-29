@@ -21,8 +21,10 @@ export * from './components/Switch';
 export * from './components/RangeSlider';
 export * from './components/Label';
 export * from './components/FormField';
+export * from './components/ImageUpload';
 
 // Overlays & Navigation
+export * from './components/AlertDialog';
 export * from './components/Dialog';
 export * from './components/Drawer';
 export * from './components/Dropdown';
@@ -58,5 +60,3 @@ export * from './components/DataList';
 export * from './components/List';
 export * from './components/Chip';
 export * from './components/Stat';
-
-

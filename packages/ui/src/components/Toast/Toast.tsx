@@ -41,7 +41,7 @@ ToastViewport.displayName = ToastPrimitive.Viewport.displayName;
 export const Toast = React.forwardRef<
   React.ComponentRef<typeof ToastPrimitive.Root>,
   ToastProps
->(({ className, variant, motion, index, total, style, ...props }, ref) => {
+>(({ className, variant, motion, index, total: _total, style, ...props }, ref) => {
   const globalMotion = useGlobalAnimation();
   const { shouldAnimate, motionClass } = resolveMotion(motion, globalMotion);
 

@@ -7,26 +7,19 @@ export interface TableProps
   containerClassName?: string;
 }
 
-export interface TableHeaderProps
-  extends React.HTMLAttributes<HTMLTableSectionElement> {}
+export type TableHeaderProps = React.HTMLAttributes<HTMLTableSectionElement>;
 
-export interface TableBodyProps
-  extends React.HTMLAttributes<HTMLTableSectionElement> {}
+export type TableBodyProps = React.HTMLAttributes<HTMLTableSectionElement>;
 
-export interface TableFooterProps
-  extends React.HTMLAttributes<HTMLTableSectionElement> {}
+export type TableFooterProps = React.HTMLAttributes<HTMLTableSectionElement>;
 
-export interface TableRowProps
-  extends React.HTMLAttributes<HTMLTableRowElement> {}
+export type TableRowProps = React.HTMLAttributes<HTMLTableRowElement>;
 
-export interface TableHeadProps
-  extends React.ThHTMLAttributes<HTMLTableCellElement> {}
+export type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement>;
 
-export interface TableCellProps
-  extends React.TdHTMLAttributes<HTMLTableCellElement> {}
+export type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement>;
 
-export interface TableCaptionProps
-  extends React.HTMLAttributes<HTMLTableCaptionElement> {}
+export type TableCaptionProps = React.HTMLAttributes<HTMLTableCaptionElement>;
 
 export interface TablePaginationProps extends React.HTMLAttributes<HTMLDivElement> {
   /**

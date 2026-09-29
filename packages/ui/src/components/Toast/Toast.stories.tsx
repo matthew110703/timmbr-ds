@@ -143,7 +143,6 @@ export const MultiToastStack: Story = {
         </div>
 
         {toasts.map((item, i) => {
-          const stackIndex = i; // i=0 is the oldest/backmost; newest toast appended last = frontmost
           const totalToasts = toasts.length;
           // Reverse so the last added toast (highest i) is the front (index=0)
           const frontIndex = totalToasts - 1 - i;

@@ -205,16 +205,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <p
             id={`${id}-desc`}
             className={cn(
-              'text-xs mt-0.5 flex items-start gap-1.5 text-left',
+              'text-xs mt-1 flex items-center gap-1.5 text-left',
               isError ? 'text-destructive font-medium' : 'text-muted-foreground'
             )}
           >
             {isError ? (
-              <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5 text-destructive" aria-hidden="true" />
+              <AlertCircle className="w-3.5 h-3.5 shrink-0 text-destructive" aria-hidden="true" />
             ) : (
-              <Info className="w-3.5 h-3.5 shrink-0 mt-0.5 text-muted-foreground" aria-hidden="true" />
+              <Info className="w-3.5 h-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
             )}
-            <span className="leading-tight">{errorMessage || helperText}</span>
+            <span className="leading-normal">{errorMessage || helperText}</span>
           </p>
         )}
       </div>

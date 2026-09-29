@@ -52,6 +52,10 @@ export {
   Menu,
   FileText,
   BookOpen,
+  UploadCloud,
+  Image as ImageIcon,
+  Play,
+  Film,
+  Video,
+  Maximize2,
 } from 'lucide-react';
-
-

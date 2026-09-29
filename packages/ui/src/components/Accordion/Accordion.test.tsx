@@ -32,7 +32,7 @@ describe('Accordion component', () => {
   });
 
   it('respects global animation disablement', () => {
-    const { container } = render(
+    render(
       <AnimationProvider disableAnimations={true}>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">

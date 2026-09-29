@@ -3,7 +3,7 @@ import type * as DialogPrimitive from '@radix-ui/react-dialog';
 import type { DrawerContentVariants } from './Drawer.styles';
 import type { MotionProp } from '../../types/motion';
 
-export interface DrawerProps extends DialogPrimitive.DialogProps {}
+export type DrawerProps = DialogPrimitive.DialogProps;
 
 export interface DrawerContentProps
   extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>,
@@ -14,5 +14,5 @@ export interface DrawerContentProps
   motion?: MotionProp;
 }
 
-export interface DrawerHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
-export interface DrawerFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type DrawerHeaderProps = React.HTMLAttributes<HTMLDivElement>;
+export type DrawerFooterProps = React.HTMLAttributes<HTMLDivElement>;

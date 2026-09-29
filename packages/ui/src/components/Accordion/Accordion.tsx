@@ -11,7 +11,6 @@ import {
   accordionContentVariants,
 } from './Accordion.styles';
 import type {
-  AccordionProps,
   AccordionItemProps,
   AccordionTriggerProps,
   AccordionContentProps,

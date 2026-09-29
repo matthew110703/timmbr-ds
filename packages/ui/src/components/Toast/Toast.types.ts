@@ -73,5 +73,6 @@ export interface ToastViewportProps
   position?: ToastPosition;
 }
 
-export interface ToastActionElement
-  extends React.ReactElement<React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action>> {}
+export type ToastActionElement =
+  React.ReactElement<React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action>>;
+

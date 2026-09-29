@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Sparkles, Heart, Search, ArrowRight, Bell, Share2 } from '@timmbr/icons';
+import { Sparkles, Heart, Search, Bell, Share2 } from '@timmbr/icons';
 import { Icon } from './Icon';
 
 const meta: Meta<typeof Icon> = {

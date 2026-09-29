@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
-import { RadioGroup, RadioItem } from './Radio';
+import { RadioGroup } from './Radio';
 
 const sampleOptions = [
   { value: 'opt1', label: 'Option 1' },

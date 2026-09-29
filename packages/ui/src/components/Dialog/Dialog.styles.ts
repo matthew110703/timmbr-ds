@@ -5,15 +5,19 @@ export const dialogOverlayVariants = cva(
 );
 
 export const dialogContentVariants = cva(
-  'relative pointer-events-auto grid w-full max-w-lg gap-4 rounded-xl border border-grey-200 dark:border-grey-800 bg-white dark:bg-grey-900 p-6 shadow-xl font-sans text-foreground data-[state=open]:animate-dialog-scale-in data-[state=closed]:animate-dialog-scale-out'
+  'relative pointer-events-auto flex flex-col w-full max-w-lg max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] rounded-xl border border-grey-200 dark:border-grey-800 bg-white dark:bg-grey-900 shadow-xl font-sans text-foreground overflow-hidden data-[state=open]:animate-dialog-scale-in data-[state=closed]:animate-dialog-scale-out'
 );
 
 export const dialogHeaderVariants = cva(
-  'flex flex-col space-y-1.5 text-left'
+  'flex flex-col space-y-1.5 text-left p-6 pb-4 border-b border-grey-100 dark:border-grey-800/60 shrink-0 bg-white dark:bg-grey-900 pr-12'
+);
+
+export const dialogBodyVariants = cva(
+  'flex-1 overflow-y-auto p-6 min-h-0'
 );
 
 export const dialogFooterVariants = cva(
-  'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 gap-2 mt-4'
+  'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 gap-2 p-6 pt-4 border-t border-grey-100 dark:border-grey-800/60 shrink-0 bg-white dark:bg-grey-900'
 );
 
 export const dialogTitleVariants = cva(

@@ -10,6 +10,7 @@ import {
   dialogOverlayVariants,
   dialogContentVariants,
   dialogHeaderVariants,
+  dialogBodyVariants,
   dialogFooterVariants,
   dialogTitleVariants,
   dialogDescriptionVariants,
@@ -18,6 +19,7 @@ import type {
   DialogProps,
   DialogContentProps,
   DialogHeaderProps,
+  DialogBodyProps,
   DialogFooterProps,
 } from './Dialog.types';
 
@@ -64,7 +66,7 @@ export const DialogContent = React.forwardRef<
           {children}
           <DialogPrimitive.Close
             data-slot="dialog-close"
-            className="absolute right-4 top-4 rounded-sm p-1 text-muted hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
+            className="absolute right-4 top-4 z-20 rounded-sm p-1 text-muted hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
@@ -77,12 +79,17 @@ export const DialogContent = React.forwardRef<
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 export const DialogHeader: React.FC<DialogHeaderProps> = ({ className, ...props }) => (
-  <div className={cn(dialogHeaderVariants(), className)} {...props} />
+  <div data-slot="dialog-header" className={cn(dialogHeaderVariants(), className)} {...props} />
 );
 DialogHeader.displayName = 'DialogHeader';
 
+export const DialogBody: React.FC<DialogBodyProps> = ({ className, ...props }) => (
+  <div data-slot="dialog-body" className={cn(dialogBodyVariants(), className)} {...props} />
+);
+DialogBody.displayName = 'DialogBody';
+
 export const DialogFooter: React.FC<DialogFooterProps> = ({ className, ...props }) => (
-  <div className={cn(dialogFooterVariants(), className)} {...props} />
+  <div data-slot="dialog-footer" className={cn(dialogFooterVariants(), className)} {...props} />
 );
 DialogFooter.displayName = 'DialogFooter';
 

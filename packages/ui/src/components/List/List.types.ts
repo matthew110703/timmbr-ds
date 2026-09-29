@@ -11,8 +11,7 @@ export interface ListItemProps
   clickable?: boolean;
 }
 
-export interface ListItemIconProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export type ListItemIconProps = React.HTMLAttributes<HTMLDivElement>;
 
 export interface ListItemTextProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -20,5 +19,4 @@ export interface ListItemTextProps
   secondary?: React.ReactNode;
 }
 
-export interface ListItemActionProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export type ListItemActionProps = React.HTMLAttributes<HTMLDivElement>;
