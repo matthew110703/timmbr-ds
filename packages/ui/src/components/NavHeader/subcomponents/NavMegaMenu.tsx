@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { motion, AnimatePresence, headerMegaMenuVariants, getTransition } from '@timmbr/motion';
+import { motion, AnimatePresence, fadeSlideDownVariants, getTransition } from '@timmbr/motion';
 import { cn } from '@timmbr/utils';
 import { megaMenuCardVariants } from '../NavHeader.styles';
 import type { NavHeaderItem } from '../NavHeader.types';
@@ -66,7 +66,7 @@ export const NavMegaMenu: React.FC<NavMegaMenuProps> = ({
               initial={shouldAnimate ? 'hidden' : false}
               animate={shouldAnimate ? 'visible' : undefined}
               exit={shouldAnimate ? 'exit' : undefined}
-              variants={shouldAnimate ? headerMegaMenuVariants : undefined}
+              variants={shouldAnimate ? fadeSlideDownVariants : undefined}
               transition={getTransition('fast')}
               style={widthStyle}
               data-slot="nav-megamenu-card"

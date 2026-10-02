@@ -100,10 +100,10 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
           role="dialog"
           aria-modal="true"
           aria-label="Search drawer"
-          initial={shouldAnimate ? { opacity: 0, y: '-8px' } : false}
-          animate={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
-          exit={shouldAnimate ? { opacity: 0, y: '-8px' } : undefined}
-          transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          initial={shouldAnimate ? { opacity: 0, y: '100%' } : false}
+          animate={shouldAnimate ? { opacity: 1, y: '0%' } : undefined}
+          exit={shouldAnimate ? { opacity: 0, y: '100%' } : undefined}
+          transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
           className={cn(mobileSearchDrawerVariants(), motionClass)}
           data-slot="nav-mobile-search-drawer"
         >
