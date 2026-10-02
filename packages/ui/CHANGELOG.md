@@ -1,5 +1,18 @@
 # @timmbr/ui
 
+## 1.3.0
+
+### Minor Changes
+
+- ### NavHeader Mobile Responsiveness & Modular Architecture
+
+  - **Mobile & Tablet Responsive Flow**: Horizontal category tab slider with cross-browser hidden scrollbars and expandable category drawer.
+  - **Mobile Full-Screen Search Drawer**: Accessible search drawer modal with back navigation, real-time input clear, and popular search suggestion chips.
+  - **Dynamic Space-Aware Action Overflow**: Automatic viewport measurement and overflow popover menu for action items.
+  - **Modular Configuration Architecture**: Cohesive configuration objects (`navigation`, `actions`, `mobile`, `search`, `offerBanner`) with seamless backward-compatible normalization for flat shorthand props.
+  - **Master Section Toggles**: `showNavItems`, `showSearch`, `showActions`, and `showOfferBanner`.
+  - **Icon Badge Count Presentation**: Clean circular badge attachments on icons with decoupled text labels.
+
 ## 1.2.0
 
 ### Minor Changes

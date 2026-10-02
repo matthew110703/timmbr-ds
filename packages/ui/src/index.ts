@@ -33,6 +33,7 @@ export * from './components/Toast';
 export * from './components/Tooltip';
 export * from './components/Tabs';
 export * from './components/SideBarNavigation';
+export * from './components/NavHeader';
 
 // Display & Data Components
 export * from './components/Button';
