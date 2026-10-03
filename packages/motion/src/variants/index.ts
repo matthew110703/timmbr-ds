@@ -5,3 +5,4 @@ export * from './fadeSlide';
 export * from './collapse';
 export * from './sidebar';
 export * from './header';
+export * from './footer';

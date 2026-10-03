@@ -55,6 +55,14 @@
   --color-grey-950: #141414;
   --color-grey-1000: #0B0B0B;
 
+  /* Misc Palette (Dark Timber Surfaces & Warm Borders) */
+  --color-surface-dark: #1A1714;
+  --color-sand-muted: #B7AEA2;
+  --color-border-warm: #E8DFD1;
+  --color-misc-surface-dark: #1A1714;
+  --color-misc-sand-muted: #B7AEA2;
+  --color-misc-border-warm: #E8DFD1;
+
   /* Semantic Colors */
   --color-destructive: #DC2626;
   --color-destructive-foreground: #FFFFFF;

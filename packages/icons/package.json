@@ -1,6 +1,6 @@
 {
   "name": "@timmbr/icons",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Unified icon system wrapping Lucide and custom SVGs for Timmbr Design System",
   "type": "module",
   "main": "./dist/index.js",

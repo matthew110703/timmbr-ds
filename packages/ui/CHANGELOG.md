@@ -1,5 +1,19 @@
 # @timmbr/ui
 
+## 1.4.0
+
+### Minor Changes
+
+- Add a configurable NavFooter component with responsive navigation and content sections.
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/theme@1.2.0
+  - @timmbr/motion@1.2.0
+  - @timmbr/utils@1.2.0
+  - @timmbr/icons@1.2.1
+
 ## 1.3.1
 
 ### Patch Changes

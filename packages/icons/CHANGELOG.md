@@ -1,5 +1,12 @@
 # @timmbr/icons
 
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/utils@1.2.0
+
 ## 1.2.0
 
 ### Minor Changes

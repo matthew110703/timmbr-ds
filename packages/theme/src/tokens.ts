@@ -52,6 +52,11 @@ export const tokens = {
       900: '#232323',
       1000: '#0B0B0B',
     },
+    misc: {
+      surfaceDark: '#1A1714',
+      sandMuted: '#B7AEA2',
+      borderWarm: '#E8DFD1',
+    },
     semantic: {
       success: '#22c55e',
       warning: '#f59e0b',

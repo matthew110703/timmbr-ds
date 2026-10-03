@@ -99,6 +99,21 @@ export const Palettes: Story = {
           <ColorSwatch name="50" hex={tokens.colors.greys[50]} className="" />
         </div>
       </div>
+
+      {/* Misc & Specialty Accents */}
+      <div>
+        <div className="border-b border-grey-200 dark:border-grey-800 pb-3 mb-6">
+          <h3 className="text-h4 text-grey-1000 dark:text-grey-50 font-display">Miscellaneous &amp; Specialty Accents</h3>
+          <p className="text-body-2 text-grey-600 dark:text-grey-300">
+            Warm espresso dark surfaces, muted contrast sand typography, and artisan linen card borders.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-8">
+          <ColorSwatch name="Surface Dark" hex={tokens.colors.misc.surfaceDark} className="" />
+          <ColorSwatch name="Sand Muted" hex={tokens.colors.misc.sandMuted} className="" />
+          <ColorSwatch name="Border Warm" hex={tokens.colors.misc.borderWarm} className="" />
+        </div>
+      </div>
     </div>
   ),
 };

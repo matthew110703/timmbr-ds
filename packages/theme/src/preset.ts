@@ -16,6 +16,10 @@ export const sharedPreset = {
         brand: tokens.colors.brand,
         bg: tokens.colors.backgrounds,
         grey: tokens.colors.greys,
+        misc: tokens.colors.misc,
+        'surface-dark': tokens.colors.misc.surfaceDark,
+        'sand-muted': tokens.colors.misc.sandMuted,
+        'border-warm': tokens.colors.misc.borderWarm,
       },
       fontFamily: {
         display: ['"DM Serif Display"', 'serif'],
