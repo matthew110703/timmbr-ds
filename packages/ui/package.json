@@ -1,6 +1,6 @@
 {
   "name": "@timmbr/ui",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "High-performance, Next.js App Router-compatible UI design system components for Timmbr",
   "type": "module",
   "main": "./dist/index.js",

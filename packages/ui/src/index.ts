@@ -34,6 +34,7 @@ export * from './components/Tooltip';
 export * from './components/Tabs';
 export * from './components/SideBarNavigation';
 export * from './components/NavHeader';
+export * from './components/NavFooter';
 
 // Display & Data Components
 export * from './components/Button';

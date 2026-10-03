@@ -1,5 +1,11 @@
 # @timmbr/ui
 
+## 1.4.1
+
+### Patch Changes
+
+- Export the NavFooter component and its related types and utilities from the package entry point.
+
 ## 1.4.0
 
 ### Minor Changes
