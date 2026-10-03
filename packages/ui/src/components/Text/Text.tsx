@@ -14,6 +14,7 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       as = 'p',
       variant = 'body-1',
       foreground = 'default',
+      font = 'sans',
       weight,
       italic,
       asChild = false,
@@ -34,6 +35,7 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
           textVariants({
             variant,
             foreground,
+            font,
             weight,
             italic,
             className,

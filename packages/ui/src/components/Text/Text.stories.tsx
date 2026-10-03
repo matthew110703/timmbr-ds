@@ -35,6 +35,11 @@ const meta: Meta<typeof Text> = {
       options: ['default', 'muted', 'subtle', 'primary', 'secondary', 'destructive'],
       description: 'Foreground color token',
     },
+    font: {
+      control: 'select',
+      options: ['sans', 'display', 'title'],
+      description: 'Typographic font family',
+    },
     weight: {
       control: 'select',
       options: ['light', 'normal', 'medium', 'semibold', 'bold'],
@@ -90,6 +95,22 @@ export const AllVariants: Story = {
       <Text variant="body-3">Body 3 — 12px Compact caption text</Text>
       <Text variant="body-3-light">Body 3 Light — 12px Light metadata</Text>
       <Text variant="caption">CAPTION — 11px Uppercase metadata label</Text>
+    </div>
+  ),
+};
+
+export const FontFamilies: Story = {
+  render: () => (
+    <div className="space-y-3 max-w-2xl">
+      <Text font="sans" variant="body-1">
+        Sans — Manrope
+      </Text>
+      <Text font="display" variant="body-1">
+        Display — DM Serif Display
+      </Text>
+      <Text font="title" variant="body-1">
+        Title — Outfit
+      </Text>
     </div>
   ),
 };

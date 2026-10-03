@@ -16,6 +16,11 @@ export interface TextProps
    */
   asChild?: boolean;
   /**
+   * Typographic font family ('sans' uses Manrope; 'display' uses DM Serif Display; 'title' uses Outfit).
+   * @default 'sans'
+   */
+  font?: 'sans' | 'display' | 'title';
+  /**
    * Font weight override.
    */
   weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold';

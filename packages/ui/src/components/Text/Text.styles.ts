@@ -24,6 +24,11 @@ export const textVariants = cva('font-sans transition-colors leading-[1.3]', {
       white: 'text-white',
       inherit: 'text-inherit',
     },
+    font: {
+      sans: 'font-sans',
+      display: 'font-display',
+      title: 'font-title',
+    },
     weight: {
       light: 'font-light',
       normal: 'font-normal',
@@ -39,6 +44,7 @@ export const textVariants = cva('font-sans transition-colors leading-[1.3]', {
   defaultVariants: {
     variant: 'body-1',
     foreground: 'default',
+    font: 'sans',
   },
 });
 

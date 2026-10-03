@@ -1,5 +1,11 @@
 # @timmbr/ui
 
+## 1.4.2
+
+### Patch Changes
+
+- Add a font family option to the Text component.
+
 ## 1.4.1
 
 ### Patch Changes
