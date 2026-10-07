@@ -23,7 +23,7 @@ export const SidebarFooter: React.FC<SidebarFooterProps> = ({
     <div
       data-testid="sidebar-footer"
       className={cn(
-        'mt-auto border-t border-grey-100 bg-white shrink-0 overflow-hidden',
+        'mt-auto border-t border-grey-100 bg-grey-50 shrink-0 overflow-hidden',
         collapsed ? 'p-2 flex flex-col items-center gap-1' : 'p-3',
         className
       )}

@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const alertVariants = cva(
-  'relative flex w-full gap-3 p-4 rounded-lg border text-sm font-sans transition-all duration-200',
+  'relative flex w-full gap-3 p-4 rounded-lg border text-body-2 transition-all duration-200',
   {
     variants: {
       variant: {
@@ -17,9 +17,9 @@ export const alertVariants = cva(
           'border-destructive/30 bg-destructive/10 text-foreground dark:border-destructive/40 dark:bg-destructive/15',
       },
       size: {
-        sm: 'p-3 text-xs gap-2.5',
-        default: 'p-4 text-sm gap-3',
-        lg: 'p-5 text-base gap-3.5',
+        sm: 'p-3 text-body-3 gap-2.5',
+        default: 'p-4 text-body-2 gap-3',
+        lg: 'p-5 text-body-1 gap-3.5',
       },
     },
     defaultVariants: {

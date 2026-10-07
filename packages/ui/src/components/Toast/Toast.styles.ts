@@ -5,15 +5,15 @@ export const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-grey-200 dark:border-grey-800 bg-white dark:bg-grey-900 text-foreground',
+        default: 'border-grey-200 dark:border-grey-800 bg-grey-50 dark:bg-grey-900 text-foreground',
         destructive:
-          'destructive group border-destructive bg-destructive text-white',
+          'destructive group border-destructive bg-destructive text-grey-50',
         success:
-          'border-success bg-white dark:bg-grey-900 text-foreground border-l-4 border-l-success',
+          'border-success bg-grey-50 dark:bg-grey-900 text-foreground border-l-4 border-l-success',
         warning:
-          'border-warning bg-white dark:bg-grey-900 text-foreground border-l-4 border-l-warning',
+          'border-warning bg-grey-50 dark:bg-grey-900 text-foreground border-l-4 border-l-warning',
         info:
-          'border-info bg-white dark:bg-grey-900 text-foreground border-l-4 border-l-info',
+          'border-info bg-grey-50 dark:bg-grey-900 text-foreground border-l-4 border-l-info',
       },
     },
     defaultVariants: {

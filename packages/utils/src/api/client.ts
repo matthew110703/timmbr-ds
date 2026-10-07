@@ -12,6 +12,24 @@ interface QueuedRequest {
   reject: (error: Error) => void;
 }
 
+/** The server refused the refresh (401/403), i.e. the session is really over. */
+function isSessionRejected(error: unknown): boolean {
+  return error instanceof ApiError && (error.statusCode === 401 || error.statusCode === 403);
+}
+
+/** Bodies `fetch` sends as-is; everything else is JSON-encoded. */
+function isRawBody(body: unknown): boolean {
+  return (
+    typeof body === 'string' ||
+    (typeof FormData !== 'undefined' && body instanceof FormData) ||
+    (typeof URLSearchParams !== 'undefined' && body instanceof URLSearchParams) ||
+    (typeof Blob !== 'undefined' && body instanceof Blob) ||
+    body instanceof ArrayBuffer ||
+    ArrayBuffer.isView(body) ||
+    (typeof ReadableStream !== 'undefined' && body instanceof ReadableStream)
+  );
+}
+
 export class ApiClient {
   private baseUrl: string;
   private apiPrefix: string;
@@ -126,10 +144,17 @@ export class ApiClient {
   private async executeTokenRefresh(): Promise<string> {
     const refreshUrl = this.buildUrl(this.refreshEndpoint);
 
-    const response = await fetch(refreshUrl, {
-      method: 'POST',
-      credentials: 'include',
-    });
+    let response: Response;
+    try {
+      response = await fetch(refreshUrl, {
+        method: 'POST',
+        credentials: 'include',
+      });
+    } catch (networkError) {
+      throw new ApiError(0, 'Network error: Unable to connect to server', null, undefined, {
+        cause: networkError,
+      });
+    }
 
     if (!response.ok) {
       throw new ApiError(response.status, 'Session expired. Please log in again.');
@@ -173,7 +198,9 @@ export class ApiClient {
       return newAccessToken;
     } catch (refreshError) {
       this.processQueue(refreshError as Error, null);
-      if (this.onUnauthorized) {
+      // Only a rejected refresh ends the session. A network blip or a 5xx
+      // doesn't mean the refresh token is invalid.
+      if (this.onUnauthorized && isSessionRejected(refreshError)) {
         await this.onUnauthorized();
       }
       throw refreshError;
@@ -194,7 +221,8 @@ export class ApiClient {
       });
     }
 
-    if (!requestHeaders.has('Content-Type') && body && !(body instanceof FormData)) {
+    const sendsJson = body !== undefined && body !== null && !isRawBody(body);
+    if (sendsJson && !requestHeaders.has('Content-Type')) {
       requestHeaders.set('Content-Type', 'application/json');
     }
 
@@ -228,9 +256,10 @@ export class ApiClient {
 
     let serializedBody: BodyInit | null | undefined = undefined;
     if (body !== undefined && body !== null) {
-      serializedBody =
-        body instanceof FormData || typeof body === 'string' ? (body as BodyInit) : JSON.stringify(body);
+      serializedBody = sendsJson ? JSON.stringify(body) : (body as BodyInit);
     }
+
+    const method = (restOptions.method ?? 'GET').toUpperCase();
 
     // Next.js Extended Fetch Options
     const fetchInit: RequestInit & { next?: { revalidate?: number | false; tags?: string[] } } = {
@@ -244,9 +273,12 @@ export class ApiClient {
       fetchInit.cache = cache || this.defaultCache;
     }
 
-    if (next || this.defaultRevalidate !== undefined) {
+    // ISR caching only makes sense for reads; mutations always hit the network.
+    const defaultRevalidate =
+      method === 'GET' && !fetchInit.cache ? this.defaultRevalidate : undefined;
+    if (next || defaultRevalidate !== undefined) {
       fetchInit.next = {
-        revalidate: next?.revalidate ?? this.defaultRevalidate,
+        revalidate: next?.revalidate ?? defaultRevalidate,
         tags: next?.tags,
       };
     }
@@ -255,7 +287,9 @@ export class ApiClient {
     try {
       response = await fetch(url, fetchInit as RequestInit);
     } catch (networkError) {
-      throw new ApiError(0, 'Network error: Unable to connect to server', networkError);
+      throw new ApiError(0, 'Network error: Unable to connect to server', networkError, undefined, {
+        cause: networkError,
+      });
     }
 
     // Handle 401 Unauthorized with token refresh mutex
@@ -274,16 +308,12 @@ export class ApiClient {
       }
 
       if (isJwtError) {
-        try {
-          const newAccessToken = await this.refreshToken();
-          return this.request<T>(endpoint, {
-            ...options,
-            token: newAccessToken,
-            _retry: true,
-          });
-        } catch {
-          throw new ApiError(401, 'Session expired. Please log in again.');
-        }
+        const newAccessToken = await this.refreshToken();
+        return this.request<T>(endpoint, {
+          ...options,
+          token: newAccessToken,
+          _retry: true,
+        });
       }
     }
 
@@ -314,7 +344,17 @@ export class ApiClient {
 
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.includes('application/json')) {
-      const json = await response.json();
+      const text = await response.text();
+      if (!text) return null as T;
+
+      let json: unknown;
+      try {
+        json = JSON.parse(text);
+      } catch (parseError) {
+        throw new ApiError(response.status, 'Malformed JSON response from server', text, undefined, {
+          cause: parseError,
+        });
+      }
       // Seamlessly unwrap NestJS standard envelope { success: true, data: T }
       if (json && typeof json === 'object' && 'data' in json && (json as ApiSuccessResponse).success === true) {
         return (json as ApiSuccessResponse<T>).data;

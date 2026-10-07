@@ -1,19 +1,31 @@
 'use client';
 
 import * as React from 'react';
+import { openAuthModal } from '@timmbr/hooks';
 import { User, Heart, ShoppingCart } from '@timmbr/icons';
 import { cn } from '@timmbr/utils';
 import { useTimmbrConfig } from '../../../providers';
 import { navActionVariants } from '../NavHeader.styles';
+import { NavActionLabelSkeleton } from './NavActionLabelSkeleton';
 import type { NavActionItem } from '../NavHeader.types';
 import { resolveNavDestination, isCrossZoneNavigation } from '../NavHeader.helpers';
 import { NavActionOverflow } from './NavActionOverflow';
+
+/**
+ * Profile label slot: sized to its text, so gaps stay even, but
+ * - at least as wide as "LOGIN" (34.6px): the loading skeleton and LOGIN are
+ *   the same width, so signed-out visitors see no shift at all;
+ * - at most 64px: longer names are cut with "…" (full name in `title`).
+ */
+export const PROFILE_LABEL_CLASS = 'min-w-[35px] max-w-16 truncate text-center';
 
 export interface NavActionsProps {
   actions?: NavActionItem[];
   profileAction?: Partial<NavActionItem>;
   wishlistAction?: Partial<NavActionItem> & { count?: number };
   cartAction?: Partial<NavActionItem> & { count?: number };
+  authMode?: 'modal' | 'redirect';
+  onAuthTrigger?: () => void;
   maxVisibleActions?: number | 'auto';
   overflowActionLabel?: React.ReactNode;
   overflowActionIcon?: React.ReactNode;
@@ -28,6 +40,8 @@ export const NavActions: React.FC<NavActionsProps> = ({
   profileAction,
   wishlistAction,
   cartAction,
+  authMode = 'modal',
+  onAuthTrigger,
   maxVisibleActions = 'auto',
   overflowActionLabel,
   overflowActionIcon,
@@ -50,16 +64,29 @@ export const NavActions: React.FC<NavActionsProps> = ({
     const customItems = actions ?? [];
 
     // Profile
-    defaultItems.push({
-      id: 'profile',
-      label: profileAction?.label ?? 'PROFILE',
-      icon: profileAction?.icon ?? <User size={22} className="stroke-[1.8]" />,
-      href: profileAction?.href ?? '/account',
-      zone: profileAction?.zone,
-      crossZone: profileAction?.crossZone,
-      onClick: profileAction?.onClick,
-      ariaLabel: profileAction?.ariaLabel ?? 'User Account',
-    });
+    const isExplicitAccountLink =
+      Boolean(profileAction?.href) && profileAction?.href !== '/auth' && profileAction?.href !== '/login';
+
+    const profileHref =
+      authMode === 'modal' && !isExplicitAccountLink
+        ? undefined
+        : (profileAction?.href ?? '/auth');
+
+    const handleProfileClick = (e: React.MouseEvent) => {
+      if (profileAction?.onClick) {
+        profileAction.onClick(e);
+      }
+      if (authMode === 'modal' && !isExplicitAccountLink) {
+        e.preventDefault();
+        if (onAuthTrigger) {
+          onAuthTrigger();
+        } else {
+          openAuthModal();
+        }
+      }
+    };
+
+    // Order: Wishlist, Cart, Profile (account last, at the far edge).
 
     // Wishlist
     const wishCount = wishlistAction?.count;
@@ -90,8 +117,24 @@ export const NavActions: React.FC<NavActionsProps> = ({
       priority: 'high',
     });
 
+    // Profile: high priority so sign-in / account stays visible when space is tight
+    defaultItems.push({
+      id: 'profile',
+      label: profileAction?.label ?? 'LOGIN',
+      icon: profileAction?.icon ?? <User size={22} className="stroke-[1.8]" />,
+      href: profileHref,
+      zone: profileAction?.zone,
+      crossZone: profileAction?.crossZone,
+      onClick: handleProfileClick,
+      ariaLabel: profileAction?.ariaLabel ?? 'User Account',
+      priority: 'high',
+      isLoading: profileAction?.isLoading,
+      // LOGIN / skeleton / first name share one fixed-width slot: no layout shift
+      labelClassName: profileAction?.labelClassName ?? PROFILE_LABEL_CLASS,
+    });
+
     return [...customItems, ...defaultItems];
-  }, [actions, profileAction, wishlistAction, cartAction]);
+  }, [actions, profileAction, wishlistAction, cartAction, authMode, onAuthTrigger]);
 
 
   // Space-aware container measurement when maxVisibleActions is 'auto'
@@ -221,13 +264,20 @@ export const NavActions: React.FC<NavActionsProps> = ({
             <div className="relative flex items-center justify-center">
               {item.icon}
               {typeof item.badge !== 'undefined' && item.badge !== null && (
-                <span className="absolute -top-1 -right-2 min-w-[16px] h-4 px-1 rounded-full bg-[#C0643A] text-white text-[10px] font-bold flex items-center justify-center">
+                <span className="absolute -top-1 -right-2 min-w-[16px] h-4 px-1 rounded-full bg-primary text-grey-50 text-caption font-bold flex items-center justify-center">
                   {item.badge}
                 </span>
               )}
             </div>
-            <span className="hidden lg:inline font-sans font-bold text-[10px] tracking-[0.0926em] uppercase whitespace-nowrap">
-              {item.label}
+            <span
+              className={cn(
+                'hidden lg:inline-block font-bold text-caption tracking-[0.0926em] uppercase whitespace-nowrap',
+                item.labelClassName
+              )}
+              title={!item.isLoading && typeof item.label === 'string' ? item.label : undefined}
+              data-slot="nav-action-label"
+            >
+              {item.isLoading ? <NavActionLabelSkeleton /> : item.label}
             </span>
           </>
         );
@@ -277,6 +327,7 @@ export const NavActions: React.FC<NavActionsProps> = ({
             type="button"
             disabled={item.disabled}
             aria-label={item.ariaLabel}
+            aria-busy={item.isLoading || undefined}
             onClick={item.onClick}
             className={actionClass}
             data-slot="nav-action-button"

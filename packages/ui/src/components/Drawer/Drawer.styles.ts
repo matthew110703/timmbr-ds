@@ -1,11 +1,11 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const drawerOverlayVariants = cva(
-  'fixed inset-0 z-50 bg-black/60 backdrop-blur-xs transition-opacity duration-300 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out'
+  'fixed inset-0 z-50 bg-grey-1000/60 backdrop-blur-xs transition-opacity duration-300 data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out'
 );
 
 export const drawerContentVariants = cva(
-  'fixed z-50 gap-4 bg-white dark:bg-grey-900 p-6 shadow-2xl transition ease-in-out duration-300 font-sans text-foreground border-grey-200 dark:border-grey-800',
+  'fixed z-50 gap-4 bg-grey-50 dark:bg-grey-900 p-6 shadow-2xl transition ease-in-out duration-300 font-sans text-foreground border-grey-200 dark:border-grey-800',
   {
     variants: {
       side: {

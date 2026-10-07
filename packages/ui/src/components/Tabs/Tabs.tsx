@@ -162,11 +162,11 @@ export const TabsTrigger = React.forwardRef<
           tabsTriggerVariants({ variant, size }),
           !shouldAnimate && 'transition-none active:scale-100',
           // Static active styles when animation is disabled
-          !shouldAnimate && isActive && variant === 'pills' && 'bg-primary text-white shadow-sm',
+          !shouldAnimate && isActive && variant === 'pills' && 'bg-primary text-grey-50 shadow-sm',
           !shouldAnimate && isActive && variant === 'underline' && 'border-b-2 border-primary text-primary font-semibold',
           !shouldAnimate && isActive && variant === 'outline' && 'bg-grey-200 dark:bg-grey-700 text-foreground',
           // Text styling when active with animation
-          shouldAnimate && isActive && variant === 'pills' && 'text-white',
+          shouldAnimate && isActive && variant === 'pills' && 'text-grey-50',
           shouldAnimate && isActive && variant === 'underline' && 'text-primary font-semibold',
           shouldAnimate && isActive && variant === 'outline' && 'text-foreground',
           motionClass,

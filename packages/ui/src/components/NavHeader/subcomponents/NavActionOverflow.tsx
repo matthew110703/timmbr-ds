@@ -11,6 +11,7 @@ import {
   actionOverflowItemVariants,
 } from '../NavHeader.styles';
 import type { NavActionItem } from '../NavHeader.types';
+import { NavActionLabelSkeleton } from './NavActionLabelSkeleton';
 import { resolveNavDestination, isCrossZoneNavigation } from '../NavHeader.helpers';
 
 export interface NavActionOverflowProps {
@@ -94,14 +95,14 @@ export const NavActionOverflow: React.FC<NavActionOverflowProps> = ({
           {icon ?? <MoreHorizontal size={22} className="shrink-0 stroke-[1.8]" />}
           {totalBadges > 0 && (
             <span
-              className="absolute -top-1 -right-2 min-w-[16px] h-4 px-1 rounded-full bg-[#C0643A] text-white text-[10px] font-bold flex items-center justify-center"
+              className="absolute -top-1 -right-2 min-w-[16px] h-4 px-1 rounded-full bg-primary text-grey-50 text-caption font-bold flex items-center justify-center"
               aria-label={`${totalBadges} items in overflow menu`}
             >
               {totalBadges}
             </span>
           )}
         </div>
-        <span className="hidden lg:inline font-sans font-bold text-[10px] tracking-[0.0926em] uppercase whitespace-nowrap">
+        <span className="hidden lg:inline font-bold text-caption tracking-[0.0926em] uppercase whitespace-nowrap">
           {label}
         </span>
       </button>
@@ -139,14 +140,16 @@ export const NavActionOverflow: React.FC<NavActionOverflowProps> = ({
                 const itemRowContent = (
                   <>
                     <div className="flex items-center gap-2.5 truncate">
-                      <span className="shrink-0 text-grey-500 group-hover:text-[#C0643A] transition-colors">
+                      <span className="shrink-0 text-grey-500 group-hover:text-primary transition-colors">
                         {item.icon}
                       </span>
-                      <span className="truncate">{item.label}</span>
+                      <span className="truncate">
+                        {item.isLoading ? <NavActionLabelSkeleton /> : item.label}
+                      </span>
                     </div>
 
                     {typeof item.badge !== 'undefined' && item.badge !== null && (
-                      <span className="shrink-0 px-1.5 py-0.5 rounded-full bg-[#C0643A] text-white text-[10px] font-bold">
+                      <span className="shrink-0 px-1.5 py-0.5 rounded-full bg-primary text-grey-50 text-caption font-bold">
                         {item.badge}
                       </span>
                     )}

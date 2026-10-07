@@ -34,7 +34,8 @@ export function parseJwt<T = DecodedJwt>(token: string): T | null {
 export function isTokenExpired(token: string, skewSeconds = 10): boolean {
   const decoded = parseJwt<DecodedJwt>(token);
   if (!decoded || typeof decoded.exp !== 'number') return true;
-  return decoded.exp * 1000 <= Date.now() - skewSeconds * 1000;
+  // Treat the token as expired slightly early so it isn't sent right as it lapses.
+  return decoded.exp * 1000 <= Date.now() + skewSeconds * 1000;
 }
 
 /**

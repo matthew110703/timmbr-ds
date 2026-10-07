@@ -1,18 +1,21 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const headingVariants = cva('transition-colors leading-[1.3] text-foreground', {
+// Sizes, line-height and default family/weight come from the @timmbr/theme scale.
+export const headingVariants = cva('transition-colors text-foreground', {
   variants: {
     level: {
-      1: 'text-[64px]',
-      2: 'text-[48px]',
-      3: 'text-[32px]',
-      4: 'text-[24px] tracking-[-0.02em]',
-      5: 'text-[20px]',
-      6: 'text-[20px]',
+      1: 'text-h1',
+      2: 'text-h2',
+      3: 'text-h3',
+      4: 'text-h4',
+      5: 'text-h5',
+      6: 'text-h6',
     },
     font: {
-      display: 'font-display font-normal',
-      title: 'font-title font-bold',
+      // The h* tokens already use the display font.
+      display: '',
+      // Override the token's family ("!" so it wins regardless of CSS order).
+      title: 'font-title! font-bold',
     },
     foreground: {
       default: 'text-foreground',
@@ -21,7 +24,7 @@ export const headingVariants = cva('transition-colors leading-[1.3] text-foregro
       primary: 'text-primary',
       secondary: 'text-secondary-foreground',
       destructive: 'text-destructive',
-      white: 'text-white',
+      white: 'text-grey-50',
       inherit: 'text-inherit',
     },
     weight: {

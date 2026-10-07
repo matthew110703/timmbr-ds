@@ -45,7 +45,7 @@ export const Checkbox = React.forwardRef<
         <CheckboxPrimitive.Indicator
           className={cn(checkboxIndicatorVariants({ size }))}
         >
-          <span className="hidden [[data-state=indeterminate]_&]:block w-2.5 h-0.5 bg-white rounded-full" />
+          <span className="hidden [[data-state=indeterminate]_&]:block w-2.5 h-0.5 bg-grey-50 rounded-full" />
           <Check className="[[data-state=indeterminate]_&]:hidden w-full h-full stroke-[3]" />
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
@@ -72,7 +72,7 @@ export const Checkbox = React.forwardRef<
               <label
                 htmlFor={id}
                 className={cn(
-                  'text-sm font-medium text-foreground cursor-pointer select-none leading-snug',
+                  'text-body-2 font-medium text-foreground cursor-pointer select-none leading-snug',
                   disabled && 'cursor-not-allowed'
                 )}
               >
@@ -80,7 +80,7 @@ export const Checkbox = React.forwardRef<
               </label>
             )}
             {description && (
-              <p className="text-xs text-muted leading-normal mt-0.5">
+              <p className="text-body-3 text-muted leading-normal mt-0.5">
                 {description}
               </p>
             )}
@@ -88,7 +88,7 @@ export const Checkbox = React.forwardRef<
         </div>
 
         {errorMessage && (
-          <p className="text-xs text-destructive font-medium pl-7">
+          <p className="text-body-3 text-destructive font-medium pl-7">
             {errorMessage}
           </p>
         )}

@@ -1,6 +1,6 @@
 {
   "name": "@timmbr/ui",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "High-performance, Next.js App Router-compatible UI design system components for Timmbr",
   "type": "module",
   "main": "./dist/index.js",
@@ -53,7 +53,8 @@
     "@timmbr/motion": "workspace:*",
     "@timmbr/theme": "workspace:*",
     "@timmbr/utils": "workspace:*",
-    "class-variance-authority": "^0.7.1"
+    "class-variance-authority": "^0.7.1",
+    "input-otp": "^1.5.0"
   },
   "peerDependencies": {
     "next": ">=13.0.0 || >=14.0.0 || >=15.0.0 || >=16.0.0",

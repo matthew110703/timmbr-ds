@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const sidebarContainerVariants = cva(
-  'relative flex flex-col h-screen max-h-screen bg-white border-r border-grey-200 select-none',
+  'relative flex flex-col h-screen max-h-screen bg-grey-50 border-r border-grey-200 select-none',
   {
     variants: {
       collapsed: {
@@ -26,15 +26,15 @@ export const sidebarContainerVariants = cva(
 );
 
 export const sidebarToggleVariants = cva(
-  'absolute -right-3.5 top-6 z-30 flex size-7 items-center justify-center rounded-full bg-white border border-grey-200 text-grey-600 shadow-xs hover:bg-grey-50 hover:text-grey-900 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer transition-all duration-150'
+  'absolute -right-3.5 top-6 z-30 flex size-7 items-center justify-center rounded-full bg-grey-50 border border-grey-200 text-grey-600 shadow-xs hover:bg-grey-50 hover:text-grey-900 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer transition-all duration-150'
 );
 
 export const navItemVariants = cva(
-  'group relative flex items-center gap-3 rounded-lg text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer select-none',
+  'group relative flex items-center gap-3 rounded-lg text-body-2 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer select-none',
   {
     variants: {
       active: {
-        true: 'bg-primary text-white shadow-xs font-medium',
+        true: 'bg-primary text-grey-50 shadow-xs font-medium',
         false: 'text-grey-700 hover:bg-grey-100 hover:text-grey-900',
       },
       collapsed: {
@@ -50,17 +50,17 @@ export const navItemVariants = cva(
 );
 
 export const navBadgeVariants = cva(
-  'inline-flex items-center justify-center rounded-full text-xs font-semibold shrink-0 transition-colors',
+  'inline-flex items-center justify-center rounded-full text-body-3 font-semibold shrink-0 transition-colors',
   {
     variants: {
       variant: {
-        destructive: 'bg-red-500 text-white px-2 py-0.5',
+        destructive: 'bg-destructive text-grey-50 px-2 py-0.5',
         primary: 'bg-primary-100 text-primary-800 px-2 py-0.5',
         secondary: 'bg-grey-100 text-grey-700 px-2 py-0.5',
         outline: 'border border-grey-200 text-grey-700 px-1.5 py-0.5',
       },
       collapsed: {
-        true: 'absolute -top-1 -right-1 size-4 p-0 text-[10px] leading-none',
+        true: 'absolute -top-1 -right-1 size-4 p-0 text-caption leading-none',
         false: 'ml-auto',
       },
     },
@@ -72,7 +72,7 @@ export const navBadgeVariants = cva(
 );
 
 export const subItemVariants = cva(
-  'flex items-center gap-2.5 w-full rounded-md px-3 py-2 text-xs transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer',
+  'flex items-center gap-2.5 w-full rounded-md px-3 py-2 text-body-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer',
   {
     variants: {
       active: {

@@ -108,12 +108,12 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
           data-slot="nav-mobile-search-drawer"
         >
           {/* Top Search Bar with Back Button */}
-          <div className="w-full bg-[var(--color-bg-2,#F7F1E6)] border-b border-[#E7DFD3] px-3 py-3 flex items-center gap-3 shrink-0 shadow-xs">
+          <div className="w-full bg-[var(--color-bg-2,#F7F1E6)] border-b border-border-warm px-3 py-3 flex items-center gap-3 shrink-0 shadow-xs">
             <button
               type="button"
               onClick={onClose}
               aria-label="Close search and go back"
-              className="w-10 h-10 rounded-full flex items-center justify-center text-grey-800 hover:text-[#C0643A] hover:bg-black/5 transition-colors cursor-pointer shrink-0"
+              className="w-10 h-10 rounded-full flex items-center justify-center text-grey-800 hover:text-primary hover:bg-grey-1000/5 transition-colors cursor-pointer shrink-0"
               data-slot="nav-mobile-search-back-btn"
             >
               <ArrowLeft size={22} className="stroke-[2]" />
@@ -134,7 +134,7 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
                   value={value}
                   onChange={(e) => onChange(e.target.value)}
                   placeholder={searchConfig.placeholder ?? 'Search for furniture, decor, and more...'}
-                  className="w-full h-11 pl-10 pr-9 rounded-full bg-white border border-[#E7DFD3] text-sm text-grey-900 placeholder:text-grey-400 focus:outline-none focus:border-[#C0643A] focus:ring-2 focus:ring-[#C0643A]/20 transition-all shadow-xs"
+                  className="w-full h-11 pl-10 pr-9 rounded-full bg-grey-50 border border-border-warm text-body-2 text-grey-900 placeholder:text-grey-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all shadow-xs"
                 />
                 {value.length > 0 && (
                   <button
@@ -154,7 +154,7 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 bg-[var(--color-bg-2,#F7F1E6)]">
             {searchConfig.popularSearches && searchConfig.popularSearches.length > 0 && (
               <div className="space-y-3">
-                <h4 className="font-title text-xs font-semibold text-grey-500 uppercase tracking-wider">
+                <h4 className="font-title! text-body-3 font-semibold text-grey-500 uppercase tracking-wider">
                   POPULAR SEARCHES
                 </h4>
                 <div className="flex flex-wrap gap-2">
@@ -163,7 +163,7 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
                       key={item.id}
                       type="button"
                       onClick={() => handlePopularSearchClick(item.label)}
-                      className="px-3.5 py-1.5 rounded-full bg-white border border-[#E7DFD3] text-xs font-semibold text-grey-700 hover:border-[#C0643A] hover:text-[#C0643A] hover:bg-white transition-colors cursor-pointer shadow-xs"
+                      className="px-3.5 py-1.5 rounded-full bg-grey-50 border border-border-warm text-body-3 font-semibold text-grey-700 hover:border-primary hover:text-primary hover:bg-grey-50 transition-colors cursor-pointer shadow-xs"
                     >
                       {item.label}
                     </button>

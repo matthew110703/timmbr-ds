@@ -112,7 +112,7 @@ export const TableCaption = React.forwardRef<HTMLTableCaptionElement, TableCapti
     <caption
       ref={ref}
       data-slot="table-caption"
-      className={cn('mt-4 text-xs text-muted-foreground', className)}
+      className={cn('mt-4 text-body-3 text-muted-foreground', className)}
       {...props}
     />
   )

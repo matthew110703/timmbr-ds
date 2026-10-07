@@ -28,9 +28,11 @@ export default defineConfig({
         'motion/react',
         'lucide-react',
         'class-variance-authority',
+        'input-otp',
       ],
       output: {
         preserveModules: true,
+        preserveModulesRoot: 'src',
         entryFileNames: '[name].js',
       },
       plugins: [

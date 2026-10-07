@@ -74,7 +74,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             type="button"
             onClick={handleDismiss}
             aria-label="Dismiss alert"
-            className="shrink-0 p-1 -mr-1 -mt-1 text-muted-foreground hover:text-foreground rounded-sm transition-colors hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer active:scale-95"
+            className="shrink-0 p-1 -mr-1 -mt-1 text-muted-foreground hover:text-foreground rounded-sm transition-colors hover:bg-grey-1000/5 dark:hover:bg-grey-50/5 cursor-pointer active:scale-95"
           >
             <X className="size-4" />
           </button>
@@ -102,7 +102,7 @@ export const AlertDescription = React.forwardRef<HTMLParagraphElement, AlertDesc
     <div
       ref={ref}
       data-slot="alert-description"
-      className={cn('text-xs text-muted-foreground leading-relaxed', className)}
+      className={cn('text-body-3 text-muted-foreground leading-relaxed', className)}
       {...props}
     />
   )

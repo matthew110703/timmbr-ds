@@ -12,7 +12,7 @@ export const skeletonVariants = cva(
       },
       animation: {
         pulse: 'animate-pulse',
-        wave: 'relative overflow-hidden before:absolute before:inset-0 before:content-[\'\'] before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/60 dark:before:via-white/15 before:to-transparent',
+        wave: 'relative overflow-hidden before:absolute before:inset-0 before:content-[\'\'] before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-grey-50/60 dark:before:via-grey-50/15 before:to-transparent',
         none: '',
       },
     },

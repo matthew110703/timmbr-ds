@@ -52,7 +52,7 @@ export const RadioItem = React.forwardRef<HTMLButtonElement, RadioItemProps>(
             <label
               htmlFor={id}
               className={cn(
-                'text-sm font-medium text-foreground cursor-pointer leading-tight',
+                'text-body-2 font-medium text-foreground cursor-pointer leading-tight',
                 disabled && 'opacity-50 cursor-not-allowed'
               )}
             >
@@ -60,7 +60,7 @@ export const RadioItem = React.forwardRef<HTMLButtonElement, RadioItemProps>(
             </label>
           )}
           {description && (
-            <span className="text-xs text-muted-foreground mt-0.5 leading-normal">
+            <span className="text-body-3 text-muted-foreground mt-0.5 leading-normal">
               {description}
             </span>
           )}
@@ -95,7 +95,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     return (
       <div className="flex flex-col gap-2 font-sans w-full" style={style}>
         {label && (
-          <span className="text-xs font-semibold text-foreground tracking-wide select-none">
+          <span className="text-body-3 font-semibold text-foreground tracking-wide select-none">
             {label}
           </span>
         )}
@@ -129,7 +129,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         {(errorMessage || helperText) && (
           <p
             className={cn(
-              'text-xs mt-1 flex items-center gap-1.5',
+              'text-body-3 mt-1 flex items-center gap-1.5',
               isError ? 'text-destructive font-medium' : 'text-muted'
             )}
           >

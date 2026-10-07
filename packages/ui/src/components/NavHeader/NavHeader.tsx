@@ -60,6 +60,8 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
       profileAction: shorthandProfileAction,
       wishlistAction: shorthandWishlistAction,
       cartAction: shorthandCartAction,
+      authMode: shorthandAuthMode,
+      onAuthTrigger: shorthandOnAuthTrigger,
       mobileTabSlider: shorthandMobileTabSlider,
       mobileSearchMode: shorthandMobileSearchMode,
       mobileActiveItemId: shorthandMobileActiveItemId,
@@ -144,6 +146,8 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
     const profileAction = shorthandProfileAction ?? actionsConfig.profile;
     const wishlistAction = shorthandWishlistAction ?? actionsConfig.wishlist;
     const cartAction = shorthandCartAction ?? actionsConfig.cart;
+    const authMode = shorthandAuthMode ?? actionsConfig.authMode ?? 'modal';
+    const onAuthTrigger = shorthandOnAuthTrigger ?? actionsConfig.onAuthTrigger;
 
     // --- Normalized Mobile Config ---
     const mobileConfig = React.useMemo<NavMobileConfig>(
@@ -543,6 +547,8 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
                     profileAction={profileAction}
                     wishlistAction={wishlistAction}
                     cartAction={cartAction}
+                    authMode={authMode}
+                    onAuthTrigger={onAuthTrigger}
                     rightContent={rightContent}
                     shouldAnimate={shouldAnimate}
                     motionClass={motionClass}
@@ -595,11 +601,11 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
                     type="button"
                     onClick={() => setIsMobileSearchOpen(true)}
                     aria-label="Open search drawer"
-                    className="group flex flex-col items-center justify-center min-w-[36px] sm:min-w-[40px] lg:min-w-[52px] text-[#3C3C3C] hover:text-[#C0643A] transition-colors py-1 px-1 lg:px-1.5 cursor-pointer"
+                    className="group flex flex-col items-center justify-center min-w-[36px] sm:min-w-[40px] lg:min-w-[52px] text-grey-800 hover:text-primary transition-colors py-1 px-1 lg:px-1.5 cursor-pointer"
                     data-slot="nav-mobile-search-icon-trigger"
                   >
                     <Search size={22} className="shrink-0 stroke-[1.8]" />
-                    <span className="hidden lg:inline font-sans font-bold text-[10px] tracking-[0.0926em] uppercase">
+                    <span className="hidden lg:inline font-bold text-caption tracking-[0.0926em] uppercase">
                       SEARCH
                     </span>
                   </button>
@@ -616,6 +622,8 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
                     profileAction={profileAction}
                     wishlistAction={wishlistAction}
                     cartAction={cartAction}
+                    authMode={authMode}
+                    onAuthTrigger={onAuthTrigger}
                     rightContent={rightContent}
                     shouldAnimate={shouldAnimate}
                     motionClass={motionClass}
@@ -632,7 +640,7 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
                   type="button"
                   onClick={() => setIsMobileSearchOpen(true)}
                   aria-label="Open search drawer"
-                  className="w-full h-10 px-4 flex items-center gap-2.5 rounded-full bg-white border border-[#E7DFD3] text-left text-sm text-grey-400 hover:border-grey-400 shadow-xs transition-all cursor-pointer select-none"
+                  className="w-full h-10 px-4 flex items-center gap-2.5 rounded-full bg-grey-50 border border-border-warm text-left text-body-2 text-grey-400 hover:border-grey-400 shadow-xs transition-all cursor-pointer select-none"
                   data-slot="nav-mobile-search-pill"
                 >
                   <Search size={18} className="text-grey-500 shrink-0" />

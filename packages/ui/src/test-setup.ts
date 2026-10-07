@@ -8,3 +8,9 @@ if (typeof globalThis !== 'undefined') {
     disconnect() {}
   };
 }
+
+// JSDOM mock for document.elementFromPoint required by input-otp
+if (typeof document !== 'undefined' && !document.elementFromPoint) {
+  document.elementFromPoint = () => null;
+}
+

@@ -10,7 +10,7 @@ export const linkButtonVariants = cva(
         link:
           'text-primary underline-offset-4 hover:underline font-medium p-0 h-auto active:scale-100',
         primary:
-          'bg-primary text-white hover:bg-primary-600 hover:brightness-105 hover:shadow-md active:bg-primary-700 active:brightness-95 shadow-sm active:scale-[0.98] font-semibold whitespace-nowrap',
+          'bg-primary text-grey-50 hover:bg-primary-600 hover:brightness-105 hover:shadow-md active:bg-primary-700 active:brightness-95 shadow-sm active:scale-[0.98] font-semibold whitespace-nowrap',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-bg-subtle hover:brightness-105 active:bg-secondary-foreground/10 active:brightness-95 shadow-xs hover:shadow-sm active:scale-[0.98] font-semibold whitespace-nowrap',
         outline:
@@ -18,17 +18,17 @@ export const linkButtonVariants = cva(
         ghost:
           'text-foreground hover:bg-grey-100 dark:hover:bg-grey-900 active:bg-grey-200 dark:active:bg-grey-800 active:scale-[0.98] font-semibold whitespace-nowrap',
         destructive:
-          'bg-destructive text-white hover:bg-red-700 hover:brightness-105 hover:shadow-md active:brightness-95 shadow-sm active:scale-[0.98] font-semibold whitespace-nowrap',
+          'bg-destructive text-grey-50 hover:bg-destructive/90 hover:brightness-105 hover:shadow-md active:brightness-95 shadow-sm active:scale-[0.98] font-semibold whitespace-nowrap',
         muted:
           'text-grey-600 dark:text-grey-400 hover:text-foreground underline-offset-4 hover:underline font-normal p-0 h-auto active:scale-100',
         subtle:
           'text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-normal p-0 h-auto active:scale-100',
       },
       size: {
-        sm: 'text-xs gap-1',
-        default: 'text-sm gap-1.5',
-        md: 'text-sm gap-1.5',
-        lg: 'text-base gap-2',
+        sm: 'text-body-3 gap-1',
+        default: 'text-body-2 gap-1.5',
+        md: 'text-body-2 gap-1.5',
+        lg: 'text-body-1 gap-2',
         icon: 'p-1 shrink-0',
       },
       disabled: {

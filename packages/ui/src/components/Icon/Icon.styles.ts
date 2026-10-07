@@ -5,11 +5,11 @@ export const iconVariants = cva(
   {
     variants: {
       size: {
-        xs: 'size-3 text-xs',
-        sm: 'size-4 text-sm',
-        md: 'size-5 text-base',
-        lg: 'size-6 text-lg',
-        xl: 'size-8 text-2xl',
+        xs: 'size-3 text-body-3',
+        sm: 'size-4 text-body-2',
+        md: 'size-5 text-body-1',
+        lg: 'size-6 text-subtitle-1',
+        xl: 'size-8 text-h4',
       },
       foreground: {
         default: 'text-foreground',
@@ -18,7 +18,7 @@ export const iconVariants = cva(
         primary: 'text-primary',
         secondary: 'text-secondary-foreground',
         destructive: 'text-destructive',
-        white: 'text-white',
+        white: 'text-grey-50',
         inherit: 'text-inherit',
       },
       clickable: {

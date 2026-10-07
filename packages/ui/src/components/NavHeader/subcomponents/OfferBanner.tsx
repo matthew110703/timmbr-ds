@@ -107,7 +107,7 @@ export const OfferBanner: React.FC<OfferBannerProps> = ({
               type="button"
               onClick={handleDismiss}
               aria-label="Dismiss offer banner"
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#F7F1E6]/70 hover:text-[#F7F1E6] hover:bg-white/10 rounded transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-bg-2/70 hover:text-bg-2 hover:bg-grey-50/10 rounded transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-grey-50"
             >
               <X size={14} />
             </button>

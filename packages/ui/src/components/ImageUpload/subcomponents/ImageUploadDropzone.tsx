@@ -101,11 +101,11 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
       {isUploading ? (
         <div className="flex flex-col items-center justify-center gap-2">
           <Spinner size="md" />
-          <span className="text-xs font-medium text-foreground">{loadingText}</span>
+          <span className="text-body-3 font-medium text-foreground">{loadingText}</span>
         </div>
       ) : size === 'compact' ? (
         <div className="flex flex-col items-center justify-center gap-1.5 text-center pointer-events-none">
-          <div className="size-8 rounded-lg bg-white dark:bg-grey-800 border border-grey-200 dark:border-grey-700 shadow-xs flex items-center justify-center text-primary">
+          <div className="size-8 rounded-lg bg-grey-50 dark:bg-grey-800 border border-grey-200 dark:border-grey-700 shadow-xs flex items-center justify-center text-primary">
             {isDragging ? (
               <UploadCloudIcon className="size-4 text-primary animate-bounce" />
             ) : (
@@ -113,13 +113,13 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
             )}
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-xs font-medium text-foreground">
+            <span className="text-body-3 font-medium text-foreground">
               <span className="text-primary underline font-semibold">
                 {hasItems ? 'Add more files' : 'Click to upload'}
               </span>{' '}
               or drag & drop
             </span>
-            <span className="text-[11px] text-muted">
+            <span className="text-caption-lg text-muted">
               {mediaType === 'video'
                 ? `MP4, WEBM, MOV (Max ${maxMb}MB)`
                 : mediaType === 'all'
@@ -131,7 +131,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
         </div>
       ) : aspectRatio === 'square' ? (
         <div className="flex flex-col items-center justify-center gap-1.5 text-center pointer-events-none p-1">
-          <div className="size-8 rounded-lg bg-white dark:bg-grey-800 border border-grey-200 dark:border-grey-700 shadow-xs flex items-center justify-center text-primary">
+          <div className="size-8 rounded-lg bg-grey-50 dark:bg-grey-800 border border-grey-200 dark:border-grey-700 shadow-xs flex items-center justify-center text-primary">
             {isDragging ? (
               <UploadCloudIcon className="size-4 text-primary animate-bounce" />
             ) : (
@@ -139,13 +139,13 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
             )}
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-xs font-semibold text-primary underline">Upload</span>
-            <span className="text-[10px] text-muted">Max {maxMb}MB</span>
+            <span className="text-body-3 font-semibold text-primary underline">Upload</span>
+            <span className="text-caption text-muted">Max {maxMb}MB</span>
           </div>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center gap-2 text-center pointer-events-none">
-          <div className="size-10 rounded-xl bg-white dark:bg-grey-800 border border-grey-200 dark:border-grey-700 shadow-xs flex items-center justify-center text-primary">
+          <div className="size-10 rounded-xl bg-grey-50 dark:bg-grey-800 border border-grey-200 dark:border-grey-700 shadow-xs flex items-center justify-center text-primary">
             {isDragging ? (
               <UploadCloudIcon className="size-5 text-primary animate-bounce" />
             ) : mediaType === 'video' ? (
@@ -155,10 +155,10 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
             )}
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="text-xs font-medium text-foreground">
+            <span className="text-body-3 font-medium text-foreground">
               <span className="text-primary underline font-semibold">Click to upload</span> or drag and drop
             </span>
-            <span className="text-[11px] text-muted">
+            <span className="text-caption-lg text-muted">
               {mediaType === 'video'
                 ? `MP4, WEBM, MOV (Max ${maxMb}MB)`
                 : mediaType === 'all'

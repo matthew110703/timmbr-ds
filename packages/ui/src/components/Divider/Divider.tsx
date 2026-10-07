@@ -46,7 +46,7 @@ export const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
           data-slot="divider"
           data-testid="timmbr-divider"
           style={style}
-          className={cn('flex items-center w-full my-4 gap-3 text-xs font-medium text-grey-500 dark:text-grey-400', className)}
+          className={cn('flex items-center w-full my-4 gap-3 text-body-3 font-medium text-grey-500 dark:text-grey-400', className)}
           {...props}
         >
           <div className={leftLineClass} />

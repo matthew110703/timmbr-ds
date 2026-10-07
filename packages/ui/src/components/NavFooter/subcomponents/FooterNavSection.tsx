@@ -54,7 +54,7 @@ export const FooterNavSection: React.FC<FooterNavSectionProps> = ({
         {item.icon && <span className="shrink-0">{item.icon}</span>}
         <span>{item.label}</span>
         {item.badge && (
-          <span className="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#D39375] text-[#1A1714] uppercase tracking-wider">
+          <span className="inline-flex items-center px-1.5 py-0.2 rounded text-caption font-bold bg-primary-200 text-surface-dark uppercase tracking-wider">
             {item.badge}
           </span>
         )}
@@ -97,7 +97,7 @@ export const FooterNavSection: React.FC<FooterNavSectionProps> = ({
   return (
     <div
       className={cn(
-        'flex flex-col border-b border-white/10 md:border-b-0 py-3 md:py-0 transition-colors',
+        'flex flex-col border-b border-grey-50/10 md:border-b-0 py-3 md:py-0 transition-colors',
         sectionClass,
         className
       )}
@@ -115,7 +115,7 @@ export const FooterNavSection: React.FC<FooterNavSectionProps> = ({
             onClick={onToggle}
             className={cn(
               footerSectionTitleVariants(),
-              'py-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D39375]/50 rounded'
+              'py-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200/50 rounded'
             )}
             data-slot="footer-section-accordion-trigger"
           >
@@ -125,7 +125,7 @@ export const FooterNavSection: React.FC<FooterNavSectionProps> = ({
               initial={false}
               animate={shouldAnimate ? (isOpen ? 'expanded' : 'collapsed') : undefined}
               className={cn(
-                'shrink-0 text-[#D39375] transition-transform duration-200',
+                'shrink-0 text-primary-200 transition-transform duration-200',
                 !shouldAnimate && (isOpen ? 'rotate-180' : 'rotate-0'),
                 motionClass
               )}

@@ -59,7 +59,7 @@ export const Switch = React.forwardRef<
             <label
               htmlFor={id}
               className={cn(
-                'text-sm font-medium text-foreground cursor-pointer select-none leading-snug',
+                'text-body-2 font-medium text-foreground cursor-pointer select-none leading-snug',
                 disabled && 'cursor-not-allowed'
               )}
             >
@@ -67,7 +67,7 @@ export const Switch = React.forwardRef<
             </label>
           )}
           {description && (
-            <p className="text-xs text-muted leading-normal mt-0.5">
+            <p className="text-body-3 text-muted leading-normal mt-0.5">
               {description}
             </p>
           )}

@@ -74,7 +74,7 @@ export const RangeSlider = React.forwardRef<
         style={style}
       >
         {(label || showReadouts) && (
-          <div className="flex items-center justify-between text-sm">
+          <div className="flex items-center justify-between text-body-2">
             {label && (
               <span className="font-semibold text-foreground">{label}</span>
             )}
@@ -131,7 +131,7 @@ export const RangeSlider = React.forwardRef<
               type="button"
               onClick={handleReset}
               disabled={disabled}
-              className="text-xs font-medium text-muted hover:text-foreground transition-colors cursor-pointer disabled:opacity-50"
+              className="text-body-3 font-medium text-muted hover:text-foreground transition-colors cursor-pointer disabled:opacity-50"
             >
               {resetLabel}
             </button>
@@ -140,7 +140,7 @@ export const RangeSlider = React.forwardRef<
               variant="primary"
               onClick={handleApply}
               disabled={disabled}
-              className="h-8 px-4 text-xs font-medium"
+              className="h-8 px-4 text-body-3 font-medium"
             >
               {applyLabel}
             </Button>

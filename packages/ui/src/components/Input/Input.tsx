@@ -96,7 +96,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label && !floating && (
           <label
             htmlFor={id}
-            className="text-xs font-semibold text-foreground tracking-wide select-none text-left"
+            className="text-body-3 font-semibold text-foreground tracking-wide select-none text-left"
           >
             {label}
           </label>
@@ -130,8 +130,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 className={cn(
                   'absolute pointer-events-none transition-all duration-200 select-none truncate max-w-full z-10',
                   isFloatingActive
-                    ? '-top-2.5 left-0 px-1 bg-white dark:bg-grey-900 text-[11px] font-semibold leading-none rounded-xs'
-                    : 'top-1/2 -translate-y-1/2 left-0 text-sm text-muted-foreground leading-none'
+                    ? '-top-2.5 left-0 px-1 bg-grey-50 dark:bg-grey-900 text-caption-lg font-semibold leading-none rounded-xs'
+                    : 'top-1/2 -translate-y-1/2 left-0 text-body-2 text-muted-foreground leading-none'
                 )}
                 style={{
                   color: isFloatingActive
@@ -156,7 +156,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               placeholder={floating && !isFloatingActive ? undefined : placeholder}
               className={cn(
                 inputFieldVariants(),
-                'text-sm leading-normal'
+                'text-body-2 leading-normal'
               )}
               aria-invalid={isError ? 'true' : undefined}
               aria-describedby={
@@ -205,7 +205,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <p
             id={`${id}-desc`}
             className={cn(
-              'text-xs mt-1 flex items-center gap-1.5 text-left',
+              'text-body-3 mt-1 flex items-center gap-1.5 text-left',
               isError ? 'text-destructive font-medium' : 'text-muted-foreground'
             )}
           >

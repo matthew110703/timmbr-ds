@@ -85,20 +85,20 @@ export const SidebarPopoverMenu: React.FC<SidebarPopoverMenuProps> = ({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className={cn(
-              'z-50 min-w-48 rounded-lg bg-white p-2 text-grey-900 shadow-md border border-grey-200 outline-none animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
+              'z-50 min-w-48 rounded-lg bg-grey-50 p-2 text-grey-900 shadow-md border border-grey-200 outline-none animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
               !shouldAnimate && 'animate-none transition-none'
             )}
           >
             <div className="px-3 py-1.5 border-b border-grey-100 mb-1 flex items-center justify-between">
-              <span className="font-semibold text-xs text-grey-900 tracking-tight">
+              <span className="font-semibold text-body-3 text-grey-900 tracking-tight">
                 {item.label}
               </span>
               {item.badge !== undefined && (
                 <span
                   className={cn(
-                    'inline-flex items-center justify-center rounded-full px-1.5 py-0.2 text-[10px] font-semibold',
+                    'inline-flex items-center justify-center rounded-full px-1.5 py-0.2 text-caption font-semibold',
                     item.badgeVariant === 'destructive'
-                      ? 'bg-red-500 text-white'
+                      ? 'bg-destructive text-grey-50'
                       : 'bg-grey-100 text-grey-800'
                   )}
                 >

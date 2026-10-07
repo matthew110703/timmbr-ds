@@ -13,10 +13,10 @@ export const tabsListVariants = cva(
           'rounded-md border border-grey-200 dark:border-grey-700 bg-transparent p-1 gap-1',
       },
       size: {
-        sm: 'h-8 text-xs',
-        default: 'h-10 text-sm',
-        md: 'h-10 text-sm',
-        lg: 'h-12 text-base',
+        sm: 'h-8 text-body-3',
+        default: 'h-10 text-body-2',
+        md: 'h-10 text-body-2',
+        lg: 'h-12 text-body-1',
       },
     },
     defaultVariants: {
@@ -39,10 +39,10 @@ export const tabsTriggerVariants = cva(
           'rounded-sm px-3 py-1.5 data-[state=inactive]:text-muted-foreground hover:text-foreground',
       },
       size: {
-        sm: 'px-2.5 py-1 text-xs',
-        default: 'px-3 py-1.5 text-sm',
-        md: 'px-3 py-1.5 text-sm',
-        lg: 'px-4 py-2 text-base',
+        sm: 'px-2.5 py-1 text-body-3',
+        default: 'px-3 py-1.5 text-body-2',
+        md: 'px-3 py-1.5 text-body-2',
+        lg: 'px-4 py-2 text-body-1',
       },
     },
     defaultVariants: {

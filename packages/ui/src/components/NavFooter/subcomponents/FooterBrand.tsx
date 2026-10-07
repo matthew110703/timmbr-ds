@@ -67,7 +67,7 @@ export const FooterBrand: React.FC<FooterBrandProps> = ({
       href={resolvedHref}
       aria-label={alt}
       onClick={onClick}
-      className="inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D39375]/50 rounded-md transition-opacity hover:opacity-90"
+      className="inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200/50 rounded-md transition-opacity hover:opacity-90"
       data-slot="footer-brand-link"
     >
       {logoContent}
@@ -78,7 +78,7 @@ export const FooterBrand: React.FC<FooterBrandProps> = ({
       aria-label={alt}
       onClick={onClick}
       data-cross-zone={requiresCrossZone ? 'true' : undefined}
-      className="inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D39375]/50 rounded-md transition-opacity hover:opacity-90"
+      className="inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-200/50 rounded-md transition-opacity hover:opacity-90"
       data-slot="footer-brand-link"
     >
       {logoContent}
@@ -94,7 +94,7 @@ export const FooterBrand: React.FC<FooterBrandProps> = ({
 
       {description && (
         <div
-          className="text-sm font-sans text-[#B7AEA2] leading-relaxed select-text"
+          className="text-body-2 text-sand-muted leading-relaxed select-text"
           data-slot="footer-brand-description"
         >
           {typeof description === 'string' ? (

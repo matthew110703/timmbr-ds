@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const checkboxVariants = cva(
-  'peer shrink-0 rounded-[2px] border border-grey-300 dark:border-grey-600 bg-white dark:bg-grey-900 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-white data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-white cursor-pointer flex items-center justify-center',
+  'peer shrink-0 rounded-[2px] border border-grey-300 dark:border-grey-600 bg-grey-50 dark:bg-grey-900 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-grey-50 data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-grey-50 cursor-pointer flex items-center justify-center',
   {
     variants: {
       size: {

@@ -58,16 +58,18 @@ describe('JWT Utilities (@timmbr/utils)', () => {
       expect(isTokenExpired('invalid-token')).toBe(true);
     });
 
-    it('accounts for clock skew tolerance', () => {
-      // Expired 5 seconds ago (within 10s grace window) -> not yet considered expired
-      const expiredRecently = Math.floor(Date.now() / 1000) - 5;
-      const tokenRecentlyExpired = createMockJwt({ sub: 'user-123', exp: expiredRecently });
-      expect(isTokenExpired(tokenRecentlyExpired, 10)).toBe(false);
+    it('treats tokens about to expire (within the skew) as expired', () => {
+      // Expires in 5 seconds (inside the 10s safety margin) -> refresh now
+      const expiresSoon = Math.floor(Date.now() / 1000) + 5;
+      expect(isTokenExpired(createMockJwt({ sub: 'user-123', exp: expiresSoon }), 10)).toBe(true);
 
-      // Expired 15 seconds ago (past 10s grace window) -> considered expired
-      const expiredLongAgo = Math.floor(Date.now() / 1000) - 15;
-      const tokenLongExpired = createMockJwt({ sub: 'user-123', exp: expiredLongAgo });
-      expect(isTokenExpired(tokenLongExpired, 10)).toBe(true);
+      // Expires in 15 seconds (outside the margin) -> still usable
+      const expiresLater = Math.floor(Date.now() / 1000) + 15;
+      expect(isTokenExpired(createMockJwt({ sub: 'user-123', exp: expiresLater }), 10)).toBe(false);
+
+      // Already expired -> expired
+      const expiredAgo = Math.floor(Date.now() / 1000) - 5;
+      expect(isTokenExpired(createMockJwt({ sub: 'user-123', exp: expiredAgo }), 10)).toBe(true);
     });
   });
 

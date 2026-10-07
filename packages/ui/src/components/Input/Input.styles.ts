@@ -6,17 +6,17 @@ export const inputWrapperVariants = cva(
     variants: {
       variant: {
         outline:
-          'border-grey-300 dark:border-grey-700 bg-white dark:bg-grey-900 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary',
+          'border-grey-300 dark:border-grey-700 bg-grey-50 dark:bg-grey-900 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary',
         filled:
-          'border-transparent bg-grey-100 dark:bg-grey-800 focus-within:bg-white dark:focus-within:bg-grey-900 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary',
+          'border-transparent bg-grey-100 dark:bg-grey-800 focus-within:bg-grey-50 dark:focus-within:bg-grey-900 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary',
         subtle:
           'border-grey-200 dark:border-grey-800 bg-grey-50 dark:bg-grey-900/50 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary',
       },
       size: {
-        sm: 'h-9 px-2.5 text-xs',
-        default: 'h-11 px-3.5 text-sm',
-        md: 'h-11 px-3.5 text-sm',
-        lg: 'h-[52px] px-4 text-base',
+        sm: 'h-9 px-2.5 text-body-3',
+        default: 'h-11 px-3.5 text-body-2',
+        md: 'h-11 px-3.5 text-body-2',
+        lg: 'h-[52px] px-4 text-body-1',
       },
       isError: {
         true: 'border-destructive focus-within:border-destructive focus-within:ring-1 focus-within:ring-destructive text-destructive',

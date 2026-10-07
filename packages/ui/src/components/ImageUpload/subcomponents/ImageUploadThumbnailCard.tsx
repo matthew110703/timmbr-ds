@@ -67,12 +67,12 @@ export const ImageUploadThumbnailCard: React.FC<ImageUploadThumbnailCardProps> =
       {/* Subtle Frosted Badges: Cover & Position */}
       <div className="absolute top-2 left-2 z-10 flex items-center gap-1.5 pointer-events-none">
         {index === 0 ? (
-          <div className="bg-black/65 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-full border border-white/20 shadow-md flex items-center gap-1.5">
-            <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+          <div className="bg-grey-1000/65 backdrop-blur-md text-grey-50 text-caption font-semibold px-2 py-0.5 rounded-full border border-grey-50/20 shadow-md flex items-center gap-1.5">
+            <span className="size-1.5 rounded-full bg-success shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
             <span>Cover</span>
           </div>
         ) : (
-          <div className="bg-black/55 backdrop-blur-md text-white/90 text-[10px] font-medium px-2 py-0.5 rounded-full border border-white/10 shadow-sm">
+          <div className="bg-grey-1000/55 backdrop-blur-md text-grey-50/90 text-caption font-medium px-2 py-0.5 rounded-full border border-grey-50/10 shadow-sm">
             #{index + 1}
           </div>
         )}
@@ -80,18 +80,18 @@ export const ImageUploadThumbnailCard: React.FC<ImageUploadThumbnailCardProps> =
 
       {/* Video Badge (Top Right) */}
       {isVideo && (
-        <div className="absolute top-2 right-2 z-10 bg-black/65 backdrop-blur-md text-white p-1 rounded-full border border-white/20 shadow-md pointer-events-none">
+        <div className="absolute top-2 right-2 z-10 bg-grey-1000/65 backdrop-blur-md text-grey-50 p-1 rounded-full border border-grey-50/20 shadow-md pointer-events-none">
           <PlayIcon className="size-2.5" />
         </div>
       )}
 
       {/* Hover Action Overlay */}
-      <div className="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px] z-20">
+      <div className="absolute inset-0 bg-grey-1000/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px] z-20">
         {enablePreviewModal && (
           <button
             type="button"
             onClick={onPreview}
-            className="size-8 rounded-full bg-white/25 hover:bg-white/40 text-white flex items-center justify-center transition-colors shadow-xs cursor-pointer"
+            className="size-8 rounded-full bg-grey-50/25 hover:bg-grey-50/40 text-grey-50 flex items-center justify-center transition-colors shadow-xs cursor-pointer"
             title="Preview full size"
           >
             <Eye className="size-4" />
@@ -101,7 +101,7 @@ export const ImageUploadThumbnailCard: React.FC<ImageUploadThumbnailCardProps> =
           type="button"
           disabled={disabled}
           onClick={onRemove}
-          className="size-8 rounded-full bg-destructive/90 hover:bg-destructive text-white flex items-center justify-center transition-colors shadow-xs cursor-pointer"
+          className="size-8 rounded-full bg-destructive/90 hover:bg-destructive text-grey-50 flex items-center justify-center transition-colors shadow-xs cursor-pointer"
           title="Remove item"
         >
           <Trash2 className="size-4" />
@@ -158,9 +158,9 @@ export const ImageUploadTaskCard: React.FC<ImageUploadTaskCardProps> = ({
           className="w-full h-full object-cover blur-xs scale-105 opacity-60"
         />
       )}
-      <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center gap-1.5 p-2 text-center">
-        <Spinner size="sm" className="text-white" />
-        <span className="text-[10px] font-medium text-white line-clamp-1 max-w-full px-1">
+      <div className="absolute inset-0 bg-grey-1000/50 flex flex-col items-center justify-center gap-1.5 p-2 text-center">
+        <Spinner size="sm" className="text-grey-50" />
+        <span className="text-caption font-medium text-grey-50 line-clamp-1 max-w-full px-1">
           {name}
         </span>
       </div>

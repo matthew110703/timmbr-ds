@@ -32,10 +32,10 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     return (
       <div className={cn('flex flex-col gap-1.5 w-full font-sans', className)}>
         {(label || showValue) && (
-          <div className="flex items-center justify-between text-xs text-foreground font-medium select-none">
+          <div className="flex items-center justify-between text-body-3 text-foreground font-medium select-none">
             {label && <span>{label}</span>}
             {showValue && !indeterminate && (
-              <span className="text-muted-foreground font-mono ml-auto">{percentage}%</span>
+              <span className="text-muted-foreground tabular-nums ml-auto">{percentage}%</span>
             )}
           </div>
         )}

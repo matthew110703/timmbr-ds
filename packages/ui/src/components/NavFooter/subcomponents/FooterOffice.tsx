@@ -27,7 +27,7 @@ export const FooterOffice: React.FC<FooterOfficeProps> = ({ office, className })
     >
       {title && (
         <div
-          className="font-bold text-sm text-[#F7F1E6]/90 font-sans select-text"
+          className="font-bold text-body-2 text-bg-2/90 select-text"
           data-slot="footer-office-title"
         >
           {title}
@@ -36,7 +36,7 @@ export const FooterOffice: React.FC<FooterOfficeProps> = ({ office, className })
 
       {address && (
         <div
-          className={cn(footerOfficeBlockVariants(), 'select-text text-sm')}
+          className={cn(footerOfficeBlockVariants(), 'select-text text-body-2')}
           data-slot="footer-office-address"
         >
           {typeof address === 'string' ? (
@@ -48,11 +48,11 @@ export const FooterOffice: React.FC<FooterOfficeProps> = ({ office, className })
       )}
 
       {(email || phone) && (
-        <div className="flex flex-col gap-1 pt-1 text-xs text-[#B7AEA2] font-sans">
+        <div className="flex flex-col gap-1 pt-1 text-body-3 text-sand-muted">
           {email && (
             <a
               href={`mailto:${email}`}
-              className="hover:text-[#D39375] transition-colors inline-block select-text"
+              className="hover:text-primary-200 transition-colors inline-block select-text"
               data-slot="footer-office-email"
             >
               {email}
@@ -61,7 +61,7 @@ export const FooterOffice: React.FC<FooterOfficeProps> = ({ office, className })
           {phone && (
             <a
               href={`tel:${phone.replace(/\s+/g, '')}`}
-              className="hover:text-[#D39375] transition-colors inline-block select-text"
+              className="hover:text-primary-200 transition-colors inline-block select-text"
               data-slot="footer-office-phone"
             >
               {phone}

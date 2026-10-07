@@ -7,6 +7,8 @@ import { useTimmbrConfig } from '../../../providers';
 import type { NavHeaderBranding } from '../NavHeader.types';
 import { resolveNavDestination, isCrossZoneNavigation } from '../NavHeader.helpers';
 
+const BRAND_FADE = { duration: 0.2, ease: [0.16, 1, 0.3, 1] } as const;
+
 export interface NavBrandProps {
   branding: NavHeaderBranding;
   isSearchOpen?: boolean;
@@ -30,6 +32,13 @@ export const NavBrand: React.FC<NavBrandProps> = ({
 
   const showMini = Boolean(isSearchOpen && miniLogo);
 
+  // Both logos stay mounted and cross-fade, so neither pops in/out (and the
+  // mini logo's image is already loaded before it's first shown). Opacity is
+  // animated by motion only: a CSS opacity transition on the same element
+  // would fight it frame by frame and flicker.
+  const visible = { opacity: 1, scale: 1 };
+  const hidden = { opacity: 0, scale: 0.92 };
+
   const logoNode = (
     <div
       className="relative flex items-center justify-center shrink-0 min-w-[32px] h-8"
@@ -38,40 +47,28 @@ export const NavBrand: React.FC<NavBrandProps> = ({
       {/* Full Brand Logo */}
       <motion.div
         initial={false}
-        animate={
-          shouldAnimate
-            ? {
-                opacity: showMini ? 0 : 1,
-                scale: showMini ? 0.92 : 1,
-              }
-            : undefined
-        }
-        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        animate={showMini ? hidden : visible}
+        transition={shouldAnimate ? BRAND_FADE : { duration: 0 }}
+        aria-hidden={showMini || undefined}
         className={cn(
-          'flex items-center justify-center shrink-0 transition-opacity',
+          'flex items-center justify-center shrink-0 will-change-[opacity,transform]',
           showMini ? 'pointer-events-none' : 'pointer-events-auto',
-          !shouldAnimate && (showMini ? 'opacity-0' : 'opacity-100'),
           motionClass
         )}
       >
         {logo}
       </motion.div>
 
-      {/* Mini Brand Logo - Absolute center overlay to eliminate layout shift */}
-      {showMini && (
+      {/* Mini Brand Logo - absolute overlay, so swapping causes no layout shift */}
+      {miniLogo && (
         <motion.div
-          initial={shouldAnimate ? { opacity: 0, scale: 0.92 } : false}
-          animate={
-            shouldAnimate
-              ? {
-                  opacity: 1,
-                  scale: 1,
-                }
-              : undefined
-          }
-          transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          initial={false}
+          animate={showMini ? visible : hidden}
+          transition={shouldAnimate ? BRAND_FADE : { duration: 0 }}
+          aria-hidden={!showMini || undefined}
           className={cn(
-            'absolute inset-0 flex items-center justify-center shrink-0 pointer-events-auto',
+            'absolute inset-0 flex items-center justify-center shrink-0 will-change-[opacity,transform]',
+            showMini ? 'pointer-events-auto' : 'pointer-events-none',
             motionClass
           )}
         >

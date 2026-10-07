@@ -26,7 +26,7 @@ export const SidebarBranding: React.FC<SidebarBrandingProps> = ({
   const defaultPlaceholder = (
     <div
       data-testid="sidebar-logo-placeholder"
-      className="size-8 rounded-lg border border-grey-300 bg-grey-100 flex items-center justify-center shrink-0 text-grey-400 text-xs font-semibold"
+      className="size-8 rounded-lg border border-grey-300 bg-grey-100 flex items-center justify-center shrink-0 text-grey-400 text-body-3 font-semibold"
     >
       <span className="sr-only">Logo</span>
     </div>
@@ -57,11 +57,11 @@ export const SidebarBranding: React.FC<SidebarBrandingProps> = ({
             variants={shouldAnimate ? sidebarContentFadeVariants : undefined}
             className="flex flex-col min-w-0 overflow-hidden whitespace-nowrap"
           >
-            <span className="font-sans font-bold text-base text-grey-900 truncate tracking-tight">
+            <span className="font-bold text-body-1 text-grey-900 truncate tracking-tight">
               {branding?.title || 'Timmbr Console'}
             </span>
             {branding?.subtitle && (
-              <span className="font-sans text-xs text-grey-500 truncate">
+              <span className="text-body-3 text-grey-500 truncate">
                 {branding.subtitle}
               </span>
             )}

@@ -63,7 +63,7 @@ export const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationP
                 aria-label="Rows per page"
                 value={pageSize}
                 onChange={(e) => onPageSizeChange(Number(e.target.value))}
-                className="h-7 rounded-[2px] border border-grey-200 dark:border-grey-700 bg-white dark:bg-grey-900 px-2 py-0 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-7 rounded-[2px] border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-900 px-2 py-0 text-body-3 font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
               >
                 {pageSizeOptions.map((opt) => (
                   <option key={opt} value={opt}>
@@ -84,13 +84,13 @@ export const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationP
               aria-label="Previous page"
               disabled={page <= 1}
               onClick={() => onPageChange?.(page - 1)}
-              className="inline-flex items-center gap-1 h-8 px-2.5 rounded-[2px] border border-grey-200 dark:border-grey-700 bg-white dark:bg-grey-800 text-xs font-medium text-foreground hover:bg-grey-100 dark:hover:bg-grey-700 disabled:opacity-40 disabled:pointer-events-none transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1 h-8 px-2.5 rounded-[2px] border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-800 text-body-3 font-medium text-foreground hover:bg-grey-100 dark:hover:bg-grey-700 disabled:opacity-40 disabled:pointer-events-none transition-colors cursor-pointer"
             >
               <ChevronLeft className="size-3.5" />
               <span>Previous</span>
             </button>
 
-            <span className="px-2 text-xs font-medium text-muted-foreground">
+            <span className="px-2 text-body-3 font-medium text-muted-foreground">
               {page} / {computedTotalPages}
             </span>
 
@@ -99,7 +99,7 @@ export const TablePagination = React.forwardRef<HTMLDivElement, TablePaginationP
               aria-label="Next page"
               disabled={page >= computedTotalPages}
               onClick={() => onPageChange?.(page + 1)}
-              className="inline-flex items-center gap-1 h-8 px-2.5 rounded-[2px] border border-grey-200 dark:border-grey-700 bg-white dark:bg-grey-800 text-xs font-medium text-foreground hover:bg-grey-100 dark:hover:bg-grey-700 disabled:opacity-40 disabled:pointer-events-none transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1 h-8 px-2.5 rounded-[2px] border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-800 text-body-3 font-medium text-foreground hover:bg-grey-100 dark:hover:bg-grey-700 disabled:opacity-40 disabled:pointer-events-none transition-colors cursor-pointer"
             >
               <span>Next</span>
               <ChevronRight className="size-3.5" />

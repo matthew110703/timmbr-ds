@@ -5,10 +5,10 @@ export const labelVariants = cva(
   {
     variants: {
       size: {
-        sm: 'text-xs',
-        default: 'text-sm',
-        md: 'text-sm',
-        lg: 'text-base',
+        sm: 'text-body-3',
+        default: 'text-body-2',
+        md: 'text-body-2',
+        lg: 'text-body-1',
       },
     },
     defaultVariants: {

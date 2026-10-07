@@ -22,6 +22,7 @@ export * from './components/RangeSlider';
 export * from './components/Label';
 export * from './components/FormField';
 export * from './components/ImageUpload';
+export * from './components/OtpInput';
 
 // Overlays & Navigation
 export * from './components/AlertDialog';
@@ -35,6 +36,7 @@ export * from './components/Tabs';
 export * from './components/SideBarNavigation';
 export * from './components/NavHeader';
 export * from './components/NavFooter';
+export * from './components/AuthModal';
 
 // Display & Data Components
 export * from './components/Button';

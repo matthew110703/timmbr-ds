@@ -34,9 +34,9 @@ export const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
       {item.badge !== undefined && (
         <span
           className={cn(
-            'ml-auto inline-flex items-center justify-center rounded-full px-1.5 py-0.2 text-[10px] font-semibold',
+            'ml-auto inline-flex items-center justify-center rounded-full px-1.5 py-0.2 text-caption font-semibold',
             item.badgeVariant === 'destructive'
-              ? 'bg-red-500 text-white'
+              ? 'bg-destructive text-grey-50'
               : 'bg-grey-200 text-grey-800'
           )}
         >

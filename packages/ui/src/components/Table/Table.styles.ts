@@ -16,7 +16,7 @@ export const tableContainerVariants = cva(
 );
 
 export const tableVariants = cva(
-  'w-full caption-bottom text-sm border-collapse font-sans text-left',
+  'w-full caption-bottom text-body-2 border-collapse text-left',
   {
     variants: {
       variant: {
@@ -25,8 +25,8 @@ export const tableVariants = cva(
         bordered: 'border-collapse border border-grey-200 dark:border-grey-800',
       },
       size: {
-        sm: '[&_td]:py-2 [&_td]:px-3 [&_th]:py-2 [&_th]:px-3 text-xs',
-        default: '[&_td]:py-3.5 [&_td]:px-4 [&_th]:py-3 [&_th]:px-4 text-sm',
+        sm: '[&_td]:py-2 [&_td]:px-3 [&_th]:py-2 [&_th]:px-3 text-body-3',
+        default: '[&_td]:py-3.5 [&_td]:px-4 [&_th]:py-3 [&_th]:px-4 text-body-2',
       },
     },
     defaultVariants: {
@@ -41,7 +41,7 @@ export const tableRowVariants = cva(
 );
 
 export const tableHeadVariants = cva(
-  'h-10 text-left align-middle font-semibold text-muted-foreground text-xs uppercase tracking-wider select-none bg-grey-100/50 dark:bg-grey-900/30 [&:has([role=checkbox])]:pr-0'
+  'h-10 text-left align-middle font-semibold text-muted-foreground text-body-3 uppercase tracking-wider select-none bg-grey-100/50 dark:bg-grey-900/30 [&:has([role=checkbox])]:pr-0'
 );
 
 export const tableCellVariants = cva(
@@ -53,7 +53,7 @@ export const tableFooterVariants = cva(
 );
 
 export const tablePaginationVariants = cva(
-  'flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-grey-200 dark:border-grey-800 text-xs text-grey-600 dark:text-grey-400 font-sans'
+  'flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-grey-200 dark:border-grey-800 text-body-3 text-grey-600 dark:text-grey-400'
 );
 
 export type TableVariants = VariantProps<typeof tableVariants> &

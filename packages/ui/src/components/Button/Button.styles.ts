@@ -6,9 +6,9 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-primary text-white hover:bg-primary-600 hover:brightness-105 hover:shadow-md active:bg-primary-700 active:brightness-95 shadow-sm',
+          'bg-primary text-grey-50 hover:bg-primary-600 hover:brightness-105 hover:shadow-md active:bg-primary-700 active:brightness-95 shadow-sm',
         primary:
-          'bg-primary text-white hover:bg-primary-600 hover:brightness-105 hover:shadow-md active:bg-primary-700 active:brightness-95 shadow-sm',
+          'bg-primary text-grey-50 hover:bg-primary-600 hover:brightness-105 hover:shadow-md active:bg-primary-700 active:brightness-95 shadow-sm',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-bg-subtle hover:brightness-105 active:bg-secondary-foreground/10 active:brightness-95 shadow-xs hover:shadow-sm',
         outline:
@@ -16,15 +16,15 @@ export const buttonVariants = cva(
         ghost:
           'text-foreground hover:bg-grey-100 dark:hover:bg-grey-900 active:bg-grey-200 dark:active:bg-grey-800',
         destructive:
-          'bg-destructive text-white hover:bg-red-700 hover:brightness-105 hover:shadow-md active:brightness-95 shadow-sm',
+          'bg-destructive text-grey-50 hover:bg-destructive/90 hover:brightness-105 hover:shadow-md active:brightness-95 shadow-sm',
         link:
           'text-primary underline-offset-4 hover:underline p-0 h-auto active:scale-100 font-normal',
       },
       size: {
-        sm: 'h-9 px-3 text-xs',
-        default: 'h-11 px-5 text-sm',
-        md: 'h-11 px-5 text-sm',
-        lg: 'h-[52px] px-6 text-base',
+        sm: 'h-9 px-3 text-body-3',
+        default: 'h-11 px-5 text-body-2',
+        md: 'h-11 px-5 text-body-2',
+        lg: 'h-[52px] px-6 text-body-1',
         icon: 'h-10 w-10 p-0 shrink-0',
       },
     },

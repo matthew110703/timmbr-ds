@@ -88,7 +88,7 @@ export const ToastAction = React.forwardRef<
     ref={ref}
     data-slot="toast-action"
     className={cn(
-      'inline-flex h-8 shrink-0 items-center justify-center rounded-[2px] border bg-transparent px-3 text-xs font-semibold ring-offset-background transition-colors hover:bg-grey-100 dark:hover:bg-grey-800 focus:outline-none focus:ring-2 focus:ring-primary disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+      'inline-flex h-8 shrink-0 items-center justify-center rounded-[2px] border bg-transparent px-3 text-body-3 font-semibold ring-offset-background transition-colors hover:bg-grey-100 dark:hover:bg-grey-800 focus:outline-none focus:ring-2 focus:ring-primary disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
       className
     )}
     {...props}
@@ -122,7 +122,7 @@ export const ToastTitle = React.forwardRef<
   <ToastPrimitive.Title
     ref={ref}
     data-slot="toast-title"
-    className={cn('text-sm font-semibold leading-none', className)}
+    className={cn('text-body-2 font-semibold leading-none', className)}
     {...props}
   />
 ));
@@ -135,7 +135,7 @@ export const ToastDescription = React.forwardRef<
   <ToastPrimitive.Description
     ref={ref}
     data-slot="toast-description"
-    className={cn('text-xs text-muted-foreground mt-1 leading-relaxed', className)}
+    className={cn('text-body-3 text-muted-foreground mt-1 leading-relaxed', className)}
     {...props}
   />
 ));

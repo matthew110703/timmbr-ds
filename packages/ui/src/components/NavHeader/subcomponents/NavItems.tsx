@@ -79,19 +79,19 @@ export const NavItems: React.FC<NavItemsProps> = ({
           <>
             <span>{item.label}</span>
             {item.badge && (
-              <span className="inline-flex items-center justify-center text-xs font-semibold px-1.5 py-0.5 rounded-full bg-primary-100 text-primary-800">
+              <span className="inline-flex items-center justify-center text-body-3 font-semibold px-1.5 py-0.5 rounded-full bg-primary-100 text-primary-800">
                 {item.badge}
               </span>
             )}
             {isActive && shouldAnimate && (
               <motion.div
                 layoutId="nav-header-active-indicator"
-                className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C0643A] rounded-full"
+                className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-primary rounded-full"
                 transition={{ type: 'spring', stiffness: 500, damping: 35 }}
               />
             )}
             {isActive && !shouldAnimate && (
-              <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C0643A] rounded-full" />
+              <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-primary rounded-full" />
             )}
           </>
         );

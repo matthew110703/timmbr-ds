@@ -42,7 +42,7 @@ export const SidebarProfile: React.FC<SidebarProfileProps> = ({
       {profile.avatar}
     </div>
   ) : (
-    <div className="size-8 rounded-full bg-grey-200 border border-grey-300 flex items-center justify-center shrink-0 font-medium text-xs text-grey-700">
+    <div className="size-8 rounded-full bg-grey-200 border border-grey-300 flex items-center justify-center shrink-0 font-medium text-body-3 text-grey-700">
       {fallbackInitials}
     </div>
   );
@@ -56,17 +56,17 @@ export const SidebarProfile: React.FC<SidebarProfileProps> = ({
         align={collapsed ? 'end' : 'center'}
         sideOffset={collapsed ? 12 : 8}
         className={cn(
-          'z-50 min-w-56 rounded-lg bg-white p-1.5 text-grey-900 shadow-md border border-grey-200 outline-none animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
+          'z-50 min-w-56 rounded-lg bg-grey-50 p-1.5 text-grey-900 shadow-md border border-grey-200 outline-none animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
           !shouldAnimate && 'animate-none transition-none'
         )}
       >
         {/* User Info Header */}
         <div className="px-2.5 py-2 border-b border-grey-100 mb-1">
-          <p className="font-semibold text-xs text-grey-900 truncate">
+          <p className="font-semibold text-body-3 text-grey-900 truncate">
             {profile.name}
           </p>
           {profile.email && (
-            <p className="text-[11px] text-grey-500 truncate mt-0.5">
+            <p className="text-caption-lg text-grey-500 truncate mt-0.5">
               {profile.email}
             </p>
           )}
@@ -87,9 +87,9 @@ export const SidebarProfile: React.FC<SidebarProfileProps> = ({
             );
 
             const itemClass = cn(
-              'flex items-center gap-2.5 w-full rounded-md px-2.5 py-1.5 text-xs transition-colors duration-150 select-none cursor-pointer outline-none focus-visible:bg-grey-100',
+              'flex items-center gap-2.5 w-full rounded-md px-2.5 py-1.5 text-body-3 transition-colors duration-150 select-none cursor-pointer outline-none focus-visible:bg-grey-100',
               item.destructive
-                ? 'text-red-600 hover:bg-red-50 hover:text-red-700'
+                ? 'text-destructive hover:bg-destructive/10 hover:text-destructive/80'
                 : 'text-grey-700 hover:bg-grey-100 hover:text-grey-900',
               item.disabled && 'opacity-50 pointer-events-none'
             );
@@ -182,11 +182,11 @@ export const SidebarProfile: React.FC<SidebarProfileProps> = ({
             className="flex items-center min-w-0 flex-1 overflow-hidden"
           >
             <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
-              <span className="font-semibold text-xs text-grey-900 truncate">
+              <span className="font-semibold text-body-3 text-grey-900 truncate">
                 {profile.name}
               </span>
               {profile.email && (
-                <span className="text-[11px] text-grey-500 truncate block">
+                <span className="text-caption-lg text-grey-500 truncate block">
                   {profile.email}
                 </span>
               )}
@@ -201,7 +201,7 @@ export const SidebarProfile: React.FC<SidebarProfileProps> = ({
   );
 
   return (
-    <div className="p-3 border-t border-grey-200 bg-white shrink-0 overflow-hidden">
+    <div className="p-3 border-t border-grey-200 bg-grey-50 shrink-0 overflow-hidden">
       {hasItems ? (
         <DropdownMenuPrimitive.Root>
           <DropdownMenuPrimitive.Trigger asChild>

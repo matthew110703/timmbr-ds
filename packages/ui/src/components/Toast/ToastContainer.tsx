@@ -113,7 +113,7 @@ export const ToastContainer: React.FC<ToastContainerProps> = ({ config }) => {
                 <Inline gap={3} align="start" className="flex-1 min-w-0 pr-2">
                   <Icon
                     className={`size-4.5 shrink-0 mt-0.5 ${
-                      isDestructive ? 'text-white' : 'text-current opacity-90'
+                      isDestructive ? 'text-grey-50' : 'text-current opacity-90'
                     }`}
                   />
                   <Stack gap="2xs" className="flex-1 min-w-0">

@@ -126,7 +126,7 @@ export const NavSearch: React.FC<NavSearchProps> = ({
           data-slot="nav-search-trigger"
         >
           <Search size={22} className="shrink-0 stroke-[1.8]" />
-          <span className="font-sans font-bold text-[10px] tracking-[0.0926em] uppercase">SEARCH</span>
+          <span className="font-bold text-caption tracking-[0.0926em] uppercase">SEARCH</span>
         </button>
       )}
 
@@ -141,7 +141,7 @@ export const NavSearch: React.FC<NavSearchProps> = ({
             className={cn('relative flex flex-col', !shouldAnimate && 'transition-none', motionClass)}
           >
             {/* Input pill with clean overflow clipping during width transition */}
-            <div className="relative flex items-center w-full h-10 bg-white border border-grey-300 rounded-full shadow-sm focus-within:ring-2 focus-within:ring-[#C0643A]/30 focus-within:border-[#C0643A] overflow-hidden">
+            <div className="relative flex items-center w-full h-10 bg-grey-50 border border-grey-300 rounded-full shadow-sm focus-within:ring-2 focus-within:ring-primary/30 focus-within:border-primary overflow-hidden">
               <Search
                 size={18}
                 className="absolute left-3.5 top-1/2 -translate-y-1/2 text-grey-500 pointer-events-none shrink-0"
@@ -157,7 +157,7 @@ export const NavSearch: React.FC<NavSearchProps> = ({
                 onChange={(e) => onChange(e.target.value)}
                 onFocus={() => setShowPopover(true)}
                 onKeyDown={handleKeyDown}
-                className="w-full h-full pl-10 pr-9 bg-transparent text-sm text-[#1A1A1A] placeholder:text-grey-400 border-none focus:outline-none [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
+                className="w-full h-full pl-10 pr-9 bg-transparent text-body-2 text-grey-950 placeholder:text-grey-400 border-none focus:outline-none [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
                 data-slot="nav-search-input"
               />
               <button
@@ -192,7 +192,7 @@ export const NavSearch: React.FC<NavSearchProps> = ({
                   ) : (
                     <div>
                       {popularSearchesTitle && (
-                        <h4 className="font-sans font-bold text-sm tracking-wide text-[#E11D48] mb-3 uppercase flex items-center gap-1.5">
+                        <h4 className="font-bold text-body-2 tracking-wide text-destructive mb-3 uppercase flex items-center gap-1.5">
                           <span>{popularSearchesTitle}</span>
                         </h4>
                       )}
@@ -209,7 +209,7 @@ export const NavSearch: React.FC<NavSearchProps> = ({
                           );
 
                           const tagClass =
-                            'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-grey-200 bg-white hover:border-grey-400 hover:bg-grey-50 text-xs font-medium text-grey-800 transition-all cursor-pointer';
+                            'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-grey-200 bg-grey-50 hover:border-grey-400 hover:bg-grey-50 text-body-3 font-medium text-grey-800 transition-all cursor-pointer';
 
                           if (resolvedTagHref) {
                             if (CustomLink && !requiresCrossZone) {

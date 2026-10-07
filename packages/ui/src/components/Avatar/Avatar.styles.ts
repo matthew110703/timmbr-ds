@@ -5,18 +5,18 @@ export const avatarRootVariants = cva(
   {
     variants: {
       size: {
-        xs: 'size-6 text-[10px]',
-        sm: 'size-8 text-xs',
-        md: 'size-10 text-[15px]',
-        lg: 'size-12 text-base',
-        xl: 'size-16 text-xl',
-        '2xl': 'size-20 text-2xl',
+        xs: 'size-6 text-caption',
+        sm: 'size-8 text-body-3',
+        md: 'size-10 text-body-2',
+        lg: 'size-12 text-body-1',
+        xl: 'size-16 text-h5',
+        '2xl': 'size-20 text-h4',
       },
       variant: {
-        primary: 'bg-primary text-white',
+        primary: 'bg-primary text-grey-50',
         secondary: 'bg-secondary text-secondary-foreground',
         subtle: 'bg-bg-subtle text-foreground',
-        grey: 'bg-grey-700 text-white',
+        grey: 'bg-grey-700 text-grey-50',
         outline: 'bg-background border border-grey-300 dark:border-grey-700 text-foreground',
       },
     },
@@ -32,10 +32,10 @@ export const avatarStatusVariants = cva(
   {
     variants: {
       status: {
-        online: 'bg-emerald-500',
+        online: 'bg-success',
         offline: 'bg-grey-400',
-        busy: 'bg-rose-500',
-        away: 'bg-amber-500',
+        busy: 'bg-destructive',
+        away: 'bg-warning',
       },
       size: {
         xs: 'size-1.5',

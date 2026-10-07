@@ -1,5 +1,55 @@
 # @timmbr/ui
 
+## 1.5.0
+
+### Minor Changes
+
+- **AuthModal** — new sign-in modal with a full step flow: `IDENTIFIER` → `OTP` | `PASSWORD` → `SET_PASSWORD` (create / reset) → `SUCCESS`.
+
+  - Steps: email/phone identifier with "Use password instead", one-time code with resend countdown, password sign-in with "Forgot password?", create/reset password (create is skippable), success confirmation.
+  - All copy is overridable via the `labels` prop (`DEFAULT_AUTH_MODAL_LABELS` exported).
+  - Accessible: labelled inputs, errors announced (`role="alert"`, `aria-invalid`, `aria-describedby`), buttons keep their name while loading (`aria-busy`), focus moves to the heading on the success step.
+  - Forms never fall back to a native page-reloading submit.
+  - The promo banner renders only from consumer-provided data (no hardcoded image or campaign copy); `banner.promoTermsUrl` replaces `termsUrl`.
+  - OAuth providers are disabled while a request is in flight; built-in Google / Apple / GitHub icons come from `@timmbr/icons`.
+
+  **Theme compliance** — every component now takes colour and type strictly from `@timmbr/theme`:
+
+  - Hard-coded hex values, Tailwind default palette colours (`red-500`, `emerald-500`, `slate-*`…) and `white`/`black` are replaced with theme tokens (`primary-*`, `grey-*`, `destructive`, `success`, `warning`, `border-warm`…).
+  - Font sizes use the theme type scale (`text-h1`…`text-h6`, `text-subtitle-*`, `text-body-*`, `text-caption*`) instead of Tailwind sizes / arbitrary pixels. `Heading` and `Text` variants map 1:1 to the scale.
+  - Monospace digits use `tabular-nums` (theme font) instead of `font-mono`.
+  - A `theme-compliance` test now fails the build on any non-theme colour or type class in components.
+  - Visual note: text that previously used the (then non-functional) semantic classes such as `text-foreground` now renders with the intended theme colours, and line-height follows the scale (1.3).
+
+  **Spinner**
+
+  - Colour lives on the wrapper and the icon inherits it, so `className="text-…"` now recolours the spinner (fixes invisible white spinners on primary buttons).
+  - New `iconClassName` and `decorative` (no status role; for use inside busy buttons) props.
+  - `spinnerVariants` now carries only `variant`; sizes moved to the new `spinnerIconVariants`. Update any direct imports of `spinnerVariants({ size })`.
+
+  **NavHeader**
+
+  - Default actions are ordered Wishlist, Cart, Profile; Profile has high priority so it stays visible when space is tight.
+  - The mobile actions bar now honours `authMode` / `onAuthTrigger`, and the auth trigger uses `openAuthModal()` from `@timmbr/hooks`.
+  - The brand logo cross-fades to the mini logo when search expands (both stay mounted; no blink).
+
+  **OtpInput** — `defaultValue` is now applied; errors are announced and linked to the input; uses theme tokens.
+
+- **NavHeader profile action without layout shift**
+
+  - New `isLoading` on nav action items: the label slot shows a skeleton instead of the text (also in the overflow menu), and the button gets `aria-busy`.
+  - New `labelClassName` on nav action items. The profile label slot (`PROFILE_LABEL_CLASS`) is centred under the icon and sized to its text between the width of LOGIN and 64px, so the loading skeleton and LOGIN are the same width (no shift for signed-out visitors) and gaps stay even. Long names are truncated, and the full text is kept in `title`.
+  - The default profile label is now `LOGIN` (was `PROFILE`).
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/utils@1.3.0
+  - @timmbr/hooks@1.0.0
+  - @timmbr/icons@1.3.0
+  - @timmbr/theme@1.3.0
+  - @timmbr/motion@1.2.1
+
 ## 1.4.2
 
 ### Patch Changes

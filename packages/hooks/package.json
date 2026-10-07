@@ -1,6 +1,6 @@
 {
   "name": "@timmbr/hooks",
-  "version": "1.0.0-beta",
+  "version": "1.0.0",
   "description": "Shared React hooks for Timmbr Design System",
   "type": "module",
   "main": "./dist/index.js",

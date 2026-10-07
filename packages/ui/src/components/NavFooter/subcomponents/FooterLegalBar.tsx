@@ -73,7 +73,7 @@ export const FooterLegalBar: React.FC<FooterLegalBarProps> = ({
       </div>
 
       {/* Extra Legal or Badge items if provided */}
-      {extra && <div className="text-xs text-[#B7AEA2]">{extra}</div>}
+      {extra && <div className="text-body-3 text-sand-muted">{extra}</div>}
 
       {/* Legal Policy Links */}
       {links && links.length > 0 && (

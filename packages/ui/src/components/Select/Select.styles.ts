@@ -6,15 +6,15 @@ export const selectTriggerVariants = cva(
     variants: {
       variant: {
         outline:
-          'border-grey-300 dark:border-grey-700 bg-white dark:bg-grey-900 focus:border-primary focus:ring-primary/20',
+          'border-grey-300 dark:border-grey-700 bg-grey-50 dark:bg-grey-900 focus:border-primary focus:ring-primary/20',
         filled:
-          'border-transparent bg-grey-100 dark:bg-grey-800 focus:bg-white dark:focus:bg-grey-900 focus:border-primary focus:ring-primary/20',
+          'border-transparent bg-grey-100 dark:bg-grey-800 focus:bg-grey-50 dark:focus:bg-grey-900 focus:border-primary focus:ring-primary/20',
       },
       size: {
-        sm: 'h-9 px-3 text-xs',
-        default: 'h-11 px-3.5 text-sm',
-        md: 'h-11 px-3.5 text-sm',
-        lg: 'h-[52px] px-4 text-base',
+        sm: 'h-9 px-3 text-body-3',
+        default: 'h-11 px-3.5 text-body-2',
+        md: 'h-11 px-3.5 text-body-2',
+        lg: 'h-[52px] px-4 text-body-1',
       },
       isError: {
         true: 'border-destructive focus:border-destructive focus:ring-destructive/20 text-destructive',
@@ -30,11 +30,11 @@ export const selectTriggerVariants = cva(
 );
 
 export const selectContentVariants = cva(
-  'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border border-grey-200 dark:border-grey-700 bg-white dark:bg-grey-900 text-foreground shadow-md transition-all font-sans p-1'
+  'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-900 text-foreground shadow-md transition-all font-sans p-1'
 );
 
 export const selectItemVariants = cva(
-  'relative flex w-full cursor-pointer select-none items-center rounded-sm py-2 pl-8 pr-2 text-sm outline-none transition-colors hover:bg-grey-100 dark:hover:bg-grey-800 focus:bg-grey-100 dark:focus:bg-grey-800 focus:text-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50'
+  'relative flex w-full cursor-pointer select-none items-center rounded-sm py-2 pl-8 pr-2 text-body-2 outline-none transition-colors hover:bg-grey-100 dark:hover:bg-grey-800 focus:bg-grey-100 dark:focus:bg-grey-800 focus:text-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50'
 );
 
 export type SelectTriggerVariants = VariantProps<typeof selectTriggerVariants>;

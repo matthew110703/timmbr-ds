@@ -18,9 +18,9 @@ export const listItemVariants = cva(
   {
     variants: {
       density: {
-        sm: 'py-2 px-3 text-xs',
-        default: 'py-3 px-4 text-sm',
-        lg: 'py-4 px-5 text-base',
+        sm: 'py-2 px-3 text-body-3',
+        default: 'py-3 px-4 text-body-2',
+        lg: 'py-4 px-5 text-body-1',
       },
       interactive: {
         true: 'cursor-pointer hover:bg-grey-100/70 dark:hover:bg-grey-800/60 active:bg-grey-200/50',

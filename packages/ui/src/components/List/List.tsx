@@ -75,7 +75,7 @@ export const ListItemText = React.forwardRef<HTMLDivElement, ListItemTextProps>(
         <div className="font-medium text-foreground truncate">{primary}</div>
       )}
       {secondary && (
-        <div className="text-xs text-muted-foreground truncate mt-0.5">{secondary}</div>
+        <div className="text-body-3 text-muted-foreground truncate mt-0.5">{secondary}</div>
       )}
       {children}
     </div>

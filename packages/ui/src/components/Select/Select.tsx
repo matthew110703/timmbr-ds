@@ -48,7 +48,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         style={style}
       >
         {label && (
-          <label className="text-xs font-semibold text-foreground tracking-wide select-none">
+          <label className="text-body-3 font-semibold text-foreground tracking-wide select-none">
             {label}
           </label>
         )}
@@ -118,7 +118,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         {(errorMessage || helperText) && (
           <p
             className={cn(
-              'text-xs mt-1 flex items-center gap-1.5',
+              'text-body-3 mt-1 flex items-center gap-1.5',
               isError ? 'text-destructive font-medium' : 'text-muted'
             )}
           >

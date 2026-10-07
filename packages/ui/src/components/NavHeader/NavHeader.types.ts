@@ -151,6 +151,17 @@ export interface NavActionItem {
   disabled?: boolean;
   /** Priority level determining which items resist collapsing into overflow */
   priority?: 'high' | 'normal' | 'low';
+  /**
+   * Label not known yet (e.g. session still loading): renders a skeleton in
+   * the label slot instead of `label`.
+   */
+  isLoading?: boolean;
+  /**
+   * Extra classes for the label slot. Give labels that change at runtime a
+   * fixed width (the profile action defaults to `w-16 truncate`) so the
+   * header doesn't shift when the text swaps.
+   */
+  labelClassName?: string;
   /** Optional custom renderer for complex items */
   render?: (props: { item: NavActionItem; isOverflow: boolean }) => React.ReactNode;
 }
@@ -194,6 +205,10 @@ export interface NavActionsConfig {
   wishlist?: Partial<NavActionItem> & { count?: number };
   /** Pre-configured cart action with optional badge count */
   cart?: Partial<NavActionItem> & { count?: number };
+  /** Auth trigger mode: 'modal' triggers popup flow, 'redirect' fallbacks to /auth page */
+  authMode?: 'modal' | 'redirect';
+  /** Callback fired when user triggers auth in modal mode */
+  onAuthTrigger?: () => void;
 }
 
 /**
@@ -339,6 +354,12 @@ export interface NavHeaderProps
 
   /** Shorthand cart action configuration with optional badge count. */
   cartAction?: Partial<NavActionItem> & { count?: number };
+
+  /** Shorthand auth mode: 'modal' triggers modal popup, 'redirect' falls back to /auth page. Defaults to 'modal'. */
+  authMode?: 'modal' | 'redirect';
+
+  /** Shorthand callback fired when user triggers auth in modal mode. */
+  onAuthTrigger?: () => void;
 
   /** Shorthand toggle for mobile horizontal tab slider. Defaults to true. */
   mobileTabSlider?: boolean;

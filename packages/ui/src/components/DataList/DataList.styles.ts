@@ -7,9 +7,9 @@ export const dataListVariants = cva('font-sans text-foreground', {
       vertical: 'flex flex-col',
     },
     size: {
-      sm: 'text-xs gap-1.5',
-      default: 'text-sm gap-2.5',
-      lg: 'text-base gap-3.5',
+      sm: 'text-body-3 gap-1.5',
+      default: 'text-body-2 gap-2.5',
+      lg: 'text-body-1 gap-3.5',
     },
     divided: {
       true: 'divide-y divide-grey-200 dark:divide-grey-800',

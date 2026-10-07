@@ -57,11 +57,12 @@ export const tokens = {
       sandMuted: '#B7AEA2',
       borderWarm: '#E8DFD1',
     },
+    // Mirrors --color-success / -warning / -destructive / -info in theme.css
     semantic: {
-      success: '#22c55e',
-      warning: '#f59e0b',
-      error: '#ef4444',
-      info: '#3b82f6',
+      success: '#059669',
+      warning: '#D97706',
+      error: '#DC2626',
+      info: '#2563EB',
     },
   },
   typography: {
@@ -166,6 +167,18 @@ export const tokens = {
         fontFamily: '"Outfit", sans-serif',
         fontSize: '48px',
         fontWeight: 700,
+        lineHeight: 1.3,
+      },
+      captionLg: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '11px',
+        fontWeight: 400,
+        lineHeight: 1.3,
+      },
+      caption: {
+        fontFamily: '"Manrope", sans-serif',
+        fontSize: '10px',
+        fontWeight: 400,
         lineHeight: 1.3,
       },
     },

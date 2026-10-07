@@ -60,7 +60,7 @@ export const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
           animate={shouldAnimate ? { opacity: 1 } : undefined}
           exit={shouldAnimate ? { opacity: 0 } : undefined}
           transition={getTransition('fast')}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-xs"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-4 sm:p-6 bg-grey-1000/60 backdrop-blur-xs"
           onClick={onClose}
         >
           {/* Modal Card Container */}
@@ -69,21 +69,21 @@ export const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
             animate={shouldAnimate ? { scale: 1, opacity: 1 } : undefined}
             exit={shouldAnimate ? { scale: 0.95, opacity: 0 } : undefined}
             transition={getTransition('spring')}
-            className="relative max-w-2xl max-h-[85vh] w-full bg-white dark:bg-grey-950 border border-grey-200 dark:border-grey-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+            className="relative max-w-2xl max-h-[85vh] w-full bg-grey-50 dark:bg-grey-950 border border-grey-200 dark:border-grey-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
             <div className="flex items-center justify-between px-5 py-3 border-b border-grey-200 dark:border-grey-800 bg-grey-50/80 dark:bg-grey-900/80 backdrop-blur-xs select-none">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-foreground tracking-wide truncate max-w-xs sm:max-w-md">
+                <span className="text-body-3 font-semibold text-foreground tracking-wide truncate max-w-xs sm:max-w-md">
                   {activeItem.name || `Media Item #${activeIndex + 1}`}
                 </span>
                 {activeIndex === 0 && (
-                  <span className="bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                  <span className="bg-success/10 text-success dark:text-success border border-success/20 text-caption font-semibold px-2 py-0.5 rounded-full">
                     Cover
                   </span>
                 )}
-                <span className="text-[11px] text-muted">
+                <span className="text-caption-lg text-muted">
                   ({activeIndex + 1} of {items.length})
                 </span>
               </div>
@@ -101,7 +101,7 @@ export const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
             </div>
 
             {/* Modal Content Media Viewer */}
-            <div className="relative flex-1 flex items-center justify-center p-4 min-h-[260px] max-h-[70vh] bg-grey-100/50 dark:bg-black/50 overflow-hidden">
+            <div className="relative flex-1 flex items-center justify-center p-4 min-h-[260px] max-h-[70vh] bg-grey-100/50 dark:bg-grey-1000/50 overflow-hidden">
               {isVideoMedia(activeItem) ? (
                 <video
                   src={activeItem.url}
@@ -127,7 +127,7 @@ export const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
                       e.stopPropagation();
                       onNavigate(activeIndex > 0 ? activeIndex - 1 : items.length - 1);
                     }}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 size-9 rounded-full bg-white/90 hover:bg-white dark:bg-grey-800/90 dark:hover:bg-grey-800 border border-grey-200 dark:border-grey-700 text-foreground flex items-center justify-center transition-all backdrop-blur-xs cursor-pointer shadow-md"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 size-9 rounded-full bg-grey-50/90 hover:bg-grey-50 dark:bg-grey-800/90 dark:hover:bg-grey-800 border border-grey-200 dark:border-grey-700 text-foreground flex items-center justify-center transition-all backdrop-blur-xs cursor-pointer shadow-md"
                     title="Previous (Left Arrow)"
                   >
                     <ChevronLeft className="size-4" />
@@ -139,7 +139,7 @@ export const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
                       e.stopPropagation();
                       onNavigate(activeIndex < items.length - 1 ? activeIndex + 1 : 0);
                     }}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 size-9 rounded-full bg-white/90 hover:bg-white dark:bg-grey-800/90 dark:hover:bg-grey-800 border border-grey-200 dark:border-grey-700 text-foreground flex items-center justify-center transition-all backdrop-blur-xs cursor-pointer shadow-md"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 size-9 rounded-full bg-grey-50/90 hover:bg-grey-50 dark:bg-grey-800/90 dark:hover:bg-grey-800 border border-grey-200 dark:border-grey-700 text-foreground flex items-center justify-center transition-all backdrop-blur-xs cursor-pointer shadow-md"
                     title="Next (Right Arrow)"
                   >
                     <ChevronRight className="size-4" />

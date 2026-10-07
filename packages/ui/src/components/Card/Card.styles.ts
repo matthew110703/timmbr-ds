@@ -6,13 +6,13 @@ export const cardVariants = cva(
     variants: {
       variant: {
         outline:
-          'border border-grey-200 dark:border-grey-800 bg-white dark:bg-grey-900 shadow-sm',
+          'border border-grey-200 dark:border-grey-800 bg-grey-50 dark:bg-grey-900 shadow-sm',
         elevated:
-          'border border-transparent bg-white dark:bg-grey-900 shadow-md hover:shadow-lg',
+          'border border-transparent bg-grey-50 dark:bg-grey-900 shadow-md hover:shadow-lg',
         subtle:
           'border border-transparent bg-grey-50 dark:bg-grey-950',
         interactive:
-          'border border-grey-200 dark:border-grey-800 bg-white dark:bg-grey-900 shadow-sm hover:border-primary hover:shadow-md cursor-pointer',
+          'border border-grey-200 dark:border-grey-800 bg-grey-50 dark:bg-grey-900 shadow-sm hover:border-primary hover:shadow-md cursor-pointer',
       },
       padding: {
         none: 'p-0',
@@ -30,8 +30,8 @@ export const cardVariants = cva(
 );
 
 export const cardHeaderVariants = cva('flex flex-col gap-1.5 mb-4');
-export const cardTitleVariants = cva('text-lg font-serif font-bold text-foreground leading-tight tracking-tight');
-export const cardDescriptionVariants = cva('text-sm text-muted leading-relaxed');
+export const cardTitleVariants = cva('text-h6 font-bold text-foreground leading-tight tracking-tight');
+export const cardDescriptionVariants = cva('text-body-2 text-muted leading-relaxed');
 export const cardContentVariants = cva('flex flex-col gap-4');
 export const cardFooterVariants = cva('flex items-center justify-between pt-4 mt-4 border-t border-grey-100 dark:border-grey-800');
 

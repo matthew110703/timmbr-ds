@@ -27,7 +27,7 @@ describe('Heading Component', () => {
   it('applies title font family when font="title" is passed', () => {
     render(<Heading font="title">Page Title</Heading>);
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveClass('font-title');
+    expect(heading).toHaveClass('font-title!');
   });
 
   it('accepts custom style and className', () => {

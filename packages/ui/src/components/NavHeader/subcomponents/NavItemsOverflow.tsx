@@ -76,7 +76,7 @@ export const NavItemsOverflow: React.FC<NavItemsOverflowProps> = ({
         onClick={() => setIsOpen((prev) => !prev)}
         className={cn(
           navHeaderItemVariants({ active: isOpen || isChildActive }),
-          'px-2 py-2 flex items-center justify-center rounded-lg hover:bg-black/5 transition-colors',
+          'px-2 py-2 flex items-center justify-center rounded-lg hover:bg-grey-1000/5 transition-colors',
           !shouldAnimate && 'transition-none',
           motionClass
         )}
@@ -84,7 +84,7 @@ export const NavItemsOverflow: React.FC<NavItemsOverflowProps> = ({
       >
         <MoreHorizontal size={20} className="stroke-[2]" />
         {(isOpen || isChildActive) && (
-          <div className="absolute bottom-0 left-2 right-2 h-[2.5px] bg-[#C0643A] rounded-full" />
+          <div className="absolute bottom-0 left-2 right-2 h-[2.5px] bg-primary rounded-full" />
         )}
       </button>
 
@@ -97,7 +97,7 @@ export const NavItemsOverflow: React.FC<NavItemsOverflowProps> = ({
             exit={shouldAnimate ? { opacity: 0, y: 6, scale: 0.97 } : undefined}
             transition={{ duration: 0.18, ease: [0.25, 1, 0.5, 1] }}
             className={cn(
-              'absolute top-full left-0 mt-2 w-56 bg-white border border-[#E7DFD3] shadow-2xl rounded-2xl p-2 z-50 text-left overflow-hidden divide-y divide-grey-100',
+              'absolute top-full left-0 mt-2 w-56 bg-grey-50 border border-border-warm shadow-2xl rounded-2xl p-2 z-50 text-left overflow-hidden divide-y divide-grey-100',
               !shouldAnimate && 'transition-none',
               motionClass
             )}
@@ -121,11 +121,11 @@ export const NavItemsOverflow: React.FC<NavItemsOverflowProps> = ({
 
                 const itemRowContent = (
                   <>
-                    <span className={cn('truncate', isActive && 'text-[#C0643A] font-bold')}>
+                    <span className={cn('truncate', isActive && 'text-primary font-bold')}>
                       {item.label}
                     </span>
                     {item.badge && (
-                      <span className="shrink-0 px-1.5 py-0.5 rounded-full bg-primary-100 text-primary-800 text-[10px] font-bold">
+                      <span className="shrink-0 px-1.5 py-0.5 rounded-full bg-primary-100 text-primary-800 text-caption font-bold">
                         {item.badge}
                       </span>
                     )}
@@ -133,9 +133,9 @@ export const NavItemsOverflow: React.FC<NavItemsOverflowProps> = ({
                 );
 
                 const itemClass = cn(
-                  'w-full flex items-center justify-between gap-3 px-3 py-2 text-xs font-semibold text-[#3C3C3C] hover:text-[#C0643A] hover:bg-[#F7F1E6]/60 rounded-xl transition-colors cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0643A]',
+                  'w-full flex items-center justify-between gap-3 px-3 py-2 text-body-3 font-semibold text-grey-800 hover:text-primary hover:bg-bg-2/60 rounded-xl transition-colors cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
                   item.disabled && 'opacity-40 cursor-not-allowed pointer-events-none',
-                  isActive && 'bg-[#F7F1E6]/80 text-[#C0643A]',
+                  isActive && 'bg-bg-2/80 text-primary',
                   item.className
                 );
 

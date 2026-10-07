@@ -78,20 +78,20 @@ export const ImageUploadSinglePreview: React.FC<ImageUploadSinglePreviewProps> =
 
       {/* Video Indicator */}
       {isVideo && (
-        <div className="absolute top-2 left-2 z-10 bg-black/65 backdrop-blur-md text-white text-[10px] font-medium px-2 py-0.5 rounded-full border border-white/20 flex items-center gap-1 shadow-sm pointer-events-none">
+        <div className="absolute top-2 left-2 z-10 bg-grey-1000/65 backdrop-blur-md text-grey-50 text-caption font-medium px-2 py-0.5 rounded-full border border-grey-50/20 flex items-center gap-1 shadow-sm pointer-events-none">
           <PlayIcon className="size-2.5" />
           <span>Video</span>
         </div>
       )}
 
       {/* Hover Action Overlay */}
-      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 p-1 backdrop-blur-[2px]">
+      <div className="absolute inset-0 bg-grey-1000/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 p-1 backdrop-blur-[2px]">
         {aspectRatio === 'square' ? (
           <>
             {enablePreviewModal && (
               <button
                 type="button"
-                className="size-8 rounded-lg bg-black/60 hover:bg-black/85 text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer shadow-xs"
+                className="size-8 rounded-lg bg-grey-1000/60 hover:bg-grey-1000/85 text-grey-50 flex items-center justify-center border border-grey-50/20 transition-all cursor-pointer shadow-xs"
                 onClick={onPreview}
                 title="Preview full size"
               >
@@ -102,7 +102,7 @@ export const ImageUploadSinglePreview: React.FC<ImageUploadSinglePreviewProps> =
               type="button"
               disabled={disabled || isUploading}
               onClick={onReplace}
-              className="size-8 rounded-lg bg-primary hover:bg-primary/90 text-white flex items-center justify-center transition-all cursor-pointer shadow-xs disabled:opacity-50"
+              className="size-8 rounded-lg bg-primary hover:bg-primary/90 text-grey-50 flex items-center justify-center transition-all cursor-pointer shadow-xs disabled:opacity-50"
               title="Replace image"
             >
               <UploadCloudIcon className="size-3.5" />
@@ -111,7 +111,7 @@ export const ImageUploadSinglePreview: React.FC<ImageUploadSinglePreviewProps> =
               type="button"
               disabled={disabled || isUploading}
               onClick={onRemove}
-              className="size-8 rounded-lg bg-destructive hover:bg-destructive/90 text-white flex items-center justify-center transition-all cursor-pointer shadow-xs disabled:opacity-50"
+              className="size-8 rounded-lg bg-destructive hover:bg-destructive/90 text-grey-50 flex items-center justify-center transition-all cursor-pointer shadow-xs disabled:opacity-50"
               title="Remove image"
             >
               <Trash2 className="size-3.5" />
@@ -124,7 +124,7 @@ export const ImageUploadSinglePreview: React.FC<ImageUploadSinglePreviewProps> =
                 type="button"
                 variant="outline"
                 size="sm"
-                className="border-white/40 bg-black/40 text-white hover:bg-black/60 hover:text-white backdrop-blur-xs"
+                className="border-grey-50/40 bg-grey-1000/40 text-grey-50 hover:bg-grey-1000/60 hover:text-grey-50 backdrop-blur-xs"
                 onClick={onPreview}
                 leftIcon={<Eye className="size-3.5" />}
               >
@@ -145,7 +145,7 @@ export const ImageUploadSinglePreview: React.FC<ImageUploadSinglePreviewProps> =
               variant="outline"
               size="sm"
               disabled={disabled || isUploading}
-              className="border-destructive/60 bg-destructive/80 text-white hover:bg-destructive hover:text-white"
+              className="border-destructive/60 bg-destructive/80 text-grey-50 hover:bg-destructive hover:text-grey-50"
               onClick={onRemove}
               leftIcon={<Trash2 className="size-3.5" />}
             >

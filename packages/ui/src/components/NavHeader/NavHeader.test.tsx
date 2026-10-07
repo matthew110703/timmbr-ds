@@ -154,7 +154,8 @@ describe('NavHeader Component', () => {
 
     // Initial state: full logo visible, input not present
     expect(screen.getAllByTestId('brand-full-logo').length).toBeGreaterThan(0);
-    expect(screen.queryByTestId('brand-mini-logo')).not.toBeInTheDocument();
+    // Mini logo is pre-mounted (so its image is ready) but hidden from AT until shown
+    expect(screen.getAllByTestId('brand-mini-logo')[0].parentElement).toHaveAttribute('aria-hidden', 'true');
     expect(screen.queryByPlaceholderText('Search our catalogue...')).not.toBeInTheDocument();
 
     // Click search trigger in desktop header
@@ -164,7 +165,8 @@ describe('NavHeader Component', () => {
     expect(onOpenChange).toHaveBeenCalledWith(true);
 
     // After expanding: mini logo is shown, search input is in document
-    expect(screen.getByTestId('brand-mini-logo')).toBeInTheDocument();
+    expect(screen.getAllByTestId('brand-mini-logo')[0].parentElement).not.toHaveAttribute('aria-hidden');
+    expect(screen.getAllByTestId('brand-full-logo')[0].parentElement).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByPlaceholderText('Search our catalogue...')).toBeInTheDocument();
   });
 
@@ -474,5 +476,74 @@ describe('NavHeader Component', () => {
     expect(screen.getAllByText('5').length).toBeGreaterThan(0);
     expect(screen.getAllByText('3').length).toBeGreaterThan(0);
   });
-});
 
+  it('orders default actions Wishlist, Cart, Profile (profile last)', () => {
+    render(
+      <NavHeader
+        branding={{ logo: <span>LOGO</span> }}
+        actions={{
+          profile: { label: 'PROFILE', ariaLabel: 'Profile' },
+          wishlist: { label: 'WISH LIST', ariaLabel: 'Wishlist' },
+          cart: { label: 'CART', ariaLabel: 'Cart' },
+        }}
+        motion={false}
+      />
+    );
+
+    const labels = screen
+      .getAllByText(/^(PROFILE|WISH LIST|CART)$/)
+      .slice(0, 3)
+      .map((el) => el.textContent);
+    expect(labels).toEqual(['WISH LIST', 'CART', 'PROFILE']);
+  });
+
+  it("defaults the profile label to LOGIN", () => {
+    render(<NavHeader branding={{ logo: <span>LOGO</span> }} actions={{ profile: { ariaLabel: "Profile" } }} motion={false} />);
+    expect(screen.getAllByText("LOGIN").length).toBeGreaterThan(0);
+  });
+
+  it("shows a skeleton in the profile label slot while loading", () => {
+    render(
+      <NavHeader
+        branding={{ logo: <span>LOGO</span> }}
+        actions={{ profile: { label: "LOGIN", ariaLabel: "Profile", isLoading: true } }}
+        motion={false}
+      />
+    );
+    expect(screen.queryByText("LOGIN")).not.toBeInTheDocument();
+    const skeleton = document.querySelector("[data-slot=nav-action-label-skeleton]");
+    expect(skeleton).toBeInTheDocument();
+    expect(screen.getAllByRole("button", { name: "Profile" })[0]).toHaveAttribute("aria-busy", "true");
+  });
+
+  it("sizes the profile label slot between LOGIN and a 64px cap in every state", () => {
+    const slotClass = (profile: Record<string, unknown>) => {
+      const { unmount } = render(
+        <NavHeader branding={{ logo: <span>LOGO</span> }} actions={{ profile: { ariaLabel: "Profile", ...profile } }} motion={false} />
+      );
+      const btn = screen.getAllByLabelText("Profile")[0]!;
+      const cls = btn.querySelector("[data-slot=nav-action-label]")!.className;
+      unmount();
+      return cls;
+    };
+    const loading = slotClass({ isLoading: true });
+    const anonymous = slotClass({ label: "LOGIN" });
+    const named = slotClass({ label: "Bartholomew", href: "/account" });
+    expect(loading).toContain("min-w-[35px]");
+    expect(loading).toContain("max-w-16");
+    expect(loading).toContain("truncate");
+    expect(anonymous).toBe(loading);
+    expect(named).toBe(loading);
+  });
+
+  it("exposes a truncated name in full via the title", () => {
+    render(
+      <NavHeader
+        branding={{ logo: <span>LOGO</span> }}
+        actions={{ profile: { label: "Bartholomew", href: "/account", ariaLabel: "My account" } }}
+        motion={false}
+      />
+    );
+    expect(screen.getAllByTitle("Bartholomew").length).toBeGreaterThan(0);
+  });
+});

@@ -54,11 +54,11 @@ export const NavMobileTabSlider: React.FC<NavMobileTabSliderProps> = ({
         const tabIndicator = isActive && shouldAnimate ? (
           <motion.div
             layoutId="active-mobile-tab-indicator"
-            className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C0643A] rounded-full"
+            className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-primary rounded-full"
             transition={{ type: 'spring', stiffness: 380, damping: 30 }}
           />
         ) : isActive ? (
-          <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C0643A] rounded-full" />
+          <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-primary rounded-full" />
         ) : null;
 
         // If item is pure link without expandable content

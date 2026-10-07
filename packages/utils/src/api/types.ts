@@ -120,6 +120,8 @@ export interface ApiErrorResponse {
   message: string | string[];
   error?: string;
   code?: string;
+  /** Structured extras, e.g. { retryAfter } on 429s or { attemptsLeft } on a wrong code */
+  details?: Record<string, unknown>;
   timestamp?: string;
   path?: string;
 }

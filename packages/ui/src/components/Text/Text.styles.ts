@@ -1,18 +1,19 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const textVariants = cva('font-sans transition-colors leading-[1.3]', {
+export const textVariants = cva('transition-colors', {
   variants: {
     variant: {
-      'body-1': 'text-[16px] font-normal',
-      'body-2': 'text-[14px] font-normal',
-      'body-2-medium': 'text-[14px] font-medium',
-      'body-2-semibold': 'text-[14px] font-semibold',
-      'body-2-light': 'text-[14px] font-light',
-      'body-3': 'text-[12px] font-normal',
-      'body-3-light': 'text-[12px] font-light',
-      'subtitle-1': 'text-[18px] font-semibold',
-      'subtitle-2': 'text-[18px] font-semibold',
-      caption: 'text-[11px] font-normal tracking-wide',
+      // Each variant is the matching @timmbr/theme text style (size, line-height, weight, font).
+      'body-1': 'text-body-1',
+      'body-2': 'text-body-2',
+      'body-2-medium': 'text-body-2-medium',
+      'body-2-semibold': 'text-body-2-semibold',
+      'body-2-light': 'text-body-2-light',
+      'body-3': 'text-body-3',
+      'body-3-light': 'text-body-3-light',
+      'subtitle-1': 'text-subtitle-1',
+      'subtitle-2': 'text-subtitle-2',
+      caption: 'text-caption-lg tracking-wide',
     },
     foreground: {
       default: 'text-foreground',
@@ -21,13 +22,14 @@ export const textVariants = cva('font-sans transition-colors leading-[1.3]', {
       primary: 'text-primary',
       secondary: 'text-secondary-foreground',
       destructive: 'text-destructive',
-      white: 'text-white',
+      white: 'text-grey-50',
       inherit: 'text-inherit',
     },
     font: {
-      sans: 'font-sans',
-      display: 'font-display',
-      title: 'font-title',
+      // Text styles already use the sans font; other families override it.
+      sans: '',
+      display: 'font-display!',
+      title: 'font-title!',
     },
     weight: {
       light: 'font-light',

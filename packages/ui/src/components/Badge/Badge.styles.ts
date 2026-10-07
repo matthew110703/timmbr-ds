@@ -5,19 +5,19 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-primary-300 text-white',
-        brand: 'bg-primary text-white',
-        default: 'bg-primary text-white',
+        primary: 'bg-primary-300 text-grey-50',
+        brand: 'bg-primary text-grey-50',
+        default: 'bg-primary text-grey-50',
         secondary: 'bg-secondary text-secondary-foreground',
         outline: 'border border-grey-300 dark:border-grey-700 bg-transparent text-foreground',
         subtle: 'bg-bg-subtle text-foreground',
-        success: 'bg-emerald-600 text-white',
-        destructive: 'bg-destructive text-white',
+        success: 'bg-success text-grey-50',
+        destructive: 'bg-destructive text-grey-50',
       },
       size: {
-        sm: 'px-1.5 py-0.5 text-xs',
-        md: 'px-2 py-1 text-[14px]',
-        lg: 'px-3 py-1.5 text-base font-medium',
+        sm: 'px-1.5 py-0.5 text-body-3',
+        md: 'px-2 py-1 text-body-2',
+        lg: 'px-3 py-1.5 text-body-1 font-medium',
       },
     },
     defaultVariants: {

@@ -271,10 +271,10 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
           {(label || maxFiles || minFiles) && (
             <div className="flex items-center justify-between gap-2 select-none">
               {label && (
-                <label className="text-xs font-semibold text-foreground tracking-wide flex items-center gap-1.5">
+                <label className="text-body-3 font-semibold text-foreground tracking-wide flex items-center gap-1.5">
                   <span>{label}</span>
                   {minFiles && minFiles > 0 && (
-                    <span className="text-[11px] text-muted font-normal">
+                    <span className="text-caption-lg text-muted font-normal">
                       (Min {minFiles})
                     </span>
                   )}
@@ -282,7 +282,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
               )}
 
               {multiple && (
-                <span className="text-[11px] font-medium text-muted">
+                <span className="text-caption-lg font-medium text-muted">
                   {items.length}
                   {maxFiles ? ` / ${maxFiles}` : ''} uploaded
                 </span>
@@ -361,7 +361,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
                   onDrop={handleDrop}
                 />
               ) : (
-                <div className="w-full rounded-xl border border-dashed border-grey-300 dark:border-grey-700 bg-grey-50/50 dark:bg-grey-900/30 p-3 text-center text-xs text-muted">
+                <div className="w-full rounded-xl border border-dashed border-grey-300 dark:border-grey-700 bg-grey-50/50 dark:bg-grey-900/30 p-3 text-center text-body-3 text-muted">
                   Maximum upload limit reached ({maxFiles}/{maxFiles} items). Remove an item to add another.
                 </div>
               )}
@@ -412,11 +412,11 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
           {(error || minFilesWarning || helperText) && (
             <p
               className={cn(
-                'text-xs mt-1 flex items-center gap-1.5 leading-normal',
+                'text-body-3 mt-1 flex items-center gap-1.5 leading-normal',
                 isError
                   ? 'text-destructive font-medium'
                   : minFilesWarning
-                    ? 'text-amber-600 dark:text-amber-400 font-medium'
+                    ? 'text-warning dark:text-warning font-medium'
                     : 'text-muted'
               )}
             >

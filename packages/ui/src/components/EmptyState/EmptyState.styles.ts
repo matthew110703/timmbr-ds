@@ -29,9 +29,9 @@ export const emptyStateIconWrapperVariants = cva(
   {
     variants: {
       size: {
-        sm: 'size-10 text-lg',
-        default: 'size-14 text-2xl',
-        lg: 'size-20 text-3xl',
+        sm: 'size-10 text-subtitle-1',
+        default: 'size-14 text-h4',
+        lg: 'size-20 text-h3',
       },
     },
     defaultVariants: {

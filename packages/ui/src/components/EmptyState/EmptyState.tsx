@@ -51,7 +51,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
 
         {title && (
           <h3
-            className="text-base font-display font-semibold text-foreground tracking-tight"
+            className="text-h6 font-semibold text-foreground tracking-tight"
             data-slot="empty-state-title"
           >
             {title}
@@ -60,7 +60,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
 
         {description && (
           <p
-            className="text-xs text-muted-foreground mt-1.5 max-w-sm leading-relaxed"
+            className="text-body-3 text-muted-foreground mt-1.5 max-w-sm leading-relaxed"
             data-slot="empty-state-description"
           >
             {description}

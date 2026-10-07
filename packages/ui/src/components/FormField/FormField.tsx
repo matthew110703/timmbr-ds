@@ -48,7 +48,7 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
           <p
             id={`${id}-desc`}
             className={cn(
-              'text-xs mt-1 flex items-center gap-1.5',
+              'text-body-3 mt-1 flex items-center gap-1.5',
               isError ? 'text-destructive font-medium' : 'text-muted'
             )}
           >

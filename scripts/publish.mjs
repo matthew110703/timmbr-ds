@@ -28,6 +28,7 @@ const PUBLISHABLE_PACKAGES = {
   icons: { name: '@timmbr/icons', dir: 'packages/icons' },
   hooks: { name: '@timmbr/hooks', dir: 'packages/hooks' },
   utils: { name: '@timmbr/utils', dir: 'packages/utils' },
+  auth: { name: '@timmbr/auth', dir: 'packages/auth' },
 };
 
 // Aliases for full scoped names

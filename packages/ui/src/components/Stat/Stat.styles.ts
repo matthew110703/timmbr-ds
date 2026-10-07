@@ -17,19 +17,19 @@ export const statVariants = cva(
 );
 
 export const statLabelVariants = cva(
-  'text-xs font-semibold text-muted-foreground uppercase tracking-wider select-none'
+  'text-body-3 font-semibold text-muted-foreground uppercase tracking-wider select-none'
 );
 
 export const statValueVariants = cva(
-  'text-3xl font-display font-semibold text-foreground tracking-tight'
+  'text-h3 font-semibold text-foreground tracking-tight'
 );
 
 export const statHelpTextVariants = cva(
-  'flex items-center gap-1.5 text-xs text-muted-foreground mt-1'
+  'flex items-center gap-1.5 text-body-3 text-muted-foreground mt-1'
 );
 
 export const statIndicatorVariants = cva(
-  'inline-flex items-center gap-1 font-semibold text-xs',
+  'inline-flex items-center gap-1 font-semibold text-body-3',
   {
     variants: {
       type: {

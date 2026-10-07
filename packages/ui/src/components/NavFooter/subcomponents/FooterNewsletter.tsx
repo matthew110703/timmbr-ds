@@ -56,25 +56,25 @@ export const FooterNewsletter: React.FC<FooterNewsletterProps> = ({
       data-slot="footer-newsletter"
     >
       {title && (
-        <div className="font-title text-xs font-semibold text-[#D39375] uppercase tracking-[0.14em]">
+        <div className="font-title! text-body-3 font-semibold text-primary-200 uppercase tracking-[0.14em]">
           {title}
         </div>
       )}
 
       {description && (
-        <p className="text-sm font-sans text-[#B7AEA2] m-0 leading-relaxed">
+        <p className="text-body-2 text-sand-muted m-0 leading-relaxed">
           {description}
         </p>
       )}
 
       {currentStatus === 'success' ? (
-        <div className="flex items-center gap-2 p-3 rounded-lg bg-[#4E8752]/20 border border-[#4E8752]/40 text-[#4E8752] text-sm font-sans">
+        <div className="flex items-center gap-2 p-3 rounded-lg bg-success/20 border border-success/40 text-success text-body-2">
           <CheckCircle size={18} className="shrink-0" />
           <span>{successMessage}</span>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-          <div className="flex items-center rounded-lg bg-black/40 border border-white/15 focus-within:border-[#D39375] focus-within:ring-2 focus-within:ring-[#D39375]/30 transition-all p-1">
+          <div className="flex items-center rounded-lg bg-grey-1000/40 border border-grey-50/15 focus-within:border-primary-200 focus-within:ring-2 focus-within:ring-primary-200/30 transition-all p-1">
             <input
               type="email"
               value={email}
@@ -85,13 +85,13 @@ export const FooterNewsletter: React.FC<FooterNewsletterProps> = ({
               placeholder={placeholder}
               required
               disabled={currentStatus === 'loading'}
-              className="flex-1 bg-transparent px-3 py-2 text-sm text-[#F7F1E6] placeholder-[#B7AEA2]/60 focus:outline-none disabled:opacity-50"
+              className="flex-1 bg-transparent px-3 py-2 text-body-2 text-bg-2 placeholder:text-sand-muted/60 focus:outline-none disabled:opacity-50"
               data-slot="footer-newsletter-input"
             />
             <button
               type="submit"
               disabled={currentStatus === 'loading' || !email}
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-md bg-[#D39375] text-[#1A1714] font-title text-xs font-semibold uppercase tracking-wider hover:bg-[#D39375]/90 transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shrink-0"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-md bg-primary-200 text-surface-dark font-title! text-body-3 font-semibold uppercase tracking-wider hover:bg-primary-200/90 transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shrink-0"
               data-slot="footer-newsletter-button"
             >
               {currentStatus === 'loading' ? (
@@ -106,7 +106,7 @@ export const FooterNewsletter: React.FC<FooterNewsletterProps> = ({
           </div>
 
           {currentStatus === 'error' && (
-            <div className="flex items-center gap-1.5 text-xs text-red-400">
+            <div className="flex items-center gap-1.5 text-body-3 text-destructive">
               <AlertCircle size={14} className="shrink-0" />
               <span>{errorMessage}</span>
             </div>

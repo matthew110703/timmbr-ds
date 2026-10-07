@@ -6,17 +6,17 @@ export const textareaVariants = cva(
     variants: {
       variant: {
         outline:
-          'border-grey-300 dark:border-grey-700 bg-white dark:bg-grey-900 focus:border-primary focus:ring-1 focus:ring-primary',
+          'border-grey-300 dark:border-grey-700 bg-grey-50 dark:bg-grey-900 focus:border-primary focus:ring-1 focus:ring-primary',
         filled:
-          'border-transparent bg-grey-100 dark:bg-grey-800 focus:bg-white dark:focus:bg-grey-900 focus:border-primary focus:ring-1 focus:ring-primary',
+          'border-transparent bg-grey-100 dark:bg-grey-800 focus:bg-grey-50 dark:focus:bg-grey-900 focus:border-primary focus:ring-1 focus:ring-primary',
         subtle:
           'border-grey-200 dark:border-grey-800 bg-grey-50 dark:bg-grey-900/50 focus:border-primary focus:ring-1 focus:ring-primary',
       },
       size: {
-        sm: 'p-2 text-xs min-h-[72px]',
-        default: 'p-3 text-sm min-h-[96px]',
-        md: 'p-3 text-sm min-h-[96px]',
-        lg: 'p-4 text-base min-h-[120px]',
+        sm: 'p-2 text-body-3 min-h-[72px]',
+        default: 'p-3 text-body-2 min-h-[96px]',
+        md: 'p-3 text-body-2 min-h-[96px]',
+        lg: 'p-4 text-body-1 min-h-[120px]',
       },
       resize: {
         none: 'resize-none',

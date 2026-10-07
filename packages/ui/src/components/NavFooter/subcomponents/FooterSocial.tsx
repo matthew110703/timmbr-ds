@@ -27,7 +27,7 @@ export const FooterSocial: React.FC<FooterSocialProps> = ({
   return (
     <div className={cn('flex flex-col gap-3', className)} data-slot="footer-social">
       {title && (
-        <div className="text-xs font-semibold text-[#D39375] uppercase tracking-[0.14em] font-title">
+        <div className="text-body-3 font-semibold text-primary-200 uppercase tracking-[0.14em] font-title!">
           {title}
         </div>
       )}
@@ -36,7 +36,7 @@ export const FooterSocial: React.FC<FooterSocialProps> = ({
         {links.map((link) => {
           const platformKey = link.name.toLowerCase();
           const iconElement = link.icon ?? DefaultSocialIcons[platformKey] ?? (
-            <span className="text-sm uppercase font-bold">{link.name.slice(0, 2)}</span>
+            <span className="text-body-2 uppercase font-bold">{link.name.slice(0, 2)}</span>
           );
 
           const defaultAria = `Follow us on ${link.name.charAt(0).toUpperCase() + link.name.slice(1)}`;
@@ -55,7 +55,7 @@ export const FooterSocial: React.FC<FooterSocialProps> = ({
               whileTap={shouldAnimate ? 'tap' : undefined}
               className={cn(
                 footerSocialButtonVariants(),
-                'relative p-1.5 text-[#D39375] hover:text-[#F7F1E6] transition-colors',
+                'relative p-1.5 text-primary-200 hover:text-bg-2 transition-colors',
                 motionClass,
                 link.className
               )}

@@ -95,7 +95,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && !floating && (
           <label
             htmlFor={id}
-            className="text-xs font-semibold text-foreground tracking-wide select-none text-left"
+            className="text-body-3 font-semibold text-foreground tracking-wide select-none text-left"
           >
             {label}
           </label>
@@ -108,8 +108,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
               className={cn(
                 'absolute pointer-events-none transition-all duration-200 select-none z-10 truncate max-w-[calc(100%-24px)]',
                 isFloatingActive
-                  ? '-top-2.5 left-2.5 px-1 bg-white dark:bg-grey-900 text-[11px] font-semibold leading-none rounded-xs'
-                  : 'top-3 left-3 text-sm text-muted-foreground leading-none'
+                  ? '-top-2.5 left-2.5 px-1 bg-grey-50 dark:bg-grey-900 text-caption-lg font-semibold leading-none rounded-xs'
+                  : 'top-3 left-3 text-body-2 text-muted-foreground leading-none'
               )}
               style={{
                 color: isFloatingActive
@@ -162,7 +162,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             <p
               id={`${id}-desc`}
               className={cn(
-                'text-xs mt-1 flex items-center gap-1.5 flex-1',
+                'text-body-3 mt-1 flex items-center gap-1.5 flex-1',
                 isError ? 'text-destructive font-medium' : 'text-muted'
               )}
             >
@@ -178,7 +178,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           )}
 
           {showCount && maxLength && (
-            <span className="text-[11px] font-mono text-muted shrink-0 select-none">
+            <span className="text-caption-lg tabular-nums text-muted shrink-0 select-none">
               {currentValue.length}/{maxLength}
             </span>
           )}

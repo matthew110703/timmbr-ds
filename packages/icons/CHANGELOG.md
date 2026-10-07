@@ -1,5 +1,16 @@
 # @timmbr/icons
 
+## 1.3.0
+
+### Minor Changes
+
+- Add `GoogleIcon`, `AppleIcon` and `GitHubIcon` brand icons (accept all SVG props; `aria-hidden` by default). `GoogleIcon` keeps Google's official brand colours; Apple and GitHub use `currentColor`.
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/utils@1.3.0
+
 ## 1.2.1
 
 ### Patch Changes
