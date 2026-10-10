@@ -10,6 +10,8 @@ import type { MediaCardMediaVariants, MediaCardVariants } from './MediaCard.styl
 export interface MediaCardLinkProps {
   href: string;
   className?: string;
+  /** Native hover text (the card's `fullTitle`). */
+  title?: string;
   children: React.ReactNode;
 }
 
@@ -58,6 +60,13 @@ export interface MediaCardProps
   /** Small line above the title (category, options, brand…). */
   eyebrow?: React.ReactNode;
   title: React.ReactNode;
+  /**
+   * Full title shown by the browser on hover (the HTML `title` attribute), so a
+   * clamped title can still be read. Defaults to `title` when it is a string.
+   * Set on the title link when there is an `href` (it covers the whole card),
+   * otherwise on the title element.
+   */
+  fullTitle?: string;
   subtitle?: React.ReactNode;
   /** Small details under the title (attributes, quantity, dates…). */
   meta?: React.ReactNode;

@@ -62,4 +62,19 @@ describe('MediaCard', () => {
     expect(screen.getByText('1+ Options')).toHaveAttribute('data-slot', 'media-card-eyebrow');
     expect(screen.getByRole('heading', { name: 'Bed' }).className).toContain('text-body-2');
   });
+
+  it('puts the full title in the native title attribute (link or title element)', () => {
+    render(
+      <>
+        <MediaCard title="Søren Mid-Century 3-Seater Sofa" href="/products/soren" />
+        <MediaCard title="Oak bed" />
+        <MediaCard title={<span>Custom</span>} fullTitle="Custom title" />
+      </>
+    );
+    const link = screen.getByRole('link', { name: 'Søren Mid-Century 3-Seater Sofa' });
+    expect(link).toHaveAttribute('title', 'Søren Mid-Century 3-Seater Sofa');
+    expect(link.closest('[data-slot=media-card-title]')).not.toHaveAttribute('title');
+    expect(screen.getByRole('heading', { name: 'Oak bed' })).toHaveAttribute('title', 'Oak bed');
+    expect(screen.getByRole('heading', { name: 'Custom' })).toHaveAttribute('title', 'Custom title');
+  });
 });

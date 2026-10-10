@@ -7,8 +7,8 @@ import type { MediaCardLinkProps, MediaCardProps } from './MediaCard.types';
 const PRESET_RATIOS = ['square', 'portrait', 'landscape'] as const;
 type PresetRatio = (typeof PRESET_RATIOS)[number];
 
-const DefaultLink = ({ href, className, children }: MediaCardLinkProps) => (
-  <a href={href} className={className}>
+const DefaultLink = ({ href, className, title, children }: MediaCardLinkProps) => (
+  <a href={href} className={className} title={title}>
     {children}
   </a>
 );
@@ -40,6 +40,7 @@ export const MediaCard = React.forwardRef<HTMLElement, MediaCardProps>(
       spacing = 'compact',
       eyebrow,
       title,
+      fullTitle = typeof title === 'string' ? title : undefined,
       subtitle,
       meta,
       aside,
@@ -124,9 +125,10 @@ export const MediaCard = React.forwardRef<HTMLElement, MediaCardProps>(
                   titleClassName
                 )}
                 data-slot="media-card-title"
+                title={href ? undefined : fullTitle}
               >
                 {href ? (
-                  <Link href={href} className={STRETCHED_LINK}>
+                  <Link href={href} className={STRETCHED_LINK} title={fullTitle}>
                     {title}
                   </Link>
                 ) : (
