@@ -21,6 +21,9 @@ export const linkButtonVariants = cva(
           'bg-destructive text-grey-50 hover:bg-destructive/90 hover:brightness-105 hover:shadow-md active:brightness-95 shadow-sm active:scale-[0.98] font-semibold whitespace-nowrap',
         muted:
           'text-grey-600 dark:text-grey-400 hover:text-foreground underline-offset-4 hover:underline font-normal p-0 h-auto active:scale-100',
+        /** "‹ Back" links: muted, no underline, 44px touch target, optically aligned to the edge. */
+        back:
+          '-ms-1 min-h-11 text-muted-foreground hover:text-foreground font-medium p-0 active:scale-100',
         subtle:
           'text-foreground/80 hover:text-foreground underline-offset-4 hover:underline font-normal p-0 h-auto active:scale-100',
       },
@@ -34,6 +37,10 @@ export const linkButtonVariants = cva(
       disabled: {
         true: 'pointer-events-none opacity-50 cursor-not-allowed',
         false: 'cursor-pointer',
+      },
+      fullWidth: {
+        true: 'w-full',
+        false: '',
       },
     },
     compoundVariants: [

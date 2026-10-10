@@ -127,6 +127,9 @@ importers:
       '@timmbr/hooks':
         specifier: workspace:*
         version: link:../hooks
+      '@timmbr/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@timmbr/ui':
         specifier: workspace:*
         version: link:../ui

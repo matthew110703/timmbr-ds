@@ -5,7 +5,7 @@ import { Sparkles, ChevronRight, Check } from '@timmbr/icons';
 import { Badge } from '../Badge';
 
 const meta: Meta<typeof List> = {
-  title: 'Data/List',
+  title: 'Data Display/List',
   component: List,
   tags: ['autodocs'],
   argTypes: {

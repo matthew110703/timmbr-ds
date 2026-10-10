@@ -3,7 +3,7 @@ import { Sparkles, Check, AlertCircle } from '@timmbr/icons';
 import { Badge } from './Badge';
 
 const meta: Meta<typeof Badge> = {
-  title: 'Components & Data/Badge',
+  title: 'Data Display/Badge',
   component: Badge,
   parameters: {
     layout: 'centered',

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@timmbr/utils';
-import { formatGap } from '../../utils/gap';
+import { formatAxisGap, formatGap } from '../../utils/gap';
 import { inlineVariants } from './Inline.styles';
 import type { InlineProps } from './Inline.types';
 
@@ -13,6 +13,8 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
       className,
       style,
       gap = 3,
+      rowGap,
+      colGap,
       align = 'center',
       justify = 'start',
       wrap = true,
@@ -44,7 +46,13 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
         data-slot="inline"
         data-testid="timmbr-inline"
         style={style}
-        className={cn(inlineVariants({ align, justify, wrap }), gapClass, className)}
+        className={cn(
+          inlineVariants({ align, justify, wrap }),
+          gapClass,
+          formatAxisGap('y', rowGap),
+          formatAxisGap('x', colGap),
+          className
+        )}
         {...props}
       >
         {renderChildren()}

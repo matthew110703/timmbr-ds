@@ -76,7 +76,7 @@ function StoryModalWrapper({
 }
 
 const meta: Meta<typeof AuthModal> = {
-  title: 'Overlays & Navigation/AuthModal',
+  title: 'Overlays/AuthModal',
   component: AuthModal,
   tags: ['autodocs'],
   parameters: {

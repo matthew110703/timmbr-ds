@@ -58,4 +58,21 @@ export {
   Film,
   Video,
   Maximize2,
+  // Account & orders
+  Truck,
+  MapPin,
+  Lock,
+  Pencil,
+  Receipt,
+  ShoppingBag,
+  ShieldCheck,
+  // Product cards, addresses & security
+  Star,
+  Palette,
+  LocateFixed,
+  KeyRound,
+  Smartphone,
+  MessageSquareText,
+  Mail,
+  MonitorSmartphone,
 } from 'lucide-react';

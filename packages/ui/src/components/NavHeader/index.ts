@@ -7,6 +7,7 @@ export type {
   NavSearchConfig,
   PopularSearchTag,
   NavActionItem,
+  NavActionMenuItem,
 } from './NavHeader.types';
 
 export { useNavHeaderContext } from './NavHeader.context';

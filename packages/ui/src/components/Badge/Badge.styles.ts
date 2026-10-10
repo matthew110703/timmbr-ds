@@ -13,6 +13,8 @@ export const badgeVariants = cva(
         subtle: 'bg-bg-subtle text-foreground',
         success: 'bg-success text-grey-50',
         destructive: 'bg-destructive text-grey-50',
+        warning: 'bg-warning text-warning-foreground',
+        info: 'bg-info text-info-foreground',
       },
       size: {
         sm: 'px-1.5 py-0.5 text-body-3',

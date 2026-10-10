@@ -4,7 +4,7 @@ import { TimmbrConfigProvider } from '../../providers';
 import { LinkButton } from './LinkButton';
 
 const meta: Meta<typeof LinkButton> = {
-  title: 'Components & Data/LinkButton',
+  title: 'Actions/LinkButton',
   component: LinkButton,
   parameters: {
     layout: 'centered',

@@ -39,6 +39,8 @@ export interface TextProps
     | 'primary'
     | 'secondary'
     | 'destructive'
+    | 'success'
+    | 'warning'
     | 'white'
     | 'inherit';
 }

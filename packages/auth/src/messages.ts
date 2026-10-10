@@ -20,6 +20,8 @@ export interface AuthMessages {
     /** Header label when signed in but the user has no usable name */
     accountFallback: string;
     accountAriaLabel: (name: string) => string;
+    /** Header menu entry that signs out */
+    logout: string;
   };
   /** Messages keyed by timmbr-core error `code`. */
   errors: {
@@ -66,6 +68,7 @@ export const DEFAULT_AUTH_MESSAGES: AuthMessages = {
     loginAriaLabel: 'Log in or create an account',
     accountFallback: 'ACCOUNT',
     accountAriaLabel: (name) => `My account – ${name}`,
+    logout: 'Log out',
   },
   errors: {
     INVALID_IDENTIFIER: 'Please enter a valid email address or 10-digit mobile number.',

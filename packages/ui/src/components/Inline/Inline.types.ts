@@ -1,5 +1,6 @@
 import type * as React from 'react';
 import type { InlineVariants } from './Inline.styles';
+import type { GapValue } from '../../utils/gap';
 
 export interface InlineProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'gap'>,
@@ -7,7 +8,11 @@ export interface InlineProps
   /**
    * Gap between items. Translates standard Tailwind tokens, any number (px), or custom string.
    */
-  gap?: number | string;
+  gap?: GapValue;
+  /** Gap between wrapped lines (overrides `gap` vertically). */
+  rowGap?: GapValue;
+  /** Gap between items on a line (overrides `gap` horizontally). */
+  colGap?: GapValue;
   /**
    * Optional divider element rendered between each inline child.
    */

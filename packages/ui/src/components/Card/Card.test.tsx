@@ -62,4 +62,41 @@ describe('Card Component', () => {
     expect(card).toHaveClass('custom-card-class');
     expect(card).toHaveStyle({ padding: '24px' });
   });
+
+  it('sectioned: padding moves to the parts, dividers run edge to edge', () => {
+    render(
+      <Card sectioned padding="sm" data-testid="card">
+        <CardHeader divider data-testid="header" actions={<button type="button">Act</button>}>
+          <CardTitle>Order #1</CardTitle>
+        </CardHeader>
+        <CardContent data-testid="content">Body</CardContent>
+        <CardFooter justify="start" data-testid="footer">Footer</CardFooter>
+      </Card>
+    );
+    expect(screen.getByTestId('card').className).toContain('p-0');
+    const header = screen.getByTestId('header');
+    expect(header.className).toContain('p-4');
+    expect(header.className).toContain('border-b');
+    expect(header.className).not.toContain('mb-4');
+    expect(header.querySelector('[data-slot=card-header-actions]')).toHaveTextContent('Act');
+    expect(screen.getByTestId('content').className).toContain('p-4');
+    const footer = screen.getByTestId('footer');
+    expect(footer.className).toContain('px-4');
+    expect(footer.className).toContain('justify-start');
+    expect(footer.className).not.toContain('mt-4');
+  });
+
+  it('supports selected, inset and a readable description', () => {
+    render(
+      <>
+        <Card selected data-testid="selected" />
+        <Card variant="inset" data-testid="inset" />
+        <CardDescription>Desc</CardDescription>
+      </>
+    );
+    expect(screen.getByTestId('selected').className).toContain('border-primary/50');
+    expect(screen.getByTestId('selected')).toHaveAttribute('data-selected');
+    expect(screen.getByTestId('inset').className).toContain('bg-bg-subtle');
+    expect(screen.getByText('Desc').className).toContain('text-muted-foreground');
+  });
 });

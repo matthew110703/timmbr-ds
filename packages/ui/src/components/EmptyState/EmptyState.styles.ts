@@ -16,6 +16,11 @@ export const emptyStateVariants = cva(
         default: 'py-10 px-6 max-w-md',
         lg: 'py-16 px-8 max-w-lg',
       },
+      /** Fill the container instead of the size's max width. */
+      fullWidth: {
+        true: 'w-full max-w-none',
+        false: '',
+      },
     },
     defaultVariants: {
       variant: 'default',

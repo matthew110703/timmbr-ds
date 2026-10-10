@@ -1,5 +1,6 @@
 // Types & Motion Primitives
 export * from './types/motion';
+export type { GapValue, ResponsiveGap } from './utils/gap';
 
 // Providers & Configuration
 export * from './providers';
@@ -28,6 +29,7 @@ export * from './components/OtpInput';
 export * from './components/AlertDialog';
 export * from './components/Dialog';
 export * from './components/Drawer';
+export * from './components/ResponsiveDialog';
 export * from './components/Dropdown';
 export * from './components/Popover';
 export * from './components/Toast';
@@ -64,3 +66,14 @@ export * from './components/DataList';
 export * from './components/List';
 export * from './components/Chip';
 export * from './components/Stat';
+export * from './components/SubNav';
+export * from './components/PageHeader';
+export * from './components/Stepper';
+export * from './components/MediaCard';
+export * from './components/Price';
+export * from './components/Rating';
+export * from './components/IconTile';
+export * from './components/VisuallyHidden';
+export * from './components/Fieldset';
+export * from './components/FormActions';
+export * from './components/ConfirmDialog';

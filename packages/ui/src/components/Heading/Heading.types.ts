@@ -36,6 +36,8 @@ export interface HeadingProps
     | 'primary'
     | 'secondary'
     | 'destructive'
+    | 'success'
+    | 'warning'
     | 'white'
     | 'inherit';
   /**

@@ -45,7 +45,21 @@ describe('DataList Component', () => {
       </DataList>
     );
 
+    // Horizontal rows stack on small screens: the width applies from `sm` up.
     const dt = screen.getByText('Fixed Label');
-    expect(dt).toHaveStyle({ minWidth: '150px' });
+    expect(dt.style.getPropertyValue('--data-list-label-min')).toBe('150px');
+    expect(dt.className).toContain('sm:min-w-[var(--data-list-label-min)]');
+  });
+
+  it('keeps minWidth at every size in vertical lists', () => {
+    render(
+      <DataList orientation="vertical">
+        <DataListItem>
+          <DataListLabel minWidth="10rem">Vertical Label</DataListLabel>
+          <DataListValue>Value</DataListValue>
+        </DataListItem>
+      </DataList>
+    );
+    expect(screen.getByText('Vertical Label')).toHaveStyle({ minWidth: '10rem' });
   });
 });

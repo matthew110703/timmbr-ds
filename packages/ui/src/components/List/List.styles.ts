@@ -4,7 +4,7 @@ export const listVariants = cva('w-full font-sans text-foreground', {
   variants: {
     variant: {
       default: '',
-      bordered: 'border border-grey-200 dark:border-grey-800 rounded-lg overflow-hidden',
+      bordered: 'border border-grey-200 dark:border-grey-800 rounded-lg overflow-hidden bg-card',
       divided: 'divide-y divide-grey-200 dark:divide-grey-800',
     },
   },
@@ -12,6 +12,9 @@ export const listVariants = cva('w-full font-sans text-foreground', {
     variant: 'default',
   },
 });
+
+/** Lines between items; combines with any `variant` (e.g. bordered + divided). */
+export const listDividedClass = 'divide-y divide-border';
 
 export const listItemVariants = cva(
   'relative flex items-center gap-3 transition-colors font-sans select-none',
@@ -23,7 +26,7 @@ export const listItemVariants = cva(
         lg: 'py-4 px-5 text-body-1',
       },
       interactive: {
-        true: 'cursor-pointer hover:bg-grey-100/70 dark:hover:bg-grey-800/60 active:bg-grey-200/50',
+        true: 'cursor-pointer hover:bg-grey-100/70 dark:hover:bg-grey-800/60 active:bg-grey-200/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring',
         false: '',
       },
     },

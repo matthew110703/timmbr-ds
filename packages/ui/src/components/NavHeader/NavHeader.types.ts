@@ -125,6 +125,23 @@ export interface NavSearchConfig {
 }
 
 /**
+ * One entry of a header action's dropdown menu (see `NavActionItem.menu`).
+ * Provide `href` for a link (rendered as a plain `<a>`, so it works across
+ * zones) or `onSelect` for an action.
+ */
+export interface NavActionMenuItem {
+  id: string;
+  label: React.ReactNode;
+  href?: string;
+  onSelect?: () => void;
+  icon?: React.ReactNode;
+  /** Styles the entry as destructive (e.g. "Log out"). */
+  destructive?: boolean;
+  /** Draws a separator above this entry. */
+  separatorBefore?: boolean;
+}
+
+/**
  * Header action item (e.g. Profile, Wishlist, Cart, Notifications).
  */
 export interface NavActionItem {
@@ -162,6 +179,12 @@ export interface NavActionItem {
    * header doesn't shift when the text swaps.
    */
   labelClassName?: string;
+  /**
+   * Desktop only: clicking the action opens this menu instead of following
+   * `href`. On mobile and in the "more" overflow the action stays a plain
+   * link to `href`, so keep `href` set as the fallback.
+   */
+  menu?: NavActionMenuItem[];
   /** Optional custom renderer for complex items */
   render?: (props: { item: NavActionItem; isOverflow: boolean }) => React.ReactNode;
 }

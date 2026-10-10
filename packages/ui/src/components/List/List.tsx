@@ -1,9 +1,11 @@
 'use client';
 
 import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@timmbr/utils';
 import {
   listVariants,
+  listDividedClass,
   listItemVariants,
   listItemIconVariants,
   listItemTextVariants,
@@ -18,11 +20,11 @@ import type {
 } from './List.types';
 
 export const List = React.forwardRef<HTMLUListElement, ListProps>(
-  ({ className, variant, ...props }, ref) => (
+  ({ className, variant, divided = false, ...props }, ref) => (
     <ul
       ref={ref}
       data-slot="list"
-      className={cn(listVariants({ variant }), className)}
+      className={cn(listVariants({ variant }), divided && listDividedClass, className)}
       {...props}
     />
   )
@@ -30,7 +32,22 @@ export const List = React.forwardRef<HTMLUListElement, ListProps>(
 List.displayName = 'List';
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
-  ({ className, density, interactive, clickable, onClick, ...props }, ref) => {
+  ({ className, density, interactive, clickable, onClick, asChild = false, children, ...props }, ref) => {
+    if (asChild) {
+      // The child (e.g. a link) is the interactive row; the <li> keeps list semantics.
+      return (
+        <li ref={ref} data-slot="list-item" className="list-none">
+          <Slot
+            className={cn(listItemVariants({ density, interactive: true }), className)}
+            onClick={onClick}
+            {...(props as React.HTMLAttributes<HTMLElement>)}
+          >
+            {children}
+          </Slot>
+        </li>
+      );
+    }
+
     const isInteractive = interactive || clickable || !!onClick;
 
     return (
@@ -45,7 +62,9 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
           className
         )}
         {...props}
-      />
+      >
+        {children}
+      </li>
     );
   }
 );

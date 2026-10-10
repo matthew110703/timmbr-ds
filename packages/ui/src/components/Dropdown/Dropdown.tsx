@@ -6,7 +6,7 @@ import { cn } from '@timmbr/utils';
 import { Check, ChevronRight } from '@timmbr/icons';
 import { useGlobalAnimation } from '../../providers';
 import { resolveMotion } from '../../types/motion';
-import { dropdownContentVariants, dropdownItemVariants } from './Dropdown.styles';
+import { dropdownContentVariants, dropdownItemIconVariants, dropdownItemVariants } from './Dropdown.styles';
 import type {
   DropdownMenuProps,
   DropdownMenuContentProps,
@@ -85,14 +85,40 @@ DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 export const DropdownMenuItem = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.Item>,
   DropdownMenuItemProps
->(({ className, inset, ...props }, ref) => (
-  <DropdownMenuPrimitive.Item
-    ref={ref}
-    data-slot="dropdown-item"
-    className={cn(dropdownItemVariants(), inset && 'pl-8', className)}
-    {...props}
-  />
-));
+>(({ className, inset, icon, destructive, asChild, children, ...props }, ref) => {
+  const iconNode = icon ? (
+    <span data-slot="dropdown-item-icon" aria-hidden="true" className={dropdownItemIconVariants()}>
+      {icon}
+    </span>
+  ) : null;
+
+  // With asChild the child (e.g. a link) is the item, so the icon goes inside it.
+  let content: React.ReactNode = children;
+  if (iconNode) {
+    content =
+      asChild && React.isValidElement<{ children?: React.ReactNode }>(children)
+        ? React.cloneElement(children, undefined, iconNode, children.props.children)
+        : (
+          <>
+            {iconNode}
+            {children}
+          </>
+        );
+  }
+
+  return (
+    <DropdownMenuPrimitive.Item
+      ref={ref}
+      asChild={asChild}
+      data-slot="dropdown-item"
+      data-destructive={destructive ? '' : undefined}
+      className={cn(dropdownItemVariants({ destructive }), icon && 'gap-2', inset && 'pl-8', className)}
+      {...props}
+    >
+      {content}
+    </DropdownMenuPrimitive.Item>
+  );
+});
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
 export const DropdownMenuCheckboxItem = React.forwardRef<

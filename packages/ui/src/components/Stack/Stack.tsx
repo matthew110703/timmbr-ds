@@ -7,12 +7,32 @@ import { formatGap } from '../../utils/gap';
 import { stackVariants } from './Stack.styles';
 import type { StackProps } from './Stack.types';
 
+const DIRECTION = {
+  base: { column: 'flex-col', row: 'flex-row' },
+  sm: { column: 'sm:flex-col', row: 'sm:flex-row' },
+  md: { column: 'md:flex-col', row: 'md:flex-row' },
+  lg: { column: 'lg:flex-col', row: 'lg:flex-row' },
+} as const;
+
+function directionClasses(direction: StackProps['direction']): string | undefined {
+  if (!direction) return undefined;
+  if (typeof direction === 'string') return DIRECTION.base[direction];
+  return (Object.keys(DIRECTION) as (keyof typeof DIRECTION)[])
+    .map((bp) => {
+      const value = direction[bp];
+      return value ? DIRECTION[bp][value] : undefined;
+    })
+    .filter(Boolean)
+    .join(' ');
+}
+
 export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
   (
     {
       className,
       style,
       gap = 4,
+      direction,
       align = 'stretch',
       justify = 'start',
       divider,
@@ -43,7 +63,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
         data-slot="stack"
         data-testid="timmbr-stack"
         style={style}
-        className={cn(stackVariants({ align, justify }), gapClass, className)}
+        className={cn(stackVariants({ align, justify }), directionClasses(direction), gapClass, className)}
         {...props}
       >
         {renderChildren()}

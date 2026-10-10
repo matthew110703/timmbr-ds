@@ -10,6 +10,13 @@ import { NavActionLabelSkeleton } from './NavActionLabelSkeleton';
 import type { NavActionItem } from '../NavHeader.types';
 import { resolveNavDestination, isCrossZoneNavigation } from '../NavHeader.helpers';
 import { NavActionOverflow } from './NavActionOverflow';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '../../Dropdown';
 
 /**
  * Profile label slot: sized to its text, so gaps stay even, but
@@ -33,6 +40,11 @@ export interface NavActionsProps {
   shouldAnimate?: boolean;
   motionClass?: string;
   linkComponent?: React.ComponentType<any>;
+  /**
+   * Let actions with a `menu` open it. NavHeader enables this for the
+   * desktop bar only; elsewhere those actions stay plain links.
+   */
+  enableMenus?: boolean;
 }
 
 export const NavActions: React.FC<NavActionsProps> = ({
@@ -49,6 +61,7 @@ export const NavActions: React.FC<NavActionsProps> = ({
   shouldAnimate = true,
   motionClass,
   linkComponent: CustomLink,
+  enableMenus = false,
 }) => {
   const config = useTimmbrConfig();
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -131,6 +144,7 @@ export const NavActions: React.FC<NavActionsProps> = ({
       isLoading: profileAction?.isLoading,
       // LOGIN / skeleton / first name share one fixed-width slot: no layout shift
       labelClassName: profileAction?.labelClassName ?? PROFILE_LABEL_CLASS,
+      menu: profileAction?.menu,
     });
 
     return [...customItems, ...defaultItems];
@@ -289,6 +303,38 @@ export const NavActions: React.FC<NavActionsProps> = ({
           motionClass,
           item.className
         );
+
+        if (enableMenus && item.menu?.length && !item.isLoading && !item.disabled) {
+          return (
+            <DropdownMenu key={item.id} modal={false}>
+              <DropdownMenuTrigger asChild>
+                <button
+                  type="button"
+                  aria-label={item.ariaLabel}
+                  className={actionClass}
+                  data-slot="nav-action-menu-trigger"
+                >
+                  {content}
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-48" data-slot="nav-action-menu">
+                {item.menu.map((entry) => (
+                  <React.Fragment key={entry.id}>
+                    {entry.separatorBefore && <DropdownMenuSeparator />}
+                    <DropdownMenuItem
+                      asChild={Boolean(entry.href)}
+                      onSelect={entry.onSelect}
+                      icon={entry.icon}
+                      destructive={entry.destructive}
+                    >
+                      {entry.href ? <a href={entry.href}>{entry.label}</a> : entry.label}
+                    </DropdownMenuItem>
+                  </React.Fragment>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          );
+        }
 
         if (resolvedHref && !item.disabled) {
           if (CustomLink && !requiresCrossZone) {

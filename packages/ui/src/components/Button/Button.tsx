@@ -16,6 +16,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       style,
       variant,
       size,
+      shape,
+      fullWidth,
       asChild = false,
       motion,
       leftIcon,
@@ -47,6 +49,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             buttonVariants({
               variant: resolvedVariant,
               size: resolvedSize,
+              shape,
+              fullWidth,
               className,
             }),
             !shouldAnimate && 'transition-none active:scale-100',
@@ -74,6 +78,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           buttonVariants({
             variant: resolvedVariant,
             size: resolvedSize,
+            shape,
+            fullWidth,
             className,
           }),
           !shouldAnimate && 'transition-none active:scale-100',

@@ -1,5 +1,12 @@
 # @timmbr/motion
 
+## 1.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/utils@1.4.0
+
 ## 1.2.1
 
 ### Patch Changes

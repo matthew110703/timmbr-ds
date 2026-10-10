@@ -11,7 +11,11 @@ export const AUTH_ROUTES = {
   otpVerify: { path: 'otp/verify', method: 'POST' },
   login: { path: 'login', method: 'POST' },
   passwordSet: { path: 'password/set', method: 'POST' },
+  /** Change a known password; signs out other devices, keeps this one. */
+  passwordChange: { path: 'password/change', method: 'POST' },
   logout: { path: 'logout', method: 'POST' },
+  /** Sign out on every device (revokes all sessions, clears this one). */
+  logoutAll: { path: 'logout-all', method: 'POST' },
   session: { path: 'session', method: 'GET' },
   banner: { path: 'banner', method: 'GET' },
   oauthStart: { path: 'oauth/start', method: 'GET' },

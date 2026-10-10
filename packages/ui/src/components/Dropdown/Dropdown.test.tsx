@@ -34,4 +34,5 @@ describe('DropdownMenu Component', () => {
     expect(screen.getByText('Option 1')).toBeInTheDocument();
     expect(screen.getByText('Option 2')).toBeInTheDocument();
   });
+
 });

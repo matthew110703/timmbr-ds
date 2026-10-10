@@ -37,4 +37,40 @@ describe('Tabs Component', () => {
     expect(screen.getByText('Content 2')).toBeInTheDocument();
     expect(screen.queryByText('Content 1')).not.toBeInTheDocument();
   });
+
+  it('shows round scroll buttons only at edges with more to scroll', async () => {
+    const { container } = render(
+      <Tabs defaultValue="a" variant="underline">
+        <TabsList scrollable scrollLabels={{ previous: 'Earlier', next: 'More' }}>
+          <TabsTrigger value="a">All</TabsTrigger>
+          <TabsTrigger value="b">Awaiting payment</TabsTrigger>
+        </TabsList>
+      </Tabs>
+    );
+    const list = container.querySelector('[data-slot=tabs-list]') as HTMLElement;
+    expect(list.className).toContain('overflow-x-auto');
+    // jsdom has no layout: fake a 300px row in a 120px viewport, scrolled to the start.
+    Object.defineProperty(list, 'scrollWidth', { configurable: true, value: 300 });
+    Object.defineProperty(list, 'clientWidth', { configurable: true, value: 120 });
+    list.dispatchEvent(new Event('scroll'));
+    expect(await screen.findByRole('button', { name: 'More' })).toHaveAttribute('data-slot', 'tabs-scroll-next');
+    expect(screen.queryByRole('button', { name: 'Earlier' })).toBeNull();
+
+    list.scrollLeft = 180;
+    list.dispatchEvent(new Event('scroll'));
+    expect(await screen.findByRole('button', { name: 'Earlier' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'More' })).toBeNull();
+  });
+
+  it('does not scroll or add buttons unless scrollable', () => {
+    const { container } = render(
+      <Tabs defaultValue="a">
+        <TabsList>
+          <TabsTrigger value="a">All</TabsTrigger>
+        </TabsList>
+      </Tabs>
+    );
+    expect(container.querySelector('[data-slot=tabs-scroll]')).toBeNull();
+    expect((container.querySelector('[data-slot=tabs-list]') as HTMLElement).className).not.toContain('overflow-x-auto');
+  });
 });

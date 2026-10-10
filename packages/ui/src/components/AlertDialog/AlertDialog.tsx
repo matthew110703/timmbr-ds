@@ -13,7 +13,9 @@ import {
   alertDialogFooterVariants,
   alertDialogTitleVariants,
   alertDialogDescriptionVariants,
+  alertDialogMediaVariants,
 } from './AlertDialog.styles';
+import { buttonVariants } from '../Button/Button.styles';
 import type {
   AlertDialogProps,
   AlertDialogContentProps,
@@ -22,6 +24,7 @@ import type {
   AlertDialogFooterProps,
   AlertDialogActionProps,
   AlertDialogCancelProps,
+  AlertDialogMediaProps,
 } from './AlertDialog.types';
 
 export const AlertDialog: React.FC<AlertDialogProps> = AlertDialogPrimitive.Root;
@@ -44,7 +47,7 @@ AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
 export const AlertDialogContent = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Content>,
   AlertDialogContentProps
->(({ className, children, motion, ...props }, ref) => {
+>(({ className, children, motion, size, ...props }, ref) => {
   const globalMotion = useGlobalAnimation();
   const { shouldAnimate, motionClass } = resolveMotion(motion, globalMotion);
 
@@ -57,7 +60,7 @@ export const AlertDialogContent = React.forwardRef<
           data-slot="alert-dialog-content"
           role="alertdialog"
           className={cn(
-            alertDialogContentVariants(),
+            alertDialogContentVariants({ size }),
             !shouldAnimate && 'transition-none animate-none',
             motionClass,
             className
@@ -76,6 +79,17 @@ export const AlertDialogHeader: React.FC<AlertDialogHeaderProps> = ({ className,
   <div data-slot="alert-dialog-header" className={cn(alertDialogHeaderVariants(), className)} {...props} />
 );
 AlertDialogHeader.displayName = 'AlertDialogHeader';
+
+/** Icon circle above the title, e.g. a warning for a destructive confirmation. */
+export const AlertDialogMedia: React.FC<AlertDialogMediaProps> = ({ className, tone, ...props }) => (
+  <div
+    data-slot="alert-dialog-media"
+    aria-hidden="true"
+    className={cn(alertDialogMediaVariants({ tone }), className)}
+    {...props}
+  />
+);
+AlertDialogMedia.displayName = 'AlertDialogMedia';
 
 export const AlertDialogBody: React.FC<AlertDialogBodyProps> = ({ className, ...props }) => (
   <div data-slot="alert-dialog-body" className={cn(alertDialogBodyVariants(), className)} {...props} />
@@ -116,11 +130,12 @@ AlertDialogDescription.displayName = AlertDialogPrimitive.Description.displayNam
 export const AlertDialogAction = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Action>,
   AlertDialogActionProps
->(({ className, ...props }, ref) => (
+>(({ className, variant = 'primary', size, asChild, ...props }, ref) => (
   <AlertDialogPrimitive.Action
     ref={ref}
+    asChild={asChild}
     data-slot="alert-dialog-action"
-    className={cn(className)}
+    className={cn(!asChild && buttonVariants({ variant, size }), className)}
     {...props}
   />
 ));
@@ -129,11 +144,12 @@ AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
 export const AlertDialogCancel = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Cancel>,
   AlertDialogCancelProps
->(({ className, ...props }, ref) => (
+>(({ className, variant = 'outline', size, asChild, ...props }, ref) => (
   <AlertDialogPrimitive.Cancel
     ref={ref}
+    asChild={asChild}
     data-slot="alert-dialog-cancel"
-    className={cn(className)}
+    className={cn(!asChild && buttonVariants({ variant, size }), className)}
     {...props}
   />
 ));

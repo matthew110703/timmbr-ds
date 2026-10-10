@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
 import { Card, CardHeader, CardTitle, CardContent } from '../Card';
 
 const meta: Meta<typeof Tabs> = {
-  title: 'Overlays & Navigation/Tabs',
+  title: 'Navigation/Tabs',
   component: Tabs,
   tags: ['autodocs'],
   decorators: [
@@ -133,5 +133,22 @@ export const Outline: Story = {
         <p className="text-sm text-muted-foreground pt-2">Board feet milled this month: 68,400 BF</p>
       </TabsContent>
     </Tabs>
+  ),
+};
+
+/** Narrow screens: `scrollable` lets the row scroll and shows round chevrons at the edges with more tabs. */
+export const Scrollable: Story = {
+  render: () => (
+    <div className="max-w-xs">
+      <Tabs defaultValue="all" variant="underline">
+        <TabsList scrollable>
+          {['All', 'Awaiting payment', 'In progress', 'Delivered', 'Cancelled & returned'].map((label) => (
+            <TabsTrigger key={label} value={label.toLowerCase()}>
+              {label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+    </div>
   ),
 };

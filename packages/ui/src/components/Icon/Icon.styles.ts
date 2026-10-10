@@ -1,7 +1,9 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const iconVariants = cva(
-  'inline-flex shrink-0 items-center justify-center transition-all leading-none',
+  // Child SVGs (`svg` prop or children) fill the icon box like `icon` does, so
+  // `<Icon><Truck /></Icon>` also works in Server Components (no function prop).
+  'inline-flex shrink-0 items-center justify-center transition-all leading-none [&>svg]:size-full',
   {
     variants: {
       size: {
@@ -13,11 +15,13 @@ export const iconVariants = cva(
       },
       foreground: {
         default: 'text-foreground',
-        muted: 'text-grey-600 dark:text-grey-400',
+        muted: 'text-muted-foreground',
         subtle: 'text-grey-500 dark:text-grey-500',
         primary: 'text-primary',
         secondary: 'text-secondary-foreground',
         destructive: 'text-destructive',
+        success: 'text-success',
+        warning: 'text-warning',
         white: 'text-grey-50',
         inherit: 'text-inherit',
       },

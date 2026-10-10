@@ -13,7 +13,7 @@ import {
 } from './index';
 
 const meta: Meta<typeof Table> = {
-  title: 'Data/Table',
+  title: 'Data Display/Table',
   component: Table,
   subcomponents: {
     TableHeader: TableHeader as React.ComponentType<any>,

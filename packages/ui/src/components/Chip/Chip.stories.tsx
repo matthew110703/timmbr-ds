@@ -4,7 +4,7 @@ import { Chip } from './Chip';
 import { Sparkles } from '@timmbr/icons';
 
 const meta: Meta<typeof Chip> = {
-  title: 'Data/Chip',
+  title: 'Data Display/Chip',
   component: Chip,
   tags: ['autodocs'],
   argTypes: {

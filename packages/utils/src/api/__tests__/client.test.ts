@@ -42,6 +42,31 @@ describe('ApiClient', () => {
     );
   });
 
+  it('getPaginated keeps the pagination meta that get() unwraps away', async () => {
+    const meta = { page: 2, limit: 10, total: 25, totalPages: 3, hasNextPage: true, hasPrevPage: true };
+    global.fetch = vi.fn().mockResolvedValue(
+      json({ success: true, statusCode: 200, data: [{ id: 'o1' }], meta })
+    );
+
+    const client = new ApiClient({ baseUrl: 'http://localhost:4000' });
+    const result = await client.getPaginated<{ id: string }>('/orders', { params: { page: 2 } });
+
+    expect(result).toEqual({ data: [{ id: 'o1' }], meta });
+    expect(global.fetch).toHaveBeenCalledWith(
+      'http://localhost:4000/api/v1/orders?page=2',
+      expect.objectContaining({ method: 'GET' })
+    );
+  });
+
+  it('getPaginated falls back to a single page when the API returns no meta', async () => {
+    global.fetch = vi.fn().mockResolvedValue(json({ success: true, statusCode: 200, data: [{ id: 1 }, { id: 2 }] }));
+
+    const client = new ApiClient({ baseUrl: 'http://localhost:4000' });
+    const { meta } = await client.getPaginated('/things');
+
+    expect(meta).toMatchObject({ page: 1, total: 2, totalPages: 1, hasNextPage: false });
+  });
+
   it('returns null for an empty JSON body', async () => {
     global.fetch = vi.fn().mockResolvedValue(
       new Response('', { status: 200, headers: { 'content-type': 'application/json' } })

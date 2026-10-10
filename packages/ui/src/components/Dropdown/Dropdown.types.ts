@@ -15,4 +15,8 @@ export interface DropdownMenuContentProps
 export interface DropdownMenuItemProps
   extends React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> {
   inset?: boolean;
+  /** Leading icon (also placed inside an `asChild` link). */
+  icon?: React.ReactNode;
+  /** Destructive action (e.g. Log out, Delete): red text and highlight. */
+  destructive?: boolean;
 }

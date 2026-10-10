@@ -47,6 +47,23 @@ export const authApi = {
     return bff.post<null>(authRoutePath('logout'), undefined, AUTH_REQUEST);
   },
 
+  /** Sign out on every device. */
+  logoutAll() {
+    return bff.post<null>(authRoutePath('logoutAll'), undefined, AUTH_REQUEST);
+  },
+
+  /**
+   * Change the password. Other devices are signed out; this one gets a fresh
+   * session (the BFF signs back in with the new password).
+   */
+  changePassword(currentPassword: string, newPassword: string) {
+    return bff.post<SignInResult>(
+      authRoutePath('passwordChange'),
+      { currentPassword, newPassword },
+      AUTH_REQUEST
+    );
+  },
+
   session() {
     return bff.get<SessionResponse>(authRoutePath('session'), AUTH_REQUEST);
   },

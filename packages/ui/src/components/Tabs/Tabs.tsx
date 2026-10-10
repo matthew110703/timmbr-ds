@@ -4,12 +4,16 @@ import * as React from 'react';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { cn } from '@timmbr/utils';
 import { motion } from '@timmbr/motion';
+import { ChevronLeft, ChevronRight } from '@timmbr/icons';
 import { useGlobalAnimation } from '../../providers';
 import { resolveMotion } from '../../types/motion';
 import {
   tabsListVariants,
   tabsTriggerVariants,
   tabsContentVariants,
+  tabsScrollButtonVariants,
+  tabsScrollEdgeVariants,
+  TABS_SCROLL_FADE,
 } from './Tabs.styles';
 import type {
   TabsProps,
@@ -98,21 +102,108 @@ export const Tabs = React.forwardRef<
 );
 Tabs.displayName = TabsPrimitive.Root.displayName;
 
+/** Which edges of a horizontally scrolling element still have content beyond them. */
+function useScrollEdges(ref: React.RefObject<HTMLElement | null>, enabled: boolean) {
+  const [edges, setEdges] = React.useState({ start: false, end: false });
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!enabled || !el) return;
+    const measure = () => {
+      const max = el.scrollWidth - el.clientWidth;
+      const next = { start: el.scrollLeft > 1, end: el.scrollLeft < max - 1 };
+      setEdges((prev) => (prev.start === next.start && prev.end === next.end ? prev : next));
+    };
+    const frame = requestAnimationFrame(measure);
+    el.addEventListener('scroll', measure, { passive: true });
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
+    observer?.observe(el);
+    return () => {
+      cancelAnimationFrame(frame);
+      el.removeEventListener('scroll', measure);
+      observer?.disconnect();
+    };
+  }, [ref, enabled]);
+
+  return edges;
+}
+
 export const TabsList = React.forwardRef<
   React.ComponentRef<typeof TabsPrimitive.List>,
   TabsListProps
->(({ className, variant: localVariant, size: localSize, ...props }, ref) => {
+>(({ className, variant: localVariant, size: localSize, scrollable = false, scrollLabels, loading = false, ...props }, ref) => {
   const context = React.useContext(TabsContext);
   const variant = localVariant ?? context.variant;
   const size = localSize ?? context.size;
+  const listRef = React.useRef<HTMLDivElement | null>(null);
+  const edges = useScrollEdges(listRef, scrollable);
+
+  const setRefs = (node: HTMLDivElement | null) => {
+    listRef.current = node;
+    if (typeof ref === 'function') ref(node);
+    else if (ref) ref.current = node;
+  };
+
+  // Fade the tabs out under the scroll buttons (works on any page background).
+  const fade =
+    scrollable && (edges.start || edges.end)
+      ? `linear-gradient(to right, ${edges.start ? 'transparent' : '#000'}, #000 ${edges.start ? TABS_SCROLL_FADE : '0px'}, #000 calc(100% - ${edges.end ? TABS_SCROLL_FADE : '0px'}), ${edges.end ? 'transparent' : '#000'})`
+      : undefined;
+
+  const list = (
+    <TabsPrimitive.List
+      ref={setRefs}
+      data-slot="tabs-list"
+      aria-busy={loading || undefined}
+      className={cn(
+        tabsListVariants({ variant, size }),
+        loading && 'opacity-70 transition-opacity',
+        scrollable &&
+          'max-w-full justify-start overflow-x-auto overflow-y-hidden scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:shrink-0',
+        className
+      )}
+      {...props}
+      style={fade ? { ...props.style, maskImage: fade, WebkitMaskImage: fade } : props.style}
+    />
+  );
+  if (!scrollable) return list;
+
+  // Pointer helpers only: keyboard users move between tabs with the arrow keys.
+  const scrollByPage = (direction: -1 | 1) =>
+    listRef.current?.scrollBy({ left: direction * listRef.current.clientWidth * 0.7, behavior: 'smooth' });
 
   return (
-    <TabsPrimitive.List
-      ref={ref}
-      data-slot="tabs-list"
-      className={cn(tabsListVariants({ variant, size }), className)}
-      {...props}
-    />
+    <div className="relative" data-slot="tabs-scroll">
+      {edges.start && (
+        <div className={tabsScrollEdgeVariants({ side: 'start' })}>
+          <button
+            type="button"
+            tabIndex={-1}
+            aria-label={scrollLabels?.previous ?? 'Scroll tabs back'}
+            data-slot="tabs-scroll-previous"
+            className={tabsScrollButtonVariants()}
+            onClick={() => scrollByPage(-1)}
+          >
+            <ChevronLeft aria-hidden="true" />
+          </button>
+        </div>
+      )}
+      {list}
+      {edges.end && (
+        <div className={tabsScrollEdgeVariants({ side: 'end' })}>
+          <button
+            type="button"
+            tabIndex={-1}
+            aria-label={scrollLabels?.next ?? 'Scroll tabs forward'}
+            data-slot="tabs-scroll-next"
+            className={tabsScrollButtonVariants()}
+            onClick={() => scrollByPage(1)}
+          >
+            <ChevronRight aria-hidden="true" />
+          </button>
+        </div>
+      )}
+    </div>
   );
 });
 TabsList.displayName = TabsPrimitive.List.displayName;

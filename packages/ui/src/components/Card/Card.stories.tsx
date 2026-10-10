@@ -11,7 +11,7 @@ import { Button } from '../Button';
 import { Badge } from '../Badge';
 
 const meta: Meta<typeof Card> = {
-  title: 'Components & Data/Card',
+  title: 'Data Display/Card',
   component: Card,
   tags: ['autodocs'],
   decorators: [
@@ -121,5 +121,32 @@ export const Variants: Story = {
         </CardHeader>
       </Card>
     </div>
+  ),
+};
+
+/** `sectioned`: the card's padding goes to its parts, so header and footer lines run edge to edge. */
+export const Sectioned: Story = {
+  render: () => (
+    <div className="max-w-md">
+      <Card sectioned padding="sm" selected>
+        <CardHeader divider actions={<Badge variant="success" size="sm">Delivered</Badge>}>
+          <CardTitle>Order #8F2A91C3</CardTitle>
+          <CardDescription>Placed 4 Oct 2026 · 2 items</CardDescription>
+        </CardHeader>
+        <CardContent>Shipped to Chennai.</CardContent>
+        <CardFooter justify="start">
+          <Button variant="ghost" size="sm">View details</Button>
+        </CardFooter>
+      </Card>
+    </div>
+  ),
+};
+
+/** `inset`: a flat panel inside forms and dialogs. */
+export const Inset: Story = {
+  render: () => (
+    <Card variant="inset" padding="sm" className="max-w-sm">
+      Pin your location so our delivery partner can find you.
+    </Card>
   ),
 };

@@ -98,7 +98,7 @@ const sampleFooter = ({ collapsed }: { collapsed: boolean }) => (
 );
 
 const meta: Meta<typeof SideBarNavigation> = {
-  title: 'Overlays & Navigation/SideBarNavigation',
+  title: 'Navigation/SideBarNavigation',
   component: SideBarNavigation,
   parameters: {
     layout: 'fullscreen',

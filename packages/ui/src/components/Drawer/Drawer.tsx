@@ -11,12 +11,16 @@ import {
   drawerContentVariants,
   drawerHeaderVariants,
   drawerFooterVariants,
+  drawerBodyVariants,
+  drawerTitleVariants,
+  drawerDescriptionVariants,
 } from './Drawer.styles';
 import type {
   DrawerProps,
   DrawerContentProps,
   DrawerHeaderProps,
   DrawerFooterProps,
+  DrawerBodyProps,
 } from './Drawer.types';
 
 export const Drawer: React.FC<DrawerProps> = DialogPrimitive.Root;
@@ -59,7 +63,11 @@ export const DrawerContent = React.forwardRef<
         {...props}
       >
         {side === 'bottom' && (
-          <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-grey-300 dark:bg-grey-700" />
+          <div
+            aria-hidden="true"
+            data-slot="drawer-handle"
+            className="mx-auto h-1.5 w-12 shrink-0 rounded-full bg-grey-300 dark:bg-grey-700"
+          />
         )}
         {children}
         <DialogPrimitive.Close
@@ -85,5 +93,33 @@ export const DrawerFooter: React.FC<DrawerFooterProps> = ({ className, ...props 
 );
 DrawerFooter.displayName = 'DrawerFooter';
 
-export const DrawerTitle = DialogPrimitive.Title;
-export const DrawerDescription = DialogPrimitive.Description;
+export const DrawerBody: React.FC<DrawerBodyProps> = ({ className, ...props }) => (
+  <div data-slot="drawer-body" className={cn(drawerBodyVariants(), className)} {...props} />
+);
+DrawerBody.displayName = 'DrawerBody';
+
+export const DrawerTitle = React.forwardRef<
+  React.ComponentRef<typeof DialogPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Title
+    ref={ref}
+    data-slot="drawer-title"
+    className={cn(drawerTitleVariants(), className)}
+    {...props}
+  />
+));
+DrawerTitle.displayName = DialogPrimitive.Title.displayName;
+
+export const DrawerDescription = React.forwardRef<
+  React.ComponentRef<typeof DialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Description
+    ref={ref}
+    data-slot="drawer-description"
+    className={cn(drawerDescriptionVariants(), className)}
+    {...props}
+  />
+));
+DrawerDescription.displayName = DialogPrimitive.Description.displayName;

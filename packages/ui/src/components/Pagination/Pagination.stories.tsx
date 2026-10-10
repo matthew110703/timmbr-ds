@@ -8,10 +8,11 @@ import {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
+  PaginationSummary,
 } from './Pagination';
 
 const meta: Meta<typeof Pagination> = {
-  title: 'Data/Pagination',
+  title: 'Navigation/Pagination',
   component: Pagination,
   subcomponents: {
     PaginationContent: PaginationContent as React.ComponentType<any>,
@@ -193,4 +194,23 @@ export const SimplePrevNext: Story = {
       </div>
     );
   },
+};
+
+/** URL-based paging: Previous / Next are links (`href`, e.g. with next/link via `linkComponent`) with localised labels. */
+export const WithLinks: Story = {
+  render: () => (
+    <Pagination aria-label="Order pages">
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="?page=1" label="Previous" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationSummary>Page 2 of 5</PaginationSummary>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="?page=3" label="Next" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  ),
 };

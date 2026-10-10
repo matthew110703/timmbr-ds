@@ -29,6 +29,12 @@ export interface RequestOptions extends Omit<RequestInit, 'body'> {
   _retry?: boolean;
 
   /**
+   * Internal: return the whole `{ success, data, meta }` envelope instead of
+   * just `data` (used by `getPaginated`).
+   */
+  _envelope?: boolean;
+
+  /**
    * Next.js App Router caching & revalidation options.
    */
   next?: {

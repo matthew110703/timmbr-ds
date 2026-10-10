@@ -8,7 +8,7 @@ export const tabsListVariants = cva(
         pills:
           'rounded-md bg-grey-100 dark:bg-grey-800 p-1 text-muted-foreground',
         underline:
-          'border-b border-grey-200 dark:border-grey-700 bg-transparent p-0 gap-6 w-full justify-start',
+          'border-b border-grey-200 dark:border-grey-700 bg-transparent p-0 gap-1 w-full justify-start',
         outline:
           'rounded-md border border-grey-200 dark:border-grey-700 bg-transparent p-1 gap-1',
       },
@@ -51,6 +51,27 @@ export const tabsTriggerVariants = cva(
     },
   }
 );
+
+/** Round chevron shown at an edge of a `scrollable` TabsList while there is more to scroll. */
+export const tabsScrollButtonVariants = cva(
+  'pointer-events-auto flex size-8 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:bg-accent [&_svg]:size-4'
+);
+
+/** Holds a scroll button at one edge (the tabs under it are faded out with a mask). */
+export const tabsScrollEdgeVariants = cva(
+  'pointer-events-none absolute inset-y-0 z-10 flex items-center',
+  {
+    variants: {
+      side: {
+        start: 'start-0',
+        end: 'end-0',
+      },
+    },
+  }
+);
+
+/** Width of the faded strip under a scroll button. */
+export const TABS_SCROLL_FADE = '56px';
 
 export const tabsContentVariants = cva(
   'mt-3 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary font-sans text-foreground data-[state=active]:animate-tab-slide'

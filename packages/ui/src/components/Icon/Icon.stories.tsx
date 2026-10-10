@@ -3,7 +3,7 @@ import { Sparkles, Heart, Search, Bell, Share2 } from '@timmbr/icons';
 import { Icon } from './Icon';
 
 const meta: Meta<typeof Icon> = {
-  title: 'Components & Data/Icon',
+  title: 'Data Display/Icon',
   component: Icon,
   parameters: {
     layout: 'centered',

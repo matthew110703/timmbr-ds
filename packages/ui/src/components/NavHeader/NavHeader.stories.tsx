@@ -5,7 +5,7 @@ import { NavHeader } from './NavHeader';
 import type { NavHeaderItem } from './NavHeader.types';
 
 const meta: Meta<typeof NavHeader> = {
-  title: 'Overlays & Navigation/NavHeader',
+  title: 'Navigation/NavHeader',
   component: NavHeader,
   parameters: {
     layout: 'fullscreen',

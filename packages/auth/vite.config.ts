@@ -24,7 +24,7 @@ export default defineConfig({
         'react',
         'react-dom',
         'react/jsx-runtime',
-        /^@timmbr\/(ui|hooks|utils)(\/.*)?$/,
+        /^@timmbr\/(ui|hooks|icons|utils)(\/.*)?$/,
       ],
       output: {
         // Only the client entry is a client module; `contract` must stay

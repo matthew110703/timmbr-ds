@@ -67,16 +67,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 | Category | Components | Description |
 | :--- | :--- | :--- |
-| **Actions** | `Button`, `LinkButton` | Accessible buttons and anchor links with `next/link` default SPA routing, adornment icons, loading spinners, and cross-zone delegation. |
-| **Typography** | `Text`, `Heading` | Typography primitives restricted to semantic elements (`<p>`, `<span>`, `<h1>`–`<h6>`) with design token scaling. |
-| **Surfaces** | `Card`, `Avatar`, `Badge`, `Chip`, `Divider` | Display primitives including user avatars, status pills, elevated cards, interactive chips, and separators. |
-| **Layout** | `Container`, `Stack`, `Inline`, `Grid`, `Center` | Responsive breakpoint containers, flex distribution, responsive CSS grid, and centered wrappers. |
-| **Form Controls** | `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `RangeSlider`, `FormField`, `Label` | Comprehensive form primitives with labels, helper text, validation error states, and dual-thumb sliders. |
-| **Navigation** | `Tabs`, `Pagination`, `SideBarNavigation` | Accessible tabs, multi-page pagination, and responsive collapsable sidebar navigation. |
-| **Feedback** | `Alert`, `Progress`, `Skeleton`, `Spinner`, `Toast` | Status banners, determinate/indeterminate progress, shimmer loaders, and card-deck multi-toasts with hover-spread. |
-| **Overlays** | `Dialog`, `Drawer`, `Dropdown`, `Popover`, `Tooltip` | Centered dialogs, off-canvas sliding drawers, contextual dropdowns, interactive popovers, and accessible tooltips. |
-| **Data Display** | `Table`, `DataList`, `Stat`, `EmptyState` | Structured data tables with pagination, key-value data lists, KPI metrics, and empty state placeholders. |
-| **Visual Media** | `Icon` | Unified icon wrapper supporting Lucide icons, external image URLs, raw SVGs, and clickable modes. |
+| **Layout** | `Container`, `Stack`, `Inline`, `Grid`, `GridItem`, `Center`, `Divider`, `PageHeader`, `VisuallyHidden` | Responsive containers, flex and grid layout, separators, and page titles with description, actions and a back link. |
+| **Typography** | `Heading`, `Text` | Typography primitives restricted to semantic elements (`<p>`, `<span>`, `<h1>`–`<h6>`) with design token scaling. |
+| **Actions** | `Button`, `LinkButton` | Accessible buttons and anchor links with `next/link` default SPA routing, adornment icons, loading spinners, cross-zone delegation, and destructive variants. |
+| **Forms** | `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `RangeSlider`, `OtpInput`, `ImageUpload`, `FormField`, `Label`, `Fieldset`, `FormActions` | Form primitives with labels, helper text, validation error states, one-time codes and uploads. |
+| **Data Display** | `Card`, `MediaCard`, `Badge`, `Chip`, `Avatar`, `IconTile`, `Price`, `Rating`, `DataList`, `List`, `Table`, `Stat`, `Accordion`, `Icon` | Surfaces and cards (`MediaCard` is the media + text template that feature cards build on), status pills, prices with discounts, read-only ratings, key-value lists, tables and KPIs. |
+| **Feedback** | `Alert`, `EmptyState`, `Progress`, `Skeleton`, `Spinner`, `Toast` | Status banners, empty states, progress, shimmer loaders and toasts. |
+| **Overlays** | `Dialog`, `AlertDialog`, `ConfirmDialog`, `Drawer`, `ResponsiveDialog`, `Dropdown`, `Popover`, `Tooltip`, `AuthModal` | Dialogs and confirmations, off-canvas drawers and bottom sheets (`ResponsiveDialog`: dialog on desktop, bottom sheet on phones), menus (with icons and destructive items), popovers, tooltips and the sign-in modal. |
+| **Navigation** | `NavHeader`, `NavFooter`, `SideBarNavigation`, `SubNav`, `Tabs`, `Pagination`, `Stepper` | Site header and footer, app sidebar, in-page section navigation (`SubNav`), tabs, pagination and step progress (`Stepper`). |
+
+Use theme tokens (`bg-card`, `border-border`, `text-muted-foreground`, …) and the DS primitives (`Text`, `Stack`, `Card` parts…) inside components rather than palette steps or raw typography, so a theme change lands in one place.
+
+Storybook uses the same groups (`Foundations` holds the design tokens).
 
 
 ## Component Usage

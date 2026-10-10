@@ -18,7 +18,7 @@ interface DropdownStoryProps {
 }
 
 const meta: Meta<DropdownStoryProps> = {
-  title: 'Overlays & Navigation/Dropdown',
+  title: 'Overlays/Dropdown',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',

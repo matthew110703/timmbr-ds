@@ -12,6 +12,7 @@ import {
   AlertDialogFooter,
   AlertDialogAction,
   AlertDialogCancel,
+  AlertDialogMedia,
 } from './AlertDialog';
 
 describe('AlertDialog Component', () => {
@@ -54,5 +55,41 @@ describe('AlertDialog Component', () => {
     expect(screen.getByText('Alert description content')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Cancel' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Confirm' })).toBeInTheDocument();
+  });
+
+  it('styles Action / Cancel as Buttons, with a destructive variant', () => {
+    render(
+      <AlertDialog open>
+        <AlertDialogContent>
+          <AlertDialogMedia tone="destructive" data-testid="media" />
+          <AlertDialogTitle>Delete?</AlertDialogTitle>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction variant="destructive">Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+
+    expect(screen.getByRole('button', { name: 'Cancel' }).className).toContain('border-grey-300');
+    expect(screen.getByRole('button', { name: 'Delete' }).className).toContain('bg-destructive');
+    expect(screen.getByTestId('media').className).toContain('text-destructive');
+  });
+
+  it('leaves styling to the child with asChild', () => {
+    render(
+      <AlertDialog open>
+        <AlertDialogContent>
+          <AlertDialogTitle>Sure?</AlertDialogTitle>
+          <AlertDialogAction asChild>
+            <button className="custom">Go</button>
+          </AlertDialogAction>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+
+    const button = screen.getByRole('button', { name: 'Go' });
+    expect(button.className).toContain('custom');
+    expect(button.className).not.toContain('bg-primary');
   });
 });

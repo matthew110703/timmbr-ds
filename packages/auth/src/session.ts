@@ -117,6 +117,51 @@ export async function logout() {
   }
 }
 
+export interface SignOutOptions {
+  /**
+   * Paths that need a session. Signing out on one of them leaves for
+   * `redirectTo`; anywhere else the page stays and just shows signed-out UI.
+   */
+  protectedPrefixes?: string[];
+  /** Where to go when leaving a protected page. */
+  redirectTo?: string;
+}
+
+const DEFAULT_PROTECTED_PREFIXES = ['/account'];
+
+function leaveIfProtected({
+  protectedPrefixes = DEFAULT_PROTECTED_PREFIXES,
+  redirectTo = '/',
+}: SignOutOptions) {
+  if (typeof window === 'undefined') return;
+  const path = window.location.pathname;
+  const isProtected = protectedPrefixes.some(
+    (prefix) => path === prefix || path.startsWith(`${prefix}/`)
+  );
+  // Zones are separate apps: full navigation.
+  if (isProtected) window.location.assign(redirectTo);
+}
+
+/**
+ * Log out (this device), sign out every open tab, and leave the page if it
+ * requires a session. Used by the header menu and the account navigation.
+ */
+export async function signOut(options: SignOutOptions = {}) {
+  await logout();
+  leaveIfProtected(options);
+}
+
+/** Log out on every device (core revokes all sessions), then like `signOut`. */
+export async function signOutEverywhere(options: SignOutOptions = {}) {
+  try {
+    await authApi.logoutAll();
+  } finally {
+    clearSession();
+    broadcastAuth({ type: 'LOGOUT' });
+  }
+  leaveIfProtected(options);
+}
+
 const PLACEHOLDER_NAMES = new Set(['customer']);
 
 /** First word of the user's name, or null when there's no usable name. */

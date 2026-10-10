@@ -5,7 +5,7 @@ import { Icon } from '../Icon';
 import { Info } from '@timmbr/icons';
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Overlays & Navigation/Tooltip',
+  title: 'Overlays/Tooltip',
   component: Tooltip,
   tags: ['autodocs'],
   parameters: {

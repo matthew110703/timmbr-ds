@@ -3,6 +3,7 @@ import type {
   ApiClientConfig,
   ApiErrorResponse,
   ApiSuccessResponse,
+  PaginatedResult,
   RequestOptions,
 } from './types';
 import { ACCESS_TOKEN_COOKIE } from '../jwt';
@@ -210,7 +211,7 @@ export class ApiClient {
   }
 
   public async request<T = unknown>(endpoint: string, options: RequestOptions = {}): Promise<T> {
-    const { params, body, headers, token, skipAuth, _retry, next, cache, ...restOptions } = options;
+    const { params, body, headers, token, skipAuth, _retry, _envelope, next, cache, ...restOptions } = options;
 
     const isRefreshRoute = endpoint === this.refreshEndpoint;
     const requestHeaders = new Headers(this.defaultHeaders);
@@ -356,7 +357,13 @@ export class ApiClient {
         });
       }
       // Seamlessly unwrap NestJS standard envelope { success: true, data: T }
-      if (json && typeof json === 'object' && 'data' in json && (json as ApiSuccessResponse).success === true) {
+      if (
+        !_envelope &&
+        json &&
+        typeof json === 'object' &&
+        'data' in json &&
+        (json as ApiSuccessResponse).success === true
+      ) {
         return (json as ApiSuccessResponse<T>).data;
       }
       return json as T;
@@ -367,6 +374,31 @@ export class ApiClient {
 
   public get<T = unknown>(endpoint: string, options?: Omit<RequestOptions, 'body'>): Promise<T> {
     return this.request<T>(endpoint, { ...options, method: 'GET' });
+  }
+
+  /**
+   * GET a paginated list, keeping the pagination `meta` that `get` drops when
+   * it unwraps the envelope: `{ data: T[], meta: { page, total, … } }`.
+   */
+  public async getPaginated<T = unknown>(
+    endpoint: string,
+    options?: Omit<RequestOptions, 'body'>
+  ): Promise<PaginatedResult<T>> {
+    const envelope = await this.request<Partial<PaginatedResult<T>> | null>(endpoint, {
+      ...options,
+      method: 'GET',
+      _envelope: true,
+    });
+    const data = Array.isArray(envelope?.data) ? envelope.data : [];
+    const meta = envelope?.meta ?? {
+      page: 1,
+      limit: data.length,
+      total: data.length,
+      totalPages: 1,
+      hasNextPage: false,
+      hasPrevPage: false,
+    };
+    return { data, meta };
   }
 
   public post<T = unknown>(endpoint: string, body?: unknown, options?: RequestOptions): Promise<T> {

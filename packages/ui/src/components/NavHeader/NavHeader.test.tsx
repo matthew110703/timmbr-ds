@@ -546,4 +546,47 @@ describe('NavHeader Component', () => {
     );
     expect(screen.getAllByTitle("Bartholomew").length).toBeGreaterThan(0);
   });
+
+  describe("profile menu", () => {
+    const onLogout = vi.fn();
+    const profileWithMenu = {
+      label: "Arul",
+      href: "/account",
+      ariaLabel: "My account",
+      menu: [
+        { id: "orders", label: "My orders", href: "/account/orders" },
+        { id: "account", label: "Your account", href: "/account" },
+        { id: "logout", label: "Log out", onSelect: onLogout, destructive: true, separatorBefore: true },
+      ],
+    };
+
+    it("desktop: the profile action becomes a menu trigger (menu contents: NavActions.menu.test)", () => {
+      render(<NavHeader branding={{ logo: <span>LOGO</span> }} actions={{ profile: profileWithMenu }} motion={false} />);
+
+      const trigger = document.querySelector("[data-slot=nav-action-menu-trigger]") as HTMLElement;
+      expect(trigger).toBeInTheDocument();
+      expect(trigger).toHaveAttribute("aria-haspopup", "menu");
+      expect(trigger).toHaveAttribute("aria-label", "My account");
+    });
+
+    it("mobile: the same action is a plain link to its href (no menu)", () => {
+      render(<NavHeader branding={{ logo: <span>LOGO</span> }} actions={{ profile: profileWithMenu }} motion={false} />);
+
+      const mobile = document.querySelector("[data-slot=nav-mobile-container]") as HTMLElement;
+      expect(mobile.querySelector("[data-slot=nav-action-menu-trigger]")).toBeNull();
+      const link = Array.from(mobile.querySelectorAll("a")).find((a) => a.getAttribute("aria-label") === "My account");
+      expect(link).toHaveAttribute("href", "/account");
+    });
+
+    it("shows no menu while the action is loading", () => {
+      render(
+        <NavHeader
+          branding={{ logo: <span>LOGO</span> }}
+          actions={{ profile: { ...profileWithMenu, isLoading: true } }}
+          motion={false}
+        />
+      );
+      expect(document.querySelector("[data-slot=nav-action-menu-trigger]")).toBeNull();
+    });
+  });
 });

@@ -37,12 +37,33 @@ describe('useProfileAction', () => {
     const { result } = renderHook(() => useProfileAction());
     act(() => setSignedIn(USER));
 
-    expect(result.current.profileAction).toEqual({
+    expect(result.current.profileAction).toMatchObject({
       label: 'Daenerys',
       href: '/account',
       crossZone: true,
       ariaLabel: copy.accountAriaLabel('Daenerys Targaryen'),
     });
+  });
+
+  it('builds the signed-in menu from the zone links plus Log out', () => {
+    const menuItems = [
+      { id: 'orders', label: 'My orders', href: '/account/orders' },
+      { id: 'account', label: 'Your account', href: '/account' },
+    ];
+    const { result } = renderHook(() => useProfileAction({ menuItems }));
+    act(() => setSignedIn(USER));
+
+    const menu = result.current.profileAction.menu!;
+    expect(menu.map((m) => m.id)).toEqual(['orders', 'account', 'logout']);
+    expect(menu[2]).toMatchObject({ label: copy.logout, destructive: true, separatorBefore: true });
+    expect(menu[2].icon).toBeTruthy();
+  });
+
+  it('has no menu while loading or signed out', () => {
+    const { result } = renderHook(() => useProfileAction({ menuItems: [{ id: 'a', label: 'A', href: '/a' }] }));
+    expect(result.current.profileAction.menu).toBeUndefined();
+    act(() => clearSession());
+    expect(result.current.profileAction.menu).toBeUndefined();
   });
 
   it('falls back to ACCOUNT for placeholder names', () => {

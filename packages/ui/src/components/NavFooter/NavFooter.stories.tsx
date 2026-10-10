@@ -7,7 +7,7 @@ import {
 } from './NavFooter.helpers';
 
 const meta: Meta<typeof NavFooter> = {
-  title: 'Overlays & Navigation/NavFooter',
+  title: 'Navigation/NavFooter',
   component: NavFooter,
   parameters: {
     layout: 'fullscreen',

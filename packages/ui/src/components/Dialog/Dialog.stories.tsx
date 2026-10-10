@@ -22,7 +22,7 @@ interface DialogStoryProps {
 }
 
 const meta: Meta<DialogStoryProps> = {
-  title: 'Overlays & Navigation/Dialog',
+  title: 'Overlays/Dialog',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',

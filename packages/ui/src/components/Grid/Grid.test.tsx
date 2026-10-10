@@ -34,4 +34,15 @@ describe('Grid Component', () => {
     expect(el).toHaveClass('custom-grid');
     expect(el).toHaveStyle({ minHeight: '100px' });
   });
+
+  it('uses literal row / column gap classes (visible to Tailwind)', () => {
+    const { container } = render(
+      <Grid cols={2} rowGap={8} colGap={4}>
+        <div />
+      </Grid>
+    );
+    const grid = container.firstElementChild as HTMLElement;
+    expect(grid.className).toContain('gap-y-8');
+    expect(grid.className).toContain('gap-x-4');
+  });
 });

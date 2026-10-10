@@ -22,7 +22,18 @@ export interface TabsProps extends TabsPrimitive.TabsProps {
 
 export interface TabsListProps
   extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>,
-    TabsListVariants {}
+    TabsListVariants {
+  /**
+   * Let the tabs scroll sideways when they don't fit (e.g. on phones). Round
+   * chevron buttons appear at the edges while there is more to scroll.
+   * @default false
+   */
+  scrollable?: boolean;
+  /** Accessible names of the scroll buttons. */
+  scrollLabels?: { previous?: string; next?: string };
+  /** Content for the selected tab is loading (e.g. after a URL change): dims the tabs and sets aria-busy. */
+  loading?: boolean;
+}
 
 export interface TabsTriggerProps
   extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>,

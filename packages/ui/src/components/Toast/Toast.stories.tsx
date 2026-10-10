@@ -12,7 +12,7 @@ import {
 import { Button } from '../Button';
 
 const meta: Meta<typeof Toast> = {
-  title: 'Overlays & Navigation/Toast',
+  title: 'Feedback/Toast',
   component: Toast,
   tags: ['autodocs'],
   parameters: {

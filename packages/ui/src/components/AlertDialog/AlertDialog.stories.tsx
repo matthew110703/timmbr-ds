@@ -11,6 +11,7 @@ import {
   AlertDialogFooter,
   AlertDialogAction,
   AlertDialogCancel,
+  AlertDialogMedia,
 } from './AlertDialog';
 import { Button } from '../Button';
 import { Alert } from '../Alert';
@@ -25,7 +26,7 @@ interface AlertDialogStoryProps {
 }
 
 const meta: Meta<AlertDialogStoryProps> = {
-  title: 'Overlays & Navigation/AlertDialog',
+  title: 'Overlays/AlertDialog',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -70,12 +71,9 @@ export const Default: Story = {
           <AlertDialogDescription>{args.description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel asChild>
-            <Button variant="outline">Cancel</Button>
-          </AlertDialogCancel>
-          <AlertDialogAction asChild>
-            <Button variant="primary">Continue</Button>
-          </AlertDialogAction>
+          {/* Action / Cancel are styled as Buttons (primary / outline by default). */}
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -101,9 +99,9 @@ export const DestructiveConfirmation: Story = {
       <AlertDialogContent motion={args.motion} className="max-w-md">
         <AlertDialogHeader className="space-y-2">
           <div className="flex items-center gap-3">
-            <Center className="size-9 rounded-full bg-destructive/10 text-destructive shrink-0">
-              <Icon icon={AlertTriangle} size="sm" className="text-destructive" />
-            </Center>
+            <AlertDialogMedia tone="destructive">
+              <AlertTriangle />
+            </AlertDialogMedia>
             <AlertDialogTitle className="text-lg font-bold font-sans text-foreground">
               {args.title}
             </AlertDialogTitle>

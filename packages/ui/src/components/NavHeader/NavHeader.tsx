@@ -553,6 +553,7 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
                     shouldAnimate={shouldAnimate}
                     motionClass={motionClass}
                     linkComponent={linkComponent}
+                    enableMenus
                   />
                 )}
               </div>

@@ -14,6 +14,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
       className,
       variant = 'default',
       size = 'default',
+      fullWidth = false,
       icon,
       title,
       description,
@@ -33,7 +34,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         ref={ref}
         data-slot="empty-state"
         className={cn(
-          emptyStateVariants({ variant, size }),
+          emptyStateVariants({ variant, size, fullWidth }),
           !shouldAnimate && 'transition-none animate-none',
           motionClass,
           className

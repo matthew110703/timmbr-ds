@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Stat, StatLabel, StatValue, StatHelpText, StatIndicator } from './Stat';
 
 const meta: Meta<typeof Stat> = {
-  title: 'Data/Stat',
+  title: 'Data Display/Stat',
   component: Stat,
   tags: ['autodocs'],
   argTypes: {

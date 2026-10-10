@@ -5,12 +5,14 @@ import {
   DataListItem,
   DataListLabel,
   DataListValue,
+  DataListAction,
 } from './DataList';
+import { Button } from '../Button';
 import { Badge } from '../Badge';
 import { Chip } from '../Chip';
 
 const meta: Meta<typeof DataList> = {
-  title: 'Data/DataList',
+  title: 'Data Display/DataList',
   component: DataList,
   subcomponents: {
     DataListItem: DataListItem as React.ComponentType<any>,
@@ -179,6 +181,53 @@ export const WithIcons: Story = {
           <DataListValue>
             <Badge variant="success">Passed (0 Vulnerabilities)</Badge>
           </DataListValue>
+        </DataListItem>
+      </DataList>
+    </div>
+  ),
+};
+
+/** Settings rows: strong label with icon + description, value, action; `inset` + `divided` for edge-to-edge rows. */
+export const SettingsRows: Story = {
+  render: () => (
+    <div className="max-w-2xl rounded-[4px] border border-border">
+      <DataList divided inset="sm">
+        <DataListItem align="center">
+          <DataListLabel tone="strong" minWidth="14rem" description="Your email or mobile number with your password">
+            Password
+          </DataListLabel>
+          <DataListValue>
+            <Badge variant="success" size="sm">Set</Badge>
+          </DataListValue>
+          <DataListAction>
+            <Button variant="outline" size="sm">Change password</Button>
+          </DataListAction>
+        </DataListItem>
+        <DataListItem align="center">
+          <DataListLabel tone="strong" minWidth="14rem">Mobile number</DataListLabel>
+          <DataListValue>+91 98765 43210</DataListValue>
+        </DataListItem>
+      </DataList>
+    </div>
+  ),
+};
+
+/** `justified` summary with an emphasised total. */
+export const Summary: Story = {
+  render: () => (
+    <div className="max-w-xs">
+      <DataList orientation="justified">
+        <DataListItem>
+          <DataListLabel>Subtotal</DataListLabel>
+          <DataListValue>₹32,999</DataListValue>
+        </DataListItem>
+        <DataListItem>
+          <DataListLabel>Shipping</DataListLabel>
+          <DataListValue>Free</DataListValue>
+        </DataListItem>
+        <DataListItem emphasis="total">
+          <DataListLabel>Total</DataListLabel>
+          <DataListValue>₹32,999</DataListValue>
         </DataListItem>
       </DataList>
     </div>

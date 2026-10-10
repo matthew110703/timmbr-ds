@@ -1,14 +1,24 @@
-import { useCallback, useMemo } from 'react';
-import type { NavActionItem } from '@timmbr/ui';
+import { createElement, useCallback, useMemo, type ReactNode } from 'react';
+import type { NavActionItem, NavActionMenuItem } from '@timmbr/ui';
 import { openAuthModal } from '@timmbr/hooks';
+import { LogOut } from '@timmbr/icons';
 import { resolveAuthMessages, type AuthMessages } from './messages';
-import { getFirstName, useSession, whenSessionReady } from './session';
+import { getFirstName, signOut, useSession, whenSessionReady, type SignOutOptions } from './session';
 
 export interface UseProfileActionOptions {
   /** Where a signed-in user goes. Defaults to the account zone. */
   accountHref?: string;
-  /** Header copy (LOGIN, ACCOUNT, aria labels). */
+  /** Header copy (LOGIN, ACCOUNT, aria labels, "Log out"). */
   messages?: Partial<AuthMessages['profile']>;
+  /**
+   * Links for the signed-in menu (desktop), e.g. My orders / Your account.
+   * Owned by the zone (its strings); "Log out" is appended here.
+   */
+  menuItems?: NavActionMenuItem[];
+  /** Icon of the "Log out" item (default: the LogOut icon; `null` for none). */
+  logoutIcon?: ReactNode;
+  /** Passed to `signOut()` when "Log out" is chosen. */
+  signOutOptions?: SignOutOptions;
 }
 
 export interface ProfileActionProps {
@@ -23,7 +33,8 @@ export interface ProfileActionProps {
  *
  * - loading:    skeleton in the (fixed-width) label slot, so nothing shifts
  * - signed out: LOGIN, which opens the auth modal on the current page
- * - signed in:  first name (or ACCOUNT), linking to the account zone
+ * - signed in:  first name (or ACCOUNT). Desktop opens a menu (the zone's
+ *               `menuItems` + Log out); mobile links to the account zone
  *
  * A click while still loading waits for the session, so a signed-in user who
  * clicks during page load goes to their account instead of the modal.
@@ -31,6 +42,9 @@ export interface ProfileActionProps {
 export function useProfileAction({
   accountHref = '/account',
   messages,
+  menuItems,
+  logoutIcon,
+  signOutOptions,
 }: UseProfileActionOptions = {}): ProfileActionProps {
   const { status, user } = useSession();
   const copy = useMemo(() => resolveAuthMessages({ profile: messages }).profile, [messages]);
@@ -49,6 +63,18 @@ export function useProfileAction({
         // The account zone is a separate app: full navigation.
         crossZone: true,
         ariaLabel: copy.accountAriaLabel(user.name),
+        // Desktop: a menu (zone links + Log out). Mobile/overflow: the href above.
+        menu: [
+          ...(menuItems ?? []),
+          {
+            id: 'logout',
+            label: copy.logout,
+            icon: logoutIcon === undefined ? createElement(LogOut, { size: 16 }) : logoutIcon,
+            onSelect: () => void signOut(signOutOptions),
+            destructive: true,
+            separatorBefore: Boolean(menuItems?.length),
+          },
+        ],
       };
     }
     return {
@@ -56,7 +82,7 @@ export function useProfileAction({
       ariaLabel: copy.loginAriaLabel,
       isLoading: status === 'loading',
     };
-  }, [status, user, copy, accountHref]);
+  }, [status, user, copy, accountHref, menuItems, logoutIcon, signOutOptions]);
 
   return { profileAction, onAuthTrigger: () => void onAuthTrigger() };
 }

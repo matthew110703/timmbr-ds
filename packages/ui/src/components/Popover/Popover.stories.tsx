@@ -11,7 +11,7 @@ interface PopoverStoryProps {
 }
 
 const meta: Meta<PopoverStoryProps> = {
-  title: 'Overlays & Navigation/Popover',
+  title: 'Overlays/Popover',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',

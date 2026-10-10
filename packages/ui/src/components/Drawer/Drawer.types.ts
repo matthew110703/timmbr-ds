@@ -16,3 +16,4 @@ export interface DrawerContentProps
 
 export type DrawerHeaderProps = React.HTMLAttributes<HTMLDivElement>;
 export type DrawerFooterProps = React.HTMLAttributes<HTMLDivElement>;
+export type DrawerBodyProps = React.HTMLAttributes<HTMLDivElement>;

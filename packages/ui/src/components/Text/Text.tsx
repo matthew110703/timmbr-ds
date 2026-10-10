@@ -17,6 +17,8 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       font = 'sans',
       weight,
       italic,
+      tabular,
+      truncate,
       asChild = false,
       children,
       ...props
@@ -38,6 +40,8 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
             font,
             weight,
             italic,
+            tabular,
+            truncate,
             className,
           })
         )}
