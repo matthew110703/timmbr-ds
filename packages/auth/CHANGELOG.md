@@ -1,5 +1,12 @@
 # @timmbr/auth
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [6196bac]
+  - @timmbr/ui@1.7.0
+
 ## 1.1.0
 
 ### Minor Changes
