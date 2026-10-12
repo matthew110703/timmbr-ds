@@ -1,5 +1,14 @@
 # @timmbr/auth
 
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies [bd600de]
+  - @timmbr/ui@1.9.0
+  - @timmbr/utils@1.5.0
+  - @timmbr/icons@1.4.1
+
 ## 1.1.2
 
 ### Patch Changes

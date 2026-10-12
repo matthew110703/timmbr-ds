@@ -1,5 +1,12 @@
 # @timmbr/motion
 
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies [bd600de]
+  - @timmbr/utils@1.5.0
+
 ## 1.2.2
 
 ### Patch Changes

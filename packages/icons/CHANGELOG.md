@@ -1,5 +1,12 @@
 # @timmbr/icons
 
+## 1.4.1
+
+### Patch Changes
+
+- Updated dependencies [bd600de]
+  - @timmbr/utils@1.5.0
+
 ## 1.4.0
 
 ### Minor Changes
