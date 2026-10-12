@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import { User, Heart, ShoppingCart, Bell, Package, HelpCircle, Settings } from '@timmbr/icons';
 import { NavHeader } from './NavHeader';
+import { NavMenuColumns, NavMenuPromo } from '../NavMenuColumns';
 import type { NavHeaderItem } from './NavHeader.types';
 
 const meta: Meta<typeof NavHeader> = {
@@ -163,92 +164,54 @@ const MiniLogo = () => (
   </div>
 );
 
-// Figma Node 105:108 Mega-Menu Dropdown Content
+// Figma Node 105:108 Mega-Menu Dropdown Content, built with the NavMenuColumns template
+const menuLink = (label: string) => ({
+  id: label,
+  label,
+  href: `/category/${label.toLowerCase().replace(/\s+/g, '-')}`,
+});
+
 const SofasMegaMenuContent = () => (
-  <div className="grid grid-cols-1 md:grid-cols-4 p-8 gap-8 bg-[#FFFFFE] text-[#1A1A1A]">
-    {/* Column 1: Sofas */}
-    <div>
-      <h3 className="font-sans font-bold text-sm text-[#1A1A1A] mb-3">Sofa</h3>
-      <ul className="space-y-2.5 text-xs text-[#4C4C4C]">
-        {['All Sofas', 'Fabric Sofas', 'Wooden Sofas', '3 Seater Sofas', '2 Seater Sofas', '1 Seater Sofas', '3+1+1 Sofa Sets', 'Sofa Cum Beds', 'L Shaped Sofas', 'Leather Sofas', 'Outdoor Sofas'].map((name) => (
-          <li key={name}>
-            <a href={`/sofas/${name.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-[#C0643A] hover:underline transition-colors block">
-              {name}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    {/* Column 2: Sofa Cum Bed & Recliners */}
-    <div className="border-l border-grey-200 pl-6 space-y-6">
-      <div>
-        <h3 className="font-sans font-bold text-sm text-[#1A1A1A] mb-3">Sofa Cum Bed</h3>
-        <ul className="space-y-2 text-xs text-[#4C4C4C]">
-          {['All Sofa Cum Beds', 'Wooden Sofa Cum Beds', 'Fabric Sofa Cum Beds'].map((name) => (
-            <li key={name}>
-              <a href="#" className="hover:text-[#C0643A] hover:underline transition-colors block">
-                {name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="font-sans font-bold text-sm text-[#1A1A1A] mb-3">Recliners</h3>
-        <ul className="space-y-2 text-xs text-[#4C4C4C]">
-          {['All Recliners', '1 Seater Recliners', '2 Seater Recliners', '3 Seater Recliners'].map((name) => (
-            <li key={name}>
-              <a href="#" className="hover:text-[#C0643A] hover:underline transition-colors block">
-                {name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-
-    {/* Column 3: Seating */}
-    <div className="border-l border-grey-200 pl-6">
-      <h3 className="font-sans font-bold text-sm text-[#1A1A1A] mb-3">Seating</h3>
-      <ul className="space-y-2.5 text-xs text-[#4C4C4C]">
-        {['Lounge Chairs', 'Accent Chairs', 'Arm Chair', 'Wingback Chairs', 'Loveseats', 'Benches', 'Ottomans', 'Stools'].map((name) => (
-          <li key={name}>
-            <a href="#" className="hover:text-[#C0643A] hover:underline transition-colors block">
-              {name}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    {/* Column 4: Promo Card from Figma node 105:149 */}
-    <div className="flex items-center justify-center">
-      <div className="w-full h-full min-h-[260px] rounded-xl bg-gradient-to-br from-[#2A241F] to-[#141210] p-6 text-white flex flex-col justify-between shadow-lg relative overflow-hidden">
-        <div className="space-y-1.5 z-10">
-          <p className="font-serif text-xl italic font-normal tracking-wide text-white">
-            Cherish <span className="font-bold not-italic">Moments</span>
-          </p>
-          <p className="font-serif text-xl italic font-normal tracking-wide text-white">
-            Create <span className="font-bold not-italic">Memories</span>
-          </p>
-          <p className="text-[11px] font-sans text-grey-300 opacity-90 pt-1">
-            with Affordable Sofa Sets
-          </p>
-        </div>
-
-        <div className="z-10">
-          <span className="inline-block px-3 py-1 rounded bg-[#D35F27] text-white text-[10px] font-bold tracking-wider uppercase shadow-sm">
-            UP TO 55% OFF
-          </span>
-        </div>
-
-        {/* Ambient background glow */}
-        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#C0643A]/30 rounded-full blur-2xl pointer-events-none" />
-      </div>
-    </div>
-  </div>
+  <NavMenuColumns
+    aria-label="Sofas"
+    groups={[
+      {
+        id: 'sofa',
+        title: 'Sofa',
+        links: ['All Sofas', 'Fabric Sofas', 'Wooden Sofas', '3 Seater Sofas', '2 Seater Sofas', 'L Shaped Sofas'].map(menuLink),
+      },
+      {
+        id: 'sofa-cum-bed',
+        title: 'Sofa Cum Bed',
+        links: ['All Sofa Cum Beds', 'Wooden Sofa Cum Beds', 'Fabric Sofa Cum Beds'].map(menuLink),
+      },
+      {
+        id: 'recliners',
+        title: 'Recliners',
+        links: ['All Recliners', '1 Seater Recliners', '2 Seater Recliners', '3 Seater Recliners'].map(menuLink),
+      },
+      {
+        id: 'seating',
+        title: 'Seating',
+        links: ['Lounge Chairs', 'Accent Chairs', 'Wingback Chairs', 'Benches', 'Ottomans', 'Stools'].map(menuLink),
+      },
+    ]}
+    aside={
+      <NavMenuPromo
+        imageSrc="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80"
+        title={[
+          <>
+            Cherish <em>Moments</em>
+          </>,
+          <>
+            Create <em>Memories</em>
+          </>,
+        ]}
+        subtitle="with Affordable Sofa Sets"
+        badge="UP TO 55% OFF"
+      />
+    }
+  />
 );
 
 const figmaNavItems: NavHeaderItem[] = [

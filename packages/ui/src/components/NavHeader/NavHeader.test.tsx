@@ -1,9 +1,10 @@
 import '@testing-library/jest-dom/vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, createEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import * as React from 'react';
 import { NavHeader } from './NavHeader';
 import type { NavHeaderItem } from './NavHeader.types';
+import { NavMenuTiles } from '../NavMenuColumns';
 
 const mockItems: NavHeaderItem[] = [
   {
@@ -336,6 +337,59 @@ describe('NavHeader Component', () => {
     // Clicking again collapses the tab content
     fireEvent.click(mobileSofasTab);
     expect(screen.queryByTestId('megamenu-sofas')).not.toBeInTheDocument();
+  });
+
+  it('shows mobileContent (not the desktop content) in the mobile tab panel', () => {
+    render(
+      <NavHeader
+        branding={{ logo: <span>LOGO</span> }}
+        items={[
+          {
+            id: 'living',
+            label: 'Living',
+            content: <div data-testid="desktop-menu">Columns</div>,
+            mobileContent: <div data-testid="mobile-tiles">Tiles</div>,
+          },
+        ]}
+        motion={false}
+      />
+    );
+
+    const mobileTab = screen.getAllByText('Living').find((el) => el.closest('button[role="tab"]'))!;
+    fireEvent.click(mobileTab);
+    expect(screen.getByTestId('mobile-tiles')).toBeInTheDocument();
+    expect(screen.queryByTestId('desktop-menu')).not.toBeInTheDocument();
+  });
+
+  it('closes the mobile panel when a tile link is followed (closeMenus), reporting it once', () => {
+    const onMobileActiveItemChange = vi.fn();
+    render(
+      <NavHeader
+        branding={{ logo: <span>LOGO</span> }}
+        items={[
+          {
+            id: 'living',
+            label: 'Living',
+            content: <div>Columns</div>,
+            mobileContent: <NavMenuTiles items={[{ id: 'sofas', label: 'Sofas', href: '/c/sofas' }]} />,
+          },
+        ]}
+        onMobileActiveItemChange={onMobileActiveItemChange}
+        motion={false}
+      />
+    );
+
+    fireEvent.click(screen.getAllByText('Living').find((el) => el.closest('button[role="tab"]'))!);
+    expect(onMobileActiveItemChange).toHaveBeenLastCalledWith('living');
+
+    const tile = screen.getByRole('link', { name: /Sofas/ });
+    const click = createEvent.click(tile);
+    click.preventDefault(); // jsdom cannot navigate
+    fireEvent(tile, click);
+
+    expect(screen.queryByRole('link', { name: /Sofas/ })).not.toBeInTheDocument();
+    expect(onMobileActiveItemChange).toHaveBeenLastCalledWith(null);
+    expect(onMobileActiveItemChange).toHaveBeenCalledTimes(2);
   });
 
   it('opens and interacts with full-screen mobile search drawer', () => {

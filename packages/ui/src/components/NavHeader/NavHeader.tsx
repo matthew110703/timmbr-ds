@@ -387,7 +387,7 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
 
     const handleMobileItemClick = React.useCallback(
       (id: string, item: NavHeaderItem) => {
-        if (item.content) {
+        if (item.mobileContent ?? item.content) {
           const nextId = mobileActiveItemId === id ? null : id;
           if (controlledMobileActiveId === undefined) {
             setUncontrolledMobileActiveId(nextId);
@@ -397,6 +397,16 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
       },
       [mobileActiveItemId, controlledMobileActiveId, onMobileActiveItemChange]
     );
+
+    const closeMenus = React.useCallback(() => {
+      setActiveItemId(null);
+      // Only report a mobile change when a tab panel is actually open.
+      if (mobileActiveItemId === null) return;
+      if (controlledMobileActiveId === undefined) {
+        setUncontrolledMobileActiveId(null);
+      }
+      onMobileActiveItemChange?.(null);
+    }, [setActiveItemId, mobileActiveItemId, controlledMobileActiveId, onMobileActiveItemChange]);
 
     const activeMobileItem = React.useMemo(() => {
       return navItems.find((item) => item.id === mobileActiveItemId) ?? null;
@@ -438,6 +448,7 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
         handleItemMouseLeave,
         handleItemClick,
         handleSearchSubmit,
+        closeMenus,
         autoMaxVisibleActions: autoMaxVisible,
       }),
       [
@@ -454,6 +465,7 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
         handleItemMouseLeave,
         handleItemClick,
         handleSearchSubmit,
+        closeMenus,
         autoMaxVisible,
       ]
     );

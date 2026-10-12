@@ -17,6 +17,8 @@ export interface NavHeaderContextValue {
   handleItemMouseLeave: () => void;
   handleItemClick: (id: string, item: NavHeaderItem) => void;
   handleSearchSubmit: (query: string) => void;
+  /** Closes the desktop popover and the mobile tab panel (e.g. after a menu link is followed). */
+  closeMenus?: () => void;
 }
 
 export const NavHeaderContext = React.createContext<NavHeaderContextValue | null>(null);

@@ -63,6 +63,8 @@ export interface NavHeaderItem {
   crossZone?: boolean;
   /** Rich popover or mega-menu content. If provided, renders dropdown below header */
   content?: React.ReactNode;
+  /** Content for the mobile/tablet tab panel (< 1024px), e.g. image tiles. Defaults to `content`. */
+  mobileContent?: React.ReactNode;
   /** Width mode of the popover: 'container' (1216px centered), 'full' (100vw), 'dropdown' (anchor-aligned), or explicit number */
   popoverWidth?: 'container' | 'full' | 'dropdown' | number;
   /** Optional badge displayed adjacent to the label */

@@ -33,7 +33,8 @@ export const NavMobileTabContent: React.FC<NavMobileTabContentProps> = ({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [activeItem, onClose]);
 
-  const hasContent = Boolean(activeItem && activeItem.content);
+  const panelContent = activeItem ? (activeItem.mobileContent ?? activeItem.content) : null;
+  const hasContent = Boolean(panelContent);
 
   return (
     <AnimatePresence initial={false}>
@@ -47,7 +48,7 @@ export const NavMobileTabContent: React.FC<NavMobileTabContentProps> = ({
           className={cn(mobileTabContentPanelVariants(), motionClass)}
           data-slot="nav-mobile-tab-content-panel"
         >
-          <div className="w-full">{activeItem!.content}</div>
+          <div className="w-full">{panelContent}</div>
         </motion.div>
       )}
     </AnimatePresence>

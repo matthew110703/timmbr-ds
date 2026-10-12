@@ -37,6 +37,7 @@ export * from './components/Tooltip';
 export * from './components/Tabs';
 export * from './components/SideBarNavigation';
 export * from './components/NavHeader';
+export * from './components/NavMenuColumns';
 export * from './components/NavFooter';
 export * from './components/AuthModal';
 

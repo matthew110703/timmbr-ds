@@ -62,7 +62,7 @@ export const NavMobileTabSlider: React.FC<NavMobileTabSliderProps> = ({
         ) : null;
 
         // If item is pure link without expandable content
-        if (resolvedHref && !item.content && !item.disabled) {
+        if (resolvedHref && !(item.mobileContent ?? item.content) && !item.disabled) {
           if (CustomLink && !requiresCrossZone) {
             return (
               <CustomLink
