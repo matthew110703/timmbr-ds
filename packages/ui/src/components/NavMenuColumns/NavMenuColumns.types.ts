@@ -85,3 +85,23 @@ export interface NavMenuTilesProps extends Omit<React.HTMLAttributes<HTMLElement
   /** Accessible name of the navigation landmark. */
   'aria-label'?: string;
 }
+
+/** Plain data for one header menu: desktop groups, optional mobile tiles and aside. */
+export interface NavMenuData {
+  id: string;
+  label: React.ReactNode;
+  groups: NavMenuGroup[];
+  /** Mobile tab panel tiles; without them the mobile panel shows the groups. */
+  tiles?: NavMenuTile[];
+  /** Desktop aside, e.g. a `NavMenuPromo`. */
+  aside?: React.ReactNode;
+}
+
+export interface ToNavMenuItemsOptions {
+  /** The menu links lead to another zone: plain `<a>` (full navigation). */
+  crossZone?: boolean;
+  /** Link component for same-zone links (e.g. `next/link`). */
+  linkComponent?: React.ComponentType<NavMenuColumnsLinkProps>;
+  /** Desktop popover width. Defaults to 'container'. */
+  popoverWidth?: 'container' | 'full' | 'dropdown' | number;
+}

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { cn } from '@timmbr/utils';
 import { NavHeaderContext } from '../NavHeader/NavHeader.context';
+import type { NavHeaderItem } from '../NavHeader/NavHeader.types';
 import { Badge } from '../Badge';
 import { Divider } from '../Divider';
 import {
@@ -22,9 +23,11 @@ import {
 import type {
   NavMenuColumnsLinkProps,
   NavMenuColumnsProps,
+  NavMenuData,
   NavMenuGroup,
   NavMenuPromoProps,
   NavMenuTilesProps,
+  ToNavMenuItemsOptions,
 } from './NavMenuColumns.types';
 
 const DefaultLink = ({ href, className, children, ...rest }: NavMenuColumnsLinkProps) => (
@@ -265,3 +268,36 @@ export const NavMenuTiles = React.forwardRef<HTMLElement, NavMenuTilesProps>(
   }
 );
 NavMenuTiles.displayName = 'NavMenuTiles';
+
+/**
+ * Turns plain menu data into `NavHeader` items: each opens a popover with
+ * `NavMenuColumns` on desktop and, when `tiles` are given, `NavMenuTiles` in
+ * the mobile tab panel. The item label itself is not a link.
+ */
+export function toNavMenuItems(
+  menus: readonly NavMenuData[],
+  { crossZone = false, linkComponent, popoverWidth = 'container' }: ToNavMenuItemsOptions = {}
+): NavHeaderItem[] {
+  return menus.map((menu) => ({
+    id: menu.id,
+    label: menu.label,
+    popoverWidth,
+    content: (
+      <NavMenuColumns
+        aria-label={typeof menu.label === 'string' ? menu.label : undefined}
+        groups={menu.groups}
+        aside={menu.aside}
+        crossZone={crossZone}
+        linkComponent={linkComponent}
+      />
+    ),
+    mobileContent: menu.tiles ? (
+      <NavMenuTiles
+        aria-label={typeof menu.label === 'string' ? menu.label : undefined}
+        items={menu.tiles}
+        crossZone={crossZone}
+        linkComponent={linkComponent}
+      />
+    ) : undefined,
+  }));
+}

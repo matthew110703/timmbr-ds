@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/vitest';
 import * as React from 'react';
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { NavMenuColumns, NavMenuPromo, NavMenuTiles, packNavMenuGroups } from './NavMenuColumns';
+import { NavMenuColumns, NavMenuPromo, NavMenuTiles, packNavMenuGroups, toNavMenuItems } from './NavMenuColumns';
 import { NavHeaderContext, type NavHeaderContextValue } from '../NavHeader/NavHeader.context';
 import type { NavMenuGroup } from './NavMenuColumns.types';
 
@@ -180,5 +180,29 @@ describe('NavMenuTiles', () => {
     click.preventDefault();
     fireEvent(link, click);
     expect(closeMenus).toHaveBeenCalled();
+  });
+});
+
+describe('toNavMenuItems', () => {
+  const menus = [
+    { id: 'living', label: 'Living', groups, tiles: [{ id: 'sofas', label: 'Sofas', href: '/c/sofas' }] },
+    { id: 'outdoor', label: 'Outdoor', groups },
+  ];
+
+  it('makes popover items (no href) with columns on desktop and tiles on mobile', () => {
+    const [living, outdoor] = toNavMenuItems(menus, { crossZone: true });
+    expect(living).toMatchObject({ id: 'living', label: 'Living', popoverWidth: 'container' });
+    expect(living!.href).toBeUndefined();
+
+    render(<>{living!.content}</>);
+    expect(screen.getByRole('navigation', { name: 'Living' })).toHaveAttribute('data-slot', 'nav-menu-columns');
+    // Without tiles, the mobile panel falls back to the desktop content
+    expect(outdoor!.mobileContent).toBeUndefined();
+  });
+
+  it('renders the tiles as the mobile content, passing the link options through', () => {
+    const [living] = toNavMenuItems(menus, { linkComponent: CustomLink });
+    render(<>{living!.mobileContent}</>);
+    expect(screen.getByRole('link', { name: /Sofas/ })).toHaveAttribute('data-custom', 'yes');
   });
 });
