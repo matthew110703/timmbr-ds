@@ -1,5 +1,12 @@
 # @timmbr/auth
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [ecc1b16]
+  - @timmbr/ui@1.8.0
+
 ## 1.1.1
 
 ### Patch Changes
