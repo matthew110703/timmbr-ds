@@ -44,7 +44,7 @@ DrawerOverlay.displayName = DialogPrimitive.Overlay.displayName;
 export const DrawerContent = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Content>,
   DrawerContentProps
->(({ className, children, side = 'right', motion, ...props }, ref) => {
+>(({ className, children, side = 'right', size = 'default', motion, showClose = true, ...props }, ref) => {
   const globalMotion = useGlobalAnimation();
   const { shouldAnimate, motionClass } = resolveMotion(motion, globalMotion);
 
@@ -55,14 +55,14 @@ export const DrawerContent = React.forwardRef<
         ref={ref}
         data-slot="drawer-content"
         className={cn(
-          drawerContentVariants({ side }),
+          drawerContentVariants({ side, size }),
           !shouldAnimate && 'transition-none animate-none',
           motionClass,
           className
         )}
         {...props}
       >
-        {side === 'bottom' && (
+        {side === 'bottom' && size !== 'full' && (
           <div
             aria-hidden="true"
             data-slot="drawer-handle"
@@ -70,6 +70,7 @@ export const DrawerContent = React.forwardRef<
           />
         )}
         {children}
+        {showClose && (
         <DialogPrimitive.Close
           data-slot="drawer-close"
           className="absolute right-4 top-4 rounded-sm p-1 text-muted hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
@@ -77,6 +78,7 @@ export const DrawerContent = React.forwardRef<
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
+        )}
       </DialogPrimitive.Content>
     </DrawerPortal>
   );

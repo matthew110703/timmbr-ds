@@ -98,8 +98,31 @@ export const megaMenuCardVariants = cva(
 /**
  * Search popover suggestions card styles.
  */
+/** Right-aligned under the input and wider than it, so product suggestions have room. */
 export const searchPopoverCardVariants = cva(
-  'absolute top-full left-0 right-0 w-full mt-2 bg-grey-50 border border-grey-200 shadow-2xl rounded-2xl p-4 sm:p-5 z-50 text-left'
+  'absolute top-full right-0 mt-2 w-[min(26rem,calc(100vw-2rem))] max-h-[min(32rem,calc(100dvh-8rem))] overflow-y-auto bg-grey-50 border border-grey-200 shadow-2xl rounded-2xl p-3 sm:p-4 z-50 text-left'
+);
+
+/** A row of the search panel (recent search, suggested product, "see all"). */
+export const searchPanelOptionVariants = cva(
+  'flex w-full cursor-pointer items-center gap-3 rounded-lg px-2 py-2 text-left transition-colors',
+  {
+    variants: {
+      active: {
+        true: 'bg-grey-100',
+        false: 'hover:bg-grey-100',
+      },
+    },
+    defaultVariants: { active: false },
+  }
+);
+
+export const searchPanelSectionTitleVariants = cva(
+  'px-2 text-caption font-semibold uppercase tracking-wider text-grey-500'
+);
+
+export const searchPanelTextButtonVariants = cva(
+  'rounded-sm px-2 text-body-3 font-semibold text-grey-700 underline underline-offset-4 hover:text-grey-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
 );
 
 /**

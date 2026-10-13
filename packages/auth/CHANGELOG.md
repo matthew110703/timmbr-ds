@@ -1,5 +1,37 @@
 # @timmbr/auth
 
+## 1.2.0
+
+### Minor Changes
+
+- Product page building blocks.
+
+  - `@timmbr/ui`:
+    - `ProductGallery`: swipeable main image (scroll-snap) with arrows, thumbnails (phones too), a "2 / 5" counter and a fullscreen viewer with pinch, double-tap and wheel zoom. `renderImage` lets apps draw with their own image component. The first image loads with high priority.
+    - `ProductGallery` also has `thumbnails="left"` (a vertical column from lg up) and desktop hover zoom (`hoverZoom`, `zoomScale`): a lens over the image and a magnified pane beside it.
+    - `OptionPicker`: swatches, photo tiles (`display="image"` with `imageUrl`) or compact pills in a radio group (arrow keys, one tab stop). The selected option uses the brand accent. Sold-out options are struck through but selectable, impossible combinations are disabled, and long lists become a dropdown.
+    - The fullscreen viewer swipes between images on touch; its side arrows show from tablet up.
+    - New `Snackbar`: `snackbar(message, { description, action, variant, duration })` (plus `.success`, `.info`, `.warning`, `.error`, `.dismiss`). One at a time at the bottom, an inverse surface with one inline action (its `onClick` receives the click event). It pauses while hovered, focused or touched, can be swiped away, and is announced to screen readers. Re-showing the same `id` updates it and restarts its timer. `SnackbarHost` (with `dismissLabel`) is mounted by `TimmbrConfigProvider`.
+    - `Toast`: on phones, `toast()` shows a snackbar instead, but only while a `SnackbarHost` is mounted, so apps that render `ToastContainer` on its own keep their toasts. Toasts with a JSX action or `dismissible: false` stay toasts. `onOpenChange(false)` and the container's default `duration` carry over. Opt out per call with `layout: "toast"`, or for the whole app with `toast.mobileLayout: "toast"`. Toasts no longer overflow narrow screens, and bottom toasts and snackbars rise above pinned bars via `--toast-offset-bottom`.
+    - `ProductGallery` fullscreen viewer: lifting the fingers after a pinch keeps the zoom, closing it returns focus to the image now showing, and a half-finished gesture is dropped on close.
+    - `MediaCard`: the footer sits at the bottom of the card (`mt-auto`), so footers line up across a grid row when titles wrap.
+    - `Price` (`md`): a wrapped discount ("48% Off") starts flush left (row gap instead of a leading margin).
+    - `QuantityStepper`: − value + that stops at min/max, with arrow keys.
+    - `StockMeter`: an "Only N left" line with a bar, shown only at or below a threshold.
+  - `@timmbr/hooks`: `useStoredList`, a generic localStorage list (e.g. recently viewed) that is cross-tab and hydration-safe. `useRecentSearches` now uses it, with the same API.
+  - `@timmbr/auth`: cart store for header badges and "in your cart" states: `useCartCount`, `useCartQuantity`, `setCartLines`, `setCartCount`, `bumpCartCount`, `loadCartCount`, `getCartCount`, `getCartQuantity`. It loads once per page through the shell's `/api/core` proxy (not once per component), reloads when the shopper changes (sign-in, or a different user), never lets an older load answer overwrite a newer update, and stays in step across tabs.
+  - `@timmbr/icons`: `Minus`, `ZoomIn`, `ZoomOut`.
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+  - @timmbr/ui@1.10.0
+  - @timmbr/hooks@1.1.0
+  - @timmbr/icons@1.5.0
+  - @timmbr/utils@1.6.0
+
 ## 1.1.3
 
 ### Patch Changes

@@ -161,7 +161,9 @@ export const MediaCard = React.forwardRef<HTMLElement, MediaCardProps>(
           </div>
 
           {footer && (
-            <div className="relative z-10 mt-2 flex flex-wrap items-center gap-2" data-slot="media-card-footer">
+            // mt-auto: pinned to the card's bottom, so footers line up across a grid row even when
+            // titles or prices wrap differently.
+            <div className="relative z-10 mt-auto flex flex-wrap items-center gap-2 pt-2" data-slot="media-card-footer">
               {footer}
             </div>
           )}

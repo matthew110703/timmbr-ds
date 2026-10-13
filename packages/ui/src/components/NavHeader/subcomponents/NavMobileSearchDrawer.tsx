@@ -7,6 +7,7 @@ import { ArrowLeft, Search, X } from '@timmbr/icons';
 import { cn } from '@timmbr/utils';
 import { mobileSearchDrawerVariants } from '../NavHeader.styles';
 import type { NavSearchConfig } from '../NavHeader.types';
+import { NavSearchPanel, useNavSearchCombobox } from './NavSearchPanel';
 
 export interface NavMobileSearchDrawerProps {
   isOpen: boolean;
@@ -29,10 +30,12 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
   config = {},
   shouldAnimate = true,
   motionClass,
+  linkComponent,
 }) => {
   const [mounted, setMounted] = React.useState(false);
   const searchConfig = typeof config === 'object' ? config : {};
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const combobox = useNavSearchCombobox({ config, value, onChange, onSubmit, onClose });
 
   React.useEffect(() => {
     setMounted(true);
@@ -79,18 +82,14 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
     inputRef.current?.focus();
   };
 
+  // Enter is handled by the combobox (pick the active row or submit); this covers the
+  // on-screen keyboard's search button when it submits the form without a keydown.
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (value.trim()) {
-      onSubmit(value);
+      onSubmit(value.trim());
       onClose();
     }
-  };
-
-  const handlePopularSearchClick = (tagLabel: string) => {
-    onChange(tagLabel);
-    onSubmit(tagLabel);
-    onClose();
   };
 
   const drawerContent = (
@@ -108,7 +107,7 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
           data-slot="nav-mobile-search-drawer"
         >
           {/* Top Search Bar with Back Button */}
-          <div className="w-full bg-[var(--color-bg-2,#F7F1E6)] border-b border-border-warm px-3 py-3 flex items-center gap-3 shrink-0 shadow-xs">
+          <div className="w-full bg-bg-2 border-b border-border-warm px-3 py-3 flex items-center gap-3 shrink-0 shadow-xs">
             <button
               type="button"
               onClick={onClose}
@@ -122,19 +121,18 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
             {/* Search Input Form */}
             <form onSubmit={handleFormSubmit} className="flex-1 relative flex items-center">
               <div className="relative w-full flex items-center">
-                <Search
-                  size={18}
-                  className="absolute left-3.5 text-grey-500 pointer-events-none stroke-[2]"
-                />
+                <Search size={18} className="absolute left-3.5 text-grey-500 pointer-events-none stroke-[2]" />
                 <input
                   ref={inputRef}
-                  type="text"
-                  role="searchbox"
-                  aria-label="Search store products"
+                  type="search"
+                  enterKeyHint="search"
+                  autoComplete="off"
+                  aria-label={searchConfig.ariaLabel ?? 'Search store products'}
+                  {...combobox.inputProps}
                   value={value}
                   onChange={(e) => onChange(e.target.value)}
                   placeholder={searchConfig.placeholder ?? 'Search for furniture, decor, and more...'}
-                  className="w-full h-11 pl-10 pr-9 rounded-full bg-grey-50 border border-border-warm text-body-2 text-grey-900 placeholder:text-grey-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all shadow-xs"
+                  className="w-full h-11 pl-10 pr-9 rounded-full [&::-webkit-search-cancel-button]:hidden bg-grey-50 border border-border-warm text-body-2 text-grey-900 placeholder:text-grey-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all shadow-xs"
                 />
                 {value.length > 0 && (
                   <button
@@ -150,32 +148,12 @@ export const NavMobileSearchDrawer: React.FC<NavMobileSearchDrawerProps> = ({
             </form>
           </div>
 
-          {/* Drawer Content: Popular Searches & Suggestions */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 bg-[var(--color-bg-2,#F7F1E6)]">
-            {searchConfig.popularSearches && searchConfig.popularSearches.length > 0 && (
-              <div className="space-y-3">
-                <h4 className="font-title! text-body-3 font-semibold text-grey-500 uppercase tracking-wider">
-                  POPULAR SEARCHES
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {searchConfig.popularSearches.map((item) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => handlePopularSearchClick(item.label)}
-                      className="px-3.5 py-1.5 rounded-full bg-grey-50 border border-border-warm text-body-3 font-semibold text-grey-700 hover:border-primary hover:text-primary hover:bg-grey-50 transition-colors cursor-pointer shadow-xs"
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+          {/* Drawer content: recent searches, popular chips or suggestions */}
+          <div className="flex-1 overflow-y-auto p-3 sm:p-5 space-y-6 bg-bg-2">
+            {combobox.hasContent && <NavSearchPanel {...combobox.panelProps} linkComponent={linkComponent} />}
 
             {/* Custom Suggestions Content if supplied */}
-            {searchConfig.suggestions && (
-              <div className="pt-2">{searchConfig.suggestions}</div>
-            )}
+            {searchConfig.suggestions && <div className="pt-2">{searchConfig.suggestions}</div>}
           </div>
         </motion.div>
       )}

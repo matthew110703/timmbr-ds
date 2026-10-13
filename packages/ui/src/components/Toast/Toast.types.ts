@@ -3,13 +3,7 @@ import type * as ToastPrimitive from '@radix-ui/react-toast';
 import type { ToastVariants } from './Toast.styles';
 import type { MotionProp } from '../../types/motion';
 
-export type ToastPosition =
-  | 'top-left'
-  | 'top-center'
-  | 'top-right'
-  | 'bottom-left'
-  | 'bottom-center'
-  | 'bottom-right';
+export type ToastPosition = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
 
 export interface ToastActionConfig {
   label: React.ReactNode;
@@ -29,6 +23,11 @@ export interface ToastOptions {
   motion?: MotionProp;
   onDismiss?: () => void;
   onOpenChange?: (open: boolean) => void;
+  /**
+   * `auto` (default): a toast on wider screens, a snackbar on phones (see ToastGlobalConfig
+   * `mobileLayout`); `toast` / `snackbar` force one.
+   */
+  layout?: 'auto' | 'toast' | 'snackbar';
 }
 
 export interface ToastItem extends ToastOptions {
@@ -42,11 +41,11 @@ export interface ToastGlobalConfig {
   maxVisible?: number;
   swipeDirection?: 'up' | 'down' | 'left' | 'right';
   stacked?: boolean;
+  /** How `layout: auto` toasts show on phones (below the sm breakpoint). Defaults to "snackbar". */
+  mobileLayout?: 'snackbar' | 'toast';
 }
 
-export interface ToastProps
-  extends React.ComponentPropsWithoutRef<typeof ToastPrimitive.Root>,
-    ToastVariants {
+export interface ToastProps extends React.ComponentPropsWithoutRef<typeof ToastPrimitive.Root>, ToastVariants {
   /**
    * Motion transition control.
    */
@@ -61,8 +60,7 @@ export interface ToastProps
   total?: number;
 }
 
-export interface ToastViewportProps
-  extends React.ComponentPropsWithoutRef<typeof ToastPrimitive.Viewport> {
+export interface ToastViewportProps extends React.ComponentPropsWithoutRef<typeof ToastPrimitive.Viewport> {
   /**
    * Whether the viewport operates in stacked card-deck mode.
    */
@@ -73,6 +71,4 @@ export interface ToastViewportProps
   position?: ToastPosition;
 }
 
-export type ToastActionElement =
-  React.ReactElement<React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action>>;
-
+export type ToastActionElement = React.ReactElement<React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action>>;

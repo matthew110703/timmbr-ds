@@ -17,6 +17,10 @@ export interface SelectProps
    * Field label displayed above the select trigger.
    */
   label?: string;
+  /** Accessible name when there is no visible `label` (e.g. a compact "Sort by" control). */
+  ariaLabel?: string;
+  /** Id of the trigger (generated when omitted); the visible label points at it. */
+  id?: string;
   /**
    * Placeholder text shown when no value is selected.
    */

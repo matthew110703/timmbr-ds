@@ -1,5 +1,24 @@
 # @timmbr/utils
 
+## 1.6.0
+
+### Minor Changes
+
+- Listing page building blocks.
+
+  - `@timmbr/ui`:
+    - New: `FilterPanel` (with `FilterOptionList`, `FilterToggleRow`, `FilterPriceSlider`), `FilterDrawer` (full-screen two-pane mobile filters with staged changes), `FilterChips`, `Breadcrumb` and `Swatch`.
+    - `FilterDrawer` group tabs follow the vertical tabs pattern (one tab stop; Up/Down/Home/End) and use generated ids, so two drawers can't clash.
+    - `Drawer`: `size="full"` and `showClose`.
+    - `RangeSlider`: `thumbLabels` and `resetDisabled`. Reset is now an underlined text button using theme colours (readable in dark mode).
+    - `Select`: `ariaLabel`, and the visible label is now linked to the trigger.
+    - `Chip`: `removeLabel`. The remove button is keyboard-reachable on non-interactive chips, and interactive chips remove on Delete/Backspace (a consumer `onKeyDown` runs first and can `preventDefault()` to opt out).
+    - `Breadcrumb` only shows the mobile "…" when something is actually collapsed.
+    - `NavMenuColumns` promo title uses the `text-subtitle-1` token (theme compliance).
+  - `@timmbr/utils`: `listing-state`, a framework-free listing URL state: `parseListingSearchParams`, a canonical `serializeListingSearchParams`, `listingReducer`, `encodeFilters`/`decodeFilters`, `countActiveFilters` and `niceRange`.
+  - `@timmbr/hooks`: `useDebouncedCallback` (`flush`/`cancel`/`isPending`).
+  - `@timmbr/icons`: `SlidersHorizontal` and `ArrowUpDown`.
+
 ## 1.5.0
 
 ### Minor Changes

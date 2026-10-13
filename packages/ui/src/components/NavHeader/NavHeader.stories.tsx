@@ -734,3 +734,37 @@ export const ModularConfigStructure: Story = {
 
 
 
+
+const SUGGESTED = [
+  { id: 'p1', href: '#teak-bed', title: 'Hale Teak King Size Bed', subtitle: 'Oakline', price: '₹32,999' },
+  { id: 'p2', href: '#teak-chair', title: 'Aster Teak Lounge Chair', subtitle: 'Hearth & Grain', price: '₹12,499' },
+  { id: 'p3', href: '#teak-table', title: 'Noor Teak Dining Table', subtitle: 'Timmbr Atelier', price: '₹48,999' },
+];
+
+/**
+ * Recent searches while the input is empty; matching products (filtered locally here) once two
+ * characters are typed. Arrow keys move through the rows, Enter picks, Delete removes a recent.
+ */
+export const SearchWithRecentAndSuggestions: Story = {
+  render: function SearchStory() {
+    const [value, setValue] = React.useState('');
+    const [recent, setRecent] = React.useState(['teak bed', 'sofa cum bed', 'walnut finish']);
+    const typed = value.trim().toLowerCase();
+    return (
+      <NavHeader
+        branding={{ logo: <FullLogo />, miniLogo: <MiniLogo /> }}
+        search={{
+          defaultOpen: true,
+          value,
+          onChange: setValue,
+          onSubmit: (q) => setRecent((items) => [q, ...items.filter((i) => i !== q)].slice(0, 8)),
+          recentSearches: recent,
+          onRecentSearchRemove: (q) => setRecent((items) => items.filter((i) => i !== q)),
+          onClearRecentSearches: () => setRecent([]),
+          results: { items: SUGGESTED.filter((item) => item.title.toLowerCase().includes(typed)) },
+        }}
+        mobileSearchMode="bar"
+      />
+    );
+  },
+};

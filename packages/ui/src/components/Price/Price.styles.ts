@@ -4,7 +4,7 @@ export const priceVariants = cva('inline-flex flex-wrap items-baseline font-sans
   variants: {
     size: {
       sm: 'gap-x-1.5',
-      md: 'gap-x-1',
+      md: 'gap-x-1.5',
       lg: 'gap-x-2',
     },
   },
@@ -37,7 +37,8 @@ export const priceDiscountVariants = cva('font-semibold text-success', {
   variants: {
     size: {
       sm: 'text-body-3',
-      md: 'ms-1 text-body-2',
+      // No own margin: the row gap spaces it, and it starts flush left when it wraps.
+      md: 'text-body-2',
       lg: 'text-body-1',
     },
   },

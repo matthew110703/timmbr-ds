@@ -35,6 +35,8 @@ export const RangeSlider = React.forwardRef<
       onValueCommit,
       onApply,
       onReset,
+      thumbLabels = ['Minimum value', 'Maximum value'],
+      resetDisabled = false,
       disabled,
       ...props
     },
@@ -120,7 +122,7 @@ export const RangeSlider = React.forwardRef<
             <SliderPrimitive.Thumb
               key={index}
               className={rangeSliderThumbVariants()}
-              aria-label={index === 0 ? 'Minimum value' : 'Maximum value'}
+              aria-label={thumbLabels[index === 0 ? 0 : 1]}
             />
           ))}
         </SliderPrimitive.Root>
@@ -130,8 +132,8 @@ export const RangeSlider = React.forwardRef<
             <button
               type="button"
               onClick={handleReset}
-              disabled={disabled}
-              className="text-body-3 font-medium text-muted hover:text-foreground transition-colors cursor-pointer disabled:opacity-50"
+              disabled={disabled || resetDisabled}
+              className="rounded-sm text-body-3 font-semibold text-foreground underline decoration-border underline-offset-4 transition-colors cursor-pointer hover:text-primary hover:decoration-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:no-underline disabled:opacity-40 disabled:hover:text-foreground"
             >
               {resetLabel}
             </button>

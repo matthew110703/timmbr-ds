@@ -70,4 +70,11 @@ export interface RangeSliderProps
    * Callback fired when the Reset button is clicked.
    */
   onReset?: () => void;
+  /**
+   * Accessible names of the two thumbs (translate these).
+   * @default ['Minimum value', 'Maximum value']
+   */
+  thumbLabels?: [string, string];
+  /** Disables Reset (e.g. nothing to reset). */
+  resetDisabled?: boolean;
 }

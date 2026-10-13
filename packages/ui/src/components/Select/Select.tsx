@@ -32,10 +32,14 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       onValueChange,
       disabled,
       children,
+      ariaLabel,
+      id: customId,
       ...props
     },
     ref
   ) => {
+    const generatedId = React.useId();
+    const triggerId = customId ?? generatedId;
     const isError = Boolean(error);
     const errorMessage = typeof error === 'string' ? error : undefined;
 
@@ -48,7 +52,10 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         style={style}
       >
         {label && (
-          <label className="text-body-3 font-semibold text-foreground tracking-wide select-none">
+          <label
+            htmlFor={triggerId}
+            className="text-body-3 font-semibold text-foreground tracking-wide select-none"
+          >
             {label}
           </label>
         )}
@@ -62,6 +69,8 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         >
           <SelectPrimitive.Trigger
             ref={ref}
+            id={triggerId}
+            aria-label={ariaLabel}
             data-slot="select-trigger"
             aria-invalid={isError ? 'true' : undefined}
             className={cn(

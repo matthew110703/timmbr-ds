@@ -2,12 +2,11 @@
 
 import * as React from 'react';
 import { motion, AnimatePresence } from '@timmbr/motion';
-import { Search, X, TrendingUp } from '@timmbr/icons';
+import { Search, X } from '@timmbr/icons';
 import { cn } from '@timmbr/utils';
-import { useTimmbrConfig } from '../../../providers';
 import { navActionVariants, searchPopoverCardVariants } from '../NavHeader.styles';
-import type { NavSearchConfig, PopularSearchTag } from '../NavHeader.types';
-import { resolveNavDestination, isCrossZoneNavigation } from '../NavHeader.helpers';
+import type { NavSearchConfig } from '../NavHeader.types';
+import { NavSearchPanel, useNavSearchCombobox } from './NavSearchPanel';
 
 export interface NavSearchProps {
   config?: NavSearchConfig | boolean;
@@ -21,17 +20,6 @@ export interface NavSearchProps {
   linkComponent?: React.ComponentType<any>;
 }
 
-const defaultPopularSearches: PopularSearchTag[] = [
-  { id: '1', label: 'Centre Tables' },
-  { id: '2', label: 'TV Units' },
-  { id: '3', label: 'bed' },
-  { id: '4', label: 'bedsheet' },
-  { id: '5', label: 'mirror' },
-  { id: '6', label: 'office chair' },
-  { id: '7', label: 'shoe rack' },
-  { id: '8', label: 'sofa cum bed' },
-];
-
 export const NavSearch: React.FC<NavSearchProps> = ({
   config,
   isOpen,
@@ -41,22 +29,27 @@ export const NavSearch: React.FC<NavSearchProps> = ({
   onSubmit,
   shouldAnimate = true,
   motionClass,
-  linkComponent: CustomLink,
+  linkComponent,
 }) => {
-  const globalConfig = useTimmbrConfig();
   const searchConfig = typeof config === 'object' ? config : {};
   const {
     placeholder = 'Search for furniture, decor, and more...',
     popoverContent,
-    popularSearches = defaultPopularSearches,
-    popularSearchesTitle = 'Popular Searches',
-    onPopularSearchClick,
     ariaLabel = 'Search store products',
   } = searchConfig;
 
   const [showPopover, setShowPopover] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const combobox = useNavSearchCombobox({
+    config,
+    value,
+    onChange,
+    onSubmit,
+    onClose: () => setShowPopover(false),
+  });
+  const popoverVisible = showPopover && (popoverContent ? true : combobox.hasContent);
 
   // Focus input when opened
   React.useEffect(() => {
@@ -94,23 +87,24 @@ export const NavSearch: React.FC<NavSearchProps> = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      onSubmit(value);
-      setShowPopover(false);
-    } else if (e.key === 'Escape') {
+    if (e.key === 'Escape') {
       e.preventDefault();
       setShowPopover(false);
       onOpenChange(false);
+      return;
     }
-  };
-
-  const handleTagClick = (tag: PopularSearchTag) => {
-    onChange(tag.label);
-    onPopularSearchClick?.(tag);
-    tag.onClick?.(tag);
-    onSubmit(tag.label);
-    setShowPopover(false);
+    // Custom popover content has no rows of ours: Enter just submits the typed text.
+    if (popoverContent) {
+      if (e.key === 'Enter' && value.trim()) {
+        e.preventDefault();
+        onSubmit(value.trim());
+        setShowPopover(false);
+      }
+      return;
+    }
+    // Arrow keys and Enter act on the panel's rows; reopen it first if it was closed.
+    if (!showPopover && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) setShowPopover(true);
+    combobox.inputProps.onKeyDown(e);
   };
 
   return (
@@ -148,13 +142,19 @@ export const NavSearch: React.FC<NavSearchProps> = ({
               />
               <input
                 ref={inputRef}
-                type="text"
-                role="searchbox"
+                type="search"
+                enterKeyHint="search"
                 autoComplete="off"
                 value={value}
                 placeholder={placeholder}
                 aria-label={ariaLabel}
-                onChange={(e) => onChange(e.target.value)}
+                {...combobox.inputProps}
+                aria-expanded={popoverVisible && !popoverContent}
+                {...(popoverContent && { 'aria-controls': undefined, 'aria-activedescendant': undefined })}
+                onChange={(e) => {
+                  onChange(e.target.value);
+                  setShowPopover(true);
+                }}
                 onFocus={() => setShowPopover(true)}
                 onKeyDown={handleKeyDown}
                 className="w-full h-full pl-10 pr-9 bg-transparent text-body-2 text-grey-950 placeholder:text-grey-400 border-none focus:outline-none [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
@@ -165,20 +165,21 @@ export const NavSearch: React.FC<NavSearchProps> = ({
                 onClick={() => {
                   if (value) {
                     onChange('');
+                    inputRef.current?.focus();
                   } else {
                     onOpenChange(false);
                   }
                 }}
-                aria-label="Close search"
+                aria-label={value ? 'Clear search' : 'Close search'}
                 className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-grey-400 hover:text-grey-700 rounded-full hover:bg-grey-100 transition-colors shrink-0"
               >
                 <X size={15} />
               </button>
             </div>
 
-            {/* Anchored Search Suggestions Popover - exactly matching search input width */}
+            {/* Suggestions popover, anchored under the input */}
             <AnimatePresence initial={false}>
-              {showPopover && (
+              {popoverVisible && (
                 <motion.div
                   initial={shouldAnimate ? { opacity: 0, y: 4 } : false}
                   animate={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
@@ -187,70 +188,7 @@ export const NavSearch: React.FC<NavSearchProps> = ({
                   className={cn(searchPopoverCardVariants(), !shouldAnimate && 'transition-none', motionClass)}
                   data-slot="nav-search-popover"
                 >
-                  {popoverContent ? (
-                    popoverContent
-                  ) : (
-                    <div>
-                      {popularSearchesTitle && (
-                        <h4 className="font-bold text-body-2 tracking-wide text-destructive mb-3 uppercase flex items-center gap-1.5">
-                          <span>{popularSearchesTitle}</span>
-                        </h4>
-                      )}
-                      <div className="flex flex-wrap gap-2">
-                        {popularSearches.map((tag, idx) => {
-                          const resolvedTagHref = resolveNavDestination(tag.href, tag.zone, globalConfig.zones?.zones);
-                          const requiresCrossZone = isCrossZoneNavigation(tag.zone, globalConfig.zones?.currentZone);
-
-                          const tagContent = (
-                            <>
-                              <TrendingUp size={13} className="text-grey-500 shrink-0" />
-                              <span>{tag.label}</span>
-                            </>
-                          );
-
-                          const tagClass =
-                            'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-grey-200 bg-grey-50 hover:border-grey-400 hover:bg-grey-50 text-body-3 font-medium text-grey-800 transition-all cursor-pointer';
-
-                          if (resolvedTagHref) {
-                            if (CustomLink && !requiresCrossZone) {
-                              return (
-                                <CustomLink
-                                  key={tag.id ?? idx}
-                                  href={resolvedTagHref}
-                                  className={tagClass}
-                                  onClick={() => handleTagClick(tag)}
-                                >
-                                  {tagContent}
-                                </CustomLink>
-                              );
-                            }
-                            return (
-                              <a
-                                key={tag.id ?? idx}
-                                href={resolvedTagHref}
-                                data-cross-zone={requiresCrossZone ? 'true' : undefined}
-                                className={tagClass}
-                                onClick={() => handleTagClick(tag)}
-                              >
-                                {tagContent}
-                              </a>
-                            );
-                          }
-
-                          return (
-                            <button
-                              key={tag.id ?? idx}
-                              type="button"
-                              onClick={() => handleTagClick(tag)}
-                              className={tagClass}
-                            >
-                              {tagContent}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
+                  {popoverContent ?? <NavSearchPanel {...combobox.panelProps} linkComponent={linkComponent} />}
                 </motion.div>
               )}
             </AnimatePresence>

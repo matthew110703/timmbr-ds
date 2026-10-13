@@ -2,6 +2,17 @@
 export * from './contract';
 
 export { authApi } from './api';
+export {
+  bumpCartCount,
+  getCartCount,
+  getCartQuantity,
+  loadCartCount,
+  setCartCount,
+  setCartLines,
+  useCartCount,
+  useCartQuantity,
+  type CartLine,
+} from './cart-count';
 export { authErrorMessage } from './errors';
 export {
   DEFAULT_AUTH_MESSAGES,

@@ -19,9 +19,11 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
       clickable,
       icon,
       onRemove,
+      removeLabel = 'Remove',
       motion,
       onClick,
       children,
+      onKeyDown,
       ...props
     },
     ref
@@ -42,6 +44,15 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
         role={isInteractive ? 'button' : undefined}
         tabIndex={isInteractive ? 0 : undefined}
         onClick={onClick}
+        onKeyDown={(e) => {
+          // The consumer's handler runs first and can opt out with preventDefault().
+          onKeyDown?.(e);
+          if (e.defaultPrevented || !isInteractive || !onRemove) return;
+          if (e.key === 'Delete' || e.key === 'Backspace') {
+            e.preventDefault();
+            onRemove(e as unknown as React.MouseEvent);
+          }
+        }}
         className={cn(
           chipVariants({
             variant: selected ? 'filled' : variant,
@@ -67,10 +78,12 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
         {onRemove && (
           <button
             type="button"
-            tabIndex={-1}
+            // A clickable chip is the tab stop (Delete/Backspace removes it); otherwise the
+            // remove button must be reachable by keyboard itself.
+            tabIndex={isInteractive ? -1 : undefined}
             onClick={handleRemove}
-            aria-label="Remove"
-            className="shrink-0 -mr-1 size-4 rounded-full inline-flex items-center justify-center opacity-70 hover:opacity-100 hover:bg-grey-1000/10 dark:hover:bg-grey-50/20 transition-all cursor-pointer"
+            aria-label={removeLabel}
+            className="shrink-0 -mr-1 size-4 rounded-full inline-flex items-center justify-center opacity-70 hover:opacity-100 hover:bg-grey-1000/10 dark:hover:bg-grey-50/20 transition-all cursor-pointer focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <X className="size-3" />
           </button>

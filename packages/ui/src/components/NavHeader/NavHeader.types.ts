@@ -89,6 +89,40 @@ export interface PopularSearchTag {
 }
 
 /**
+ * A product (or any destination) suggested under the search box while typing.
+ */
+export interface NavSearchResult {
+  id: string;
+  href: string;
+  title: string;
+  /** Secondary line, e.g. the brand. */
+  subtitle?: string;
+  /** Preformatted price, e.g. "₹24,999". */
+  price?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  /** The link leaves this zone: rendered as a plain <a> (full page load) instead of `linkComponent`. */
+  crossZone?: boolean;
+}
+
+/**
+ * Suggestions shown while typing (once the query reaches `minQueryLength`).
+ */
+export interface NavSearchResults {
+  items: NavSearchResult[];
+  /** A request for the current query is in flight (shows placeholders when there are no items yet). */
+  loading?: boolean;
+  /** Section title. Defaults to "Products". */
+  title?: string;
+  /** Shown when the query has no matches. Defaults to "No products match". */
+  emptyLabel?: string;
+  /** Label of the last row, which submits the query. Defaults to `See all results for "…"`. */
+  viewAllLabel?: (query: string) => string;
+  /** Characters needed before suggestions show (recent searches show below it). Defaults to 2. */
+  minQueryLength?: number;
+}
+
+/**
  * Configuration for the expandable search bar and its suggestions popover.
  */
 export interface NavSearchConfig {
@@ -114,12 +148,28 @@ export interface NavSearchConfig {
   popoverContent?: React.ReactNode;
   /** Custom suggestions node rendered inside search drawer */
   suggestions?: React.ReactNode;
-  /** Optional preconfigured popular search suggestions */
+  /** Popular search chips, shown while the input is empty. None by default. */
   popularSearches?: PopularSearchTag[];
   /** Title for the popular searches section. Defaults to "Popular Searches" */
   popularSearchesTitle?: string;
   /** Callback fired when user clicks a popular search chip */
   onPopularSearchClick?: (tag: PopularSearchTag) => void;
+  /** The shopper's recent searches (newest first), shown while the input is empty. Picking one submits it. */
+  recentSearches?: string[];
+  /** Title for the recent searches section. Defaults to "Recent searches" */
+  recentSearchesTitle?: string;
+  /** Removes one recent search (shows a remove button per row; Delete key on the active row). */
+  onRecentSearchRemove?: (query: string) => void;
+  /** Clears all recent searches (shows a "Clear" button). */
+  onClearRecentSearches?: () => void;
+  /** Label of the clear button. Defaults to "Clear" */
+  clearRecentSearchesLabel?: string;
+  /** Accessible label of a row's remove button. Defaults to `Remove "…" from recent searches` */
+  removeRecentSearchLabel?: (query: string) => string;
+  /** Suggestions while typing (e.g. matching products). */
+  results?: NavSearchResults;
+  /** Called when a suggested result is picked (before navigation). */
+  onResultSelect?: (result: NavSearchResult) => void;
   /** Custom aria-label for search input */
   ariaLabel?: string;
   /** Display mode for search on mobile/tablet viewports (< 1024px). Defaults to 'bar' */

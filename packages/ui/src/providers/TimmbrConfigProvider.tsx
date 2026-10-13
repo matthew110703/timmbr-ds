@@ -4,6 +4,7 @@ import * as React from 'react';
 import type { ToastGlobalConfig } from '../components/Toast/Toast.types';
 import { ToastProvider } from '../components/Toast/Toast';
 import { ToastContainer } from '../components/Toast/ToastContainer';
+import { SnackbarHost } from '../components/Snackbar/SnackbarHost';
 
 export interface ComponentConfig {
   button?: {
@@ -45,11 +46,7 @@ export interface TimmbrConfig {
 /**
  * Resolves target href with optional zone key and zone dictionary.
  */
-export function resolveZoneHref(
-  href: string,
-  zone?: string,
-  zones?: Record<string, string>
-): string {
+export function resolveZoneHref(href: string, zone?: string, zones?: Record<string, string>): string {
   if (!zone || !zones || !zones[zone]) {
     return href;
   }
@@ -102,10 +99,7 @@ export interface TimmbrConfigProviderProps {
  * Supports customizing animation behavior, default component variants/sizes, themes, and global toast defaults.
  * Automatically initializes and renders the centralized Toast system.
  */
-export const TimmbrConfigProvider: React.FC<TimmbrConfigProviderProps> = ({
-  children,
-  config,
-}) => {
+export const TimmbrConfigProvider: React.FC<TimmbrConfigProviderProps> = ({ children, config }) => {
   const mergedConfig = React.useMemo<TimmbrConfig>(() => {
     return {
       animations: {
@@ -148,10 +142,7 @@ export const TimmbrConfigProvider: React.FC<TimmbrConfigProviderProps> = ({
 
   React.useEffect(() => {
     if (typeof document !== 'undefined') {
-      document.documentElement.setAttribute(
-        'data-animations-disabled',
-        animationsDisabled ? 'true' : 'false'
-      );
+      document.documentElement.setAttribute('data-animations-disabled', animationsDisabled ? 'true' : 'false');
     }
     return () => {
       if (typeof document !== 'undefined') {
@@ -165,6 +156,7 @@ export const TimmbrConfigProvider: React.FC<TimmbrConfigProviderProps> = ({
       <ToastProvider swipeDirection={mergedConfig.toast?.swipeDirection ?? 'right'}>
         {children}
         <ToastContainer config={mergedConfig.toast} />
+        <SnackbarHost />
       </ToastProvider>
     </TimmbrConfigContext.Provider>
   );

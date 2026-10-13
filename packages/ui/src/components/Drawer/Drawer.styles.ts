@@ -14,9 +14,15 @@ export const drawerContentVariants = cva(
         left: 'inset-y-0 left-0 h-full w-3/4 max-w-sm border-r data-[state=open]:animate-slide-in-from-left data-[state=closed]:animate-slide-out-to-left',
         right: 'inset-y-0 right-0 h-full w-3/4 max-w-md border-l data-[state=open]:animate-slide-in-from-right data-[state=closed]:animate-slide-out-to-right',
       },
+      /** `full` covers the whole viewport (mobile filter panels, full-screen pickers); the content lays itself out. */
+      size: {
+        default: '',
+        full: 'inset-0 h-dvh max-h-none w-full max-w-none gap-0 rounded-none border-0 p-0 pt-0 pb-0',
+      },
     },
     defaultVariants: {
       side: 'right',
+      size: 'default',
     },
   }
 );

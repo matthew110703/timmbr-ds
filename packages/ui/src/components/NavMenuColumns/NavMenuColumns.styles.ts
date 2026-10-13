@@ -48,7 +48,7 @@ export const navMenuPromoVariants = cva(
 );
 
 export const navMenuPromoTitleVariants = cva(
-  'font-sans text-[20px] leading-[1.3] [&_em]:font-display [&_em]:not-italic'
+  'font-sans text-subtitle-1 leading-[1.3] [&_em]:font-display [&_em]:not-italic'
 );
 
 /** Mobile tiles: fixed 88px tiles in rows that scroll sideways (columns set inline, see NAV_MENU_TILE_PX). */

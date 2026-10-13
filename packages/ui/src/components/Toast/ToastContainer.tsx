@@ -4,21 +4,9 @@ import * as React from 'react';
 import { Info, CheckCircle, AlertTriangle, AlertCircle } from '@timmbr/icons';
 import { Inline } from '../Inline';
 import { Stack } from '../Stack';
-import {
-  Toast,
-  ToastTitle,
-  ToastDescription,
-  ToastClose,
-  ToastAction,
-  ToastViewport,
-} from './Toast';
+import { Toast, ToastTitle, ToastDescription, ToastClose, ToastAction, ToastViewport } from './Toast';
 import { toastStore } from './toastStore';
-import type {
-  ToastGlobalConfig,
-  ToastPosition,
-  ToastItem,
-  ToastActionConfig,
-} from './Toast.types';
+import type { ToastGlobalConfig, ToastPosition, ToastItem, ToastActionConfig } from './Toast.types';
 
 const VARIANT_ICONS = {
   default: Info,
@@ -28,12 +16,20 @@ const VARIANT_ICONS = {
   destructive: AlertCircle,
 };
 
+const useIsomorphicLayoutEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
 export interface ToastContainerProps {
   config?: ToastGlobalConfig;
 }
 
 export const ToastContainer: React.FC<ToastContainerProps> = ({ config }) => {
   const [toasts, setToasts] = React.useState<ToastItem[]>(() => toastStore.getToasts());
+
+  // Layout effect: applied before any child's mount effect fires a toast.
+  useIsomorphicLayoutEffect(() => {
+    toastStore.setMobileLayout(config?.mobileLayout ?? 'snackbar');
+    toastStore.setDefaultDuration(config?.duration);
+  }, [config?.mobileLayout, config?.duration]);
 
   React.useEffect(() => {
     if (config?.maxVisible) {
@@ -112,15 +108,11 @@ export const ToastContainer: React.FC<ToastContainerProps> = ({ config }) => {
               >
                 <Inline gap={3} align="start" className="flex-1 min-w-0 pr-2">
                   <Icon
-                    className={`size-4.5 shrink-0 mt-0.5 ${
-                      isDestructive ? 'text-grey-50' : 'text-current opacity-90'
-                    }`}
+                    className={`size-4.5 shrink-0 mt-0.5 ${isDestructive ? 'text-grey-50' : 'text-current opacity-90'}`}
                   />
                   <Stack gap="2xs" className="flex-1 min-w-0">
                     {item.title && <ToastTitle>{item.title}</ToastTitle>}
-                    {item.description && (
-                      <ToastDescription>{item.description}</ToastDescription>
-                    )}
+                    {item.description && <ToastDescription>{item.description}</ToastDescription>}
                   </Stack>
                 </Inline>
 

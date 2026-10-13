@@ -11,73 +11,77 @@ import type { ToastPosition, ToastProps, ToastViewportProps } from './Toast.type
 
 export const ToastProvider = ToastPrimitive.Provider;
 
+// Bottom toasts sit above anything a page pins to the bottom of the screen (e.g. a buy bar):
+// the page sets --toast-offset-bottom to that bar's height while it shows.
+const BOTTOM = 'bottom-[calc(1rem+var(--toast-offset-bottom,0px))]';
+
 const positionClasses: Record<ToastPosition, string> = {
   'top-left': 'top-4 left-4 flex-col',
   'top-center': 'top-4 left-1/2 -translate-x-1/2 flex-col',
   'top-right': 'top-4 right-4 flex-col',
-  'bottom-left': 'bottom-4 left-4 flex-col-reverse',
-  'bottom-center': 'bottom-4 left-1/2 -translate-x-1/2 flex-col-reverse',
-  'bottom-right': 'bottom-4 right-4 flex-col-reverse',
+  'bottom-left': `${BOTTOM} left-4 flex-col-reverse`,
+  'bottom-center': `${BOTTOM} left-1/2 -translate-x-1/2 flex-col-reverse`,
+  'bottom-right': `${BOTTOM} right-4 flex-col-reverse`,
 };
 
-export const ToastViewport = React.forwardRef<
-  React.ComponentRef<typeof ToastPrimitive.Viewport>,
-  ToastViewportProps
->(({ className, stacked, position = 'bottom-right', ...props }, ref) => (
-  <ToastPrimitive.Viewport
-    ref={ref}
-    data-slot="toast-viewport"
-    className={cn(
-      'fixed z-[100] group/toast-viewport flex gap-2 p-0 w-full sm:w-[420px] max-w-[420px]',
-      positionClasses[position] || positionClasses['bottom-right'],
-      stacked && 'relative h-[80px]',
-      className
-    )}
-    {...props}
-  />
-));
-ToastViewport.displayName = ToastPrimitive.Viewport.displayName;
-
-export const Toast = React.forwardRef<
-  React.ComponentRef<typeof ToastPrimitive.Root>,
-  ToastProps
->(({ className, variant, motion, index, total: _total, style, ...props }, ref) => {
-  const globalMotion = useGlobalAnimation();
-  const { shouldAnimate, motionClass } = resolveMotion(motion, globalMotion);
-
-  const isStacked = index !== undefined;
-
-  const stackStyle: React.CSSProperties = isStacked
-    ? ({
-        '--stack-idx': index,
-        zIndex: 50 - index,
-        ...style,
-      } as React.CSSProperties)
-    : { ...style };
-
-  return (
-    <ToastPrimitive.Root
+export const ToastViewport = React.forwardRef<React.ComponentRef<typeof ToastPrimitive.Viewport>, ToastViewportProps>(
+  ({ className, stacked, position = 'bottom-right', ...props }, ref) => (
+    <ToastPrimitive.Viewport
       ref={ref}
-      data-slot="toast"
-      style={stackStyle}
+      data-slot="toast-viewport"
       className={cn(
-        toastVariants({ variant }),
-        !shouldAnimate && 'transition-none animate-none',
-        isStacked && [
-          'absolute bottom-0 right-0 w-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
-          'translate-y-[calc(var(--stack-idx)*-12px)] scale-[calc(1-var(--stack-idx)*0.05)]',
-          'group-hover/toast-viewport:translate-y-[calc(var(--stack-idx)*-76px)] group-hover/toast-viewport:scale-100 group-hover/toast-viewport:opacity-100',
-          index > 2
-            ? 'opacity-0 pointer-events-none group-hover/toast-viewport:opacity-100 group-hover/toast-viewport:pointer-events-auto'
-            : 'opacity-[calc(1-var(--stack-idx)*0.15)]',
-        ],
-        motionClass,
+        'fixed z-[100] group/toast-viewport flex gap-2 p-0 w-full sm:w-[420px] max-w-[420px] transition-[bottom] duration-200',
+        positionClasses[position] || positionClasses['bottom-right'],
+        // Phones: a snackbar across the screen (12px margins), wherever it's anchored.
+        'max-sm:left-3 max-sm:right-3 max-sm:w-auto max-sm:max-w-none max-sm:translate-x-0',
+        stacked && 'relative h-[80px]',
         className
       )}
       {...props}
     />
-  );
-});
+  )
+);
+ToastViewport.displayName = ToastPrimitive.Viewport.displayName;
+
+export const Toast = React.forwardRef<React.ComponentRef<typeof ToastPrimitive.Root>, ToastProps>(
+  ({ className, variant, motion, index, total: _total, style, ...props }, ref) => {
+    const globalMotion = useGlobalAnimation();
+    const { shouldAnimate, motionClass } = resolveMotion(motion, globalMotion);
+
+    const isStacked = index !== undefined;
+
+    const stackStyle: React.CSSProperties = isStacked
+      ? ({
+          '--stack-idx': index,
+          zIndex: 50 - index,
+          ...style,
+        } as React.CSSProperties)
+      : { ...style };
+
+    return (
+      <ToastPrimitive.Root
+        ref={ref}
+        data-slot="toast"
+        style={stackStyle}
+        className={cn(
+          toastVariants({ variant }),
+          !shouldAnimate && 'transition-none animate-none',
+          isStacked && [
+            'absolute bottom-0 right-0 w-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+            'translate-y-[calc(var(--stack-idx)*-12px)] scale-[calc(1-var(--stack-idx)*0.05)]',
+            'group-hover/toast-viewport:translate-y-[calc(var(--stack-idx)*-76px)] group-hover/toast-viewport:scale-100 group-hover/toast-viewport:opacity-100',
+            index > 2
+              ? 'opacity-0 pointer-events-none group-hover/toast-viewport:opacity-100 group-hover/toast-viewport:pointer-events-auto'
+              : 'opacity-[calc(1-var(--stack-idx)*0.15)]',
+          ],
+          motionClass,
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
 Toast.displayName = ToastPrimitive.Root.displayName;
 
 export const ToastAction = React.forwardRef<

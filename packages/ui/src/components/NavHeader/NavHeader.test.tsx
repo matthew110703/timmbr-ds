@@ -423,20 +423,27 @@ describe('NavHeader Component', () => {
     expect(drawer).toBeInTheDocument();
 
     // Search input inside drawer
-    const drawerInput = screen.getByRole('searchbox', { name: 'Search store products' });
+    const drawerInput = screen.getByRole('combobox', { name: 'Search store products' });
     expect(drawerInput).toBeInTheDocument();
 
-    // Type query
+    // Popular chips show while the input is empty
+    expect(screen.getByText('Coffee Tables')).toBeInTheDocument();
+
+    // Type a query and submit it with Enter
     fireEvent.change(drawerInput, { target: { value: 'Wooden Sofa' } });
     expect(drawerInput).toHaveValue('Wooden Sofa');
+    expect(screen.queryByText('Coffee Tables')).not.toBeInTheDocument();
+    fireEvent.keyDown(drawerInput, { key: 'Enter' });
+    expect(onSubmit).toHaveBeenCalledWith('Wooden Sofa');
 
-    // Popular search tag click
-    const tagBtn = screen.getByText('Coffee Tables');
-    fireEvent.click(tagBtn);
-    expect(onSubmit).toHaveBeenCalledWith('Coffee Tables');
-
-    // Drawer closes after selecting search tag
+    // Drawer closes after submitting
     expect(screen.queryByRole('dialog', { name: 'Search drawer' })).not.toBeInTheDocument();
+
+    // A popular chip submits its label too
+    fireEvent.click(screen.getByRole('button', { name: 'Open search drawer' }));
+    fireEvent.change(screen.getByRole('combobox', { name: 'Search store products' }), { target: { value: '' } });
+    fireEvent.click(screen.getByText('Coffee Tables'));
+    expect(onSubmit).toHaveBeenLastCalledWith('Coffee Tables');
   });
 
   it('closes mobile search drawer via back button and Escape key', () => {

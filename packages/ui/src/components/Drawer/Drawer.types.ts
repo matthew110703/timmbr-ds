@@ -12,6 +12,8 @@ export interface DrawerContentProps
    * Motion transition control.
    */
   motion?: MotionProp;
+  /** Render the corner close button (default true). Hide it when the content has its own. */
+  showClose?: boolean;
 }
 
 export type DrawerHeaderProps = React.HTMLAttributes<HTMLDivElement>;

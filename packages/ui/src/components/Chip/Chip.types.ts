@@ -22,6 +22,11 @@ export interface ChipProps
    */
   onRemove?: (e: React.MouseEvent) => void;
   /**
+   * Accessible name of the remove button, e.g. "Remove Teak".
+   * @default 'Remove'
+   */
+  removeLabel?: string;
+  /**
    * Motion transition control.
    */
   motion?: MotionProp;
