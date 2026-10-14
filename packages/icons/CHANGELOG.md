@@ -1,5 +1,11 @@
 # @timmbr/icons
 
+## 1.6.0
+
+### Minor Changes
+
+- Export `CreditCard`, `Landmark`, `Banknote`, `QrCode`, `CalendarClock` and `XCircle`.
+
 ## 1.5.0
 
 ### Minor Changes

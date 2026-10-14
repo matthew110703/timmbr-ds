@@ -277,9 +277,11 @@ export interface NavActionsConfig {
   /** Pre-configured profile action */
   profile?: Partial<NavActionItem>;
   /** Pre-configured wishlist action with optional badge count */
-  wishlist?: Partial<NavActionItem> & { count?: number };
+  /** Header wishlist action; `false` hides it (e.g. checkout). */
+  wishlist?: (Partial<NavActionItem> & { count?: number }) | false;
   /** Pre-configured cart action with optional badge count */
-  cart?: Partial<NavActionItem> & { count?: number };
+  /** Header cart action; `false` hides it (e.g. checkout). */
+  cart?: (Partial<NavActionItem> & { count?: number }) | false;
   /** Auth trigger mode: 'modal' triggers popup flow, 'redirect' fallbacks to /auth page */
   authMode?: 'modal' | 'redirect';
   /** Callback fired when user triggers auth in modal mode */
@@ -425,10 +427,10 @@ export interface NavHeaderProps
   profileAction?: Partial<NavActionItem>;
 
   /** Shorthand wishlist action configuration with optional badge count. */
-  wishlistAction?: Partial<NavActionItem> & { count?: number };
+  wishlistAction?: (Partial<NavActionItem> & { count?: number }) | false;
 
   /** Shorthand cart action configuration with optional badge count. */
-  cartAction?: Partial<NavActionItem> & { count?: number };
+  cartAction?: (Partial<NavActionItem> & { count?: number }) | false;
 
   /** Shorthand auth mode: 'modal' triggers modal popup, 'redirect' falls back to /auth page. Defaults to 'modal'. */
   authMode?: 'modal' | 'redirect';

@@ -29,6 +29,7 @@ const PUBLISHABLE_PACKAGES = {
   hooks: { name: '@timmbr/hooks', dir: 'packages/hooks' },
   utils: { name: '@timmbr/utils', dir: 'packages/utils' },
   auth: { name: '@timmbr/auth', dir: 'packages/auth' },
+  payments: { name: '@timmbr/payments', dir: 'packages/payments' },
 };
 
 // Aliases for full scoped names

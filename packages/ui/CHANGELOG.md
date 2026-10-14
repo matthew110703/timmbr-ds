@@ -1,5 +1,17 @@
 # @timmbr/ui
 
+## 1.11.0
+
+### Minor Changes
+
+- - New `RadioCard`: a selectable row or tile (icon, label, description, optional trailing element) that works inside `RadioGroup`, for choices like a payment method or a delivery speed.
+  - `NavHeader`: `actions.wishlist` and `actions.cart` accept `false` to hide those actions, so a zone can show the same header in a slimmer state (e.g. checkout).
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/icons@1.6.0
+
 ## 1.10.0
 
 ### Minor Changes

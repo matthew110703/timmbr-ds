@@ -29,8 +29,8 @@ export const PROFILE_LABEL_CLASS = 'min-w-[35px] max-w-16 truncate text-center';
 export interface NavActionsProps {
   actions?: NavActionItem[];
   profileAction?: Partial<NavActionItem>;
-  wishlistAction?: Partial<NavActionItem> & { count?: number };
-  cartAction?: Partial<NavActionItem> & { count?: number };
+  wishlistAction?: (Partial<NavActionItem> & { count?: number }) | false;
+  cartAction?: (Partial<NavActionItem> & { count?: number }) | false;
   authMode?: 'modal' | 'redirect';
   onAuthTrigger?: () => void;
   maxVisibleActions?: number | 'auto';
@@ -101,34 +101,40 @@ export const NavActions: React.FC<NavActionsProps> = ({
 
     // Order: Wishlist, Cart, Profile (account last, at the far edge).
 
-    // Wishlist
-    const wishCount = wishlistAction?.count;
-    defaultItems.push({
-      id: 'wishlist',
-      label: wishlistAction?.label ?? 'WISH LIST',
-      icon: wishlistAction?.icon ?? <Heart size={22} className="stroke-[1.8]" />,
-      href: wishlistAction?.href ?? '/wishlist',
-      zone: wishlistAction?.zone,
-      crossZone: wishlistAction?.crossZone,
-      badge: wishlistAction?.badge ?? (wishCount && wishCount > 0 ? wishCount : undefined),
-      onClick: wishlistAction?.onClick,
-      ariaLabel: wishlistAction?.ariaLabel ?? (wishCount ? `Wishlist with ${wishCount} items` : 'Wishlist'),
-    });
+    // Wishlist (`false` hides it)
+    const wishlist = wishlistAction === false ? undefined : wishlistAction;
+    if (wishlistAction !== false) {
+      const wishCount = wishlist?.count;
+      defaultItems.push({
+        id: 'wishlist',
+        label: wishlist?.label ?? 'WISH LIST',
+        icon: wishlist?.icon ?? <Heart size={22} className="stroke-[1.8]" />,
+        href: wishlist?.href ?? '/wishlist',
+        zone: wishlist?.zone,
+        crossZone: wishlist?.crossZone,
+        badge: wishlist?.badge ?? (wishCount && wishCount > 0 ? wishCount : undefined),
+        onClick: wishlist?.onClick,
+        ariaLabel: wishlist?.ariaLabel ?? (wishCount ? `Wishlist with ${wishCount} items` : 'Wishlist'),
+      });
+    }
 
-    // Cart
-    const cartCount = cartAction?.count;
-    defaultItems.push({
-      id: 'cart',
-      label: cartAction?.label ?? 'CART',
-      icon: cartAction?.icon ?? <ShoppingCart size={22} className="stroke-[1.8]" />,
-      href: cartAction?.href ?? '/cart',
-      zone: cartAction?.zone,
-      crossZone: cartAction?.crossZone,
-      badge: cartAction?.badge ?? (cartCount && cartCount > 0 ? cartCount : undefined),
-      onClick: cartAction?.onClick,
-      ariaLabel: cartAction?.ariaLabel ?? (cartCount ? `Shopping cart with ${cartCount} items` : 'Shopping cart'),
-      priority: 'high',
-    });
+    // Cart (`false` hides it)
+    const cart = cartAction === false ? undefined : cartAction;
+    if (cartAction !== false) {
+      const cartCount = cart?.count;
+      defaultItems.push({
+        id: 'cart',
+        label: cart?.label ?? 'CART',
+        icon: cart?.icon ?? <ShoppingCart size={22} className="stroke-[1.8]" />,
+        href: cart?.href ?? '/cart',
+        zone: cart?.zone,
+        crossZone: cart?.crossZone,
+        badge: cart?.badge ?? (cartCount && cartCount > 0 ? cartCount : undefined),
+        onClick: cart?.onClick,
+        ariaLabel: cart?.ariaLabel ?? (cartCount ? `Shopping cart with ${cartCount} items` : 'Shopping cart'),
+        priority: 'high',
+      });
+    }
 
     // Profile: high priority so sign-in / account stays visible when space is tight
     defaultItems.push({

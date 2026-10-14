@@ -81,4 +81,11 @@ export {
   MessageSquareText,
   Mail,
   MonitorSmartphone,
+  // Checkout & payments
+  CreditCard,
+  Landmark,
+  Banknote,
+  QrCode,
+  CalendarClock,
+  XCircle,
 } from 'lucide-react';

@@ -651,3 +651,30 @@ describe('NavHeader Component', () => {
     });
   });
 });
+
+describe('NavHeader actions switched off', () => {
+  it('shows wishlist and cart by default', () => {
+    render(
+      <NavHeader
+        branding={{ logo: <span>LOGO</span> }}
+        actions={{ profile: { label: 'LOGIN' } }}
+        motion={false}
+      />
+    );
+    expect(screen.getAllByText('WISH LIST').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('CART').length).toBeGreaterThan(0);
+  });
+
+  it('hides wishlist and cart with `false`, keeping the profile action', () => {
+    render(
+      <NavHeader
+        branding={{ logo: <span>LOGO</span> }}
+        actions={{ profile: { label: 'LOGIN' }, wishlist: false, cart: false }}
+        motion={false}
+      />
+    );
+    expect(screen.queryByText('WISH LIST')).not.toBeInTheDocument();
+    expect(screen.queryByText('CART')).not.toBeInTheDocument();
+    expect(screen.getAllByText('LOGIN').length).toBeGreaterThan(0);
+  });
+});
