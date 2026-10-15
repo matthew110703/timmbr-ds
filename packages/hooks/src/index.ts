@@ -6,3 +6,4 @@ export * from './useDebouncedCallback';
 export * from './useRecentSearches';
 export * from './useSearchSuggestions';
 export * from './useStoredList';
+export * from './usePrefersReducedMotion';

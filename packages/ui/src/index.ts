@@ -61,6 +61,7 @@ export * from './components/Text';
 // Feedback Components
 export * from './components/Alert';
 export * from './components/Progress';
+export * from './components/PageProgress';
 export * from './components/Spinner';
 export * from './components/Skeleton';
 export * from './components/EmptyState';
