@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority';
 // sand-muted, destructive) and fonts use font-display / font-sans.
 
 export const authModalContainerVariants = cva(
-  'relative flex w-full max-w-[675px] bg-grey-50 overflow-hidden rounded-sm shadow-[0px_12px_24px_-4px_rgba(0,0,0,0.15)] flex-col sm:flex-row sm:min-h-[454px] max-h-[calc(100dvh-24px)] sm:max-h-[calc(100dvh-32px)]'
+  'relative flex w-full max-w-[675px] bg-grey-50 overflow-hidden rounded-sm shadow-2xl flex-col sm:flex-row sm:min-h-[454px] max-h-[calc(100dvh-24px)] sm:max-h-[calc(100dvh-32px)]'
 );
 
 export const authModalBannerVariants = cva(

@@ -83,7 +83,7 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
             tabIndex={isInteractive ? -1 : undefined}
             onClick={handleRemove}
             aria-label={removeLabel}
-            className="shrink-0 -mr-1 size-4 rounded-full inline-flex items-center justify-center opacity-70 hover:opacity-100 hover:bg-grey-1000/10 dark:hover:bg-grey-50/20 transition-all cursor-pointer focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="shrink-0 -mr-1 min-w-[28px] min-h-[28px] rounded-full inline-flex items-center justify-center opacity-70 hover:opacity-100 hover:bg-grey-1000/10 dark:hover:bg-grey-50/20 transition-all cursor-pointer focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <X className="size-3" />
           </button>

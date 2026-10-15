@@ -33,18 +33,26 @@ AccordionItem.displayName = 'AccordionItem';
 export const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   AccordionTriggerProps
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn(accordionTriggerVariants(), className)}
-      {...props}
-    >
-      {children}
-      <ChevronDown className="h-4 w-4 shrink-0 text-grey-500 transition-transform duration-200" />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-));
+>(({ className, children, ...props }, ref) => {
+  const globalMotion = useGlobalAnimation();
+  return (
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        ref={ref}
+        className={cn(accordionTriggerVariants(), className)}
+        {...props}
+      >
+        {children}
+        <ChevronDown
+          className={cn(
+            'h-4 w-4 shrink-0 text-grey-500',
+            globalMotion ? 'transition-transform duration-200' : 'transition-none'
+          )}
+        />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  );
+});
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 export const AccordionContent = React.forwardRef<

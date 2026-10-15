@@ -13,6 +13,10 @@ function isActionConfig(action: ToastOptions['action']): action is ToastActionCo
 
 type ToastSubscriber = () => void;
 
+/**
+ * Browser-only module-level singleton. Not SSR-safe — never import this on the server.
+ * Use `.reset()` in tests to clear state between cases.
+ */
 class ToastStore {
   private toasts: ToastItem[] = [];
   private listeners: Set<ToastSubscriber> = new Set();

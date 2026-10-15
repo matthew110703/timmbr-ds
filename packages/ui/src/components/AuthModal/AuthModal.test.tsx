@@ -88,7 +88,7 @@ describe('AuthModal', () => {
 
       const button = screen.getByRole('button', { name: 'Continue' });
       expect(button).toHaveAttribute('aria-busy', 'true');
-      expect(button.querySelector('[data-slot="spinner-container"]')).toHaveClass('text-grey-50');
+      expect(button).toBeDisabled();
     });
 
     it('renders OAuth providers and disables them while a request is in flight', async () => {

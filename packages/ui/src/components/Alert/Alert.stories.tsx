@@ -80,3 +80,51 @@ export const Variants: Story = {
     </div>
   ),
 };
+
+/** All three sizes side-by-side. */
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3 w-full max-w-xl">
+      <Alert variant="info" size="sm" title="Small alert">
+        Compact size for inline notices where vertical space is tight.
+      </Alert>
+      <Alert variant="info" size="default" title="Default alert">
+        Standard size for most informational messages.
+      </Alert>
+      <Alert variant="info" size="lg" title="Large alert">
+        Prominent size for critical notices that need to stand out.
+      </Alert>
+    </div>
+  ),
+};
+
+/** `icon={null}` suppresses the icon entirely. */
+export const NoIcon: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3 w-full max-w-xl">
+      <Alert variant="warning" title="No icon variant" icon={null}>
+        This alert has no leading icon. Use when the variant colour is sufficient context.
+      </Alert>
+      <Alert variant="success" title="FSC Certification Verified" icon={null}>
+        All logs in this shipment verified through sustainable forestry chain.
+      </Alert>
+    </div>
+  ),
+};
+
+/** Pass a custom React element as `icon` to replace the default variant icon. */
+export const CustomIcon: Story = {
+  render: () => (
+    <Alert
+      variant="info"
+      title="Custom icon slot"
+      icon={
+        <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+          <path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9v-2h2v2zm0-4H9V5h2v4z" />
+        </svg>
+      }
+    >
+      You can pass any React node as the icon prop.
+    </Alert>
+  ),
+};

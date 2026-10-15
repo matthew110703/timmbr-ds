@@ -27,11 +27,15 @@ export interface SnackbarItem extends SnackbarOptions {
   open: boolean;
 }
 
+import type { MotionProp } from '../../types/motion';
+
 export interface SnackbarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   item: SnackbarItem;
   onDismiss: () => void;
   /** Labels for assistive tech. */
   dismissLabel?: string;
+  /** Override animation behaviour. `false` disables entry/exit transitions; omit to inherit global setting. */
+  motion?: MotionProp;
 }
 
 export interface SnackbarHostProps {

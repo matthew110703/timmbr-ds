@@ -71,6 +71,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type="button"
         disabled={isDisabled}
+        aria-busy={loading || undefined}
         data-slot="button"
         data-testid="timmbr-button"
         style={style}

@@ -73,7 +73,7 @@ export const DrawerContent = React.forwardRef<
         {showClose && (
         <DialogPrimitive.Close
           data-slot="drawer-close"
-          className="absolute right-4 top-4 rounded-sm p-1 text-muted hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
+          className="absolute right-3 top-3 flex items-center justify-center min-w-[44px] min-h-[44px] rounded-sm text-muted hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>

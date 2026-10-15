@@ -92,7 +92,7 @@ export const ToastAction = React.forwardRef<
     ref={ref}
     data-slot="toast-action"
     className={cn(
-      'inline-flex h-8 shrink-0 items-center justify-center rounded-[2px] border bg-transparent px-3 text-body-3 font-semibold ring-offset-background transition-colors hover:bg-grey-100 dark:hover:bg-grey-800 focus:outline-none focus:ring-2 focus:ring-primary disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+      'inline-flex h-8 shrink-0 items-center justify-center rounded-[2px] border bg-transparent px-3 text-body-3 font-semibold ring-offset-background transition-colors hover:bg-grey-100 dark:hover:bg-grey-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
       className
     )}
     {...props}
@@ -108,7 +108,7 @@ export const ToastClose = React.forwardRef<
     ref={ref}
     data-slot="toast-close"
     className={cn(
-      'absolute right-2 top-2 rounded-sm p-1 text-muted hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none cursor-pointer',
+      'absolute right-1 top-1 flex items-center justify-center min-w-[44px] min-h-[44px] rounded-sm text-muted hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer',
       className
     )}
     toast-close=""

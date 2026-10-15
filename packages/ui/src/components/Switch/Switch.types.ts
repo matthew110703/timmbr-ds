@@ -1,6 +1,7 @@
 import type * as React from 'react';
 import type * as SwitchPrimitive from '@radix-ui/react-switch';
 import type { SwitchVariants } from './Switch.styles';
+import type { MotionProp } from '../../types/motion';
 
 export interface SwitchProps
   extends Omit<
@@ -20,4 +21,6 @@ export interface SwitchProps
    * Custom className for the outer container wrapper.
    */
   containerClassName?: string;
+  /** Override animation behaviour. `false` disables transitions; omit to inherit global setting. */
+  motion?: MotionProp;
 }

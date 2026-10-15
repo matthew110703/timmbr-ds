@@ -9,6 +9,9 @@ export const SNACKBAR_EXIT_MS = 180;
 type Listener = () => void;
 
 /**
+ * Browser-only module-level singleton. Not SSR-safe — never import this on the server.
+ * Use `.reset()` in tests to clear state between cases.
+ *
  * One snackbar at a time (the mobile pattern): showing a new one closes the current one first;
  * extra ones wait their turn. Re-showing an id that's on screen or queued updates it in place.
  */

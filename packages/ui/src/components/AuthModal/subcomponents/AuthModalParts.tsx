@@ -2,14 +2,12 @@
 
 import * as React from 'react';
 import { cn } from '@timmbr/utils';
-import { Eye, EyeOff } from '@timmbr/icons';
-import { Spinner } from '../../Spinner';
 import { useAuthModalLabels } from '../AuthModal.labels';
+import { Button } from '../../Button';
+import { Input } from '../../Input';
 import {
   authModalHeadingVariants,
-  authModalInputVariants,
   authModalLinkVariants,
-  authModalSubmitButtonVariants,
   authModalSubtitleVariants,
 } from '../AuthModal.styles';
 
@@ -83,22 +81,15 @@ export function AuthSubmitButton({
   children: React.ReactNode;
 }) {
   return (
-    <button
+    <Button
       type="submit"
-      disabled={disabled || isLoading}
-      aria-busy={isLoading || undefined}
-      className={authModalSubmitButtonVariants()}
+      variant="primary"
+      fullWidth
+      loading={isLoading}
+      disabled={disabled}
     >
-      {isLoading ? (
-        <>
-          <Spinner size="sm" variant="white" decorative />
-          {/* Keeps the button's accessible name while the label is hidden */}
-          <span className="sr-only">{children}</span>
-        </>
-      ) : (
-        children
-      )}
-    </button>
+      {children}
+    </Button>
   );
 }
 
@@ -148,7 +139,7 @@ export function AuthDestination({
   );
 }
 
-type PasswordFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type'> & {
+type PasswordFieldProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type' | 'size'> & {
   id: string;
   label: string;
   onValueChange?: (value: string) => void;
@@ -165,34 +156,17 @@ export function AuthPasswordField({
   className,
   ...inputProps
 }: PasswordFieldProps) {
-  const labels = useAuthModalLabels();
-  const [visible, setVisible] = React.useState(false);
-
   return (
-    <div className={className}>
-      <label htmlFor={id} className="sr-only">
-        {label}
-      </label>
-      <div className="relative">
-        <input
-          id={id}
-          type={visible ? 'text' : 'password'}
-          onChange={(e) => onValueChange?.(e.target.value)}
-          aria-invalid={invalid || undefined}
-          aria-describedby={describedBy}
-          className={cn(authModalInputVariants({ invalid: !!invalid }), 'pr-12')}
-          {...inputProps}
-        />
-        <button
-          type="button"
-          onClick={() => setVisible((v) => !v)}
-          aria-label={visible ? labels.hidePassword : labels.showPassword}
-          aria-pressed={visible}
-          className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-grey-600 hover:text-grey-950 focus:outline-none focus-visible:text-primary cursor-pointer"
-        >
-          {visible ? <EyeOff className="size-5" aria-hidden="true" /> : <Eye className="size-5" aria-hidden="true" />}
-        </button>
-      </div>
-    </div>
+    <Input
+      id={id}
+      type="password"
+      showPasswordToggle
+      aria-label={label}
+      aria-describedby={describedBy}
+      error={invalid}
+      containerClassName={className}
+      onChange={(e) => onValueChange?.(e.target.value)}
+      {...inputProps}
+    />
   );
 }

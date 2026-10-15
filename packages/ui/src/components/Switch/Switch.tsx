@@ -3,6 +3,8 @@
 import * as React from 'react';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { cn } from '@timmbr/utils';
+import { useGlobalAnimation } from '../../providers';
+import { resolveMotion } from '../../types/motion';
 import { switchVariants, switchThumbVariants } from './Switch.styles';
 import type { SwitchProps } from './Switch.types';
 
@@ -18,6 +20,7 @@ export const Switch = React.forwardRef<
       size,
       label,
       description,
+      motion,
       id: customId,
       disabled,
       ...props
@@ -26,17 +29,28 @@ export const Switch = React.forwardRef<
   ) => {
     const generatedId = React.useId();
     const id = customId || generatedId;
+    const globalMotion = useGlobalAnimation();
+    const { shouldAnimate } = resolveMotion(motion, globalMotion);
 
     const switchElement = (
       <SwitchPrimitive.Root
         ref={ref}
         id={id}
         disabled={disabled}
-        className={cn(switchVariants({ size }), !label && className)}
+        className={cn(
+          switchVariants({ size }),
+          shouldAnimate ? 'transition-colors' : 'transition-none',
+          !label && className
+        )}
         style={!label ? style : undefined}
         {...props}
       >
-        <SwitchPrimitive.Thumb className={cn(switchThumbVariants({ size }))} />
+        <SwitchPrimitive.Thumb
+          className={cn(
+            switchThumbVariants({ size }),
+            shouldAnimate ? 'transition-transform' : 'transition-none'
+          )}
+        />
       </SwitchPrimitive.Root>
     );
 

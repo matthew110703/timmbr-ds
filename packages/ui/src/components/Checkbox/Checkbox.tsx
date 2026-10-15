@@ -4,6 +4,8 @@ import * as React from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { Check } from '@timmbr/icons';
 import { cn } from '@timmbr/utils';
+import { useGlobalAnimation } from '../../providers';
+import { resolveMotion } from '../../types/motion';
 import { checkboxVariants, checkboxIndicatorVariants } from './Checkbox.styles';
 import type { CheckboxProps } from './Checkbox.types';
 
@@ -21,6 +23,7 @@ export const Checkbox = React.forwardRef<
       description,
       error,
       checked,
+      motion,
       id: customId,
       disabled,
       ...props
@@ -31,6 +34,8 @@ export const Checkbox = React.forwardRef<
     const id = customId || generatedId;
     const isError = Boolean(error);
     const errorMessage = typeof error === 'string' ? error : undefined;
+    const globalMotion = useGlobalAnimation();
+    const { shouldAnimate } = resolveMotion(motion, globalMotion);
 
     const checkboxElement = (
       <CheckboxPrimitive.Root
@@ -38,7 +43,11 @@ export const Checkbox = React.forwardRef<
         id={id}
         disabled={disabled}
         {...(checked !== undefined ? { checked } : {})}
-        className={cn(checkboxVariants({ size, isError }), !label && className)}
+        className={cn(
+          checkboxVariants({ size, isError }),
+          shouldAnimate ? 'transition-all' : 'transition-none',
+          !label && className
+        )}
         style={!label ? style : undefined}
         {...props}
       >

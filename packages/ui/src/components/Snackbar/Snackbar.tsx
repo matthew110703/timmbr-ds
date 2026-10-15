@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { AlertCircle, AlertTriangle, CheckCircle, Info, X } from '@timmbr/icons';
 import { cn } from '@timmbr/utils';
+import { useGlobalAnimation } from '../../providers';
+import { resolveMotion } from '../../types/motion';
 import {
   snackbarActionVariants,
   snackbarCloseVariants,
@@ -28,9 +30,11 @@ const SWIPE_DISMISS_PX = 48;
  * sideways or down, or when its action is used.
  */
 export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
-  ({ item, onDismiss, dismissLabel = 'Dismiss', className, style, ...props }, ref) => {
+  ({ item, onDismiss, dismissLabel = 'Dismiss', motion, className, style, ...props }, ref) => {
     const variant = item.variant ?? 'default';
     const Icon = ICONS[variant];
+    const globalMotion = useGlobalAnimation();
+    const { shouldAnimate } = resolveMotion(motion, globalMotion);
     const duration = item.duration ?? (item.action ? 6000 : 4000);
 
     // Auto-dismiss, paused while the shopper is engaging with it.
@@ -81,7 +85,7 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
         data-slot="snackbar"
         data-variant={variant}
         data-state={item.open ? 'open' : 'closed'}
-        className={cn(snackbarVariants({ open: item.open }), dragging && 'transition-none', className)}
+        className={cn(snackbarVariants({ open: item.open, animated: shouldAnimate }), dragging && 'transition-none', className)}
         style={{
           ...style,
           ...(dragging && {
