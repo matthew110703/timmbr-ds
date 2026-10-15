@@ -4,6 +4,7 @@ import { tokens } from '@timmbr/theme';
 
 const meta = {
   title: 'Foundations/Shadows',
+  tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
   },

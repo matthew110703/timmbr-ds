@@ -6,7 +6,16 @@ import { snackbar } from './snackbarStore';
 const meta: Meta<typeof SnackbarHost> = {
   title: 'Feedback/Snackbar',
   component: SnackbarHost,
-  parameters: { viewport: { defaultViewport: 'mobile1' } },
+  tags: ['autodocs'],
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' },
+    docs: {
+      description: {
+        component:
+          'Imperative snackbar API — call `snackbar(message)`, `snackbar.success()`, `snackbar.error()` etc. from anywhere. Mount `<SnackbarHost />` once at the app root to render notifications. One snackbar at a time (the mobile pattern).',
+      },
+    },
+  },
 };
 export default meta;
 

@@ -18,6 +18,7 @@ const sizes: OptionPickerOption[] = [
 const meta: Meta<typeof OptionPicker> = {
   title: 'Forms/OptionPicker',
   component: OptionPicker,
+  tags: ['autodocs'],
 };
 export default meta;
 

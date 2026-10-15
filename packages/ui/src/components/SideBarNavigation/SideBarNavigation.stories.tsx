@@ -100,6 +100,7 @@ const sampleFooter = ({ collapsed }: { collapsed: boolean }) => (
 const meta: Meta<typeof SideBarNavigation> = {
   title: 'Navigation/SideBarNavigation',
   component: SideBarNavigation,
+  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },

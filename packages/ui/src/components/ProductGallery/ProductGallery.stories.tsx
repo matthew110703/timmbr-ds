@@ -9,8 +9,9 @@ const images = [
 ];
 
 const meta: Meta<typeof ProductGallery> = {
-  title: 'Display/ProductGallery',
+  title: 'Data Display/ProductGallery',
   component: ProductGallery,
+  tags: ['autodocs'],
   args: { images },
   decorators: [(Story) => <div style={{ maxWidth: 736 }}>{Story()}</div>],
 };

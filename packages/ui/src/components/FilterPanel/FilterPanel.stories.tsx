@@ -117,6 +117,7 @@ function Interactive() {
 const meta: Meta<typeof FilterPanel> = {
   title: 'Navigation/FilterPanel',
   component: FilterPanel,
+  tags: ['autodocs'],
   parameters: { layout: 'padded' },
 };
 export default meta;

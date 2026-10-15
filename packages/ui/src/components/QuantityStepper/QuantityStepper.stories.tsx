@@ -5,6 +5,7 @@ import { QuantityStepper } from './QuantityStepper';
 const meta: Meta<typeof QuantityStepper> = {
   title: 'Forms/QuantityStepper',
   component: QuantityStepper,
+  tags: ['autodocs'],
 };
 export default meta;
 

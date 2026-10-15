@@ -23,6 +23,7 @@ function Interactive() {
 const meta: Meta<typeof FilterChips> = {
   title: 'Navigation/FilterChips',
   component: FilterChips,
+  tags: ['autodocs'],
 };
 export default meta;
 

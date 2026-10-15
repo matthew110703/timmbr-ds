@@ -3,6 +3,7 @@ import * as React from 'react';
 
 const meta = {
   title: 'Foundations/Typography',
+  tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
   },

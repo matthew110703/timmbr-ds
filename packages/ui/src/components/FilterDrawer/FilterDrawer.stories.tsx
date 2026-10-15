@@ -63,6 +63,7 @@ function Interactive() {
 const meta: Meta<typeof FilterDrawer> = {
   title: 'Navigation/FilterDrawer',
   component: FilterDrawer,
+  tags: ['autodocs'],
   parameters: { layout: 'fullscreen', viewport: { defaultViewport: 'mobile1' } },
 };
 export default meta;

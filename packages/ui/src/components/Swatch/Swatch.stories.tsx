@@ -11,8 +11,9 @@ const finishes = {
 };
 
 const meta: Meta<typeof Swatch> = {
-  title: 'Display/Swatch',
+  title: 'Data Display/Swatch',
   component: Swatch,
+  tags: ['autodocs'],
   args: { color: '#5C3A21', size: 'md' },
 };
 export default meta;

@@ -53,6 +53,7 @@ if (typeof window !== 'undefined') {
 }
 
 const preview: Preview = {
+  tags: ['autodocs'],
   parameters: {
     nextjs: {
       appDirectory: true,
@@ -91,13 +92,18 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story) => (
-      <TimmbrConfigProvider>
-        <div className="bg-background text-foreground p-6 font-sans antialiased transition-colors duration-150">
-          <Story />
-        </div>
-      </TimmbrConfigProvider>
-    ),
+    (Story, ctx) => {
+      const isFullscreen = ctx.parameters?.layout === 'fullscreen';
+      return (
+        <TimmbrConfigProvider>
+          <div
+            className={`bg-background text-foreground font-sans antialiased transition-colors duration-150 ${isFullscreen ? '' : 'p-6'}`}
+          >
+            <Story />
+          </div>
+        </TimmbrConfigProvider>
+      );
+    },
     withThemeByClassName({
       themes: {
         light: '',

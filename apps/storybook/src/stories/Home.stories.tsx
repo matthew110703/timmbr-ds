@@ -1,236 +1,191 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { Badge } from '@timmbr/ui';
-import { Chip } from '@timmbr/ui';
 import { Divider } from '@timmbr/ui';
-
-import rootPkg from '../../../../package.json';
-import uiPkg from '../../../../packages/ui/package.json';
-import themePkg from '../../../../packages/theme/package.json';
-import motionPkg from '../../../../packages/motion/package.json';
-import iconsPkg from '../../../../packages/icons/package.json';
-import hooksPkg from '../../../../packages/hooks/package.json';
-import utilsPkg from '../../../../packages/utils/package.json';
+import { Check, Copy, Package, LayoutDashboard, Sparkles, Palette, Film, Star } from '@timmbr/icons';
 
 const meta: Meta = {
   title: 'Overview/Home',
+  tags: ['!autodocs'],
   parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        component: 'Informational overview of the Timmbr Design System workspace packages and topology.',
-      },
-    },
+    layout: 'fullscreen',
+    docs: { page: null },
+    options: { showPanel: false },
   },
 };
 
 export default meta;
 type Story = StoryObj;
 
-const packages = [
-  {
-    name: uiPkg.name,
-    version: uiPkg.version,
-    type: 'React Library',
-    status: 'Stable',
-    description: 'Production-ready component library featuring Radix UI primitives and Tailwind v4.',
-    role: 'Primary UI Consumer',
-  },
-  {
-    name: themePkg.name,
-    version: themePkg.version,
-    type: 'Design Tokens',
-    status: 'Active',
-    description: 'Centralized design tokens, CSS variables, and Tailwind CSS v4 @theme directives.',
-    role: 'Foundation Token Layer',
-  },
-  {
-    name: motionPkg.name,
-    version: motionPkg.version,
-    type: 'Animation Core',
-    status: 'Active',
-    description: 'Shared motion infrastructure, springs, physics transitions, and silent CSS fallbacks.',
-    role: 'Animation Engine',
-  },
-  {
-    name: iconsPkg.name,
-    version: iconsPkg.version,
-    type: 'Icon System',
-    status: 'Stable',
-    description: 'Curated Lucide icon integrations and custom industrial woodcraft SVG glyphs.',
-    role: 'Visual Assets',
-  },
-  {
-    name: hooksPkg.name,
-    version: hooksPkg.version,
-    type: 'Utilities',
-    status: 'Stable',
-    description: 'Pure headless React hooks for layout observation, focus trapping, and motion telemetry.',
-    role: 'Behavioral Utilities',
-  },
-  {
-    name: utilsPkg.name,
-    version: utilsPkg.version,
-    type: 'Utilities',
-    status: 'Stable',
-    description: 'Zero-dependency TypeScript utilities: className merger (cn), gap parsers, formatters.',
-    role: 'Shared Helpers',
-  },
-];
-
-import { Check, Copy } from '@timmbr/icons';
-
-function CopyButton({
-  text,
-  title = 'Copy',
-  light = false,
-}: {
-  text: string;
-  title?: string;
-  light?: boolean;
-}) {
+function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = React.useState(false);
-
-  const handleCopy = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <button
       type="button"
-      onClick={handleCopy}
-      title={copied ? 'Copied!' : title}
-      aria-label={title}
-      className={`inline-flex items-center justify-center p-0.5 rounded transition-all active:scale-95 ${
-        light
-          ? 'text-white/80 hover:text-white hover:bg-white/20'
-          : 'text-grey-400 hover:text-grey-700 dark:hover:text-grey-200 hover:bg-grey-200 dark:hover:bg-grey-700'
-      }`}
+      onClick={(e) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1800);
+      }}
+      title={copied ? 'Copied!' : 'Copy'}
+      aria-label="Copy"
+      className="inline-flex items-center justify-center size-5 rounded transition-all hover:bg-white/20 active:scale-90"
     >
-      {copied ? (
-        <Check className={`w-3 h-3 ${light ? 'text-emerald-300' : 'text-emerald-500'}`} />
-      ) : (
-        <Copy className="w-3 h-3" />
-      )}
+      {copied
+        ? <Check className="size-3 text-emerald-400" />
+        : <Copy className="size-3 opacity-70 group-hover:opacity-100" />}
     </button>
   );
 }
 
+const packages = [
+  {
+    name: '@timmbr/ui',
+    version: '1.11.0',
+    description: 'React component library — Radix primitives, Tailwind v4, motion-first.',
+    icon: <LayoutDashboard className="size-4" />,
+  },
+  {
+    name: '@timmbr/theme',
+    version: '1.3.0',
+    description: 'Design tokens, CSS variables, and @theme definitions.',
+    icon: <Palette className="size-4" />,
+  },
+  {
+    name: '@timmbr/motion',
+    version: '1.2.4',
+    description: 'Shared animation core — springs, physics, CSS fallbacks.',
+    icon: <Film className="size-4" />,
+  },
+  {
+    name: '@timmbr/icons',
+    version: '1.6.0',
+    description: 'Lucide icons + custom SVG glyphs, unified wrapper.',
+    icon: <Star className="size-4" />,
+  },
+  {
+    name: '@timmbr/hooks',
+    version: '1.1.0',
+    description: 'Pure React hooks for layout, focus, media queries.',
+    icon: <Sparkles className="size-4" />,
+  },
+  {
+    name: '@timmbr/utils',
+    version: '1.6.0',
+    description: 'Zero-dep TypeScript utils: cn, formatters, helpers.',
+    icon: <Package className="size-4" />,
+  },
+];
+
+const sections = [
+  { label: 'Foundations', items: ['Colors', 'Typography', 'Spacing', 'Radius', 'Shadows'] },
+  { label: 'Actions', items: ['Button', 'LinkButton'] },
+  { label: 'Forms', items: ['Input', 'Checkbox', 'Switch', 'Select', 'Radio', 'OtpInput', 'RangeSlider', 'Textarea', '…'] },
+  { label: 'Data Display', items: ['Accordion', 'Avatar', 'Badge', 'Card', 'Chip', 'Table', 'Rating', 'Swatch', '…'] },
+  { label: 'Feedback', items: ['Alert', 'Progress', 'PageProgress', 'Snackbar', 'Toast', 'Skeleton', 'Spinner'] },
+  { label: 'Overlays', items: ['Dialog', 'Drawer', 'Tooltip', 'Popover', 'AuthModal', '…'] },
+  { label: 'Navigation', items: ['NavHeader', 'NavFooter', 'Tabs', 'Breadcrumb', 'FilterPanel', '…'] },
+];
+
 export const Overview: Story = {
-  render: () => {
-    return (
-      <div className="max-w-5xl mx-auto space-y-10 py-6">
-        {/* Hero Section */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2.5">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono font-semibold rounded bg-primary text-white tracking-wide">
-              <span>v{rootPkg.version}</span>
-              <CopyButton text={rootPkg.version} title="Copy version" light />
-            </div>
-            <Badge variant="default">Turborepo + PNPM Workspace</Badge>
-            <Badge variant="outline">Tailwind CSS v4</Badge>
+  render: () => (
+    <div className="min-h-screen bg-[#FDFAF6] font-sans text-[#3C3C3C]">
+      {/* Hero */}
+      <div className="bg-[#F7F1E6] border-b border-[#DDD3C3] px-8 py-12">
+        <div className="max-w-5xl mx-auto space-y-4">
+          {/* Wordmark */}
+          <div className="flex items-baseline gap-3">
+            <span
+              className="text-4xl font-bold tracking-tight"
+              style={{ fontFamily: '"DM Serif Display", Georgia, serif', color: '#C47A4A' }}
+            >
+              timmbr
+            </span>
+            <span className="text-sm font-semibold text-[#7A6B5A] font-mono tracking-widest uppercase">
+              Design System
+            </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-            Timmbr Design System
-          </h1>
-          <p className="text-base text-grey-600 dark:text-grey-400 max-w-3xl leading-relaxed">
-            A high-performance design system and component architecture engineered for precision
-            woodcraft ERPs, CNC machinery dashboards, and next-generation industrial web applications.
+          <p className="text-base text-[#5C4E3D] max-w-xl leading-relaxed">
+            A composable UI library built with Radix primitives, Tailwind CSS v4, and a motion-first animation system. One source of truth for every timmbr surface.
           </p>
-        </div>
-
-        <Divider />
-
-        {/* Workspace Packages Matrix */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold tracking-tight text-foreground">Workspace Packages</h2>
-            <span className="text-xs font-medium text-grey-500">6 internal packages</span>
+          {/* Install */}
+          <div className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[#3C3C3C] text-white font-mono text-xs mt-2">
+            <span className="text-[#9CA3AF]">$</span>
+            <span className="text-emerald-400">pnpm add @timmbr/ui @timmbr/theme @timmbr/motion</span>
+            <CopyButton text="pnpm add @timmbr/ui @timmbr/theme @timmbr/motion" />
           </div>
+        </div>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="max-w-5xl mx-auto px-8 py-10 space-y-12">
+        {/* Packages */}
+        <section className="space-y-5">
+          <h2 className="text-xs font-semibold tracking-widest uppercase text-[#7A6B5A]">Packages</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {packages.map((pkg) => (
               <div
                 key={pkg.name}
-                className="p-5 rounded-lg border border-grey-200 dark:border-grey-800 bg-white dark:bg-grey-900/50 shadow-sm flex flex-col justify-between hover:border-grey-400 dark:hover:border-grey-600 transition-colors"
+                className="group p-4 rounded-lg border border-[#DDD3C3] bg-white hover:border-[#C47A4A]/60 transition-colors"
               >
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-sm font-semibold text-primary dark:text-primary-400">
-                      {pkg.name}
-                    </span>
-                    <div className="inline-flex items-center gap-1 font-mono text-xs px-2 py-0.5 rounded bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 font-medium">
-                      <span>v{pkg.version}</span>
-                      <CopyButton text={pkg.version} title={`Copy ${pkg.name} version`} />
-                    </div>
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <div className="flex items-center gap-2 text-[#C47A4A]">
+                    {pkg.icon}
+                    <span className="font-mono text-sm font-semibold text-[#3C3C3C]">{pkg.name}</span>
                   </div>
-                  <p className="text-xs text-grey-600 dark:text-grey-400 leading-normal">
-                    {pkg.description}
-                  </p>
+                  <div className="flex items-center gap-0.5 shrink-0 font-mono text-xs text-[#7A6B5A] bg-[#F0E8DA] px-2 py-0.5 rounded">
+                    v{pkg.version}
+                    <CopyButton text={pkg.version} />
+                  </div>
                 </div>
-                <div className="mt-4 pt-3 border-t border-grey-100 dark:border-grey-800 flex items-center justify-between text-xs text-grey-500">
-                  <span>{pkg.role}</span>
-                  <Chip size="sm" variant="outlined">
-                    {pkg.status}
-                  </Chip>
+                <p className="text-xs text-[#5C4E3D] leading-relaxed">{pkg.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Divider />
+
+        {/* Component map */}
+        <section className="space-y-5">
+          <h2 className="text-xs font-semibold tracking-widest uppercase text-[#7A6B5A]">Component Map</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {sections.map((s) => (
+              <div key={s.label} className="p-4 rounded-lg border border-[#DDD3C3] bg-white">
+                <p className="text-xs font-semibold text-[#C47A4A] mb-2">{s.label}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {s.items.map((item) => (
+                    <span
+                      key={item}
+                      className="inline-block text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#F0E8DA] text-[#5C4E3D]"
+                    >
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
         <Divider />
 
-        {/* Architecture Topology */}
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold tracking-tight text-foreground">Architecture Topology</h2>
-          <div className="p-6 rounded-lg border border-grey-200 dark:border-grey-800 bg-grey-50 dark:bg-grey-900/30">
-            <pre className="font-mono text-xs text-grey-700 dark:text-grey-300 leading-relaxed overflow-x-auto">
-{`                    ┌────────────────────────┐
-                    │     @timmbr/motion     │  (Shared Animation Core)
-                    │  transitions, physics  │
-                    └───────────┬────────────┘
-                                │
-                 ┌──────────────┴──────────────┐
-                 ▼                             ▼
-        ┌──────────────────┐          ┌──────────────────┐
-        │   @timmbr/ui     │          │    Timmbr App    │
-        │  Dialog, Drawer, │          │   Page & route   │
-        │  Tabs, Overlays  │          │   transitions    │
-        └────────┬─────────┘          └──────────────────┘
-                 │
-                 ▼
-        ┌────────────────────────────────────────────────┐
-        │ Fallback: Silent CSS transitions if no motion  │
-        └────────────────────────────────────────────────┘`}
-            </pre>
-          </div>
-        </div>
-
-        {/* Quickstart Instructions */}
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold tracking-tight text-foreground">Quickstart</h2>
-          <div className="p-4 rounded-lg border border-grey-200 dark:border-grey-800 bg-grey-900 text-grey-100 font-mono text-xs space-y-3">
-            <div>
-              <span className="text-grey-500"># 1. Install UI package and theme</span>
-              <div className="text-emerald-400 mt-1">pnpm add @timmbr/ui @timmbr/theme @timmbr/motion</div>
-            </div>
-            <div>
-              <span className="text-grey-500"># 2. Import theme in your global css</span>
-              <div className="text-amber-300 mt-1">@import "@timmbr/theme/theme.css";</div>
-            </div>
-            <div>
-              <span className="text-grey-500"># 3. Use components</span>
-              <div className="text-blue-300 mt-1">
-                import {'{ Button, Input, Table, DataList }'} from &apos;@timmbr/ui&apos;;
+        {/* Setup */}
+        <section className="space-y-4">
+          <h2 className="text-xs font-semibold tracking-widest uppercase text-[#7A6B5A]">Setup</h2>
+          <div className="rounded-lg border border-[#DDD3C3] bg-[#3C3C3C] text-white overflow-hidden">
+            {[
+              { comment: '1. Import theme in your global CSS', code: '@import "@timmbr/theme/theme.css";', color: 'text-amber-300' },
+              { comment: '2. Scan UI components (Tailwind v4)', code: '@source "../node_modules/@timmbr/ui/dist";', color: 'text-sky-300' },
+              { comment: '3. Wrap your app', code: '<TimmbrConfigProvider>\n  <App />\n</TimmbrConfigProvider>', color: 'text-emerald-400' },
+            ].map(({ comment, code, color }) => (
+              <div key={comment} className="px-5 py-4 border-b border-white/10 last:border-0">
+                <p className="font-mono text-xs text-[#9CA3AF] mb-1">{comment}</p>
+                <pre className={`font-mono text-xs ${color} leading-relaxed whitespace-pre`}>{code}</pre>
               </div>
-            </div>
+            ))}
           </div>
-        </div>
+        </section>
       </div>
-    );
-  },
+    </div>
+  ),
 };

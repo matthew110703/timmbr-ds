@@ -4,6 +4,7 @@ import { tokens } from '@timmbr/theme';
 
 const meta = {
   title: 'Foundations/Colors',
+  tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
   },

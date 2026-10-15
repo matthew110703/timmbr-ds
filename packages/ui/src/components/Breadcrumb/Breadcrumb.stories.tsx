@@ -4,6 +4,7 @@ import { Breadcrumb } from './Breadcrumb';
 const meta: Meta<typeof Breadcrumb> = {
   title: 'Navigation/Breadcrumb',
   component: Breadcrumb,
+  tags: ['autodocs'],
   args: {
     items: [
       { label: 'Home', href: '/' },
