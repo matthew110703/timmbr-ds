@@ -648,7 +648,7 @@ export const NavHeader = React.forwardRef<HTMLElement, NavHeaderProps>(
 
             {/* Mobile Search Bar Pill (shown when mobileSearchMode !== 'icon') */}
             {isSearchVisible && resolvedMobileSearchMode !== 'icon' && (
-              <div className="px-3 sm:px-6 pb-2.5 pt-0.5 bg-[var(--color-bg-2,#F7F1E6)]">
+              <div className="px-3 sm:px-6 pb-2.5 pt-0.5 bg-bg-2">
                 <button
                   type="button"
                   onClick={() => setIsMobileSearchOpen(true)}

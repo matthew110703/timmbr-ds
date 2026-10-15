@@ -6,11 +6,11 @@ import { cn } from '@timmbr/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../Accordion';
 import { Checkbox } from '../Checkbox';
 import { Input } from '../Input';
+import { Button } from '../Button';
 import { RangeSlider } from '../RangeSlider';
 import { Swatch } from '../Swatch';
 import { Switch } from '../Switch';
 import {
-  filterLinkButtonVariants,
   filterOptionCountVariants,
   filterOptionLabelVariants,
   filterOptionRowVariants,
@@ -122,14 +122,14 @@ export function FilterOptionList({
         {visible.length === 0 && <li className="text-body-3 text-grey-500">{labels.noMatches}</li>}
       </ul>
       {!needle && (hidden > 0 || expanded) && matching.length > limit && (
-        <button
-          type="button"
-          className={filterLinkButtonVariants()}
+        <Button
+          variant="link"
+          size="sm"
           aria-expanded={expanded}
           onClick={() => setExpanded((e) => !e)}
         >
           {expanded ? labels.showLess : labels.showMore(hidden)}
-        </button>
+        </Button>
       )}
     </div>
   );
@@ -284,13 +284,14 @@ export const FilterPanel = React.forwardRef<HTMLDivElement, FilterPanelProps>(
                   </AccordionTrigger>
                   <AccordionContent className={filterSectionContentVariants()}>
                     {count > 0 && onClearGroup && (
-                      <button
-                        type="button"
-                        className={cn(filterLinkButtonVariants(), 'mb-3')}
+                      <Button
+                        variant="link"
+                        size="sm"
+                        className="mb-3"
                         onClick={() => onClearGroup(group.key)}
                       >
                         {labels.clear}
-                      </button>
+                      </Button>
                     )}
                     <FilterOptionList
                       group={group}

@@ -9,7 +9,7 @@ export const navFooterRootVariants = cva(
     variants: {
       tone: {
         dark: 'bg-surface-dark text-bg-2',
-        light: 'bg-[var(--color-bg-2,#F7F1E6)] text-[var(--color-grey-800,#3C3C3C)] border-t border-border-warm',
+        light: 'bg-bg-2 text-grey-800 border-t border-border-warm',
       },
     },
     defaultVariants: {

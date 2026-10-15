@@ -11,11 +11,11 @@ export const offerBannerVariants = cva(
  * Main header wrapper styles.
  */
 export const navHeaderVariants = cva(
-  'w-full bg-[var(--color-bg-2,#F7F1E6)] text-[var(--color-grey-800,#3C3C3C)] border-b border-border-warm relative z-40 transition-colors',
+  'w-full bg-bg-2 text-grey-800 border-b border-border-warm relative z-40 transition-colors',
   {
     variants: {
       sticky: {
-        true: 'sticky top-0 shadow-sm backdrop-blur-md bg-[var(--color-bg-2,#F7F1E6)]/95',
+        true: 'sticky top-0 shadow-sm backdrop-blur-md bg-bg-2/95',
         false: 'relative',
       },
     },
@@ -154,7 +154,7 @@ export const actionOverflowItemVariants = cva(
  * Mobile tab slider scroll container with cross-browser hidden scrollbars.
  */
 export const mobileTabSliderVariants = cva(
-  'w-full overflow-x-auto flex items-center gap-6 px-4 py-2 border-b border-border-warm bg-[var(--color-bg-2,#F7F1E6)] select-none scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'
+  'w-full overflow-x-auto flex items-center gap-6 px-4 py-2 border-b border-border-warm bg-bg-2 select-none scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'
 );
 
 /**
@@ -191,5 +191,5 @@ export const mobileTabContentPanelVariants = cva(
  * Mobile full-screen search drawer container.
  */
 export const mobileSearchDrawerVariants = cva(
-  'fixed inset-0 z-[9999] h-[100dvh] w-screen bg-[var(--color-bg-2,#F7F1E6)] flex flex-col overflow-hidden'
+  'fixed inset-0 z-[9999] h-[100dvh] w-screen bg-bg-2 flex flex-col overflow-hidden'
 );

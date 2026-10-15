@@ -128,7 +128,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <label
                 htmlFor={id}
                 className={cn(
-                  'absolute pointer-events-none transition-all duration-200 select-none truncate max-w-full z-10',
+                  'absolute pointer-events-none select-none truncate max-w-full z-10',
+                  shouldAnimate ? 'transition-all duration-200' : 'transition-none',
                   isFloatingActive
                     ? '-top-2.5 left-0 px-1 bg-grey-50 dark:bg-grey-900 text-caption-lg font-semibold leading-none rounded-xs'
                     : 'top-1/2 -translate-y-1/2 left-0 text-body-2 text-muted-foreground leading-none'

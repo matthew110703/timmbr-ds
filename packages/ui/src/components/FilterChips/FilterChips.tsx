@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '@timmbr/utils';
+import { Button } from '../Button';
 import { Chip } from '../Chip';
 import type { FilterChip, FilterChipsProps } from './FilterChips.types';
 
@@ -36,13 +37,9 @@ export function FilterChips<T extends FilterChip = FilterChip>({
         ))}
       </ul>
       {onClearAll && chips.length > 1 && (
-        <button
-          type="button"
-          onClick={onClearAll}
-          className="shrink-0 rounded-sm px-1 font-sans text-body-3 font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >
+        <Button variant="link" size="sm" className="shrink-0" onClick={onClearAll}>
           {clearAllLabel}
-        </button>
+        </Button>
       )}
     </div>
   );

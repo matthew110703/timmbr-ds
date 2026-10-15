@@ -68,7 +68,7 @@ export const ImageUploadThumbnailCard: React.FC<ImageUploadThumbnailCardProps> =
       <div className="absolute top-2 left-2 z-10 flex items-center gap-1.5 pointer-events-none">
         {index === 0 ? (
           <div className="bg-grey-1000/65 backdrop-blur-md text-grey-50 text-caption font-semibold px-2 py-0.5 rounded-full border border-grey-50/20 shadow-md flex items-center gap-1.5">
-            <span className="size-1.5 rounded-full bg-success shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+            <span className="size-1.5 rounded-full bg-success shadow-[0_0_6px_color-mix(in_srgb,var(--color-success)_80%,transparent)]" />
             <span>Cover</span>
           </div>
         ) : (

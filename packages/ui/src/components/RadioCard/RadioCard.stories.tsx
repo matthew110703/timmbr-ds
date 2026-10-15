@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChevronRight, CreditCard } from '@timmbr/icons';
+import { ChevronRight, CreditCard, Landmark, QrCode, Banknote } from '@timmbr/icons';
 import { RadioGroup } from '../Radio';
 import { RadioCard } from './RadioCard';
 
@@ -57,24 +57,31 @@ export const Cards: Story = {
 /** Rows inside a surface, divided by the group. A trailing element replaces the selection marker. */
 export const DividedRows: Story = {
   render: () => (
-    <RadioGroup aria-label="Method" className="gap-0 divide-y divide-border">
+    <RadioGroup aria-label="Payment method" className="gap-0 divide-y divide-border">
       <RadioCard
         value="card"
-        label="Credit card"
-        icon={<CreditCard className="h-5 w-5" />}
-        trailing={<ChevronRight className="h-4 w-4" />}
-      />
-      <RadioCard
-        value="debit"
-        label="ATM / Debit card"
+        label="Credit / Debit card"
         icon={<CreditCard className="h-5 w-5" />}
         trailing={<ChevronRight className="h-4 w-4" />}
       />
       <RadioCard
         value="netbanking"
         label="Internet banking"
-        icon={<CreditCard className="h-5 w-5" />}
+        icon={<Landmark className="h-5 w-5" />}
         trailing={<ChevronRight className="h-4 w-4" />}
+      />
+      <RadioCard
+        value="upi"
+        label="UPI"
+        icon={<QrCode className="h-5 w-5" />}
+        trailing={<ChevronRight className="h-4 w-4" />}
+      />
+      <RadioCard
+        value="cod"
+        label="Cash on delivery"
+        icon={<Banknote className="h-5 w-5" />}
+        trailing={<ChevronRight className="h-4 w-4" />}
+        disabled
       />
     </RadioGroup>
   ),

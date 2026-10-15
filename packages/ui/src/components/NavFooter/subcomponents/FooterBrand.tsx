@@ -30,7 +30,7 @@ export const DefaultFooterWordmark: React.FC<{ className?: string }> = ({ classN
     <text
       x="0"
       y="38"
-      fill="#D39375"
+      fill="currentColor"
       fontFamily="Outfit, sans-serif"
       fontWeight="700"
       fontSize="40"
