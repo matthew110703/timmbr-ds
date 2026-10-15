@@ -6,10 +6,18 @@ export default defineConfig({
   plugins: [react()],
   build: {
     target: 'esnext',
+    minify: false,
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: {
+        index:       resolve(__dirname, 'src/index.ts'),
+        transitions: resolve(__dirname, 'src/transitions/index.ts'),
+        variants:    resolve(__dirname, 'src/variants/index.ts'),
+        presence:    resolve(__dirname, 'src/presence/index.ts'),
+        gestures:    resolve(__dirname, 'src/gestures/index.ts'),
+        layout:      resolve(__dirname, 'src/layout/index.ts'),
+      },
       formats: ['es'],
-      fileName: () => 'index.js',
+      fileName: (_fmt, name) => name === 'index' ? 'index.js' : `${name}/index.js`,
     },
     rollupOptions: {
       external: [
