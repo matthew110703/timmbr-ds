@@ -1,5 +1,15 @@
 # @timmbr/auth
 
+## 1.3.0
+
+### Minor Changes
+
+- Move `@timmbr/ui` from `dependencies` to optional `peerDependencies`. Auth-only consumers (server-side logic, API clients) no longer force-install the full UI package. Consumers that use auth UI components should add `@timmbr/ui` to their own dependencies.
+
+### Patch Changes
+
+- @timmbr/ui@1.11.1
+
 ## 1.2.1
 
 ### Patch Changes

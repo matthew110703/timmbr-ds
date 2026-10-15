@@ -1,5 +1,11 @@
 # @timmbr/motion
 
+## 1.2.5
+
+### Patch Changes
+
+- Fix missing sub-entry JS files for `transitions`, `variants`, `presence`, `gestures`, and `layout`. These paths were declared in `package.json` exports but never built, causing module-not-found errors at runtime for any consumer importing e.g. `@timmbr/motion/variants`.
+
 ## 1.2.4
 
 ### Patch Changes
