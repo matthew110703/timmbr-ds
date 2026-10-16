@@ -274,7 +274,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
                 <label className="text-body-3 font-semibold text-foreground tracking-wide flex items-center gap-1.5">
                   <span>{label}</span>
                   {minFiles && minFiles > 0 && (
-                    <span className="text-caption-lg text-muted font-normal">
+                    <span className="text-caption-lg text-muted-foreground font-normal">
                       (Min {minFiles})
                     </span>
                   )}
@@ -282,7 +282,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
               )}
 
               {multiple && (
-                <span className="text-caption-lg font-medium text-muted">
+                <span className="text-caption-lg font-medium text-muted-foreground">
                   {items.length}
                   {maxFiles ? ` / ${maxFiles}` : ''} uploaded
                 </span>
@@ -361,7 +361,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
                   onDrop={handleDrop}
                 />
               ) : (
-                <div className="w-full rounded-xl border border-dashed border-grey-300 dark:border-grey-700 bg-grey-50/50 dark:bg-grey-900/30 p-3 text-center text-body-3 text-muted">
+                <div className="w-full rounded-xl border border-dashed border-grey-300 dark:border-grey-700 bg-grey-50/50 dark:bg-grey-900/30 p-3 text-center text-body-3 text-muted-foreground">
                   Maximum upload limit reached ({maxFiles}/{maxFiles} items). Remove an item to add another.
                 </div>
               )}
@@ -417,7 +417,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
                   ? 'text-destructive font-medium'
                   : minFilesWarning
                     ? 'text-warning dark:text-warning font-medium'
-                    : 'text-muted'
+                    : 'text-muted-foreground'
               )}
             >
               {(isError || minFilesWarning) && (

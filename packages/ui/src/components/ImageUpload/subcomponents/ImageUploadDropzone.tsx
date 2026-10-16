@@ -119,7 +119,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
               </span>{' '}
               or drag & drop
             </span>
-            <span className="text-caption-lg text-muted">
+            <span className="text-caption-lg text-muted-foreground">
               {mediaType === 'video'
                 ? `MP4, WEBM, MOV (Max ${maxMb}MB)`
                 : mediaType === 'all'
@@ -140,7 +140,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
           </div>
           <div className="flex flex-col gap-0.5">
             <span className="text-body-3 font-semibold text-primary underline">Upload</span>
-            <span className="text-caption text-muted">Max {maxMb}MB</span>
+            <span className="text-caption text-muted-foreground">Max {maxMb}MB</span>
           </div>
         </div>
       ) : (
@@ -158,7 +158,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
             <span className="text-body-3 font-medium text-foreground">
               <span className="text-primary underline font-semibold">Click to upload</span> or drag and drop
             </span>
-            <span className="text-caption-lg text-muted">
+            <span className="text-caption-lg text-muted-foreground">
               {mediaType === 'video'
                 ? `MP4, WEBM, MOV (Max ${maxMb}MB)`
                 : mediaType === 'all'

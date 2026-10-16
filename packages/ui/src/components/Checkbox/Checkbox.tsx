@@ -89,7 +89,7 @@ export const Checkbox = React.forwardRef<
               </label>
             )}
             {description && (
-              <p className="text-body-3 text-muted leading-normal mt-0.5">
+              <p className="text-body-3 text-muted-foreground leading-normal mt-0.5">
                 {description}
               </p>
             )}

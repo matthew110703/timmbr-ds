@@ -1,5 +1,13 @@
 # @timmbr/ui
 
+## 1.13.2
+
+### Patch Changes
+
+- Fix helper text, description, and icon colors using `text-muted-foreground` instead of `text-muted`
+
+  `--color-muted` is a background token (warm sandy), not a text color. All components that used `text-muted` for secondary text were rendering near-invisible text on light backgrounds. Affected components: FormField, Radio, Select, Textarea, Checkbox, Switch, Dialog, Drawer, Toast, Input, ImageUpload.
+
 ## 1.13.1
 
 ### Patch Changes

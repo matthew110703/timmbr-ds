@@ -108,7 +108,7 @@ export const ToastClose = React.forwardRef<
     ref={ref}
     data-slot="toast-close"
     className={cn(
-      'absolute right-1 top-1 flex items-center justify-center min-w-[44px] min-h-[44px] rounded-sm text-muted hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer',
+      'absolute right-1 top-1 flex items-center justify-center min-w-[44px] min-h-[44px] rounded-sm text-muted-foreground hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer',
       className
     )}
     toast-close=""

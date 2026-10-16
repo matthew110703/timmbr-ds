@@ -172,7 +172,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               type="button"
               tabIndex={-1}
               onClick={handleClear}
-              className="flex items-center justify-center ml-1.5 p-1 rounded-sm text-muted hover:text-foreground hover:bg-grey-100 dark:hover:bg-grey-800 transition-colors cursor-pointer active:scale-95"
+              className="flex items-center justify-center ml-1.5 p-1 rounded-sm text-muted-foreground hover:text-foreground hover:bg-grey-100 dark:hover:bg-grey-800 transition-colors cursor-pointer active:scale-95"
               aria-label="Clear input"
             >
               <X className="w-3.5 h-3.5" />
@@ -184,7 +184,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               type="button"
               tabIndex={-1}
               onClick={() => setShowPassword((prev) => !prev)}
-              className="flex items-center justify-center ml-1.5 p-1 rounded-sm text-muted hover:text-foreground hover:bg-grey-100 dark:hover:bg-grey-800 transition-colors cursor-pointer active:scale-95"
+              className="flex items-center justify-center ml-1.5 p-1 rounded-sm text-muted-foreground hover:text-foreground hover:bg-grey-100 dark:hover:bg-grey-800 transition-colors cursor-pointer active:scale-95"
               aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
               {showPassword ? (
@@ -196,7 +196,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           )}
 
           {rightAdornment && (
-            <div className="flex items-center justify-center ml-2 text-muted shrink-0">
+            <div className="flex items-center justify-center ml-2 text-muted-foreground shrink-0">
               {rightAdornment}
             </div>
           )}

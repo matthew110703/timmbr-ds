@@ -163,7 +163,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
               id={`${id}-desc`}
               className={cn(
                 'text-body-3 mt-1 flex items-center gap-1.5 flex-1',
-                isError ? 'text-destructive font-medium' : 'text-muted'
+                isError ? 'text-destructive font-medium' : 'text-muted-foreground'
               )}
             >
               {isError ? (
@@ -178,7 +178,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           )}
 
           {showCount && maxLength && (
-            <span className="text-caption-lg tabular-nums text-muted shrink-0 select-none">
+            <span className="text-caption-lg tabular-nums text-muted-foreground shrink-0 select-none">
               {currentValue.length}/{maxLength}
             </span>
           )}

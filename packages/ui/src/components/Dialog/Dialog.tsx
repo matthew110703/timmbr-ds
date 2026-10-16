@@ -66,7 +66,7 @@ export const DialogContent = React.forwardRef<
           {children}
           <DialogPrimitive.Close
             data-slot="dialog-close"
-            className="absolute right-3 top-3 z-20 flex items-center justify-center min-w-[44px] min-h-[44px] rounded-sm text-muted hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
+            className="absolute right-3 top-3 z-20 flex items-center justify-center min-w-[44px] min-h-[44px] rounded-sm text-muted-foreground hover:text-foreground opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>

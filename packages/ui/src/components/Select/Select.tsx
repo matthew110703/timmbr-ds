@@ -86,7 +86,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
           >
             <SelectPrimitive.Value placeholder={placeholder} />
             <SelectPrimitive.Icon asChild>
-              <ChevronDown className="h-4 w-4 shrink-0 text-muted opacity-60 transition-transform duration-200" />
+              <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground opacity-60 transition-transform duration-200" />
             </SelectPrimitive.Icon>
           </SelectPrimitive.Trigger>
 
@@ -128,7 +128,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
           <p
             className={cn(
               'text-body-3 mt-1 flex items-center gap-1.5',
-              isError ? 'text-destructive font-medium' : 'text-muted'
+              isError ? 'text-destructive font-medium' : 'text-muted-foreground'
             )}
           >
             {isError ? (

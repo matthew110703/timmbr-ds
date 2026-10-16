@@ -83,7 +83,7 @@ export const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
                     Cover
                   </span>
                 )}
-                <span className="text-caption-lg text-muted">
+                <span className="text-caption-lg text-muted-foreground">
                   ({activeIndex + 1} of {items.length})
                 </span>
               </div>

@@ -130,7 +130,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
           <p
             className={cn(
               'text-body-3 mt-1 flex items-center gap-1.5',
-              isError ? 'text-destructive font-medium' : 'text-muted'
+              isError ? 'text-destructive font-medium' : 'text-muted-foreground'
             )}
           >
             {isError ? (
