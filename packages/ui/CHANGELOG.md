@@ -1,5 +1,12 @@
 # @timmbr/ui
 
+## 1.13.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/hooks@1.2.0
+
 ## 1.13.0
 
 ### Minor Changes

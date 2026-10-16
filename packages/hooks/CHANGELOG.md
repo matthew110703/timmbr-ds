@@ -1,5 +1,11 @@
 # @timmbr/hooks
 
+## 1.2.0
+
+### Minor Changes
+
+- Add `usePrefersReducedMotion` hook
+
 ## 1.1.0
 
 ### Minor Changes
