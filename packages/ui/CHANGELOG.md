@@ -1,5 +1,21 @@
 # @timmbr/ui
 
+## 1.13.0
+
+### Minor Changes
+
+- Add `as` prop to `Stack` and `Inline` for polymorphic rendering.
+
+  - `Stack` and `Inline` both accept `as?: React.ElementType`, allowing them to render as any semantic HTML element (e.g. `as="article"`, `as="section"`, `as="header"`, `as="nav"`) or a custom component while keeping their layout styles.
+  - When `asChild` is also set, `asChild` takes precedence (existing Radix Slot behaviour is unchanged).
+  - Fully backward-compatible — the default render element (`div`) is unchanged.
+
+## 1.12.0
+
+### Minor Changes
+
+- Add `ZoneProgress` component — mount once in each zone's root layout. Handles within-zone router progress (history API patching), cross-zone navigation loading bar, and cross-zone link hover prefetch via `<link rel="prefetch">` injection.
+
 ## 1.11.1
 
 ### Patch Changes

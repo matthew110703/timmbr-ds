@@ -1,6 +1,6 @@
 {
   "name": "@timmbr/auth",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Browser-side sign-in for the Timmbr storefront: session store, auth modal host and header profile action, talking to the shell's same-origin /api/auth BFF",
   "type": "module",
   "main": "./dist/index.js",

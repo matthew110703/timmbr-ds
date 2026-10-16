@@ -11,6 +11,7 @@ export * from './components/Grid';
 export * from './components/Center';
 export * from './components/Stack';
 export * from './components/Inline';
+export * from './components/ScrollRail';
 
 // Form Primitives
 export * from './components/Input';
@@ -62,6 +63,7 @@ export * from './components/Text';
 export * from './components/Alert';
 export * from './components/Progress';
 export * from './components/PageProgress';
+export * from './components/ZoneProgress';
 export * from './components/Spinner';
 export * from './components/Skeleton';
 export * from './components/EmptyState';

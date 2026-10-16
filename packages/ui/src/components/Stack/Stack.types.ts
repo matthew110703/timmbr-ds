@@ -27,6 +27,11 @@ export interface StackProps
    */
   divider?: React.ReactNode;
   /**
+   * Renders as a different HTML element or component while keeping Stack styles.
+   * e.g. `as="article"`, `as="section"`, `as="header"`. Ignored when `asChild` is true.
+   */
+  as?: React.ElementType;
+  /**
    * If true, renders child element via Radix Slot.
    */
   asChild?: boolean;

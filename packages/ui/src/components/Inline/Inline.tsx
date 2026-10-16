@@ -19,13 +19,14 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
       justify = 'start',
       wrap = true,
       divider,
+      as,
       asChild = false,
       children,
       ...props
     },
     ref
   ) => {
-    const Component = asChild ? Slot : 'div';
+    const Component = asChild ? Slot : (as ?? 'div');
     const gapClass = formatGap(gap);
 
     const renderChildren = () => {

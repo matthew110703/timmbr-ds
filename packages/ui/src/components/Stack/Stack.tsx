@@ -36,13 +36,14 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
       align = 'stretch',
       justify = 'start',
       divider,
+      as,
       asChild = false,
       children,
       ...props
     },
     ref
   ) => {
-    const Component = asChild ? Slot : 'div';
+    const Component = asChild ? Slot : (as ?? 'div');
     const gapClass = formatGap(gap);
 
     const renderChildren = () => {

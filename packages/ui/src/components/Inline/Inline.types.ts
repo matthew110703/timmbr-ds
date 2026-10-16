@@ -18,6 +18,11 @@ export interface InlineProps
    */
   divider?: React.ReactNode;
   /**
+   * Renders as a different HTML element or component while keeping Inline styles.
+   * e.g. `as="nav"`, `as="footer"`. Ignored when `asChild` is true.
+   */
+  as?: React.ElementType;
+  /**
    * If true, renders child element via Radix Slot.
    */
   asChild?: boolean;
