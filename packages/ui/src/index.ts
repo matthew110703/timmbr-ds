@@ -26,6 +26,7 @@ export * from './components/FilterPanel';
 export * from './components/FilterDrawer';
 export * from './components/Label';
 export * from './components/FormField';
+export * from './components/AttributeValueField';
 export * from './components/ImageUpload';
 export * from './components/OtpInput';
 

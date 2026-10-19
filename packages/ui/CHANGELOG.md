@@ -1,5 +1,15 @@
 # @timmbr/ui
 
+## 1.14.0
+
+### Minor Changes
+
+- Add `AttributeValueField` for type-aware product attribute value editing (STRING, numeric, BOOLEAN, LIST).
+
+### Patch Changes
+
+- Fix DataTable sticky column headers: use border-separate for reliable `th` sticky positioning, scroll-container sizing when `stickyHeader` is enabled, `static` headers when disabled, and solid `bg-card` sticky headers (no frosted blur).
+
 ## 1.13.4
 
 ### Patch Changes
