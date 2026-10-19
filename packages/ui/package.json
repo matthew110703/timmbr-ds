@@ -1,6 +1,6 @@
 {
   "name": "@timmbr/ui",
-  "version": "1.13.2",
+  "version": "1.13.4",
   "description": "High-performance, Next.js App Router-compatible UI design system components for Timmbr",
   "type": "module",
   "main": "./dist/index.js",
@@ -54,7 +54,8 @@
     "@timmbr/theme": "workspace:*",
     "@timmbr/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
-    "input-otp": "^1.5.0"
+    "input-otp": "^1.5.0",
+    "@tanstack/react-table": "^8.21.3"
   },
   "peerDependencies": {
     "next": ">=13.0.0 || >=14.0.0 || >=15.0.0 || >=16.0.0",
@@ -71,6 +72,7 @@
   },
   "devDependencies": {
     "@storybook/react": "^10.6.0",
+    "@tanstack/react-table": "^8.21.3",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",

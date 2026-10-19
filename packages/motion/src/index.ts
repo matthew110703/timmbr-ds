@@ -4,6 +4,15 @@ export * from './presence';
 export * from './gestures';
 export * from './layout';
 export * from './components';
-export { motion, AnimatePresence, LayoutGroup } from 'motion/react';
+export {
+  motion,
+  AnimatePresence,
+  LayoutGroup,
+  useScroll,
+  useSpring,
+  useTransform,
+  useMotionValue,
+  animate,
+} from 'motion/react';
 
 

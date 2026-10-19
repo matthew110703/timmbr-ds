@@ -1,5 +1,17 @@
 # @timmbr/ui
 
+## 1.13.4
+
+### Patch Changes
+
+- Fix DataTable sticky column headers: use `border-separate` for reliable `th` sticky positioning, scroll-container sizing when `stickyHeader` is enabled, `static` headers when disabled, and solid `bg-card` sticky headers (no frosted blur).
+
+## 1.13.3
+
+### Patch Changes
+
+- Add generic headless DataTable component and fix palette tokens in TablePagination
+
 ## 1.13.2
 
 ### Patch Changes

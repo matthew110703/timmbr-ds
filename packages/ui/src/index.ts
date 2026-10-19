@@ -70,6 +70,7 @@ export * from './components/EmptyState';
 
 // Data & Lists
 export * from './components/Table';
+export * from './components/DataTable';
 export * from './components/Pagination';
 export * from './components/DataList';
 export * from './components/List';

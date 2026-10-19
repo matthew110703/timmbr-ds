@@ -5,6 +5,7 @@ export interface TableProps
   extends React.TableHTMLAttributes<HTMLTableElement>,
     TableVariants {
   containerClassName?: string;
+  containerRef?: React.Ref<HTMLDivElement>;
 }
 
 export type TableHeaderProps = React.HTMLAttributes<HTMLTableSectionElement>;

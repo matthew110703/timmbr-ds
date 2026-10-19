@@ -29,6 +29,7 @@ export default defineConfig({
         'lucide-react',
         'class-variance-authority',
         'input-otp',
+        /^@tanstack\/.*/,
       ],
       output: {
         preserveModules: true,

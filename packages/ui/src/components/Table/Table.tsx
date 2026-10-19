@@ -22,8 +22,11 @@ import type {
 } from './Table.types';
 
 export const Table = React.forwardRef<HTMLTableElement, TableProps>(
-  ({ className, containerClassName, variant, size, bordered, ...props }, ref) => (
-    <div className={cn(tableContainerVariants({ bordered }), containerClassName)}>
+  ({ className, containerClassName, containerRef, variant, size, bordered, ...props }, ref) => (
+    <div
+      ref={containerRef}
+      className={cn(tableContainerVariants({ bordered }), containerClassName)}
+    >
       <table
         ref={ref}
         data-slot="table"

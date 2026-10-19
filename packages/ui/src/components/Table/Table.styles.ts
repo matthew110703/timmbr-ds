@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const tableContainerVariants = cva(
-  'relative w-full overflow-auto rounded-lg font-sans text-foreground',
+  'relative w-full overflow-auto rounded-lg font-sans text-foreground scroll-smooth [scrollbar-width:thin]',
   {
     variants: {
       bordered: {
@@ -41,7 +41,7 @@ export const tableRowVariants = cva(
 );
 
 export const tableHeadVariants = cva(
-  'h-10 text-left align-middle font-semibold text-muted-foreground text-body-3 uppercase tracking-wider select-none bg-grey-100/50 dark:bg-grey-900/30 [&:has([role=checkbox])]:pr-0'
+  'sticky top-0 z-20 h-10 text-left align-middle font-semibold text-muted-foreground text-body-3 uppercase tracking-wider select-none bg-card border-b border-border [&:has([role=checkbox])]:pr-0'
 );
 
 export const tableCellVariants = cva(
