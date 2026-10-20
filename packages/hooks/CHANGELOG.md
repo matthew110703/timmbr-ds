@@ -1,5 +1,11 @@
 # @timmbr/hooks
 
+## 1.3.0
+
+### Minor Changes
+
+- Add eight new utility hooks: `useDebounce`, `useIsomorphicLayoutEffect`, `useEventListener`, `useOnClickOutside`, `useWindowSize`, `useLocalStorage`, `usePrevious`, `useToggle`.
+
 ## 1.2.0
 
 ### Minor Changes
