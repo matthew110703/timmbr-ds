@@ -89,3 +89,101 @@ Before reporting completion of any task:
 - Publishing packages to NPM, tagging releases, or running live package deployment commands MUST be left entirely to the user/developer.
 - AI agents may only run dry-run simulations (`--dry-run`) when specifically requested to test packaging.
 
+---
+
+## 7. Storybook Story Authoring Standards
+
+### Story Layout & Meta Defaults for Overview/Documentation Stories
+
+All Overview-category stories (Home, Packages pages, etc.) must use the following meta pattern:
+
+```ts
+const meta: Meta = {
+  title: 'Overview/StoreName',
+  tags: ['!autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+    docs: { page: null },
+    options: { showPanel: false },
+  },
+};
+```
+
+### Storybook Story ID Format
+
+Storybook derives story IDs from the `title` field + export name:
+- All lowercase, spaces → `-`, forward slashes → `-`, PascalCase words stay as one token (no separator inserted).
+- Pattern: `{group}-{component}--{storyExport}`
+- Examples:
+  - `title: 'Actions/Button'` + `export const Default` → `actions-button--default`
+  - `title: 'Data Display/Accordion'` + `export const Default` → `data-display-accordion--default`
+  - `title: 'Navigation/NavHeader'` + `export const Default` → `navigation-navheader--default`
+  - `title: 'Overview/Packages'` + `export const UI` → `overview-packages--ui`
+
+### In-Frame Navigation Links
+
+Stories render inside an `<iframe>`. Use `target="_parent"` to navigate the outer Storybook shell:
+
+```tsx
+<a href={`/?path=/story/${storyId}`} target="_parent">...</a>
+```
+
+Never use `window.location` or `history.pushState` directly inside stories.
+
+### Build-Time Dynamic Data in Stories
+
+**Package versions** — import `package.json` files directly via relative path (no workspace dep required):
+
+```ts
+import uiPkg from '../../../../packages/ui/package.json';
+// use: uiPkg.version
+```
+
+**Export counts** — use namespace imports for hook/util packages (requires the package to be listed in `apps/storybook/package.json` dependencies):
+
+```ts
+import * as allHooks from '@timmbr/hooks'; // needs "@timmbr/hooks": "workspace:*" in storybook deps
+import * as allUtils from '@timmbr/utils';
+const HOOK_COUNT = Object.keys(allHooks ?? {}).length;
+const UTIL_COUNT = Object.keys(allUtils ?? {}).length;
+```
+
+**Component directory count** — use `import.meta.glob` (no module execution, no `'use client'` collision):
+
+```ts
+const componentEntries = import.meta.glob('../../../../packages/ui/src/components/*/index.ts');
+const COMPONENT_COUNT = Object.keys(componentEntries ?? {}).length;
+```
+
+### NEVER: Wildcard Namespace Import of `@timmbr/ui`
+
+Do **NOT** write:
+```ts
+import * as allUI from '@timmbr/ui'; // ❌ FORBIDDEN
+```
+This forces Rollup to bundle every component module into a shared chunk. Each component file has a `'use client'` directive; multiple directives in one chunk cause a fatal Rollup bundling error.
+
+Use `import.meta.glob` for counting, or specific named imports for individual components.
+
+### Fallback Values for Dynamic Stats
+
+Always guard dynamic numeric values and version strings against `undefined`, `null`, or `NaN`:
+
+```ts
+// Centralized guard — place near the constant derivations
+const fmt = (n: number) => (Number.isFinite(n) && n > 0 ? String(n) : '–');
+
+// Version display
+v{pkg.version || '–'}
+```
+
+### Sidebar Sort Order
+
+Story ordering is controlled by `storySort.order` in `apps/storybook/.storybook/preview.tsx`. Nested groups use array syntax:
+
+```ts
+order: ['Overview', ['Home', 'Packages'], 'Foundations', [...], ...]
+```
+
+Add new Overview-level stories to the nested `['Home', 'Packages', ...]` sub-array.
+
