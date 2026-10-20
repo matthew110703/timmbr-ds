@@ -75,7 +75,7 @@ const preview: Preview = {
       storySort: {
         order: [
           'Overview',
-          ['Home'],
+          ['Home', 'Packages'],
           'Foundations',
           ['Colors', 'Typography', 'Spacing', 'Radius', 'Shadows', 'Breakpoints'],
           'Layout',

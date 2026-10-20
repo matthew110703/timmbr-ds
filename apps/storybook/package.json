@@ -18,6 +18,7 @@
     "@storybook/nextjs-vite": "^10.6.0",
     "@storybook/react": "^10.6.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@timmbr/hooks": "workspace:*",
     "@timmbr/icons": "workspace:*",
     "@timmbr/motion": "workspace:*",
     "@timmbr/theme": "workspace:*",
