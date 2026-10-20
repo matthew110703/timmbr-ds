@@ -42,9 +42,10 @@ function printHelp() {
 Timmbr Design System - Workspace Publisher
 
 Usage:
-  pnpm run publish:all          Publish all workspaces with new versions / changesets
-  pnpm run publish <pkgs...>    Publish specific workspace(s) (e.g., pnpm run publish ui theme)
-  pnpm run publish --dry-run    Simulate publishing without pushing to npm
+  pnpm run publish:all             Publish all workspaces with new versions / changesets
+  pnpm run publish <pkgs...>       Publish specific workspace(s) (e.g., pnpm run publish ui theme)
+  pnpm run publish --dry-run       Simulate publishing without pushing to npm
+  pnpm run publish --skip-checks   Skip pre-publish checks (build/typecheck/lint/test)
 
 Available Workspaces:
   ui       -> @timmbr/ui
@@ -100,6 +101,28 @@ function hasPendingChangesets() {
   );
 }
 
+function runPreflightChecks() {
+  const checks = [
+    { name: 'build',     cmd: 'pnpm run build' },
+    { name: 'typecheck', cmd: 'pnpm run typecheck' },
+    { name: 'lint',      cmd: 'pnpm lint' },
+    { name: 'test',      cmd: 'pnpm run test' },
+  ];
+  console.log('\n🔍 Running pre-publish checks...\n');
+  for (const { name, cmd } of checks) {
+    console.log(`▶ ${name}`);
+    try {
+      execSync(cmd, { stdio: 'inherit', cwd: ROOT_DIR });
+      console.log(`✅ ${name} passed\n`);
+    } catch {
+      console.error(`\n❌ Pre-publish check failed: ${name}`);
+      console.error('   Fix the issues above, then re-run the publish script.');
+      process.exit(1);
+    }
+  }
+  console.log('✅ All pre-publish checks passed.\n');
+}
+
 async function main() {
   const args = process.argv.slice(2);
 
@@ -109,7 +132,10 @@ async function main() {
   }
 
   const isDryRun = args.includes('--dry-run');
-  const cleanArgs = args.filter((arg) => arg !== '--dry-run' && arg !== '--all');
+  const skipChecks = args.includes('--skip-checks');
+  const cleanArgs = args.filter(
+    (arg) => arg !== '--dry-run' && arg !== '--all' && arg !== '--skip-checks'
+  );
 
   const isAll = args.includes('--all') || cleanArgs.length === 0 || cleanArgs.includes('all');
 
@@ -135,6 +161,13 @@ async function main() {
 
   // Deduplicate
   targetKeys = [...new Set(targetKeys)];
+
+  // Pre-publish validation gate
+  if (skipChecks) {
+    console.log('⏭️  Skipping pre-publish checks (--skip-checks passed).\n');
+  } else {
+    runPreflightChecks();
+  }
 
   console.log('='.repeat(65));
   console.log(`📦 Timmbr Design System Publisher ${isDryRun ? '(DRY RUN)' : ''}`);
@@ -162,6 +195,14 @@ async function main() {
     const pkgJsonPath = resolve(ROOT_DIR, pkgInfo.dir, 'package.json');
     const pkgJson = JSON.parse(readFileSync(pkgJsonPath, 'utf8'));
     const { name, version } = pkgJson;
+
+    // Guard: ensure dist/ exists before attempting to publish
+    const distPath = join(ROOT_DIR, pkgInfo.dir, 'dist');
+    if (!existsSync(distPath)) {
+      console.error(`❌ [NO DIST] ${name}@${version} — run 'pnpm run build' first`);
+      results.push({ name, version, status: 'FAILED (no dist/)' });
+      continue;
+    }
 
     const alreadyPublished = await isVersionPublished(name, version);
 
