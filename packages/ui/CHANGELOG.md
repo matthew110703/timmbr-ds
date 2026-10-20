@@ -1,5 +1,11 @@
 # @timmbr/ui
 
+## 1.15.1
+
+### Patch Changes
+
+- Fix unused import lint errors in `RichTextJsonContent` and `RichTextEditor.test`; fix missing `useEffect` dependency in `SideBarNavigation`.
+
 ## 1.15.0
 
 ### Minor Changes
