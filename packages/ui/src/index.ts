@@ -29,6 +29,7 @@ export * from './components/FormField';
 export * from './components/AttributeValueField';
 export * from './components/ImageUpload';
 export * from './components/OtpInput';
+export * from './components/RichTextEditor';
 
 // Overlays & Navigation
 export * from './components/AlertDialog';

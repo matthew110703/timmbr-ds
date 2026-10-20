@@ -1,5 +1,11 @@
 # @timmbr/ui
 
+## 1.15.0
+
+### Minor Changes
+
+- Add `RichTextEditor` component for rich text product description authoring. Headless TipTap React engine with a fully custom DS toolbar: Bold, Italic, Underline, Strikethrough, H2/H3 headings, Bullet/Ordered Lists, Blockquote, Link, Text Alignment, Horizontal Rule, Emoji picker, Character/Word count, Undo/Redo, Clear Formatting. SSR-safe (`immediatelyRender: false`, `'use client'` boundary). Two companion viewer components: `RichTextContent` (HTML) and `RichTextJsonContent` (TipTap JSON via `generateHTML`).
+
 ## 1.14.0
 
 ### Minor Changes

@@ -37,13 +37,13 @@ export const SideBarNavigation: React.FC<SideBarNavigationProps> = ({
   const isControlled = controlledCollapsed !== undefined;
   const [internalCollapsed, setInternalCollapsed] = React.useState<boolean>(defaultCollapsed);
 
-  // Synchronize with stored preference on mount (uncontrolled mode only)
+  // Synchronize with stored preference on mount (uncontrolled mode only).
+  // React bails out of the state update when the value hasn't changed, so
+  // the explicit equality check is unnecessary and would require adding
+  // internalCollapsed as a dep, causing the effect to re-run on every toggle.
   React.useEffect(() => {
     if (!isControlled && storageKey !== false) {
-      const stored = readStoredCollapsed(storageKey, defaultCollapsed);
-      if (stored !== internalCollapsed) {
-        setInternalCollapsed(stored);
-      }
+      setInternalCollapsed(readStoredCollapsed(storageKey, defaultCollapsed));
     }
   }, [isControlled, storageKey, defaultCollapsed]);
 

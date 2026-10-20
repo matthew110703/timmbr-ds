@@ -30,6 +30,7 @@ export default defineConfig({
         'class-variance-authority',
         'input-otp',
         /^@tanstack\/.*/,
+        /^@tiptap\/.*/,
       ],
       output: {
         preserveModules: true,
