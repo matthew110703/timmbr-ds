@@ -6,3 +6,4 @@ export * from './collapse';
 export * from './sidebar';
 export * from './header';
 export * from './footer';
+export * from './panel';

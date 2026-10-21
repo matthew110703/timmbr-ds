@@ -12,6 +12,7 @@ export * from './components/Center';
 export * from './components/Stack';
 export * from './components/Inline';
 export * from './components/ScrollRail';
+export * from './components/Panel';
 
 // Form Primitives
 export * from './components/Input';

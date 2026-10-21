@@ -1,5 +1,11 @@
 # @timmbr/ui
 
+## 1.16.0
+
+### Minor Changes
+
+- Add `Panel` component — a flexible container supporting optional drag-to-resize (`resizable='horizontal'|'vertical'`), collapse toggle (`collapsible`), and coordinated snap-to-collapse (`snapToCollapse`) when both are active. Placement-aware (`inline`, `left`, `right`) with smooth motion/react animations and a vanilla CSS fallback for reduced-motion. Composed of `Panel`, `PanelHeader`, `PanelTitle`, `PanelDescription`, `PanelBody`, `PanelFooter`; context available via `usePanelContext()`.
+
 ## 1.15.1
 
 ### Patch Changes

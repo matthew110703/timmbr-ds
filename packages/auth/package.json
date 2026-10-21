@@ -1,6 +1,6 @@
 {
   "name": "@timmbr/auth",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Browser-side sign-in for the Timmbr storefront: session store, auth modal host and header profile action, talking to the shell's same-origin /api/auth BFF",
   "type": "module",
   "main": "./dist/index.js",
@@ -40,7 +40,7 @@
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "@timmbr/ui": "workspace:*"
+    "@timmbr/ui": ">=1.0.0"
   },
   "peerDependenciesMeta": {
     "@timmbr/ui": {

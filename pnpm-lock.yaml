@@ -86,7 +86,7 @@ importers:
         version: 12.43.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       next:
         specifier: ^16.3.5
-        version: 16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@12.20.55)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react:
         specifier: ^19.0.0
         version: 19.3.0
@@ -123,7 +123,7 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^6.2.0
-        version: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+        version: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
 
   packages/auth:
     dependencies:
@@ -134,8 +134,8 @@ importers:
         specifier: workspace:*
         version: link:../icons
       '@timmbr/ui':
-        specifier: workspace:*
-        version: link:../ui
+        specifier: '>=1.0.0'
+        version: 1.14.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(motion@12.43.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(next@16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@12.20.55)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@timmbr/utils':
         specifier: workspace:*
         version: link:../utils
@@ -175,10 +175,10 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^6.2.0
-        version: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+        version: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
       vitest:
         specifier: ^3.0.5
-        version: 3.2.7(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)
+        version: 3.2.7(@types/node@12.20.55)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)
 
   packages/config-eslint: {}
 
@@ -212,7 +212,7 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^6.2.0
-        version: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+        version: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
 
   packages/icons:
     dependencies:
@@ -249,7 +249,7 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^6.2.0
-        version: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+        version: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
 
   packages/motion:
     dependencies:
@@ -295,10 +295,10 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^6.2.0
-        version: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+        version: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
       vitest:
         specifier: ^3.0.5
-        version: 3.2.7(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)
+        version: 3.2.7(@types/node@12.20.55)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)
 
   packages/payments:
     dependencies:
@@ -341,10 +341,10 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^6.2.0
-        version: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+        version: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
       vitest:
         specifier: ^3.0.5
-        version: 3.2.7(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)
+        version: 3.2.7(@types/node@12.20.55)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)
 
   packages/theme:
     devDependencies:
@@ -359,7 +359,7 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^6.2.0
-        version: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+        version: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
 
   packages/ui:
     dependencies:
@@ -492,7 +492,7 @@ importers:
         version: 26.1.0(supports-color@7.2.0)
       next:
         specifier: ^16.3.5
-        version: 16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@12.20.55)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react:
         specifier: ^19.0.0
         version: 19.3.0
@@ -510,10 +510,10 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^6.2.0
-        version: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+        version: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
       vitest:
         specifier: ^3.0.5
-        version: 3.2.7(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)
+        version: 3.2.7(@types/node@12.20.55)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)
 
   packages/utils:
     dependencies:
@@ -538,7 +538,7 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^6.2.0
-        version: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+        version: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
       vitest:
         specifier: ^2.1.8
         version: 2.1.9(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0)
@@ -2672,6 +2672,41 @@ packages:
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
+
+  '@timmbr/hooks@1.2.0':
+    resolution: {integrity: sha512-yab3QmMGCDsOrlop8IVFqYevdtwxR+mdz3EdSHYuW+oNns3m7RQpQyNCh8rYm1AMu+p3MlkfxYhTBZO/+uw3Cg==}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
+  '@timmbr/icons@1.6.0':
+    resolution: {integrity: sha512-Sw3OcyLrRp7txi0wkUh8cVd9tVPQuS0qY/e0kyy1gFhuvPikAyzMhLh65OoEk/d/2hdpFpYWlbuFgIo9/U2RsA==}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
+  '@timmbr/motion@1.2.5':
+    resolution: {integrity: sha512-J9awNcYR7dd3uMBgoCEZ8eq49mA8Wt5nMAAGzJ1Ts+xgE4uzZiDsF6Ut6zxy7pTWhjHkIltI3RmhPSSTbHQIgQ==}
+    peerDependencies:
+      motion: '>=11.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
+  '@timmbr/theme@1.3.0':
+    resolution: {integrity: sha512-y3MUU8QdWiApdSKSYvWXdAd0sPCzGzEtf8co7niDpYU0IMMhNALToInCLl00aH1rOccan1/+XzSQZSX2wwaVlw==}
+
+  '@timmbr/ui@1.14.0':
+    resolution: {integrity: sha512-If1T/I6GcrveEGfWH5GKref4UTjDuCyp3YAEP/USerYItz0tC8YTUvQA55OlZA8XQsB9mpHCuFySp4Eu0vpukw==}
+    peerDependencies:
+      next: '>=13.0.0 || >=14.0.0 || >=15.0.0 || >=16.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    peerDependenciesMeta:
+      next:
+        optional: true
+
+  '@timmbr/utils@1.6.0':
+    resolution: {integrity: sha512-HqyTGciyQAFkVR6WCBu8lBBiQdk41c+SfwHmHsoZgMo5SdAuP3iAhuBXqDSHIxSfH0TQKiA/YmNxMrvD6ZDVsg==}
 
   '@tiptap/core@2.27.3':
     resolution: {integrity: sha512-a5LfRbLpfaGI3hbL/LPHUYHI0I+FQHdSHsy8L4YnVIuu3hXcm3QZgkWbpEGf8hCz8krk6zEiu0+iFOjTySU2FA==}
@@ -6011,7 +6046,7 @@ snapshots:
     dependencies:
       glob: 13.0.6
       react-docgen-typescript: 2.4.0(typescript@5.9.3)
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
     optionalDependencies:
       typescript: 5.9.3
 
@@ -6906,7 +6941,7 @@ snapshots:
     dependencies:
       storybook: 10.6.0(@types/react@19.3.0)(prettier@2.8.8)(react@19.3.0)
       ts-dedent: 2.3.0
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
 
   '@storybook/global@5.0.0': {}
 
@@ -6919,12 +6954,12 @@ snapshots:
       '@storybook/builder-vite': 10.6.0(storybook@10.6.0(@types/react@19.3.0)(prettier@2.8.8)(react@19.3.0))(vite@6.4.3(jiti@2.7.0)(lightningcss@1.32.0))
       '@storybook/react': 10.6.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(storybook@10.6.0(@types/react@19.3.0)(prettier@2.8.8)(react@19.3.0))(supports-color@7.2.0)(typescript@5.9.3)
       '@storybook/react-vite': 10.6.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(rollup@4.63.2)(storybook@10.6.0(@types/react@19.3.0)(prettier@2.8.8)(react@19.3.0))(supports-color@7.2.0)(typescript@5.9.3)(vite@6.4.3(jiti@2.7.0)(lightningcss@1.32.0))
-      next: 16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      next: 16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@12.20.55)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
       storybook: 10.6.0(@types/react@19.3.0)(prettier@2.8.8)(react@19.3.0)
       styled-jsx: 5.1.6(@babel/core@7.29.7(supports-color@7.2.0))(react@19.3.0)
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
       vite-plugin-storybook-nextjs: 10.6.0(next@16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(rollup@4.63.2)(storybook@10.6.0(@types/react@19.3.0)(prettier@2.8.8)(react@19.3.0))(supports-color@7.2.0)(typescript@5.9.3)(vite@6.4.3(jiti@2.7.0)(lightningcss@1.32.0))
     optionalDependencies:
       '@types/react': 19.3.0
@@ -6959,7 +6994,7 @@ snapshots:
       resolve: 1.22.12
       storybook: 10.6.0(@types/react@19.3.0)(prettier@2.8.8)(react@19.3.0)
       tsconfig-paths: 4.2.0
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
     optionalDependencies:
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -7054,7 +7089,7 @@ snapshots:
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
       tailwindcss: 4.3.3
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
 
   '@tanstack/react-table@8.21.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
@@ -7107,6 +7142,69 @@ snapshots:
   '@testing-library/user-event@14.6.7(@testing-library/dom@10.4.1)':
     dependencies:
       '@testing-library/dom': 10.4.1
+
+  '@timmbr/hooks@1.2.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+    dependencies:
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+
+  '@timmbr/icons@1.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+    dependencies:
+      '@timmbr/utils': 1.6.0
+      lucide-react: 1.45.0(react@19.3.0)
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+
+  '@timmbr/motion@1.2.5(motion@12.43.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+    dependencies:
+      '@timmbr/utils': 1.6.0
+      motion: 12.43.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+
+  '@timmbr/theme@1.3.0': {}
+
+  '@timmbr/ui@1.14.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(motion@12.43.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(next@16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@12.20.55)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+    dependencies:
+      '@radix-ui/react-accordion': 1.2.20(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-alert-dialog': 1.1.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-avatar': 1.2.6(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-checkbox': 1.3.11(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-dialog': 1.1.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-dropdown-menu': 2.1.24(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-label': 2.1.15(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-popover': 1.1.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-radio-group': 1.4.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-select': 2.3.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-separator': 1.1.15(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-slider': 1.4.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-slot': 1.3.3(@types/react@19.3.0)(react@19.3.0)
+      '@radix-ui/react-switch': 1.3.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-tabs': 1.1.21(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-toast': 1.2.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@radix-ui/react-tooltip': 1.2.16(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@tanstack/react-table': 8.21.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@timmbr/hooks': 1.2.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@timmbr/icons': 1.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@timmbr/motion': 1.2.5(motion@12.43.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@timmbr/theme': 1.3.0
+      '@timmbr/utils': 1.6.0
+      class-variance-authority: 0.7.1
+      input-otp: 1.5.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+    optionalDependencies:
+      next: 16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@12.20.55)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+    transitivePeerDependencies:
+      - '@types/react'
+      - '@types/react-dom'
+      - motion
+
+  '@timmbr/utils@1.6.0':
+    dependencies:
+      clsx: 2.1.1
+      jwt-decode: 4.0.0
+      tailwind-merge: 3.6.0
 
   '@tiptap/core@2.27.3(@tiptap/pm@2.27.3)':
     dependencies:
@@ -7490,7 +7588,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.27
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -7531,7 +7629,7 @@ snapshots:
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
 
   '@vitest/pretty-format@2.1.9':
     dependencies:
@@ -8895,7 +8993,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  next@16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  next@16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@12.20.55)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       '@next/env': 16.3.5
       '@swc/helpers': 0.5.23
@@ -8914,7 +9012,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 16.3.5
       '@next/swc-win32-arm64-msvc': 16.3.5
       '@next/swc-win32-x64-msvc': 16.3.5
-      sharp: 0.35.4
+      sharp: 0.35.4(@types/node@12.20.55)
     transitivePeerDependencies:
       - '@babel/core'
       - '@types/node'
@@ -9494,7 +9592,7 @@ snapshots:
       es-errors: 1.3.0
       es-object-atoms: 1.1.2
 
-  sharp@0.35.4:
+  sharp@0.35.4(@types/node@12.20.55):
     dependencies:
       '@img/colour': 1.1.0
       detect-libc: 2.1.2
@@ -9525,6 +9623,7 @@ snapshots:
       '@img/sharp-win32-arm64': 0.35.4
       '@img/sharp-win32-ia32': 0.35.4
       '@img/sharp-win32-x64': 0.35.4
+      '@types/node': 12.20.55
     optional: true
 
   shebang-command@2.0.0:
@@ -9903,13 +10002,13 @@ snapshots:
       - supports-color
       - terser
 
-  vite-node@3.2.4(jiti@2.7.0)(lightningcss@1.32.0)(supports-color@7.2.0):
+  vite-node@3.2.4(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)(supports-color@7.2.0):
     dependencies:
       cac: 6.7.14
       debug: 4.4.3(supports-color@7.2.0)
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -9930,13 +10029,13 @@ snapshots:
       '@rollup/pluginutils': 5.4.0(rollup@4.63.2)
       magic-string: 0.30.21
       module-alias: 2.3.4
-      next: 16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      next: 16.3.5(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@12.20.55)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       pathe: 2.0.3
       probe-image-size: 7.4.0(supports-color@7.2.0)
       semver: 7.8.5
       storybook: 10.6.0(@types/react@19.3.0)(prettier@2.8.8)(react@19.3.0)
       ts-dedent: 2.3.0
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
       vite-tsconfig-paths: 5.1.4(supports-color@7.2.0)(typescript@5.9.3)(vite@6.4.3(jiti@2.7.0)(lightningcss@1.32.0))
     transitivePeerDependencies:
       - rollup
@@ -9949,7 +10048,7 @@ snapshots:
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.9.3)
     optionalDependencies:
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -9963,7 +10062,7 @@ snapshots:
       fsevents: 2.3.3
       lightningcss: 1.32.0
 
-  vite@6.4.3(jiti@2.7.0)(lightningcss@1.32.0):
+  vite@6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.7)
@@ -9972,6 +10071,7 @@ snapshots:
       rollup: 4.63.2
       tinyglobby: 0.2.17
     optionalDependencies:
+      '@types/node': 12.20.55
       fsevents: 2.3.3
       jiti: 2.7.0
       lightningcss: 1.32.0
@@ -10011,7 +10111,7 @@ snapshots:
       - supports-color
       - terser
 
-  vitest@3.2.7(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0):
+  vitest@3.2.7(@types/node@12.20.55)(jiti@2.7.0)(jsdom@26.1.0(supports-color@7.2.0))(lightningcss@1.32.0)(supports-color@7.2.0):
     dependencies:
       '@types/chai': 5.2.3
       '@vitest/expect': 3.2.7
@@ -10033,10 +10133,11 @@ snapshots:
       tinyglobby: 0.2.17
       tinypool: 1.1.1
       tinyrainbow: 2.0.0
-      vite: 6.4.3(jiti@2.7.0)(lightningcss@1.32.0)
-      vite-node: 3.2.4(jiti@2.7.0)(lightningcss@1.32.0)(supports-color@7.2.0)
+      vite: 6.4.3(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)
+      vite-node: 3.2.4(@types/node@12.20.55)(jiti@2.7.0)(lightningcss@1.32.0)(supports-color@7.2.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
+      '@types/node': 12.20.55
       jsdom: 26.1.0(supports-color@7.2.0)
     transitivePeerDependencies:
       - jiti
