@@ -6,7 +6,8 @@ import {
   stepIndicatorVariants,
   stepperVariants,
 } from './Stepper.styles';
-import type { StepState, StepperProps } from './Stepper.types';
+import type { ProgressStepItem, StepState, StepperProps } from './Stepper.types';
+import { ProgressStepper } from './subcomponents/ProgressStepper';
 
 function stateOf(index: number, current: number, status: StepperProps['status']): StepState {
   if (index < current) return 'complete';
@@ -18,12 +19,25 @@ function stateOf(index: number, current: number, status: StepperProps['status'])
  * Progress through a sequence of steps (order tracking, checkout, onboarding).
  * Steps before `current` are complete; `status="error"` marks the current
  * step as failed (e.g. a cancelled order).
+ *
+ * Use `variant="progress"` for checkout/KYC flows with icons and status badges.
  */
 export const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(
   (
-    { steps, current, status = 'default', orientation = 'horizontal', className, ...props },
+    { steps, current, status = 'default', orientation = 'horizontal', variant = 'default', className, ...props },
     ref
-  ) => (
+  ) => {
+    if (variant === 'progress') {
+      return (
+        <ProgressStepper
+          steps={steps as ProgressStepItem[]}
+          current={current}
+          status={status}
+          className={className}
+        />
+      );
+    }
+    return (
     <ol
       ref={ref}
       data-slot="stepper"
@@ -92,6 +106,7 @@ export const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(
         );
       })}
     </ol>
-  )
+    );
+  }
 );
 Stepper.displayName = 'Stepper';

@@ -1,5 +1,26 @@
 # @timmbr/ui
 
+## 1.17.0
+
+### Minor Changes
+
+- Add `progress` variant to `Stepper` component.
+
+  The new variant is designed for multi-step checkout and KYC flows. Each step renders a larger icon circle (40px), a "STEP X" caption, a bold title, an optional description, and a colour-coded status badge (Completed / In Progress / Failed / Pending).
+
+  **New exports:**
+
+  - `ProgressStepItem` — step item type for the progress variant; `label` and `icon` are required, `description` and `statusLabel` are optional
+  - `ProgressStepper` — internal subcomponent (also exported for direct use)
+  - `ProgressStepperProps`
+  - `stepProgressIndicatorVariants`, `stepProgressConnectorVariants`, `stepProgressBadgeVariants` — CVA style helpers
+
+  **API additions (non-breaking):**
+
+  - `StepperProps.variant?: 'default' | 'progress'` — defaults to `'default'`; existing behaviour is completely unchanged
+  - `StepItem.icon?: React.ReactNode` — optional on the base type (required via `ProgressStepItem` for the progress variant)
+  - `StepItem.statusLabel?: string` — overrides the auto-derived badge text per step
+
 ## 1.16.0
 
 ### Minor Changes
