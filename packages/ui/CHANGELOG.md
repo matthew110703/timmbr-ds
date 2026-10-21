@@ -1,5 +1,12 @@
 # @timmbr/ui
 
+## 1.17.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/motion@1.2.6
+
 ## 1.17.1
 
 ### Patch Changes

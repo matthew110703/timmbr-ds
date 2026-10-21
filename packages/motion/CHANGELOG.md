@@ -1,5 +1,11 @@
 # @timmbr/motion
 
+## 1.2.6
+
+### Patch Changes
+
+- Export animate and useMotionValue from the motion index so Panel and other components can use them.
+
 ## 1.2.5
 
 ### Patch Changes
