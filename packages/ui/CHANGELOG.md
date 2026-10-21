@@ -1,5 +1,12 @@
 # @timmbr/ui
 
+## 1.17.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/icons@1.6.1
+
 ## 1.17.0
 
 ### Minor Changes

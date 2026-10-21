@@ -1,5 +1,11 @@
 # @timmbr/icons
 
+## 1.6.1
+
+### Patch Changes
+
+- Export AlignCenter, AlignRight, AlignLeft, AlignJustify from the icons index so RichTextEditor toolbar can use them.
+
 ## 1.6.0
 
 ### Minor Changes

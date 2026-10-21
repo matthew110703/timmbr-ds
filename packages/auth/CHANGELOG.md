@@ -1,5 +1,13 @@
 # @timmbr/auth
 
+## 1.4.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @timmbr/icons@1.6.1
+  - @timmbr/ui@1.17.1
+
 ## 1.4.6
 
 ### Patch Changes
