@@ -25,11 +25,12 @@ export interface ProgressStepperProps {
   steps: StepperProps['steps'];
   current: number;
   status?: StepperProps['status'];
+  showBadge?: boolean;
   className?: string;
 }
 
 export const ProgressStepper = React.forwardRef<HTMLOListElement, ProgressStepperProps>(
-  ({ steps, current, status = 'default', className }, ref) => (
+  ({ steps, current, status = 'default', showBadge = true, className }, ref) => (
     <ol
       ref={ref}
       data-slot="stepper"
@@ -92,9 +93,11 @@ export const ProgressStepper = React.forwardRef<HTMLOListElement, ProgressSteppe
                   {step.description}
                 </span>
               )}
-              <span className={cn('mt-1.5 inline-flex', stepProgressBadgeVariants({ state }))}>
-                {badgeLabel}
-              </span>
+              {showBadge && (
+                <span className={cn('mt-1.5 inline-flex', stepProgressBadgeVariants({ state }))}>
+                  {badgeLabel}
+                </span>
+              )}
             </span>
           </li>
         );

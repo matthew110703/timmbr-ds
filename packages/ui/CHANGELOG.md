@@ -1,5 +1,11 @@
 # @timmbr/ui
 
+## 1.17.3
+
+### Patch Changes
+
+- Add `showBadge` prop to `Stepper` (progress variant) and `ProgressStepper` to allow hiding the status badge below each step label. Defaults to `true` (existing behaviour unchanged).
+
 ## 1.17.2
 
 ### Patch Changes

@@ -30,4 +30,6 @@ export interface StepperProps extends React.OlHTMLAttributes<HTMLOListElement> {
   orientation?: 'horizontal' | 'vertical';
   /** 'default' = numbered circles (existing). 'progress' = icon circles + status badges. */
   variant?: 'default' | 'progress';
+  /** Hide the status badge below each step label in the `progress` variant. Defaults to `true`. */
+  showBadge?: boolean;
 }

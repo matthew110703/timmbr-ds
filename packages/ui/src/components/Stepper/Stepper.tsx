@@ -24,7 +24,7 @@ function stateOf(index: number, current: number, status: StepperProps['status'])
  */
 export const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(
   (
-    { steps, current, status = 'default', orientation = 'horizontal', variant = 'default', className, ...props },
+    { steps, current, status = 'default', orientation = 'horizontal', variant = 'default', showBadge = true, className, ...props },
     ref
   ) => {
     if (variant === 'progress') {
@@ -33,6 +33,7 @@ export const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(
           steps={steps as ProgressStepItem[]}
           current={current}
           status={status}
+          showBadge={showBadge}
           className={className}
         />
       );
